@@ -2,5 +2,5 @@
 using namespace std;
 int main()
 {
-std:cout << "Hello mother fucker";
+	std:cout << "Hello mother fucker";
 }
