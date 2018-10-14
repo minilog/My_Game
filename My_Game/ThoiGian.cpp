@@ -2,20 +2,6 @@
 
 ThoiGian* ThoiGian::mTruongHop = NULL;
 
-ThoiGian::ThoiGian()
-{
-}
-
-ThoiGian* ThoiGian::NhanTruongHop()
-{
-	if (!mTruongHop)
-	{
-		mTruongHop = new ThoiGian();
-	}
-
-	return mTruongHop;
-}
-
 void ThoiGian::BatDauDem()
 {
 	if (!QueryPerformanceFrequency(&mTyLeThoiGian))

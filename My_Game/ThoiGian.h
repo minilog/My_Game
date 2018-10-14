@@ -5,7 +5,14 @@
 class ThoiGian
 {
 public:
-	static ThoiGian* NhanTruongHop();
+	static ThoiGian* NhanTruongHop()
+	{
+		if (!mTruongHop)
+		{
+			mTruongHop = new ThoiGian();
+		}
+		return mTruongHop;
+	}
 	void BatDauDem();
 	float NhanThoiGianDemDuoc();
 private:
