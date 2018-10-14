@@ -101,6 +101,9 @@
     <ClCompile Include="ToanCauGame.cpp">
       <Filter>Framework\ThanhPhan</Filter>
     </ClCompile>
+    <ClCompile Include="ThoiGian.cpp">
+      <Filter>Framework\ThanhPhan</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -173,6 +176,9 @@
       <Filter>Framework\FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="ToanCauGame.h">
+      <Filter>Framework\ThanhPhan</Filter>
+    </ClInclude>
+    <ClInclude Include="ThoiGian.h">
       <Filter>Framework\ThanhPhan</Filter>
     </ClInclude>
   </ItemGroup>
