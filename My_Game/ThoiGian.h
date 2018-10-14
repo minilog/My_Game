@@ -5,7 +5,7 @@
 class ThoiGian
 {
 public:
-	static ThoiGian* LayTruongHop();
+	static ThoiGian* NhanTruongHop();
 	void BatDauDem();
 	float NhanThoiGianDemDuoc();
 private:

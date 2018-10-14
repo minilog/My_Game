@@ -147,6 +147,7 @@
     <ClCompile Include="MapReader\TmxTileOffset.cpp" />
     <ClCompile Include="MapReader\TmxTileset.cpp" />
     <ClCompile Include="MapReader\TmxUtil.cpp" />
+    <ClCompile Include="QuanLyBanDo.cpp" />
     <ClCompile Include="ThoiGian.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
   </ItemGroup>
@@ -175,6 +176,7 @@
     <ClInclude Include="MapReader\TmxUtil.h" />
     <ClInclude Include="MapReader\zconf.h" />
     <ClInclude Include="MapReader\zlib.h" />
+    <ClInclude Include="QuanLyBanDo.h" />
     <ClInclude Include="ThoiGian.h" />
     <ClInclude Include="ToanCauGame.h" />
   </ItemGroup>

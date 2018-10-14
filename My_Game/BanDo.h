@@ -7,15 +7,22 @@
 class BanDo
 {
 protected:
-	BanDo();
+	BanDo()
+	{
+		mMauNen = 0x4866ff;
+		TaiDuLieu();
+	}
 public:
-	virtual void CapNhat(float in_tg);
-	virtual void TaiDuLieu();
-	virtual void Ve();
-	virtual void OnKeyDown(int in_KeyCode);
-	virtual void OnKeuUp(int in_KeyCode);
-	virtual void OnMouseDown(float in_x, float in_y);
-	D3DCOLOR NhanMauNen();
+	virtual void CapNhat(float in_tg) {}
+	virtual void TaiDuLieu() {}
+	virtual void Ve() {}
+	virtual void OnKeyDown(int in_KeyCode) {}
+	virtual void OnKeuUp(int in_KeyCode) {}
+	virtual void OnMouseDown(float in_x, float in_y) {}
+	D3DCOLOR NhanMauNen()
+	{
+		return mMauNen;
+	}
 
 protected:
 	D3DCOLOR mMauNen;

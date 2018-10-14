@@ -6,7 +6,7 @@ ThoiGian::ThoiGian()
 {
 }
 
-ThoiGian* ThoiGian::LayTruongHop()
+ThoiGian* ThoiGian::NhanTruongHop()
 {
 	if (!mTruongHop)
 	{

@@ -84,7 +84,7 @@ namespace Tmx
     float PropertySet::GetFloatProperty(const string &name, float defaultValue) const
     {
         std::string str = GetStringProperty(name);
-        return (str.size() == 0) ? defaultValue : atof(GetStringProperty(name).c_str());
+        return float((str.size() == 0) ? defaultValue : atof(GetStringProperty(name).c_str()));
     }
 
     bool PropertySet::HasProperty( const string& name ) const

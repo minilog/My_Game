@@ -107,6 +107,9 @@
     <ClCompile Include="BanDo.cpp">
       <Filter>Framework\ThanhPhan</Filter>
     </ClCompile>
+    <ClCompile Include="QuanLyBanDo.cpp">
+      <Filter>Framework\DieuKhien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -186,6 +189,9 @@
     </ClInclude>
     <ClInclude Include="BanDo.h">
       <Filter>Framework\ThanhPhan</Filter>
+    </ClInclude>
+    <ClInclude Include="QuanLyBanDo.h">
+      <Filter>Framework\DieuKhien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
