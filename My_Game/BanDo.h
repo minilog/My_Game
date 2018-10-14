@@ -1,9 +1,10 @@
-#pragma once
+﻿#pragma once
 
 #include <d3dx9.h>
 #include <d3d9.h>
 #include "ToanCauGame.h"
 
+// Là 1 lớp giao diện, sử dụng để gọi đến Bản Đồ thực sự
 class BanDo
 {
 protected:

@@ -139,7 +139,6 @@ LRESULT CALLBACK ThuTucCuaSo(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		QuanLyBanDo::NhanTruongHop()->NhanBanDoHienTai()->OnKeyUp(wParam);
 		break;
 
-
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
