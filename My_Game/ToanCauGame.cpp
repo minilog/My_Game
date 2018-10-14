@@ -1,7 +1,7 @@
 #include "ToanCauGame.h"
 
 HINSTANCE ToanCauGame::mTruongHopXuLy = NULL;
-HWND ToanCauGame::mCuaSo = NULL;
+HWND ToanCauGame::mCuaSoXuLy = NULL;
 LPD3DXSPRITE ToanCauGame::mXuLyHinhAnh = NULL;
 LPDIRECT3DDEVICE9 ToanCauGame::mThietBi = NULL;
 int ToanCauGame::mChieuRong = 600;

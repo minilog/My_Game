@@ -16,13 +16,13 @@ public:
 	{
 		return mTruongHopXuLy;
 	}
-	static void ThietLapCuaSo(HWND in_CuaSo)
+	static void ThietLapCuaSoXuLy(HWND in_CuaSoXuLy)
 	{
-		mCuaSo = in_CuaSo;
+		mCuaSoXuLy = in_CuaSoXuLy;
 	}
-	static HWND NhanCuaSo()
+	static HWND NhanCuaSoXuLy()
 	{
-		return mCuaSo;
+		return mCuaSoXuLy;
 	}
 	static void ThietLapXuLyHinhAnh(LPD3DXSPRITE in_XuLyHinhAnh)
 	{
@@ -58,12 +58,13 @@ public:
 	}
 
 private:
-	static HINSTANCE mTruongHopXuLy;
-	static HWND mCuaSo;
-	static LPD3DXSPRITE mXuLyHinhAnh;
-	static LPDIRECT3DDEVICE9 mThietBi;
-	static int mChieuRong, mChieuCao;
+	static HINSTANCE			mTruongHopXuLy;
+	static HWND					mCuaSoXuLy;
+	static LPD3DXSPRITE			mXuLyHinhAnh;
+	static LPDIRECT3DDEVICE9	mThietBi;
+	static int					mChieuRong;
+	static int					mChieuCao;
 public:
-	static LPDIRECT3DSURFACE9 matSau;
-	static bool gameDangChay;
+	static LPDIRECT3DSURFACE9	matSau;
+	static bool					gameDangChay;
 };

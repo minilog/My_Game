@@ -9,29 +9,29 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Framework\ThanhPhan">
-      <UniqueIdentifier>{33419ef9-a572-4d63-82b9-3cc00f495a20}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\DieuKhien">
-      <UniqueIdentifier>{82ddea42-1406-439d-8805-0f1c3c2c32c1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\DoiTuong">
-      <UniqueIdentifier>{327dbaa2-0f46-4f2e-aeec-9d3956c84b71}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\DinhNghiaThongSo">
-      <UniqueIdentifier>{391d1ff8-b84e-4795-86ea-adc03623bef0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\DoiTuong\DoiTuongTrongBanDo">
-      <UniqueIdentifier>{14d81299-b602-44bd-83d9-7b7254290711}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\DoiTuong\NguoiChoi">
-      <UniqueIdentifier>{a92a7610-faf7-4422-ae5b-349216be2d1d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\FileDocMap">
+    <Filter Include="Framework\1.FileDocMap">
       <UniqueIdentifier>{3bdb088f-fe07-4b71-84ec-5724b56d9727}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\CacBanDo">
+    <Filter Include="Framework\2.ThanhPhan">
+      <UniqueIdentifier>{33419ef9-a572-4d63-82b9-3cc00f495a20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\3.DinhNghiaThongSo">
+      <UniqueIdentifier>{391d1ff8-b84e-4795-86ea-adc03623bef0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\6.DoiTuong">
+      <UniqueIdentifier>{327dbaa2-0f46-4f2e-aeec-9d3956c84b71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\6.DoiTuong\DoiTuongTrongBanDo">
+      <UniqueIdentifier>{14d81299-b602-44bd-83d9-7b7254290711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\6.DoiTuong\NguoiChoi">
+      <UniqueIdentifier>{a92a7610-faf7-4422-ae5b-349216be2d1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\4.CacBanDo">
       <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\5.DieuKhien">
+      <UniqueIdentifier>{82ddea42-1406-439d-8805-0f1c3c2c32c1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -39,164 +39,161 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTile.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTileLayer.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTileOffset.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTileset.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxUtil.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\base64.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\miniz.c">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\tinyxml2.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxEllipse.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxImage.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxImageLayer.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxLayer.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxMap.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxObject.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxObjectGroup.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxPolygon.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxPolyline.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxPropertySet.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTerrain.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTerrainArray.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="ToanCauGame.cpp">
-      <Filter>Framework\ThanhPhan</Filter>
+      <Filter>Framework\2.ThanhPhan</Filter>
     </ClCompile>
     <ClCompile Include="ThoiGian.cpp">
-      <Filter>Framework\ThanhPhan</Filter>
-    </ClCompile>
-    <ClCompile Include="BanDo.cpp">
-      <Filter>Framework\ThanhPhan</Filter>
+      <Filter>Framework\2.ThanhPhan</Filter>
     </ClCompile>
     <ClCompile Include="QuanLyBanDo.cpp">
-      <Filter>Framework\DieuKhien</Filter>
+      <Filter>Framework\5.DieuKhien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxTile.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxTileLayer.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxTileOffset.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxTileset.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxUtil.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\zconf.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\zlib.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\base64.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\tinyxml2.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxEllipse.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxImage.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxImageLayer.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxLayer.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxMap.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxMapTile.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxObject.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxObjectGroup.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxPoint.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxPolygon.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxPolyline.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxPropertySet.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxTerrain.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="ToanCauGame.h">
-      <Filter>Framework\ThanhPhan</Filter>
+      <Filter>Framework\2.ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="ThoiGian.h">
-      <Filter>Framework\ThanhPhan</Filter>
+      <Filter>Framework\2.ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="BanDo.h">
-      <Filter>Framework\ThanhPhan</Filter>
+      <Filter>Framework\2.ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="QuanLyBanDo.h">
-      <Filter>Framework\DieuKhien</Filter>
+      <Filter>Framework\5.DieuKhien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>Framework\1.FileDocMap</Filter>
     </None>
   </ItemGroup>
 </Project>
