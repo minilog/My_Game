@@ -1,0 +1,24 @@
+#pragma once
+
+#include <d3dx9.h>
+#include <d3d9.h>
+#include "ToanCauGame.h"
+
+class BanDo
+{
+protected:
+	BanDo();
+public:
+	virtual void CapNhat(float in_tg);
+	virtual void TaiDuLieu();
+	virtual void Ve();
+	virtual void OnKeyDown(int in_KeyCode);
+	virtual void OnKeuUp(int in_KeyCode);
+	virtual void OnMouseDown(float in_x, float in_y);
+	D3DCOLOR NhanMauNen();
+
+protected:
+	D3DCOLOR mMauNen;
+};
+
+

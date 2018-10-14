@@ -27,11 +27,11 @@
     <Filter Include="Framework\DoiTuong\NguoiChoi">
       <UniqueIdentifier>{a92a7610-faf7-4422-ae5b-349216be2d1d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\BanDo">
-      <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\FileDocMap">
       <UniqueIdentifier>{3bdb088f-fe07-4b71-84ec-5724b56d9727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\CacBanDo">
+      <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +102,9 @@
       <Filter>Framework\ThanhPhan</Filter>
     </ClCompile>
     <ClCompile Include="ThoiGian.cpp">
+      <Filter>Framework\ThanhPhan</Filter>
+    </ClCompile>
+    <ClCompile Include="BanDo.cpp">
       <Filter>Framework\ThanhPhan</Filter>
     </ClCompile>
   </ItemGroup>
@@ -179,6 +182,9 @@
       <Filter>Framework\ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="ThoiGian.h">
+      <Filter>Framework\ThanhPhan</Filter>
+    </ClInclude>
+    <ClInclude Include="BanDo.h">
       <Filter>Framework\ThanhPhan</Filter>
     </ClInclude>
   </ItemGroup>

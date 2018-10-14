@@ -1,6 +1,4 @@
 #pragma once
-#ifndef __Toan_Cau_Game__
-#define __Toan_Cau_Game__
 
 #include <d3dx9.h>
 #include <d3d9.h>
@@ -69,5 +67,3 @@ public:
 	static LPDIRECT3DSURFACE9 matSau;
 	static bool gameDangChay;
 };
-
-#endif
