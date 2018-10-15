@@ -4,7 +4,7 @@
 #include <d3d9.h>
 #include "ToanCauGame.h"
 
-// Là 1 lớp giao diện, sử dụng để gọi đến Bản Đồ thực sự
+// Là 1 lớp giao diện, sử dụng để gọi đến Màn Game thực sự
 class ManGame
 {
 protected:

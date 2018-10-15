@@ -150,9 +150,10 @@
     <ClCompile Include="MapReader\TmxTileset.cpp" />
     <ClCompile Include="MapReader\TmxUtil.cpp" />
     <ClCompile Include="QuanLyManGame.cpp" />
-    <ClCompile Include="ThoiGian.cpp" />
+    <ClCompile Include="ThoiGianGame.cpp" />
     <ClCompile Include="ThucThe.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
+    <ClCompile Include="VaChamGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KieuDuLieuEnum.h" />
@@ -184,9 +185,10 @@
     <ClInclude Include="MapReader\zconf.h" />
     <ClInclude Include="MapReader\zlib.h" />
     <ClInclude Include="QuanLyManGame.h" />
-    <ClInclude Include="ThoiGian.h" />
+    <ClInclude Include="ThoiGianGame.h" />
     <ClInclude Include="ThucThe.h" />
     <ClInclude Include="ToanCauGame.h" />
+    <ClInclude Include="VaChamGame.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in" />

@@ -1,8 +1,8 @@
-#include "ThoiGian.h"
+#include "ThoiGianGame.h"
 
-ThoiGian* ThoiGian::mTruongHop = NULL;
+ThoiGianGame* ThoiGianGame::mTruongHop = NULL;
 
-void ThoiGian::BatDauDem()
+void ThoiGianGame::BatDauDem()
 {
 	if (!QueryPerformanceFrequency(&mTyLeThoiGian))
 	{
@@ -12,7 +12,7 @@ void ThoiGian::BatDauDem()
 	QueryPerformanceCounter(&mBatDau);
 }
 
-float ThoiGian::NhanThoiGianDemDuoc()
+float ThoiGianGame::NhanThoiGianDemDuoc()
 {
 	QueryPerformanceCounter(&mKetThuc);
 	LARGE_INTEGER mDelta;

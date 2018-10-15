@@ -6,7 +6,7 @@
 #include <dinput.h>
 #include <windowsx.h>
 #include "ToanCauGame.h"
-#include "ThoiGian.h"
+#include "ThoiGianGame.h"
 #include "QuanLyManGame.h"
 
 using namespace std;

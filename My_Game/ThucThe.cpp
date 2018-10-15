@@ -4,10 +4,10 @@ RECT ThucThe::NhanGioiHanHCN()
 {
 	RECT lHCN;
 
-	lHCN.left = mX - mChieuRong / 2;
-	lHCN.right = mX + mChieuRong / 2;
-	lHCN.top = mY - mChieuCao / 2;
-	lHCN.bottom = mY + mChieuCao / 2;
+	lHCN.left = int(mX - mChieuRong / 2);
+	lHCN.right = int(mX + mChieuRong / 2);
+	lHCN.top = int(mY - mChieuCao / 2);
+	lHCN.bottom = int(mY + mChieuCao / 2);
 
 	return lHCN;
 }

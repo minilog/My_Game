@@ -2,14 +2,14 @@
 
 #include <Windows.h>
 
-class ThoiGian
+class ThoiGianGame
 {
 public:
-	static ThoiGian* NhanTruongHop()
+	static ThoiGianGame* NhanTruongHop()
 	{
 		if (!mTruongHop)
 		{
-			mTruongHop = new ThoiGian();
+			mTruongHop = new ThoiGianGame();
 		}
 		return mTruongHop;
 	}
@@ -18,5 +18,5 @@ public:
 
 private:
 	LARGE_INTEGER mBatDau, mKetThuc, mTyLeThoiGian;
-	static ThoiGian *mTruongHop;
+	static ThoiGianGame *mTruongHop;
 };
