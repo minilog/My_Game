@@ -9,12 +9,12 @@
 class HinhAnh
 {
 public:
-	HinhAnh() = default;
-	HinhAnh(const char* in_DuongDan, RECT in_HCN = RECT(), int in_ChieuRong = NULL, int in_ChieuCao = NULL,
-		D3DCOLOR in_MauNen = NULL)
+	HinhAnh() = default;	
+	HinhAnh(const char* in_DuongDan)
 	{
-		KhoiTaoVoiHinhAnh(in_DuongDan, in_HCN, in_ChieuRong, in_ChieuCao, in_MauNen);
+		KhoiTaoVoiHinhAnh(in_DuongDan);
 	}
+	//HinhAnh(const char* in_DuongDan, int in_ChieuRong = NULL, int in_ChieuCao = NULL, RECT in_HCN = RECT(), D3DCOLOR in_MauNen = NULL) {KhoiTaoVoiHinhAnh(in_DuongDan, in_ChieuRong, in_ChieuCao, in_HCN, in_MauNen);}
 	~HinhAnh()
 	{
 		if (mKetCauHinhAnh != NULL)
@@ -23,9 +23,9 @@ public:
 		}
 	}
 protected:
-	void KhoiTaoVoiHinhAnh(const char* in_DuongDan, RECT in_HCN = RECT(), int in_ChieuRong = NULL,
-		int in_ChieuCao = NULL, D3DCOLOR in_MauNen = NULL);
-	bool LaHCN	(RECT in_HCN)
+	void KhoiTaoVoiHinhAnh(const char* in_DuongDan);
+	//void KhoiTaoVoiHinhAnh(const char* in_DuongDan, int in_ChieuRong = NULL, int in_ChieuCao = NULL, RECT in_HCN = RECT(), D3DCOLOR in_MauNen = NULL);
+	bool LaHCN(RECT in_HCN)
 	{
 		if (in_HCN.left == in_HCN.right)
 		{
@@ -39,9 +39,8 @@ protected:
 		return true;
 	}
 public:
-	void Ve(D3DXVECTOR3 in_ViTri = D3DXVECTOR3(), RECT in_HCN = RECT(), D3DXVECTOR2 in_TiLe = D3DXVECTOR2(),
-		D3DXVECTOR2 in_DoDoi = D3DXVECTOR2(), float in_GocXoay = 0, D3DXVECTOR2 in_TrungTamXoayHinh = D3DXVECTOR2(),
-		D3DXCOLOR in_MauNen = D3DCOLOR_XRGB(255, 255, 255));
+	void Ve();
+	//void Ve(D3DXVECTOR3 in_ViTri = D3DXVECTOR3(), RECT in_HCN = RECT(), D3DXVECTOR2 in_TiLe = D3DXVECTOR2(),float in_GocXoay = 0,D3DXVECTOR2 in_DoDoi = D3DXVECTOR2(),D3DXCOLOR in_MauNen = D3DCOLOR_ARGB(255, 255, 255, 255));
 
 	D3DXIMAGE_INFO NhanThongTinHinhAnh()
 	{
@@ -67,10 +66,6 @@ public:
 	{
 		return mViTri;
 	}
-	void ThietLapHCN(RECT in_HCN)
-	{
-		mHCN = in_HCN;
-	}
 	void ThietLapChieuRong(int in_ChieuRong)
 	{
 		mChieuRong = in_ChieuRong;
@@ -87,21 +82,9 @@ public:
 	{
 		return mChieuCao;
 	}
-	void ThietLapTrungTamXoayHinh(D3DXVECTOR2 in_TrungTamXoayHinh)
+	void ThietLapHCN(RECT in_HCN)
 	{
-		mTrungTamXoayHinh = in_TrungTamXoayHinh;
-	}
-	D3DXVECTOR2 NhanTrungTamXoayHinh()
-	{
-		return mTrungTamXoayHinh;
-	}
-	void ThietLapGocXoay(float in_GocXoay)
-	{
-		mGocXoay = in_GocXoay;
-	}
-	float NhanGocXoay()
-	{
-		return mGocXoay;
+		mHCN = in_HCN;
 	}
 	void ThietLapTiLe(D3DXVECTOR2 in_TiLe)
 	{
@@ -135,6 +118,14 @@ public:
 	{
 		return mLatTheoChieuDoc;
 	}
+	void ThietLapGocXoayHinh(float in_GocXoay)
+	{
+		mGocXoayHinh = in_GocXoay;
+	}
+	float NhanGocXoayHinh()
+	{
+		return mGocXoayHinh;
+	}
 	void ThietLapDoDoi(D3DXVECTOR2 in_DoDoi)
 	{
 		mDoDoi = in_DoDoi;
@@ -151,14 +142,13 @@ protected:
 	D3DXMATRIX              mMaTran;			// ma trận hỗ trợ cho các phép hình học
 
 	D3DXVECTOR3             mViTri;
-	RECT                    mHCN;				// hình chữ nhật cắt từ Kết Cấu Hình Ảnh
 	int                     mChieuRong; 
 	int						mChieuCao;			// kích thước của Kết Cấu Hình Ảnh
-	D3DXVECTOR2             mTrungTamXoayHinh;
-	float                   mGocXoay;
+	RECT                    mHCN;				// hình chữ nhật cắt từ Kết Cấu Hình Ảnh
 	D3DXVECTOR2             mTiLe;
 	bool					mLatTheoChieuNgang;
 	bool                    mLatTheoChieuDoc;
+	float                   mGocXoayHinh;
 	D3DXVECTOR2             mDoDoi;				// Dời hình ảnh theo vị trí hình ảnh + độ dời
 };
 
