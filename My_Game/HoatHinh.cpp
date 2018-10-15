@@ -1,5 +1,11 @@
 ﻿#include "HoatHinh.h"
 
+HoatHinh::HoatHinh(const char * in_DuongDan, int in_TongKhuonHinh, int in_SoHang, int in_SoCot, float in_ThoiGianThayDoi)
+	:HinhAnh(in_DuongDan)
+{
+	KhoiTaoVoiHoatHinh(in_TongKhuonHinh, in_SoHang, in_SoCot, in_ThoiGianThayDoi);
+}
+
 void HoatHinh::KhoiTaoVoiHoatHinh(int in_TongKhuonHinh, int in_SoHang, int in_SoCot, float in_ThoiGianThayDoi)
 {
 	//GAMELOG("HoatHinh: TongKhuonHinh: %d, SoHang: %d, SoCot: %d, ThoiGianThayDoi: %f" in_TongKhuonHinh, in_SoHang, in_SoCot, in_ThoiGianThayDoi)
@@ -55,4 +61,32 @@ void HoatHinh::CapNhat(float in_tg)
 		HinhAnh::mHCN.top = mHangHienTai * HinhAnh::mChieuCao;
 		HinhAnh::mHCN.bottom = HinhAnh::mHCN.top + HinhAnh::mChieuCao;
 	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+/*								 Các hàm đơn giản					             */
+///////////////////////////////////////////////////////////////////////////////////
+
+void HoatHinh::Ve()
+{
+	HinhAnh::Ve();
 }

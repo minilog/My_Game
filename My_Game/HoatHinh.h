@@ -12,19 +12,12 @@ using namespace std;
 class HoatHinh : public HinhAnh
 {
 public:
-	HoatHinh(const char* in_DuongDan, int in_TongKhuonHinh, int in_SoHang, int in_SoCot, float in_ThoiGianThayDoi)
-		:HinhAnh(in_DuongDan)
-	{
-		KhoiTaoVoiHoatHinh(in_TongKhuonHinh, in_SoHang, in_SoCot, in_ThoiGianThayDoi);
-	}
+	HoatHinh(const char* in_DuongDan, int in_TongKhuonHinh, int in_SoHang, int in_SoCot, float in_ThoiGianThayDoi);
 protected:
 	void KhoiTaoVoiHoatHinh(int in_TongKhuonHinh, int in_SoHang, int in_SoCot, float in_ThoiGianThayDoi);
 public:
 	virtual void CapNhat(float in_tg);
-	void Ve()
-	{
-		HinhAnh::Ve();
-	}
+	void Ve();
 
 
 protected:

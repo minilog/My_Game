@@ -1,4 +1,11 @@
-#include "Camera.h"
+﻿#include "Camera.h"
+
+Camera::Camera(int in_ChieuRong, int in_ChieuCao)
+{
+	mChieuRong = in_ChieuRong;
+	mChieuCao = in_ChieuCao;
+	mViTri = D3DXVECTOR3(0, 0, 0);
+}
 
 RECT Camera::NhanGioiHanHCN()
 {
@@ -11,3 +18,53 @@ RECT Camera::NhanGioiHanHCN()
 
 	return lHCN;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+/*								 Các hàm đơn giản					             */
+///////////////////////////////////////////////////////////////////////////////////
+
+void Camera::ThietLapViTri(D3DXVECTOR3 in_ViTri)
+{
+	mViTri = in_ViTri;
+}
+
+void Camera::ThietLapViTri(float in_X, float in_Y)
+{
+	ThietLapViTri(D3DXVECTOR3(in_X, in_Y, 0));
+}
+
+int Camera::NhanChieuRong()
+{
+	return mChieuRong;
+}
+
+int Camera::NhanChieuCao()
+{
+	return mChieuCao;
+}
+
+D3DXVECTOR3 Camera::NhanViTri()
+{
+	return mViTri;
+}
+
+

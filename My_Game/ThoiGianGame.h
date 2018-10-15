@@ -5,14 +5,7 @@
 class ThoiGianGame
 {
 public:
-	static ThoiGianGame* NhanTruongHop()
-	{
-		if (!mTruongHop)
-		{
-			mTruongHop = new ThoiGianGame();
-		}
-		return mTruongHop;
-	}
+	static ThoiGianGame* NhanTruongHop();
 	void BatDauDem();
 	float NhanThoiGianDemDuoc();
 

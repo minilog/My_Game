@@ -1,4 +1,4 @@
-#include "ThoiGianGame.h"
+﻿#include "ThoiGianGame.h"
 
 ThoiGianGame* ThoiGianGame::mTruongHop = NULL;
 
@@ -19,4 +19,36 @@ float ThoiGianGame::NhanThoiGianDemDuoc()
 	mDelta.QuadPart = mKetThuc.QuadPart - mBatDau.QuadPart;
 
 	return ((float)mDelta.QuadPart / mTyLeThoiGian.QuadPart);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+/*								 Các hàm đơn giản					             */
+///////////////////////////////////////////////////////////////////////////////////
+
+ThoiGianGame * ThoiGianGame::NhanTruongHop()
+{
+	if (!mTruongHop)
+	{
+		mTruongHop = new ThoiGianGame();
+	}
+	return mTruongHop;
 }

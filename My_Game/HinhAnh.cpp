@@ -1,5 +1,10 @@
 ﻿#include "HinhAnh.h"
 
+HinhAnh::HinhAnh(const char * in_DuongDan)
+{
+	KhoiTaoVoiHinhAnh(in_DuongDan);
+}
+
 void HinhAnh::KhoiTaoVoiHinhAnh(const char * in_DuongDan)
 {
 	mXuLyHinhAnh = ToanCauGame::NhanXuLyHinhAnh();
@@ -60,6 +65,164 @@ void HinhAnh::Ve()
 		D3DCOLOR_ARGB(255, 255, 255, 255)); // những pixel nào có màu trắng thì sẽ tô màu này lên
 
 	mXuLyHinhAnh->SetTransform(&lMaTranCu); // thiết lập lại Ma Trận Cũ để Xử Lý Hình Ảnh chỉ áp dụng Transform với class này
+}
+
+HinhAnh::~HinhAnh()
+{
+	if (mKetCauHinhAnh != NULL)
+	{
+		mKetCauHinhAnh->Release();
+	}
+}
+
+void HinhAnh::LatTheoChieuDoc(bool in_Co)
+{
+	if (mLatTheoChieuDoc != in_Co)
+	{
+		mLatTheoChieuDoc = in_Co;
+		mTiLe = D3DXVECTOR2(mTiLe.x, -mTiLe.y);
+	}
+}
+
+void HinhAnh::LatTheoChieuNgang(bool in_Co)
+{
+	if (mLatTheoChieuNgang != in_Co)
+	{
+		mLatTheoChieuNgang = in_Co;
+		mTiLe = D3DXVECTOR2(-mTiLe.x, mTiLe.y);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+/*								 Các hàm đơn giản					             */
+///////////////////////////////////////////////////////////////////////////////////
+
+bool HinhAnh::LaHCN(RECT in_HCN)
+{
+	if (in_HCN.left == in_HCN.right)
+	{
+		return false;
+	}
+	if (in_HCN.top == in_HCN.bottom)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+D3DXIMAGE_INFO HinhAnh::NhanThongTinHinhAnh()
+{
+	return mThongTinHinhAnh;
+}
+
+LPDIRECT3DTEXTURE9 HinhAnh::NhanKetCauHinhAnh()
+{
+	return mKetCauHinhAnh;
+}
+
+void HinhAnh::ThietLapViTri(D3DXVECTOR3 in_ViTri)
+{
+	mViTri = in_ViTri;
+}
+
+void HinhAnh::ThietLapViTri(float x, float y)
+{
+	mViTri = D3DXVECTOR3(x, y, 0);
+}
+
+void HinhAnh::ThietLapViTri(D3DXVECTOR2 in_ViTri)
+{
+	ThietLapViTri(in_ViTri.x, in_ViTri.y);
+}
+
+D3DXVECTOR3 HinhAnh::NhanViTri()
+{
+	return mViTri;
+}
+
+void HinhAnh::ThietLapChieuRong(int in_ChieuRong)
+{
+	mChieuRong = in_ChieuRong;
+}
+
+int HinhAnh::NhanChieuRong()
+{
+	return mChieuRong;
+}
+
+void HinhAnh::ThietLapChieuCao(int in_ChieuCao)
+{
+	mChieuCao = in_ChieuCao;
+}
+
+int HinhAnh::NhanChieuCao()
+{
+	return mChieuCao;
+}
+
+void HinhAnh::ThietLapHCN(RECT in_HCN)
+{
+	mHCN = in_HCN;
+}
+
+void HinhAnh::ThietLapTiLe(D3DXVECTOR2 in_TiLe)
+{
+	mTiLe = in_TiLe;
+}
+
+D3DXVECTOR2 HinhAnh::NhanTiLe()
+{
+	return mTiLe;
+}
+
+bool HinhAnh::LaLatTheoChieuNgang()
+{
+	return mLatTheoChieuNgang;
+}
+
+bool HinhAnh::LaLatTheoChieuDoc()
+{
+	return mLatTheoChieuDoc;
+}
+
+void HinhAnh::ThietLapGocXoayHinh(float in_GocXoay)
+{
+	mGocXoayHinh = in_GocXoay;
+}
+
+float HinhAnh::NhanGocXoayHinh()
+{
+	return mGocXoayHinh;
+}
+
+void HinhAnh::ThietLapDoDoi(D3DXVECTOR2 in_DoDoi)
+{
+	mDoDoi = in_DoDoi;
+}
+
+D3DXVECTOR2 HinhAnh::NhanDoDoi()
+{
+	return mDoDoi;
 }
 
 //void HinhAnh::KhoiTaoVoiHinhAnh(

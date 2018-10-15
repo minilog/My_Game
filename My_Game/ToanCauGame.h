@@ -7,54 +7,18 @@
 class ToanCauGame
 {
 public:
-	static void ThietLapTruongHopXuLy(HINSTANCE in_TruongHopXuLy)
-	{
-		mTruongHopXuLy = in_TruongHopXuLy;
-	}
-	static HINSTANCE NhanTruongHopXuLy()
-	{
-		return mTruongHopXuLy;
-	}
-	static void ThietLapCuaSoXuLy(HWND in_CuaSoXuLy)
-	{
-		mCuaSoXuLy = in_CuaSoXuLy;
-	}
-	static HWND NhanCuaSoXuLy()
-	{
-		return mCuaSoXuLy;
-	}
-	static void ThietLapXuLyHinhAnh(LPD3DXSPRITE in_XuLyHinhAnh)
-	{
-		mXuLyHinhAnh = in_XuLyHinhAnh;
-	}
-	static LPD3DXSPRITE NhanXuLyHinhAnh()
-	{
-		return mXuLyHinhAnh;
-	}
-	static void ThietLapThietBi(LPDIRECT3DDEVICE9 in_ThietBi)
-	{
-		mThietBi = in_ThietBi;
-	}
-	static LPDIRECT3DDEVICE9 NhanThietBi()
-	{
-		return mThietBi;
-	}
-	static void ThietLapChieuRong(int in_ChieuRong)
-	{
-		mChieuRong = in_ChieuRong;
-	}
-	static int NhanChieuRong()
-	{
-		return mChieuRong;
-	}
-	static void ThietLapChieuCao(int in_ChieuCao)
-	{
-		mChieuCao = in_ChieuCao;
-	}
-	static int NhanChieuCao()
-	{
-		return mChieuCao;
-	}
+	static void ThietLapTruongHopXuLy(HINSTANCE in_TruongHopXuLy);
+	static HINSTANCE NhanTruongHopXuLy();
+	static void ThietLapCuaSoXuLy(HWND in_CuaSoXuLy);
+	static HWND NhanCuaSoXuLy();
+	static void ThietLapXuLyHinhAnh(LPD3DXSPRITE in_XuLyHinhAnh);
+	static LPD3DXSPRITE NhanXuLyHinhAnh();
+	static void ThietLapThietBi(LPDIRECT3DDEVICE9 in_ThietBi);
+	static LPDIRECT3DDEVICE9 NhanThietBi();
+	static void ThietLapChieuRong(int in_ChieuRong);
+	static int NhanChieuRong();
+	static void ThietLapChieuCao(int in_ChieuCao);
+	static int NhanChieuCao();
 
 private:
 	static HINSTANCE			mTruongHopXuLy;
