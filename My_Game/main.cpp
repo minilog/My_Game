@@ -7,7 +7,7 @@
 #include <windowsx.h>
 #include "ToanCauGame.h"
 #include "ThoiGian.h"
-#include "QuanLyBanDo.h"
+#include "QuanLyManGame.h"
 
 using namespace std;
 
@@ -127,16 +127,16 @@ LRESULT CALLBACK ThuTucCuaSo(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		break;
 
 	case WM_LBUTTONDOWN:
-		QuanLyBanDo::NhanTruongHop()->NhanBanDoHienTai()->OnMouseDown((float)GET_X_LPARAM(lParam),
+		QuanLyManGame::NhanTruongHop()->NhanManGameHienTai()->OnMouseDown((float)GET_X_LPARAM(lParam),
 			(float)GET_Y_LPARAM(lParam));
 		break;
 
 	case WM_KEYDOWN:
-		QuanLyBanDo::NhanTruongHop()->NhanBanDoHienTai()->OnKeyDown(wParam);
+		QuanLyManGame::NhanTruongHop()->NhanManGameHienTai()->OnKeyDown(wParam);
 		break;
 
 	case WM_KEYUP:
-		QuanLyBanDo::NhanTruongHop()->NhanBanDoHienTai()->OnKeyUp(wParam);
+		QuanLyManGame::NhanTruongHop()->NhanManGameHienTai()->OnKeyUp(wParam);
 		break;
 
 	default:

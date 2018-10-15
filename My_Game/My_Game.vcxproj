@@ -148,12 +148,12 @@
     <ClCompile Include="MapReader\TmxTileOffset.cpp" />
     <ClCompile Include="MapReader\TmxTileset.cpp" />
     <ClCompile Include="MapReader\TmxUtil.cpp" />
-    <ClCompile Include="QuanLyBanDo.cpp" />
+    <ClCompile Include="QuanLyManGame.cpp" />
     <ClCompile Include="ThoiGian.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BanDo.h" />
+    <ClInclude Include="ManGame.h" />
     <ClInclude Include="HinhAnh.h" />
     <ClInclude Include="HoatHinh.h" />
     <ClInclude Include="MapReader\base64.h" />
@@ -179,7 +179,7 @@
     <ClInclude Include="MapReader\TmxUtil.h" />
     <ClInclude Include="MapReader\zconf.h" />
     <ClInclude Include="MapReader\zlib.h" />
-    <ClInclude Include="QuanLyBanDo.h" />
+    <ClInclude Include="QuanLyManGame.h" />
     <ClInclude Include="ThoiGian.h" />
     <ClInclude Include="ToanCauGame.h" />
   </ItemGroup>

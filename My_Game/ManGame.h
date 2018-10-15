@@ -5,10 +5,10 @@
 #include "ToanCauGame.h"
 
 // Là 1 lớp giao diện, sử dụng để gọi đến Bản Đồ thực sự
-class BanDo
+class ManGame
 {
 protected:
-	BanDo()
+	ManGame()
 	{
 		mMauNen = 0x4866ff;
 		TaiDuLieu();

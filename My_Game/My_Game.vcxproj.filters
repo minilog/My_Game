@@ -104,14 +104,14 @@
     <ClCompile Include="ThoiGian.cpp">
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClCompile>
-    <ClCompile Include="QuanLyBanDo.cpp">
-      <Filter>Framework\4.DieuKhien</Filter>
-    </ClCompile>
     <ClCompile Include="HinhAnh.cpp">
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClCompile>
     <ClCompile Include="HoatHinh.cpp">
       <Filter>Framework\1.ThanhPhan</Filter>
+    </ClCompile>
+    <ClCompile Include="QuanLyManGame.cpp">
+      <Filter>Framework\4.DieuKhien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -190,17 +190,17 @@
     <ClInclude Include="ThoiGian.h">
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClInclude>
-    <ClInclude Include="BanDo.h">
-      <Filter>Framework\1.ThanhPhan</Filter>
-    </ClInclude>
-    <ClInclude Include="QuanLyBanDo.h">
-      <Filter>Framework\4.DieuKhien</Filter>
-    </ClInclude>
     <ClInclude Include="HinhAnh.h">
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="HoatHinh.h">
       <Filter>Framework\1.ThanhPhan</Filter>
+    </ClInclude>
+    <ClInclude Include="ManGame.h">
+      <Filter>Framework\1.ThanhPhan</Filter>
+    </ClInclude>
+    <ClInclude Include="QuanLyManGame.h">
+      <Filter>Framework\4.DieuKhien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
