@@ -7,7 +7,6 @@
 class ToanCauGame
 {
 public:
-	ToanCauGame() = default;
 	static void ThietLapTruongHopXuLy(HINSTANCE in_TruongHopXuLy)
 	{
 		mTruongHopXuLy = in_TruongHopXuLy;

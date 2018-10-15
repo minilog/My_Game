@@ -15,8 +15,6 @@ public:
 	}
 	void BatDauDem();
 	float NhanThoiGianDemDuoc();
-private:
-	ThoiGian() = default;
 
 private:
 	LARGE_INTEGER mBatDau, mKetThuc, mTyLeThoiGian;

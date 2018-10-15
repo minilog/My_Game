@@ -9,12 +9,10 @@
 class HinhAnh
 {
 public:
-	HinhAnh() = default;	
 	HinhAnh(const char* in_DuongDan)
 	{
 		KhoiTaoVoiHinhAnh(in_DuongDan);
 	}
-	//HinhAnh(const char* in_DuongDan, int in_ChieuRong = NULL, int in_ChieuCao = NULL, RECT in_HCN = RECT(), D3DCOLOR in_MauNen = NULL) {KhoiTaoVoiHinhAnh(in_DuongDan, in_ChieuRong, in_ChieuCao, in_HCN, in_MauNen);}
 	~HinhAnh()
 	{
 		if (mKetCauHinhAnh != NULL)
@@ -24,7 +22,6 @@ public:
 	}
 protected:
 	void KhoiTaoVoiHinhAnh(const char* in_DuongDan);
-	//void KhoiTaoVoiHinhAnh(const char* in_DuongDan, int in_ChieuRong = NULL, int in_ChieuCao = NULL, RECT in_HCN = RECT(), D3DCOLOR in_MauNen = NULL);
 	bool LaHCN(RECT in_HCN)
 	{
 		if (in_HCN.left == in_HCN.right)
@@ -40,7 +37,6 @@ protected:
 	}
 public:
 	void Ve();
-	//void Ve(D3DXVECTOR3 in_ViTri = D3DXVECTOR3(), RECT in_HCN = RECT(), D3DXVECTOR2 in_TiLe = D3DXVECTOR2(),float in_GocXoay = 0,D3DXVECTOR2 in_DoDoi = D3DXVECTOR2(),D3DXCOLOR in_MauNen = D3DCOLOR_ARGB(255, 255, 255, 255));
 
 	D3DXIMAGE_INFO NhanThongTinHinhAnh()
 	{
