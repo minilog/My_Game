@@ -65,6 +65,6 @@ private:
 	static int					mChieuRong;
 	static int					mChieuCao;
 public:
-	static LPDIRECT3DSURFACE9	matSau;
-	static bool					laGameDangChay;
+	static LPDIRECT3DSURFACE9	mMatSau;
+	static bool					mLaGameDangChay;
 };

@@ -122,7 +122,7 @@ LRESULT CALLBACK ThuTucCuaSo(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 	switch (message)
 	{
 	case WM_DESTROY:
-		ToanCauGame::laGameDangChay = false;
+		ToanCauGame::mLaGameDangChay = false;
 		PostQuitMessage(0);
 		break;
 

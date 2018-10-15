@@ -25,7 +25,7 @@ public:
 protected:
 	void KhoiTaoVoiHinhAnh(const char* in_DuongDan, RECT in_HCN = RECT(), int in_ChieuRong = NULL,
 		int in_ChieuCao = NULL, D3DCOLOR in_MauNen = NULL);
-	bool LaHCN(RECT in_HCN)
+	bool LaHCN	(RECT in_HCN)
 	{
 		if (in_HCN.left == in_HCN.right)
 		{
@@ -43,13 +43,13 @@ public:
 		D3DXVECTOR2 in_DoDoi = D3DXVECTOR2(), float in_GocXoay = 0, D3DXVECTOR2 in_TrungTamXoayHinh = D3DXVECTOR2(),
 		D3DXCOLOR in_MauNen = D3DCOLOR_XRGB(255, 255, 255));
 
-	LPDIRECT3DTEXTURE9 NhanKetCauHinhAnh()
-	{
-		return mKetCauHinhAnh;
-	}
 	D3DXIMAGE_INFO NhanThongTinHinhAnh()
 	{
 		return mThongTinHinhAnh;
+	}
+	LPDIRECT3DTEXTURE9 NhanKetCauHinhAnh()
+	{
+		return mKetCauHinhAnh;
 	}
 	void ThietLapViTri(D3DXVECTOR3 in_ViTri)
 	{
@@ -145,9 +145,9 @@ public:
 	}
 
 protected:
-	LPDIRECT3DTEXTURE9      mKetCauHinhAnh;		// tải hình ảnh vào đây
 	LPD3DXSPRITE            mXuLyHinhAnh;
 	D3DXIMAGE_INFO          mThongTinHinhAnh;
+	LPDIRECT3DTEXTURE9      mKetCauHinhAnh;		// tải hình ảnh vào đây
 	D3DXMATRIX              mMaTran;			// ma trận hỗ trợ cho các phép hình học
 
 	D3DXVECTOR3             mViTri;
