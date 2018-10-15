@@ -13,7 +13,6 @@ public:
 	{
 		KhoiTaoVoiHinhAnh(in_DuongDan);
 	}
-
 	~HinhAnh()
 	{
 		if (mKetCauHinhAnh != NULL)
