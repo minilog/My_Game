@@ -17,22 +17,23 @@ public:
 	{
 		KhoiTaoVoiHoatHinh(in_TongKhuonHinh, in_SoHang, in_SoCot, in_ThoiGianThayDoi);
 	}
-	virtual void CapNhat(float dt);
-	void Ve();
 protected:
 	void KhoiTaoVoiHoatHinh(int in_TongKhuonHinh, int in_SoHang, int in_SoCot, float in_ThoiGianThayDoi);
+public:
+	virtual void CapNhat(float tg);
+	void Ve()
+	{
+		HinhAnh::Ve();
+	}
+
 
 protected:
 	int mTongSoKhuonHinh;
 	int mSoHang;
 	int mSoCot;
-	int mViTriHienTai;
+	float mThoiGianThayDoi;
 	int mHangHienTai;
 	int mCotHienTai;
-	int mChieuRongKhuonHinh;
-	int mChieuCaoKhuonHinh;
-	float mThoiGianThayDoi;
 	float mTongThoiGianHienTai;
-	RECT mHCN;
 };
 

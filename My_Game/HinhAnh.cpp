@@ -14,7 +14,7 @@ void HinhAnh::KhoiTaoVoiHinhAnh(const char * in_DuongDan)
 	mTiLe = D3DXVECTOR2(1, 1);
 	mLatTheoChieuNgang = false;
 	mLatTheoChieuDoc = false;
-	mGocXoayHinh = 0;
+	mGocXoayHinh = 0.0f;
 	mDoDoi = D3DXVECTOR2(0, 0);
 
 	LPDIRECT3DDEVICE9 lThietBi;
