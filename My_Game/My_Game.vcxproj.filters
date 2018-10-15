@@ -122,6 +122,9 @@
     <ClCompile Include="VaChamGame.cpp">
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClCompile>
+    <ClCompile Include="CayBonNhanh.cpp">
+      <Filter>Framework\1.ThanhPhan</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -221,6 +224,9 @@
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="VaChamGame.h">
+      <Filter>Framework\1.ThanhPhan</Filter>
+    </ClInclude>
+    <ClInclude Include="CayBonNhanh.h">
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClInclude>
   </ItemGroup>
