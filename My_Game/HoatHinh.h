@@ -20,7 +20,7 @@ public:
 protected:
 	void KhoiTaoVoiHoatHinh(int in_TongKhuonHinh, int in_SoHang, int in_SoCot, float in_ThoiGianThayDoi);
 public:
-	virtual void CapNhat(float tg);
+	virtual void CapNhat(float in_tg);
 	void Ve()
 	{
 		HinhAnh::Ve();

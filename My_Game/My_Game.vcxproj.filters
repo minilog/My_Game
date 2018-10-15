@@ -18,9 +18,6 @@
     <Filter Include="Framework\2.DinhNghiaThongSo">
       <UniqueIdentifier>{391d1ff8-b84e-4795-86ea-adc03623bef0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\3.CacBanDo">
-      <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Framework\4.DieuKhien">
       <UniqueIdentifier>{82ddea42-1406-439d-8805-0f1c3c2c32c1}</UniqueIdentifier>
     </Filter>
@@ -32,6 +29,9 @@
     </Filter>
     <Filter Include="Framework\5.DoiTuong\NguoiChoi">
       <UniqueIdentifier>{a92a7610-faf7-4422-ae5b-349216be2d1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\3.CacManGame">
+      <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +115,9 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Framework\1.ThanhPhan</Filter>
+    </ClCompile>
+    <ClCompile Include="ThucThe.cpp">
+      <Filter>Framework\5.DoiTuong</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +210,12 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Framework\1.ThanhPhan</Filter>
+    </ClInclude>
+    <ClInclude Include="ThucThe.h">
+      <Filter>Framework\5.DoiTuong</Filter>
+    </ClInclude>
+    <ClInclude Include="KieuDuLieuEnum.h">
+      <Filter>Framework\5.DoiTuong</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

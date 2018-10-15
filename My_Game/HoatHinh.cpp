@@ -22,7 +22,7 @@ void HoatHinh::KhoiTaoVoiHoatHinh(int in_TongKhuonHinh, int in_SoHang, int in_So
 	HinhAnh::mHCN.bottom = HinhAnh::mChieuCao;
 }
 
-void HoatHinh::CapNhat(float tg)
+void HoatHinh::CapNhat(float in_tg)
 {
 	if (mTongSoKhuonHinh <= 1)
 	{
@@ -31,7 +31,7 @@ void HoatHinh::CapNhat(float tg)
 
 	if (mTongThoiGianHienTai < mThoiGianThayDoi)
 	{
-		mTongThoiGianHienTai += tg;
+		mTongThoiGianHienTai += in_tg;
 		return;
 	}
 	else

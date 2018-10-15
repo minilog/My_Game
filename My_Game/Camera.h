@@ -16,9 +16,9 @@ public:
 	{
 		mViTri = in_ViTri;
 	}
-	void ThietLapViTri(float x, float y)
+	void ThietLapViTri(float in_X, float in_Y)
 	{
-		ThietLapViTri(D3DXVECTOR3(x, y, 0));
+		ThietLapViTri(D3DXVECTOR3(in_X, in_Y, 0));
 	}
 	int NhanChieuRong()
 	{
