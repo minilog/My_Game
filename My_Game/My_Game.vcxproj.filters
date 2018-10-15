@@ -110,6 +110,9 @@
     <ClCompile Include="HinhAnh.cpp">
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClCompile>
+    <ClCompile Include="HoatHinh.cpp">
+      <Filter>Framework\1.ThanhPhan</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -194,6 +197,9 @@
       <Filter>Framework\4.DieuKhien</Filter>
     </ClInclude>
     <ClInclude Include="HinhAnh.h">
+      <Filter>Framework\1.ThanhPhan</Filter>
+    </ClInclude>
+    <ClInclude Include="HoatHinh.h">
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClInclude>
   </ItemGroup>
