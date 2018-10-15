@@ -7,18 +7,6 @@ Camera::Camera(int in_ChieuRong, int in_ChieuCao)
 	mViTri = D3DXVECTOR3(0, 0, 0);
 }
 
-RECT Camera::NhanGioiHanHCN()
-{
-	RECT lHCN;
-
-	lHCN.left = int(mViTri.x - mChieuRong / 2);
-	lHCN.right = lHCN.left + mChieuRong;
-	lHCN.top = int(mViTri.y - mChieuCao / 2);
-	lHCN.bottom = lHCN.top + mChieuCao;
-
-	return lHCN;
-}
-
 
 
 
@@ -41,6 +29,19 @@ RECT Camera::NhanGioiHanHCN()
 ///////////////////////////////////////////////////////////////////////////////////
 /*								 Các hàm đơn giản					             */
 ///////////////////////////////////////////////////////////////////////////////////
+
+RECT Camera::NhanGioiHanHCN()
+{
+	RECT lHCN;
+
+	lHCN.left = int(mViTri.x - mChieuRong / 2);
+	lHCN.right = lHCN.left + mChieuRong;
+	lHCN.top = int(mViTri.y - mChieuCao / 2);
+	lHCN.bottom = lHCN.top + mChieuCao;
+
+	return lHCN;
+}
+
 
 void Camera::ThietLapViTri(D3DXVECTOR3 in_ViTri)
 {
