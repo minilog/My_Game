@@ -49,14 +49,14 @@ PhiaVaCham VaChamGame::NhanPhiaVaCham(ThucThe * in_ThucThe1, KetQuaVaCham in_Ket
 	if (vec.y < 0)
 	{
 		//va cham phia ben tren
-		//lay cos cua goc neu ma nam trong khoang goc 70 -> 110 thi va cham top
+		//lay cos cua goc neu ma nam trong khoang goc 70 -> 110 thi va cham Tren
 		if (vec.x <= 0.35f && vec.x >= -0.35f)
 		{
 			return PhiaVaCham::Tren;
 		}
 		else if (vec.x > 0.35f && vec.x < 0.8f)
 		{
-			//goc trong khoang 35 -> 70 phia ben top - right
+			//goc trong khoang 35 -> 70 phia ben Tren - Phai
 			return PhiaVaCham::PhaiBenTren;
 		}
 		else if (vec.x >= 0.8f)
