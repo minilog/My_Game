@@ -37,7 +37,6 @@ protected:
 	}
 public:
 	void Ve();
-
 	D3DXIMAGE_INFO NhanThongTinHinhAnh()
 	{
 		return mThongTinHinhAnh;
