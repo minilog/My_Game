@@ -13,13 +13,10 @@ KetQuaVaCham VaChamGame::HCNVaHCN(RECT in_HCN1, RECT in_HCN2)
 
 	lKetQuaVaCham.DaVaCham = true;
 
-	//chon max Left
+	// vùng va chạm hình chữ nhật
 	lKetQuaVaCham.VungVaCham.left = in_HCN1.left > in_HCN2.left ? in_HCN1.left : in_HCN2.left;
-	//chon max right
 	lKetQuaVaCham.VungVaCham.right = in_HCN1.right < in_HCN2.right ? in_HCN1.right : in_HCN2.right;
-	//chon min bottom
 	lKetQuaVaCham.VungVaCham.bottom = in_HCN1.bottom < in_HCN2.bottom ? in_HCN1.bottom : in_HCN2.bottom;
-	//chon max top
 	lKetQuaVaCham.VungVaCham.top = in_HCN1.top > in_HCN2.top ? in_HCN1.top : in_HCN2.top;
 
 	return lKetQuaVaCham;
@@ -27,45 +24,45 @@ KetQuaVaCham VaChamGame::HCNVaHCN(RECT in_HCN1, RECT in_HCN2)
 
 PhiaVaCham VaChamGame::NhanPhiaVaCham(ThucThe * in_ThucThe1, KetQuaVaCham in_KetQuaVaCham)
 {
-	float xCenter = in_KetQuaVaCham.VungVaCham.left + (in_KetQuaVaCham.VungVaCham.right - in_KetQuaVaCham.VungVaCham.left) / 2.0f;
-	float yCenter = in_KetQuaVaCham.VungVaCham.top + (in_KetQuaVaCham.VungVaCham.bottom - in_KetQuaVaCham.VungVaCham.top) / 2.0f;
+	float lTrungTamVaChamX = in_KetQuaVaCham.VungVaCham.left + (in_KetQuaVaCham.VungVaCham.right - in_KetQuaVaCham.VungVaCham.left) / 2.0f;
+	float lTrungTamVaChamY = in_KetQuaVaCham.VungVaCham.top + (in_KetQuaVaCham.VungVaCham.bottom - in_KetQuaVaCham.VungVaCham.top) / 2.0f;
 
-	D3DXVECTOR2 cCenter = D3DXVECTOR2(xCenter, yCenter);
-	D3DXVECTOR2 eCenter = in_ThucThe1->NhanViTri();
+	D3DXVECTOR2 lTrungTamVaCham = D3DXVECTOR2(lTrungTamVaChamX, lTrungTamVaChamY);
+	D3DXVECTOR2 lTrungTamThucThe = in_ThucThe1->NhanViTri();
 
-	//lay vector noi tam Entity va CollisionRect
-	D3DXVECTOR2 vec = cCenter - eCenter;
+	// lấy vector nối từ Thực Thể đến Vùng Va Chạm
+	D3DXVECTOR2 lVec = lTrungTamVaCham - lTrungTamThucThe;
 
-	//chuan hoa vector
-	D3DXVec2Normalize(&vec, &vec);
+	// chuẩn hóa Vector
+	D3DXVec2Normalize(&lVec, &lVec);
 
 	/*
-	- neu vector chuan hoa co y > 0 =>nam phia ben tren Entity
-	- neu vector chuan hoa co y < 0 =>nam phia ben duoi Entity
-	- neu vector chuan hoa co x > 0 => nam phia ben phai Entity
+	- nếu vector chuẩn hóa có y > 0 => nằm phía bên trên Thực Thể
+	- nếu vector chuẩn hóa có y < 0 => nằm phía bên dưới Thực Thể
+	- nếu vector chuẩn hoá có x > 0 => nam phia ben phai Entity
 	- neu vector chuan hoa co x < 0 => nam phia ben trai Entity
 	*/
 
-	if (vec.y < 0)
+	if (lVec.y < 0)
 	{
-		//va cham phia ben tren
+		// va chạm phía bên trên
 		//lay cos cua goc neu ma nam trong khoang goc 70 -> 110 thi va cham Tren
-		if (vec.x <= 0.35f && vec.x >= -0.35f)
+		if (lVec.x <= 0.35f && lVec.x >= -0.35f)
 		{
 			return PhiaVaCham::Tren;
 		}
-		else if (vec.x > 0.35f && vec.x < 0.8f)
+		else if (lVec.x > 0.35f && lVec.x < 0.8f)
 		{
 			//goc trong khoang 35 -> 70 phia ben Tren - Phai
 			return PhiaVaCham::PhaiBenTren;
 		}
-		else if (vec.x >= 0.8f)
+		else if (lVec.x >= 0.8f)
 		{
 			return PhiaVaCham::Phai;
 		}
-		else if (vec.x < -0.35f && vec.x >= -0.8f)
+		else if (lVec.x < -0.35f && lVec.x >= -0.8f)
 		{
-			//va cham phia top - left
+			// va chạm phía Trên - Trái
 			return PhiaVaCham::TraiBenTren;
 		}
 		else
@@ -75,22 +72,22 @@ PhiaVaCham VaChamGame::NhanPhiaVaCham(ThucThe * in_ThucThe1, KetQuaVaCham in_Ket
 	}
 	else
 	{
-		//va cham phia ben duoi
+		// va chạm phía bên dưới
 		//lay cos cua goc neu ma nam trong khoang goc 70 -> 110 thi va cham top
-		if (vec.x <= 0.35f && vec.x >= -0.35)
+		if (lVec.x <= 0.35f && lVec.x >= -0.35)
 		{
 			return PhiaVaCham::Duoi;
 		}
-		else if (vec.x > 0.35 && vec.x < 0.8)
+		else if (lVec.x > 0.35 && lVec.x < 0.8)
 		{
 			//goc trong khoang 35 -> 70 phia ben top - right
 			return PhiaVaCham::PhaiBenDuoi;
 		}
-		else if (vec.x >= 0.8)
+		else if (lVec.x >= 0.8)
 		{
 			return PhiaVaCham::Phai;
 		}
-		else if (vec.x < -0.35f && vec.x > -0.8f)
+		else if (lVec.x < -0.35f && lVec.x > -0.8f)
 		{
 			//va cham phia top - left
 			return PhiaVaCham::TraiBenDuoi;
@@ -114,7 +111,7 @@ PhiaVaCham VaChamGame::NhanPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucTh
 
 	if (abs(lDx) <= lW && abs(lDy) <= lH)
 	{
-		/* co va cham*/
+		/* có va chạm */
 		float lWy = lW * lDy;
 		float lHx = lH * lDx;
 
@@ -122,23 +119,23 @@ PhiaVaCham VaChamGame::NhanPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucTh
 		{
 			if (lWy > -lHx)
 			{
-				/*va cham phia tren e1*/
+				/*va cham phia tren Thực Thể 1*/
 				return PhiaVaCham::Tren;
 			}
 			else
 			{
-				/*va cham phia ben phai e1*/
+				/*va chạm phía bên phải Thực Thể 1*/
 				return PhiaVaCham::Phai;
 			}
 		}
 		else if (lWy > -lHx)
 		{
-			/*va cham ben trai e1*/
+			/*va chạm phía bên trái Thực Thể 1*/
 			return PhiaVaCham::Trai;
 		}
 		else
 		{
-			/*va cham phia duoi e1*/
+			/*va chạm phía bên dưới Thực Thể 1*/
 			return PhiaVaCham::Duoi;
 		}
 	}
