@@ -29,10 +29,10 @@ public:
 	void ThietLapHCN(RECT in_HCN);
 	void ThietLapTiLe(D3DXVECTOR2 in_TiLe);
 	D3DXVECTOR2 NhanTiLe();
-	void LatTheoChieuNgang(bool in_Co);
-	bool LaLatTheoChieuNgang();
-	void LatTheoChieuDoc(bool in_Co);
-	bool LaLatTheoChieuDoc();
+	void ThietLapLatTheoChieuNgang(bool in_Co);
+	bool NhanLatTheoChieuNgang();
+	void ThietLapLatTheoChieuDoc(bool in_Co);
+	bool NhanLatTheoChieuDoc();
 	void ThietLapGocXoayHinh(float in_GocXoay);
 	float NhanGocXoayHinh();
 	void ThietLapDoDoi(D3DXVECTOR2 in_DoDoi);

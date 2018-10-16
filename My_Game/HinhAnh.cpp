@@ -75,7 +75,7 @@ HinhAnh::~HinhAnh()
 	}
 }
 
-void HinhAnh::LatTheoChieuDoc(bool in_Co)
+void HinhAnh::ThietLapLatTheoChieuDoc(bool in_Co)
 {
 	if (mLatTheoChieuDoc != in_Co)
 	{
@@ -84,7 +84,7 @@ void HinhAnh::LatTheoChieuDoc(bool in_Co)
 	}
 }
 
-void HinhAnh::LatTheoChieuNgang(bool in_Co)
+void HinhAnh::ThietLapLatTheoChieuNgang(bool in_Co)
 {
 	if (mLatTheoChieuNgang != in_Co)
 	{
@@ -195,12 +195,12 @@ D3DXVECTOR2 HinhAnh::NhanTiLe()
 	return mTiLe;
 }
 
-bool HinhAnh::LaLatTheoChieuNgang()
+bool HinhAnh::NhanLatTheoChieuNgang()
 {
 	return mLatTheoChieuNgang;
 }
 
-bool HinhAnh::LaLatTheoChieuDoc()
+bool HinhAnh::NhanLatTheoChieuDoc()
 {
 	return mLatTheoChieuDoc;
 }
