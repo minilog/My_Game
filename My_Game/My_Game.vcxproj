@@ -155,6 +155,7 @@
     <ClCompile Include="ThucThe.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
     <ClCompile Include="VaChamGame.cpp" />
+    <ClCompile Include="VienGach.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CayBonNhanh.h" />
@@ -191,6 +192,8 @@
     <ClInclude Include="ThucThe.h" />
     <ClInclude Include="ToanCauGame.h" />
     <ClInclude Include="VaChamGame.h" />
+    <ClInclude Include="VatTheGame.h" />
+    <ClInclude Include="VienGach.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in" />

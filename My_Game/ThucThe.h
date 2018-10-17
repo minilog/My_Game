@@ -5,13 +5,14 @@
 #include <map>
 #include "KieuDuLieuEnum.h"
 
+// là 1 lớp giao diện, dùng để trỏ đến Thực Thể thực sự
 class ThucThe
 {
 public:
 	ThucThe();
 protected:
-	// được gọi khi thiết lập vị trí cho Thực Thể, dùng cho kế thừa
-	virtual void KhiThietLapViTri(D3DXVECTOR3 in_ViTri);
+	// thực hiện hàm này trong "tất cả trường hợp" thiết lập vị trí
+	virtual void KhiThietLapViTri(D3DXVECTOR3 in_ViTri) {}
 public:
 	virtual RECT rHCNGioiHan();
 	virtual void CapNhat(float in_tg);

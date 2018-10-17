@@ -19,12 +19,6 @@ void ThucThe::KhiVaCham(ThucThe * in_NguoiVaCham, KetQuaVaCham in_KetQuaVaCham, 
 }
 
 
-void ThucThe::KhiThietLapViTri(D3DXVECTOR3 in_ViTri)
-{}
-
-
-
-
 
 
 

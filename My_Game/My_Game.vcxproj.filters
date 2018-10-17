@@ -125,6 +125,9 @@
     <ClCompile Include="CayBonNhanh.cpp">
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClCompile>
+    <ClCompile Include="VienGach.cpp">
+      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -228,6 +231,12 @@
     </ClInclude>
     <ClInclude Include="CayBonNhanh.h">
       <Filter>Framework\1.ThanhPhan</Filter>
+    </ClInclude>
+    <ClInclude Include="VatTheGame.h">
+      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo</Filter>
+    </ClInclude>
+    <ClInclude Include="VienGach.h">
+      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
