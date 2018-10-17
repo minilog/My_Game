@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <d3d9.h>
 
@@ -19,4 +19,16 @@ struct KetQuaVaCham
 enum LoaiThucThe
 {
 	KhongCo, VienGach, KeThu, Mario, ThucTheTinh, VienGachVangBinhThuong, VienGachVangAnDuoc
+};
+
+enum HuongDiChuyen
+{
+	DiChuyenSangTrai,
+	DiChuyenSangPhai,
+	DungIm
+};
+
+enum TrangThai
+{
+	DangDung, DangChay, DangRoi, DangNhay, HiSinh // hi sinh = chết :))
 };

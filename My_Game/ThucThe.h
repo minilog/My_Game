@@ -29,10 +29,10 @@ public:
 	virtual float fVX();
 	virtual void ThietLapVY(float in_VY);
 	virtual float fVY();
-	virtual void ThietLapChieuRong(float in_ChieuRong);
-	virtual float fChieuRong();
-	virtual void ThietLapChieuCao(float in_ChieuCao);
-	virtual float fChieuCao();
+	virtual void ThietLapChieuRong(int in_ChieuRong);
+	virtual int fChieuRong();
+	virtual void ThietLapChieuCao(int in_ChieuCao);
+	virtual int fChieuCao();
 
 public:
 	LoaiThucThe mLoaiThucThe;

@@ -1,9 +1,31 @@
-#include "GachVang.h"
+﻿#include "GachVang.h"
 
 GachVang::GachVang(D3DXVECTOR3 in_ToaDo)
 {
 	VienGach::KhoiTao(in_ToaDo);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+/*								 Các hàm đơn giản					             */
+///////////////////////////////////////////////////////////////////////////////////
 
 const char * GachVang::cTenFile()
 {

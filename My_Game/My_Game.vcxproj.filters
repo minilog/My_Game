@@ -42,6 +42,9 @@
     <Filter Include="Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachVang">
       <UniqueIdentifier>{ceef2d1b-2d5b-4b1e-8ab0-47e5710d153b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\5.DoiTuong\NguoiChoi\TrangThai">
+      <UniqueIdentifier>{fcbfc5f3-dc80-4a99-b1c5-2454dfb25fc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -142,6 +145,12 @@
     </ClCompile>
     <ClCompile Include="GachVang.cpp">
       <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachVang</Filter>
+    </ClCompile>
+    <ClCompile Include="NguoiChoi.cpp">
+      <Filter>Framework\5.DoiTuong\NguoiChoi</Filter>
+    </ClCompile>
+    <ClCompile Include="TrangThaiNguoiChoi.cpp">
+      <Filter>Framework\5.DoiTuong\NguoiChoi\TrangThai</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +267,12 @@
     </ClInclude>
     <ClInclude Include="GachVang.h">
       <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachVang</Filter>
+    </ClInclude>
+    <ClInclude Include="NguoiChoi.h">
+      <Filter>Framework\5.DoiTuong\NguoiChoi</Filter>
+    </ClInclude>
+    <ClInclude Include="TrangThaiNguoiChoi.h">
+      <Filter>Framework\5.DoiTuong\NguoiChoi\TrangThai</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

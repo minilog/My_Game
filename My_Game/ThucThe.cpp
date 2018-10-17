@@ -109,22 +109,22 @@ float ThucThe::fVY()
 	return mVY;
 }
 
-void ThucThe::ThietLapChieuRong(float in_ChieuRong)
+void ThucThe::ThietLapChieuRong(int in_ChieuRong)
 {
 	mChieuRong = in_ChieuRong;
 }
 
-float ThucThe::fChieuRong()
+int ThucThe::fChieuRong()
 {
 	return mChieuRong;
 }
 
-void ThucThe::ThietLapChieuCao(float in_ChieuCao)
+void ThucThe::ThietLapChieuCao(int in_ChieuCao)
 {
 	mChieuCao = in_ChieuCao;
 }
 
-float ThucThe::fChieuCao()
+int ThucThe::fChieuCao()
 {
 	return mChieuCao;
 }
