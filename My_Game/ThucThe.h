@@ -18,13 +18,13 @@ public:
 	virtual void CapNhat(float in_tg);
 	// kiểm soát việc va chạm
 	virtual void KhiVaCham(ThucThe *in_NguoiVaCham, KetQuaVaCham in_KetQuaVaCham, PhiaVaCham in_PhiaVaCham);
-	virtual void ThietLapViTri(D3DXVECTOR3 in_ViTri);
-	virtual void ThietLapViTri(D3DXVECTOR2 in_ViTri);
-	virtual void ThietLapViTri(float in_X, float in_Y);
+	virtual void ThietLapToaDo(D3DXVECTOR3 in_ViTri);
+	virtual void ThietLapToaDo(D3DXVECTOR2 in_ViTri);
+	virtual void ThietLapToaDo(float in_X, float in_Y);
 	virtual void DiChuyenThem(D3DXVECTOR3 in_ViTri);
 	virtual void DiChuyenThem(D3DXVECTOR2 in_ViTri);
 	virtual void DiChuyenThem(float in_X, float in_Y);
-	virtual D3DXVECTOR3 vViTri();
+	virtual D3DXVECTOR3 vToaDo();
 	virtual void ThietLapVX(float in_VX);
 	virtual float fVX();
 	virtual void ThietLapVY(float in_VY);
@@ -41,7 +41,7 @@ protected:
 	float mY;
 	float mVX;
 	float mVY;
-	float mChieuRong;
-	float mChieuCao;
+	int mChieuRong;
+	int mChieuCao;
 };
 

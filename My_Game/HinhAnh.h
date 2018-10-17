@@ -18,10 +18,10 @@ public:
 	void Ve();
 	D3DXIMAGE_INFO iiNhanThongTinHinhAnh();
 	LPDIRECT3DTEXTURE9 dtNhanKetCauHinhAnh();
-	void ThietLapViTri(D3DXVECTOR3 in_ViTri);
-	void ThietLapViTri(float x, float y);
-	void ThietLapViTri(D3DXVECTOR2 in_ViTri);
-	D3DXVECTOR3 vViTri();
+	void ThietLapToaDo(D3DXVECTOR3 in_ToaDo);
+	void ThietLapToaDo(float x, float y);
+	void ThietLapToaDo(D3DXVECTOR2 in_ToaDo);
+	D3DXVECTOR3 vToaDo();
 	void ThietLapChieuRong(int in_ChieuRong);
 	int iChieuRong();
 	void ThietLapChieuCao(int in_ChieuCao);
@@ -44,7 +44,7 @@ protected:
 	LPDIRECT3DTEXTURE9      mKetCauHinhAnh;		// tải hình ảnh vào đây
 	D3DXMATRIX              mMaTran;			// ma trận hỗ trợ cho các phép hình học
 
-	D3DXVECTOR3             mViTri;
+	D3DXVECTOR3             mToaDo;
 	int                     mChieuRong; 
 	int						mChieuCao;			// kích thước của Kết Cấu Hình Ảnh
 	RECT                    mHCN;				// hình chữ nhật cắt từ Kết Cấu Hình Ảnh

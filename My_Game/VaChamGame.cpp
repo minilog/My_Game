@@ -28,7 +28,7 @@ PhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, KetQuaVaCham in_KetQ
 	float lTrungTamVaChamY = in_KetQuaVaCham.VungVaCham.top + (in_KetQuaVaCham.VungVaCham.bottom - in_KetQuaVaCham.VungVaCham.top) / 2.0f;
 
 	D3DXVECTOR2 lTrungTamVaCham = D3DXVECTOR2(lTrungTamVaChamX, lTrungTamVaChamY);
-	D3DXVECTOR2 lTrungTamThucThe = in_ThucThe1->vViTri();
+	D3DXVECTOR2 lTrungTamThucThe = in_ThucThe1->vToaDo();
 
 	// lấy vector nối từ Thực Thể đến Vùng Va Chạm
 	D3DXVECTOR2 lVec = lTrungTamVaCham - lTrungTamThucThe;
@@ -106,8 +106,8 @@ PhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucThe
 	float lW = (in_ThucThe1->fChieuRong() + in_ThucThe2->fChieuRong()) / 2.0f;
 	float lH = (in_ThucThe1->fChieuCao() + in_ThucThe2->fChieuCao()) / 2.0f;
 
-	float lDx = in_ThucThe1->vViTri().x - in_ThucThe2->vViTri().y;
-	float lDy = in_ThucThe1->vViTri().x - in_ThucThe2->vViTri().y;
+	float lDx = in_ThucThe1->vToaDo().x - in_ThucThe2->vToaDo().y;
+	float lDy = in_ThucThe1->vToaDo().x - in_ThucThe2->vToaDo().y;
 
 	if (abs(lDx) <= lW && abs(lDy) <= lH)
 	{

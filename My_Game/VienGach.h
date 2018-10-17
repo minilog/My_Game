@@ -12,7 +12,7 @@ public:
 	void Ve(D3DXVECTOR2 in_DoDoi);
 protected:
 	void KhoiTao(D3DXVECTOR3 in_ToaDo);
-	void ThietLapViTri(D3DXVECTOR3 in_ViTri);
+	void ThietLapToaDo(D3DXVECTOR3 in_ToaDo);
 	// bắt buộc phải Định Nghĩa các hàm này ở các lớp kế thừa
 	virtual const char* cTenFile() = 0;
 	virtual int iTongKhuonHinh() = 0;

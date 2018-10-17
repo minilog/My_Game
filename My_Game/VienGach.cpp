@@ -1,17 +1,27 @@
 #include "VienGach.h"
 
+void VienGach::KhoiTao(D3DXVECTOR3 in_ToaDo)
+{
+	mHoatHinh = new HoatHinh(cTenFile(), iTongKhuonHinh(), iSoHang(), iSoCot(), fThoiGianThayDoi());
+
+	mHoatHinh->ThietLapToaDo(in_ToaDo);
+
+	ThucThe::ThietLapChieuRong(mHoatHinh->iChieuRong());
+	ThucThe::ThietLapChieuCao(mHoatHinh->iChieuCao());
+}
+
 void VienGach::CapNhat(float in_tg)
 {
+	mHoatHinh->CapNhat(in_tg);
 }
 
 void VienGach::Ve(D3DXVECTOR2 in_DoDoi)
 {
+	mHoatHinh->ThietLapDoDoi(in_DoDoi);
+	mHoatHinh->Ve();
 }
 
-void VienGach::KhoiTao(D3DXVECTOR3 in_ToaDo)
+void VienGach::ThietLapToaDo(D3DXVECTOR3 in_ToaDo)
 {
-}
-
-void VienGach::ThietLapViTri(D3DXVECTOR3 in_ViTri)
-{
+	mHoatHinh->ThietLapToaDo(in_ToaDo);
 }

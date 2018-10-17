@@ -9,7 +9,7 @@ void HinhAnh::KhoiTaoVoiHinhAnh(const char * in_DuongDan)
 {
 	mXuLyHinhAnh = ToanCauGame::sXuLyHinhAnh();
 	D3DXGetImageInfoFromFileA(in_DuongDan, &mThongTinHinhAnh);
-	mViTri = D3DXVECTOR3(0, 0, 0);
+	mToaDo = D3DXVECTOR3(0, 0, 0);
 	mChieuRong = mThongTinHinhAnh.Width;
 	mChieuCao = mThongTinHinhAnh.Height;;
 	mHCN.left = 0;
@@ -43,8 +43,8 @@ void HinhAnh::KhoiTaoVoiHinhAnh(const char * in_DuongDan)
 
 void HinhAnh::Ve()
 {
-	D3DXVECTOR2 lTrungTamTiLe = D3DXVECTOR2(mViTri.x, mViTri.y);
-	D3DXVECTOR2 lTrungTamXoayHinh = D3DXVECTOR2(mViTri.x, mViTri.y);
+	D3DXVECTOR2 lTrungTamTiLe = D3DXVECTOR2(mToaDo.x, mToaDo.y);
+	D3DXVECTOR2 lTrungTamXoayHinh = D3DXVECTOR2(mToaDo.x, mToaDo.y);
 	D3DXVECTOR3 lTrungTam = D3DXVECTOR3(float(mChieuRong / 2), float(mChieuCao / 2), float(0));
 
 	D3DXMatrixTransformation2D(
@@ -61,7 +61,7 @@ void HinhAnh::Ve()
 		mKetCauHinhAnh,
 		&mHCN,
 		&lTrungTam,
-		&mViTri,
+		&mToaDo,
 		D3DCOLOR_ARGB(255, 255, 255, 255)); // những pixel nào có màu trắng thì sẽ tô màu này lên
 
 	mXuLyHinhAnh->SetTransform(&lMaTranCu); // thiết lập lại Ma Trận Cũ để Xử Lý Hình Ảnh chỉ áp dụng Transform với class này
@@ -140,24 +140,24 @@ LPDIRECT3DTEXTURE9 HinhAnh::dtNhanKetCauHinhAnh()
 	return mKetCauHinhAnh;
 }
 
-void HinhAnh::ThietLapViTri(D3DXVECTOR3 in_ViTri)
+void HinhAnh::ThietLapToaDo(D3DXVECTOR3 in_ToaDo)
 {
-	mViTri = in_ViTri;
+	mToaDo = in_ToaDo;
 }
 
-void HinhAnh::ThietLapViTri(float x, float y)
+void HinhAnh::ThietLapToaDo(float x, float y)
 {
-	mViTri = D3DXVECTOR3(x, y, 0);
+	mToaDo = D3DXVECTOR3(x, y, 0);
 }
 
-void HinhAnh::ThietLapViTri(D3DXVECTOR2 in_ViTri)
+void HinhAnh::ThietLapToaDo(D3DXVECTOR2 in_ToaDo)
 {
-	ThietLapViTri(in_ViTri.x, in_ViTri.y);
+	ThietLapToaDo(in_ToaDo.x, in_ToaDo.y);
 }
 
-D3DXVECTOR3 HinhAnh::vViTri()
+D3DXVECTOR3 HinhAnh::vToaDo()
 {
-	return mViTri;
+	return mToaDo;
 }
 
 void HinhAnh::ThietLapChieuRong(int in_ChieuRong)

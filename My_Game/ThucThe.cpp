@@ -40,36 +40,36 @@ void ThucThe::KhiVaCham(ThucThe * in_NguoiVaCham, KetQuaVaCham in_KetQuaVaCham, 
 /*								 Các hàm đơn giản					             */
 ///////////////////////////////////////////////////////////////////////////////////
 
-void ThucThe::ThietLapViTri(D3DXVECTOR3 in_ViTri)
+void ThucThe::ThietLapToaDo(D3DXVECTOR3 in_ViTri)
 {
 	mVX = in_ViTri.x;
 	mVY = in_ViTri.y;
 	KhiThietLapViTri(in_ViTri);
 }
 
-void ThucThe::ThietLapViTri(D3DXVECTOR2 in_ViTri)
+void ThucThe::ThietLapToaDo(D3DXVECTOR2 in_ViTri)
 {
-	ThietLapViTri(D3DXVECTOR3(in_ViTri.x, in_ViTri.y, 0));
+	ThietLapToaDo(D3DXVECTOR3(in_ViTri.x, in_ViTri.y, 0));
 }
 
-void ThucThe::ThietLapViTri(float in_X, float in_Y)
+void ThucThe::ThietLapToaDo(float in_X, float in_Y)
 {
-	ThietLapViTri(D3DXVECTOR3(in_X, in_Y, 0));
+	ThietLapToaDo(D3DXVECTOR3(in_X, in_Y, 0));
 }
 
 void ThucThe::DiChuyenThem(D3DXVECTOR3 in_ViTri)
 {
-	ThietLapViTri(vViTri() + in_ViTri);
+	ThietLapToaDo(vToaDo() + in_ViTri);
 }
 
 void ThucThe::DiChuyenThem(D3DXVECTOR2 in_ViTri)
 {
-	ThietLapViTri(vViTri() + D3DXVECTOR3(in_ViTri.x, in_ViTri.y, 0));
+	ThietLapToaDo(vToaDo() + D3DXVECTOR3(in_ViTri.x, in_ViTri.y, 0));
 }
 
 void ThucThe::DiChuyenThem(float in_X, float in_Y)
 {
-	ThietLapViTri(vViTri() + D3DXVECTOR3(in_X, in_Y, 0));
+	ThietLapToaDo(vToaDo() + D3DXVECTOR3(in_X, in_Y, 0));
 }
 
 RECT ThucThe::rHCNGioiHan()
@@ -84,7 +84,7 @@ RECT ThucThe::rHCNGioiHan()
 	return lHCN;
 }
 
-D3DXVECTOR3 ThucThe::vViTri()
+D3DXVECTOR3 ThucThe::vToaDo()
 {
 	return D3DXVECTOR3(mX, mY, 0);
 }
