@@ -33,6 +33,15 @@
     <Filter Include="Framework\3.CacManGame">
       <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach">
+      <UniqueIdentifier>{84a7b43e-6409-4cae-b9c8-92fcd71a9243}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachBinhThuong">
+      <UniqueIdentifier>{b3549d01-a3fa-4c75-aa6c-c57945fe4d79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachVang">
+      <UniqueIdentifier>{ceef2d1b-2d5b-4b1e-8ab0-47e5710d153b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -126,7 +135,10 @@
       <Filter>Framework\1.ThanhPhan</Filter>
     </ClCompile>
     <ClCompile Include="VienGach.cpp">
-      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo</Filter>
+      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach</Filter>
+    </ClCompile>
+    <ClCompile Include="GachBinhThuong.cpp">
+      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachBinhThuong</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -236,7 +248,10 @@
       <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo</Filter>
     </ClInclude>
     <ClInclude Include="VienGach.h">
-      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo</Filter>
+      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach</Filter>
+    </ClInclude>
+    <ClInclude Include="GachBinhThuong.h">
+      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachBinhThuong</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
