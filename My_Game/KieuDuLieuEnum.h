@@ -2,7 +2,7 @@
 
 #include <d3d9.h>
 
-enum PhiaVaCham
+enum ePhiaVaCham
 {
 	Trai, Phai, Tren, Duoi,
 	TraiBenTren, PhaiBenTren, 
@@ -10,25 +10,25 @@ enum PhiaVaCham
 	KhongXacDinh
 };
 
-struct KetQuaVaCham
+struct eKetQuaVaCham
 {
 	bool DaVaCham;
 	RECT VungVaCham;
 };
 
-enum LoaiThucThe
+enum eLoaiThucThe
 {
 	KhongCo, VienGach, KeThu, Mario, ThucTheTinh, VienGachVangBinhThuong, VienGachVangAnDuoc
 };
 
-enum HuongDiChuyen
+enum eHuongDiChuyen
 {
 	DiChuyenSangTrai,
 	DiChuyenSangPhai,
 	DungIm
 };
 
-enum TrangThai
+enum eTrangThai
 {
 	DangDung, DangChay, DangRoi, DangNhay, HiSinh // hi sinh = chết :))
 };

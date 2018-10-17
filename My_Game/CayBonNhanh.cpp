@@ -8,10 +8,10 @@ CayBonNhanh::CayBonNhanh(int in_CapDo, RECT in_HCNGioiHan)
 
 void CayBonNhanh::ThemThucThe(ThucThe * in_ThucThe)
 {
-	int _lViTri = iViTriIndex(in_ThucThe->rHCNGioiHan());
+	int lViTri = iViTriIndex(in_ThucThe->rHCNGioiHan());
 	
 	// in_Thực Thể không thuộc Nhánh con
-	if (_lViTri == -1)
+	if (lViTri == -1)
 	{
 		mDanhSachThucThe.push_back(in_ThucThe);
 	}
@@ -21,15 +21,15 @@ void CayBonNhanh::ThemThucThe(ThucThe * in_ThucThe)
 		{
 			PhanChia();
 		}
-		mCacNhanhCon[_lViTri]->ThemThucThe(in_ThucThe);
+		mCacNhanhCon[lViTri]->ThemThucThe(in_ThucThe);
 	}
 }
 
 void CayBonNhanh::LayTatCaThucTheCoKhaNangVaCham(std::vector<ThucThe*>& out_DanhSachThucThe, ThucThe * in_ThucThe)
 {
-	int _lViTri = iViTriIndex(in_ThucThe->rHCNGioiHan());
+	int lViTri = iViTriIndex(in_ThucThe->rHCNGioiHan());
 
-	if (_lViTri == -1)
+	if (lViTri == -1)
 	{
 		LayTatCaThucThe(out_DanhSachThucThe);
 	}
@@ -44,7 +44,7 @@ void CayBonNhanh::LayTatCaThucTheCoKhaNangVaCham(std::vector<ThucThe*>& out_Danh
 		// Lấy danh sách Thực Thể trong Nhánh con có _lViTri này
 		if (mCacNhanhCon != NULL)
 		{
-			mCacNhanhCon[_lViTri]->LayTatCaThucTheCoKhaNangVaCham(out_DanhSachThucThe, in_ThucThe);
+			mCacNhanhCon[lViTri]->LayTatCaThucTheCoKhaNangVaCham(out_DanhSachThucThe, in_ThucThe);
 		}
 	}
 }
@@ -53,37 +53,37 @@ void CayBonNhanh::PhanChia()
 {
 	mCacNhanhCon = new CayBonNhanh*[4]; // tạo con trỏ - mảng Cây Bốn Nhánh con chưa có thông số
 
-	int _lChieuRong = (mHCNGioiHan.right - mHCNGioiHan.left) / 2;
-	int _lChieuCao = (mHCNGioiHan.bottom - mHCNGioiHan.top) / 2;
+	int lChieuRong = (mHCNGioiHan.right - mHCNGioiHan.left) / 2;
+	int lChieuCao = (mHCNGioiHan.bottom - mHCNGioiHan.top) / 2;
 	
-	RECT _lHCN;
+	RECT lHCN;
 	 // phần gốc Trái bên Trên
-	_lHCN.left = mHCNGioiHan.left;
-	_lHCN.right = _lHCN.left + _lChieuRong;
-	_lHCN.top = mHCNGioiHan.top;
-	_lHCN.bottom = _lHCN.top + _lChieuCao;
-	mCacNhanhCon[0] = new CayBonNhanh(mCapDo + 1, _lHCN);
+	lHCN.left = mHCNGioiHan.left;
+	lHCN.right = lHCN.left + lChieuRong;
+	lHCN.top = mHCNGioiHan.top;
+	lHCN.bottom = lHCN.top + lChieuCao;
+	mCacNhanhCon[0] = new CayBonNhanh(mCapDo + 1, lHCN);
 
 	// phần gốc Phải bên Trên
-	_lHCN.left = mHCNGioiHan.left + _lChieuRong;
-	_lHCN.right = _lHCN.left + _lChieuRong;
-	_lHCN.top = mHCNGioiHan.top;
-	_lHCN.bottom = _lHCN.top + _lChieuCao;
-	mCacNhanhCon[1] = new CayBonNhanh(mCapDo + 1, _lHCN);
+	lHCN.left = mHCNGioiHan.left + lChieuRong;
+	lHCN.right = lHCN.left + lChieuRong;
+	lHCN.top = mHCNGioiHan.top;
+	lHCN.bottom = lHCN.top + lChieuCao;
+	mCacNhanhCon[1] = new CayBonNhanh(mCapDo + 1, lHCN);
 
 	// phần gốc Trái bên Dưới
-	_lHCN.left = mHCNGioiHan.left;
-	_lHCN.right = _lHCN.left + _lChieuRong;
-	_lHCN.top = mHCNGioiHan.top + _lChieuCao;
-	_lHCN.bottom = _lHCN.top + _lChieuCao;
-	mCacNhanhCon[2] = new CayBonNhanh(mCapDo + 1, _lHCN);
+	lHCN.left = mHCNGioiHan.left;
+	lHCN.right = lHCN.left + lChieuRong;
+	lHCN.top = mHCNGioiHan.top + lChieuCao;
+	lHCN.bottom = lHCN.top + lChieuCao;
+	mCacNhanhCon[2] = new CayBonNhanh(mCapDo + 1, lHCN);
 
 	// phần gốc Phải bên Dưới
-	_lHCN.left = mHCNGioiHan.left + _lChieuRong;
-	_lHCN.right = _lHCN.left + _lChieuRong;
-	_lHCN.top = mHCNGioiHan.top + _lChieuCao;
-	_lHCN.bottom = _lHCN.top + _lChieuCao;
-	mCacNhanhCon[3] = new CayBonNhanh(mCapDo + 1, _lHCN);
+	lHCN.left = mHCNGioiHan.left + lChieuRong;
+	lHCN.right = lHCN.left + lChieuRong;
+	lHCN.top = mHCNGioiHan.top + lChieuCao;
+	lHCN.bottom = lHCN.top + lChieuCao;
+	mCacNhanhCon[3] = new CayBonNhanh(mCapDo + 1, lHCN);
 }
 
 void CayBonNhanh::DonDep()

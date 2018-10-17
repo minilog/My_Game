@@ -18,18 +18,18 @@ public:
 	void CapNhat(float in_tg);
 	void Ve();
 	void ThietLapTrangThai(TrangThaiNguoiChoi *in_TrangThaiNguoiChoi);
-	void KhiVaCham(ThucThe *in_ThucTheVaCham, KetQuaVaCham in_KetQuaVaCham, PhiaVaCham in_PhiaVaCham);
+	void KhiVaCham(ThucThe *in_ThucTheVaCham, eKetQuaVaCham in_KetQuaVaCham, ePhiaVaCham in_PhiaVaCham);
 	void KhiVaChamPhiaDuoi();
-	HuongDiChuyen hdcHuongDiChuyen();
+	eHuongDiChuyen hdcHuongDiChuyen();
 	RECT rHCNGioiHan();
-	TrangThai ttTrangThai();
+	eTrangThai ttTrangThai();
 	void XuLyBanPhim(std::map<int, bool> in_Keys);
 	void OnKeyPressed(int in_Keys);
 	void OnKeyUp(int in_Keys);
 	// true thì sẽ lật ngược hình
 	void LatHinh(bool in_Co);
 protected:
-	void ThayDoiHoatHinh(TrangThai in_TrangThai);
+	void ThayDoiHoatHinh(eTrangThai in_TrangThai);
 	
 public:
 	bool mChoPhepSangTrai;
@@ -41,7 +41,7 @@ protected:
 	HoatHinh *mHoatHinhDangDung;
 	HoatHinh *mHoatHinhDangChay;
 	HoatHinh *mHoatHinhDangNhay;
-	TrangThai mTrangThaiHienTai;
+	eTrangThai mTrangThaiHienTai;
 	bool mChoPhepNhay, mLatHinhHieTai;
 };
 

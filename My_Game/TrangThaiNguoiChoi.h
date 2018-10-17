@@ -15,9 +15,9 @@ protected:
 public:
 	virtual void CapNhat(float in_tg) {}
 	virtual void XuLyBanPhim(std::map<int, bool> in_Keys) {}
-	virtual void KhiVaCham(ThucThe *in_NguoiVaCham, PhiaVaCham in_PhiaVaCham, 
-		KetQuaVaCham in_KetQuaVaCham){}
-	virtual TrangThai ttTrangThai() = 0;
+	virtual void KhiVaCham(ThucThe *in_NguoiVaCham, ePhiaVaCham in_PhiaVaCham, 
+		eKetQuaVaCham in_KetQuaVaCham){}
+	virtual eTrangThai ttTrangThai() = 0;
 
 protected:
 	NguoiChoi *mNguoiChoi;

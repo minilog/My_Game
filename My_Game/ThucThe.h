@@ -17,7 +17,7 @@ public:
 	virtual RECT rHCNGioiHan();
 	virtual void CapNhat(float in_tg);
 	// kiểm soát việc va chạm
-	virtual void KhiVaCham(ThucThe *in_NguoiVaCham, KetQuaVaCham in_KetQuaVaCham, PhiaVaCham in_PhiaVaCham);
+	virtual void KhiVaCham(ThucThe *in_NguoiVaCham, eKetQuaVaCham in_KetQuaVaCham, ePhiaVaCham in_PhiaVaCham);
 	virtual void ThietLapToaDo(D3DXVECTOR3 in_ViTri);
 	virtual void ThietLapToaDo(D3DXVECTOR2 in_ViTri);
 	virtual void ThietLapToaDo(float in_X, float in_Y);
@@ -35,7 +35,7 @@ public:
 	virtual int fChieuCao();
 
 public:
-	LoaiThucThe mLoaiThucThe;
+	eLoaiThucThe mLoaiThucThe;
 protected:
 	float mX;
 	float mY;

@@ -1,8 +1,8 @@
 ﻿#include "VaChamGame.h"
 
-KetQuaVaCham VaChamGame::kqvcHCNVaHCN(RECT in_HCN1, RECT in_HCN2)
+eKetQuaVaCham VaChamGame::kqvcHCNVaHCN(RECT in_HCN1, RECT in_HCN2)
 {
-	KetQuaVaCham lKetQuaVaCham;
+	eKetQuaVaCham lKetQuaVaCham;
 
 	if (!bDaVaCham(in_HCN1, in_HCN2))
 	{
@@ -22,7 +22,7 @@ KetQuaVaCham VaChamGame::kqvcHCNVaHCN(RECT in_HCN1, RECT in_HCN2)
 	return lKetQuaVaCham;
 }
 
-PhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, KetQuaVaCham in_KetQuaVaCham)
+ePhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, eKetQuaVaCham in_KetQuaVaCham)
 {
 	float lTrungTamVaChamX = in_KetQuaVaCham.VungVaCham.left + (in_KetQuaVaCham.VungVaCham.right - in_KetQuaVaCham.VungVaCham.left) / 2.0f;
 	float lTrungTamVaChamY = in_KetQuaVaCham.VungVaCham.top + (in_KetQuaVaCham.VungVaCham.bottom - in_KetQuaVaCham.VungVaCham.top) / 2.0f;
@@ -49,25 +49,25 @@ PhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, KetQuaVaCham in_KetQ
 		//lay cos cua goc neu ma nam trong khoang goc 70 -> 110 thi va cham Tren
 		if (lVec.x <= 0.35f && lVec.x >= -0.35f)
 		{
-			return PhiaVaCham::Tren;
+			return ePhiaVaCham::Tren;
 		}
 		else if (lVec.x > 0.35f && lVec.x < 0.8f)
 		{
 			//goc trong khoang 35 -> 70 phia ben Tren - Phai
-			return PhiaVaCham::PhaiBenTren;
+			return ePhiaVaCham::PhaiBenTren;
 		}
 		else if (lVec.x >= 0.8f)
 		{
-			return PhiaVaCham::Phai;
+			return ePhiaVaCham::Phai;
 		}
 		else if (lVec.x < -0.35f && lVec.x >= -0.8f)
 		{
 			// va chạm phía Trên - Trái
-			return PhiaVaCham::TraiBenTren;
+			return ePhiaVaCham::TraiBenTren;
 		}
 		else
 		{
-			return PhiaVaCham::Trai;
+			return ePhiaVaCham::Trai;
 		}
 	}
 	else
@@ -76,32 +76,32 @@ PhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, KetQuaVaCham in_KetQ
 		//lay cos cua goc neu ma nam trong khoang goc 70 -> 110 thi va cham top
 		if (lVec.x <= 0.35f && lVec.x >= -0.35)
 		{
-			return PhiaVaCham::Duoi;
+			return ePhiaVaCham::Duoi;
 		}
 		else if (lVec.x > 0.35 && lVec.x < 0.8)
 		{
 			//goc trong khoang 35 -> 70 phia ben top - right
-			return PhiaVaCham::PhaiBenDuoi;
+			return ePhiaVaCham::PhaiBenDuoi;
 		}
 		else if (lVec.x >= 0.8)
 		{
-			return PhiaVaCham::Phai;
+			return ePhiaVaCham::Phai;
 		}
 		else if (lVec.x < -0.35f && lVec.x > -0.8f)
 		{
 			//va cham phia top - left
-			return PhiaVaCham::TraiBenDuoi;
+			return ePhiaVaCham::TraiBenDuoi;
 		}
 		else
 		{
-			return PhiaVaCham::Trai;
+			return ePhiaVaCham::Trai;
 		}
 	}
 
-	return PhiaVaCham::KhongXacDinh;
+	return ePhiaVaCham::KhongXacDinh;
 }
 
-PhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucThe2)
+ePhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucThe2)
 {
 	float lW = (in_ThucThe1->fChieuRong() + in_ThucThe2->fChieuRong()) / 2.0f;
 	float lH = (in_ThucThe1->fChieuCao() + in_ThucThe2->fChieuCao()) / 2.0f;
@@ -120,27 +120,27 @@ PhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucThe
 			if (lWy > -lHx)
 			{
 				/*va cham phia tren Thực Thể 1*/
-				return PhiaVaCham::Tren;
+				return ePhiaVaCham::Tren;
 			}
 			else
 			{
 				/*va chạm phía bên phải Thực Thể 1*/
-				return PhiaVaCham::Phai;
+				return ePhiaVaCham::Phai;
 			}
 		}
 		else if (lWy > -lHx)
 		{
 			/*va chạm phía bên trái Thực Thể 1*/
-			return PhiaVaCham::Trai;
+			return ePhiaVaCham::Trai;
 		}
 		else
 		{
 			/*va chạm phía bên dưới Thực Thể 1*/
-			return PhiaVaCham::Duoi;
+			return ePhiaVaCham::Duoi;
 		}
 	}
 
-	return PhiaVaCham::KhongXacDinh;
+	return ePhiaVaCham::KhongXacDinh;
 }
 
 
