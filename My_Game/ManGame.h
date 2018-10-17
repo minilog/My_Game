@@ -20,6 +20,8 @@ public:
 	virtual void OnKeyDown(int in_KeyCode) {}
 	virtual void OnKeyUp(int in_KeyCode) {}
 	virtual void OnMouseDown(float in_x, float in_y) {}
+
+public:
 	D3DCOLOR cMauNen()
 	{
 		return mMauNen;

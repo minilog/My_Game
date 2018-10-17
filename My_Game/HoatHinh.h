@@ -19,7 +19,6 @@ public:
 	virtual void CapNhat(float in_tg);
 	void Ve();
 
-
 protected:
 	int mTongSoKhuonHinh;
 	int mSoHang;

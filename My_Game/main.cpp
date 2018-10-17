@@ -14,7 +14,6 @@ using namespace std;
 #define WIN_NAME L"Ten Game DirectX"
 #define WIN_TITLE L"Title Cua Game DrectX"
 #define FPS 60
-#define KEYBOARD_BUFFERD_SIZE 1024
 
 //////////////////////////////////
 /*								*/
@@ -24,12 +23,10 @@ int KhoiTaoCuaSo(int cmdShow);
 int KhoiTaoThietBi();
 LRESULT CALLBACK ThuTucCuaSo(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-LPDIRECT3D9			mDirect3D9;
 LPD3DXSPRITE		mXuLyHinhAnh;
 PDIRECT3D9			mD3d;
 LPDIRECT3DDEVICE9	mThietBi;
 HINSTANCE			mTruongHopXuLy;
-int					mCmdShow;
 
 // Ham Main bat dau
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int cmdShow)

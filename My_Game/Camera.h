@@ -9,14 +9,15 @@ public:
 	Camera(int in_ChieuRong, int in_ChieuCao);
 	void ThietLapToaDo(D3DXVECTOR3 in_ViTri);
 	void ThietLapToaDo(float in_X, float in_Y);
+
+	D3DXVECTOR3 vViTri();
 	int iChieuRong();
 	int iChieuCao();
-	D3DXVECTOR3 vViTri();
 	RECT rHCNGioiHan();
 
 private:
+	D3DXVECTOR3 mViTri; // chính giữa camera
 	int mChieuRong;
 	int mChieuCao;
-	D3DXVECTOR3 mViTri; // chính giữa camera
 };
 

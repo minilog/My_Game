@@ -45,6 +45,18 @@
     <Filter Include="Framework\5.DoiTuong\NguoiChoi\TrangThai">
       <UniqueIdentifier>{fcbfc5f3-dc80-4a99-b1c5-2454dfb25fc3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Framework\5.DoiTuong\NguoiChoi\TrangThai\DungIm">
+      <UniqueIdentifier>{a8706ab7-8215-4942-a092-54e76ce4ea3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\5.DoiTuong\NguoiChoi\TrangThai\DangNhay">
+      <UniqueIdentifier>{c462c516-1f80-40c0-b6ac-ea2d8ac5f824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\5.DoiTuong\NguoiChoi\TrangThai\DangRoi">
+      <UniqueIdentifier>{43d7e29f-a2b1-4121-a60a-985be85037e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Framework\5.DoiTuong\NguoiChoi\TrangThai\DangChay">
+      <UniqueIdentifier>{17a9e3aa-90fb-4e98-a9b4-bf1f8f6b625e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -151,6 +163,9 @@
     </ClCompile>
     <ClCompile Include="TrangThai.cpp">
       <Filter>Framework\5.DoiTuong\NguoiChoi\TrangThai</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Framework\1.ThanhPhan</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +288,9 @@
     </ClInclude>
     <ClInclude Include="TrangThai.h">
       <Filter>Framework\5.DoiTuong\NguoiChoi\TrangThai</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Framework\1.ThanhPhan</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -8,9 +8,11 @@ private:
 	QuanLyManGame();
 public:
 	static QuanLyManGame *NhanTruongHop();
-	ManGame* NhanManGameHienTai();
 	void CapNhat(float in_tg);
 	void ThayTheManGame(ManGame *in_BanDo);
+
+public:
+	ManGame* NhanManGameHienTai();
 
 private:
 	static QuanLyManGame *mTruongHop;
