@@ -149,7 +149,7 @@
     <ClCompile Include="NguoiChoi.cpp">
       <Filter>Framework\5.DoiTuong\NguoiChoi</Filter>
     </ClCompile>
-    <ClCompile Include="TrangThaiNguoiChoi.cpp">
+    <ClCompile Include="TrangThai.cpp">
       <Filter>Framework\5.DoiTuong\NguoiChoi\TrangThai</Filter>
     </ClCompile>
   </ItemGroup>
@@ -271,7 +271,7 @@
     <ClInclude Include="NguoiChoi.h">
       <Filter>Framework\5.DoiTuong\NguoiChoi</Filter>
     </ClInclude>
-    <ClInclude Include="TrangThaiNguoiChoi.h">
+    <ClInclude Include="TrangThai.h">
       <Filter>Framework\5.DoiTuong\NguoiChoi\TrangThai</Filter>
     </ClInclude>
   </ItemGroup>

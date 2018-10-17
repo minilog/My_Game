@@ -5,7 +5,7 @@
 #include "HoatHinh.h"
 #include "ToanCauGame.h"
 #include "Camera.h"
-#include "TrangThaiNguoiChoi.h"
+#include "TrangThai.h"
 #include "ThucThe.h"
 #include "KieuDuLieuEnum.h"
 #include <map>
@@ -14,10 +14,10 @@ class NguoiChoi : public ThucThe
 {
 public:
 	NguoiChoi();
-	void ThietLapCamera(Camera);
+	void ThietLapCamera(Camera *in_Camera);
 	void CapNhat(float in_tg);
 	void Ve();
-	void ThietLapTrangThai(TrangThaiNguoiChoi *in_TrangThaiNguoiChoi);
+	void ThietLapTrangThai(TrangThai *in_TrangThaiNguoiChoi);
 	void KhiVaCham(ThucThe *in_ThucTheVaCham, eKetQuaVaCham in_KetQuaVaCham, ePhiaVaCham in_PhiaVaCham);
 	void KhiVaChamPhiaDuoi();
 	eHuongDiChuyen hdcHuongDiChuyen();
@@ -36,7 +36,7 @@ public:
 	bool mChoPhepSangPhai;
 protected:
 	Camera	*mCamera;
-	TrangThaiNguoiChoi *mTrangThaiNguoiChoi;
+	TrangThai *mTrangThaiNguoiChoi;
 	HoatHinh *mHoatHinhHienTai;
 	HoatHinh *mHoatHinhDangDung;
 	HoatHinh *mHoatHinhDangChay;

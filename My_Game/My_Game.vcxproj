@@ -157,7 +157,7 @@
     <ClCompile Include="ThoiGianGame.cpp" />
     <ClCompile Include="ThucThe.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
-    <ClCompile Include="TrangThaiNguoiChoi.cpp" />
+    <ClCompile Include="TrangThai.cpp" />
     <ClCompile Include="VaChamGame.cpp" />
     <ClCompile Include="VienGach.cpp" />
   </ItemGroup>
@@ -198,7 +198,7 @@
     <ClInclude Include="ThoiGianGame.h" />
     <ClInclude Include="ThucThe.h" />
     <ClInclude Include="ToanCauGame.h" />
-    <ClInclude Include="TrangThaiNguoiChoi.h" />
+    <ClInclude Include="TrangThai.h" />
     <ClInclude Include="VaChamGame.h" />
     <ClInclude Include="VatTheGame.h" />
     <ClInclude Include="VienGach.h" />
