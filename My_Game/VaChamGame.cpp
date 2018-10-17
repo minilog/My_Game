@@ -1,10 +1,10 @@
 ﻿#include "VaChamGame.h"
 
-KetQuaVaCham VaChamGame::HCNVaHCN(RECT in_HCN1, RECT in_HCN2)
+KetQuaVaCham VaChamGame::kqvcHCNVaHCN(RECT in_HCN1, RECT in_HCN2)
 {
 	KetQuaVaCham lKetQuaVaCham;
 
-	if (!DaVaCham(in_HCN1, in_HCN2))
+	if (!bDaVaCham(in_HCN1, in_HCN2))
 	{
 		lKetQuaVaCham.DaVaCham = false;
 
@@ -22,13 +22,13 @@ KetQuaVaCham VaChamGame::HCNVaHCN(RECT in_HCN1, RECT in_HCN2)
 	return lKetQuaVaCham;
 }
 
-PhiaVaCham VaChamGame::NhanPhiaVaCham(ThucThe * in_ThucThe1, KetQuaVaCham in_KetQuaVaCham)
+PhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, KetQuaVaCham in_KetQuaVaCham)
 {
 	float lTrungTamVaChamX = in_KetQuaVaCham.VungVaCham.left + (in_KetQuaVaCham.VungVaCham.right - in_KetQuaVaCham.VungVaCham.left) / 2.0f;
 	float lTrungTamVaChamY = in_KetQuaVaCham.VungVaCham.top + (in_KetQuaVaCham.VungVaCham.bottom - in_KetQuaVaCham.VungVaCham.top) / 2.0f;
 
 	D3DXVECTOR2 lTrungTamVaCham = D3DXVECTOR2(lTrungTamVaChamX, lTrungTamVaChamY);
-	D3DXVECTOR2 lTrungTamThucThe = in_ThucThe1->NhanViTri();
+	D3DXVECTOR2 lTrungTamThucThe = in_ThucThe1->vViTri();
 
 	// lấy vector nối từ Thực Thể đến Vùng Va Chạm
 	D3DXVECTOR2 lVec = lTrungTamVaCham - lTrungTamThucThe;
@@ -101,13 +101,13 @@ PhiaVaCham VaChamGame::NhanPhiaVaCham(ThucThe * in_ThucThe1, KetQuaVaCham in_Ket
 	return PhiaVaCham::KhongXacDinh;
 }
 
-PhiaVaCham VaChamGame::NhanPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucThe2)
+PhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucThe2)
 {
-	float lW = (in_ThucThe1->NhanChieuRong() + in_ThucThe2->NhanChieuRong()) / 2.0f;
-	float lH = (in_ThucThe1->NhanChieuCao() + in_ThucThe2->NhanChieuCao()) / 2.0f;
+	float lW = (in_ThucThe1->fChieuRong() + in_ThucThe2->fChieuRong()) / 2.0f;
+	float lH = (in_ThucThe1->fChieuCao() + in_ThucThe2->fChieuCao()) / 2.0f;
 
-	float lDx = in_ThucThe1->NhanViTri().x - in_ThucThe2->NhanViTri().y;
-	float lDy = in_ThucThe1->NhanViTri().x - in_ThucThe2->NhanViTri().y;
+	float lDx = in_ThucThe1->vViTri().x - in_ThucThe2->vViTri().y;
+	float lDy = in_ThucThe1->vViTri().x - in_ThucThe2->vViTri().y;
 
 	if (abs(lDx) <= lW && abs(lDy) <= lH)
 	{
@@ -166,7 +166,7 @@ PhiaVaCham VaChamGame::NhanPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucTh
 /*								 Các hàm đơn giản					             */
 ///////////////////////////////////////////////////////////////////////////////////
 
-bool VaChamGame::DaVaCham(RECT in_HCN1, RECT in_HCN2)
+bool VaChamGame::bDaVaCham(RECT in_HCN1, RECT in_HCN2)
 {
 	if (in_HCN1.left > in_HCN2.right ||
 		in_HCN1.right < in_HCN2.left ||
@@ -179,7 +179,7 @@ bool VaChamGame::DaVaCham(RECT in_HCN1, RECT in_HCN2)
 	return true;
 }
 
-bool VaChamGame::DiemVaHCN(float in_X, float in_Y, RECT in_HCN)
+bool VaChamGame::bDiemVaHCN(float in_X, float in_Y, RECT in_HCN)
 {
 	if (in_X < in_HCN.left ||
 		in_X > in_HCN.right ||
@@ -192,7 +192,7 @@ bool VaChamGame::DiemVaHCN(float in_X, float in_Y, RECT in_HCN)
 	return true;
 }
 
-bool VaChamGame::HCNVaHinhTron(RECT in_HCN, int in_TamX, int in_TamY, int in_BanKinh)
+bool VaChamGame::bHCNVaHinhTron(RECT in_HCN, int in_TamX, int in_TamY, int in_BanKinh)
 {
 	int lPx = in_TamX;
 	int lPy = in_TamY;

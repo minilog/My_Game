@@ -12,7 +12,7 @@ void ThoiGianGame::BatDauDem()
 	QueryPerformanceCounter(&mBatDau);
 }
 
-float ThoiGianGame::NhanThoiGianDemDuoc()
+float ThoiGianGame::fThoiGianDemDuoc()
 {
 	QueryPerformanceCounter(&mKetThuc);
 	LARGE_INTEGER mDelta;

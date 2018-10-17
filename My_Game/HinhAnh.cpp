@@ -7,7 +7,7 @@ HinhAnh::HinhAnh(const char * in_DuongDan)
 
 void HinhAnh::KhoiTaoVoiHinhAnh(const char * in_DuongDan)
 {
-	mXuLyHinhAnh = ToanCauGame::NhanXuLyHinhAnh();
+	mXuLyHinhAnh = ToanCauGame::sXuLyHinhAnh();
 	D3DXGetImageInfoFromFileA(in_DuongDan, &mThongTinHinhAnh);
 	mViTri = D3DXVECTOR3(0, 0, 0);
 	mChieuRong = mThongTinHinhAnh.Width;
@@ -116,7 +116,7 @@ void HinhAnh::ThietLapLatTheoChieuNgang(bool in_Co)
 /*								 Các hàm đơn giản					             */
 ///////////////////////////////////////////////////////////////////////////////////
 
-bool HinhAnh::LaHCN(RECT in_HCN)
+bool HinhAnh::bLaHCN(RECT in_HCN)
 {
 	if (in_HCN.left == in_HCN.right)
 	{
@@ -130,12 +130,12 @@ bool HinhAnh::LaHCN(RECT in_HCN)
 	return true;
 }
 
-D3DXIMAGE_INFO HinhAnh::NhanThongTinHinhAnh()
+D3DXIMAGE_INFO HinhAnh::iiNhanThongTinHinhAnh()
 {
 	return mThongTinHinhAnh;
 }
 
-LPDIRECT3DTEXTURE9 HinhAnh::NhanKetCauHinhAnh()
+LPDIRECT3DTEXTURE9 HinhAnh::dtNhanKetCauHinhAnh()
 {
 	return mKetCauHinhAnh;
 }
@@ -155,7 +155,7 @@ void HinhAnh::ThietLapViTri(D3DXVECTOR2 in_ViTri)
 	ThietLapViTri(in_ViTri.x, in_ViTri.y);
 }
 
-D3DXVECTOR3 HinhAnh::NhanViTri()
+D3DXVECTOR3 HinhAnh::vViTri()
 {
 	return mViTri;
 }
@@ -165,7 +165,7 @@ void HinhAnh::ThietLapChieuRong(int in_ChieuRong)
 	mChieuRong = in_ChieuRong;
 }
 
-int HinhAnh::NhanChieuRong()
+int HinhAnh::iChieuRong()
 {
 	return mChieuRong;
 }
@@ -175,7 +175,7 @@ void HinhAnh::ThietLapChieuCao(int in_ChieuCao)
 	mChieuCao = in_ChieuCao;
 }
 
-int HinhAnh::NhanChieuCao()
+int HinhAnh::iChieuCao()
 {
 	return mChieuCao;
 }
@@ -190,17 +190,17 @@ void HinhAnh::ThietLapTiLe(D3DXVECTOR2 in_TiLe)
 	mTiLe = in_TiLe;
 }
 
-D3DXVECTOR2 HinhAnh::NhanTiLe()
+D3DXVECTOR2 HinhAnh::vTiLe()
 {
 	return mTiLe;
 }
 
-bool HinhAnh::NhanLatTheoChieuNgang()
+bool HinhAnh::bLatTheoChieuNgang()
 {
 	return mLatTheoChieuNgang;
 }
 
-bool HinhAnh::NhanLatTheoChieuDoc()
+bool HinhAnh::bLatTheoChieuDoc()
 {
 	return mLatTheoChieuDoc;
 }
@@ -210,7 +210,7 @@ void HinhAnh::ThietLapGocXoayHinh(float in_GocXoay)
 	mGocXoayHinh = in_GocXoay;
 }
 
-float HinhAnh::NhanGocXoayHinh()
+float HinhAnh::fGocXoayHinh()
 {
 	return mGocXoayHinh;
 }
@@ -220,7 +220,7 @@ void HinhAnh::ThietLapDoDoi(D3DXVECTOR2 in_DoDoi)
 	mDoDoi = in_DoDoi;
 }
 
-D3DXVECTOR2 HinhAnh::NhanDoDoi()
+D3DXVECTOR2 HinhAnh::vDoDoi()
 {
 	return mDoDoi;
 }

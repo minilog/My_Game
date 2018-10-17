@@ -13,30 +13,30 @@ public:
 	~HinhAnh();
 protected:
 	void KhoiTaoVoiHinhAnh(const char* in_DuongDan);
-	bool LaHCN(RECT in_HCN);
+	bool bLaHCN(RECT in_HCN);
 public:
 	void Ve();
-	D3DXIMAGE_INFO NhanThongTinHinhAnh();
-	LPDIRECT3DTEXTURE9 NhanKetCauHinhAnh();
+	D3DXIMAGE_INFO iiNhanThongTinHinhAnh();
+	LPDIRECT3DTEXTURE9 dtNhanKetCauHinhAnh();
 	void ThietLapViTri(D3DXVECTOR3 in_ViTri);
 	void ThietLapViTri(float x, float y);
 	void ThietLapViTri(D3DXVECTOR2 in_ViTri);
-	D3DXVECTOR3 NhanViTri();
+	D3DXVECTOR3 vViTri();
 	void ThietLapChieuRong(int in_ChieuRong);
-	int NhanChieuRong();
+	int iChieuRong();
 	void ThietLapChieuCao(int in_ChieuCao);
-	int NhanChieuCao();
+	int iChieuCao();
 	void ThietLapHCN(RECT in_HCN);
 	void ThietLapTiLe(D3DXVECTOR2 in_TiLe);
-	D3DXVECTOR2 NhanTiLe();
+	D3DXVECTOR2 vTiLe();
 	void ThietLapLatTheoChieuNgang(bool in_Co);
-	bool NhanLatTheoChieuNgang();
+	bool bLatTheoChieuNgang();
 	void ThietLapLatTheoChieuDoc(bool in_Co);
-	bool NhanLatTheoChieuDoc();
+	bool bLatTheoChieuDoc();
 	void ThietLapGocXoayHinh(float in_GocXoay);
-	float NhanGocXoayHinh();
+	float fGocXoayHinh();
 	void ThietLapDoDoi(D3DXVECTOR2 in_DoDoi);
-	D3DXVECTOR2 NhanDoDoi();
+	D3DXVECTOR2 vDoDoi();
 
 protected:
 	LPD3DXSPRITE            mXuLyHinhAnh;

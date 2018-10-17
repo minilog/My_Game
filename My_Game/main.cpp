@@ -63,8 +63,8 @@ int	KhoiTaoCuaSo(int cmdShow)
 		WS_OVERLAPPEDWINDOW,
 		300,
 		100,
-		ToanCauGame::NhanChieuRong(),
-		ToanCauGame::NhanChieuCao(),
+		ToanCauGame::iChieuRong(),
+		ToanCauGame::iChieuCao(),
 		NULL,
 		NULL,
 		mTruongHopXuLy,
@@ -95,19 +95,19 @@ int KhoiTaoThietBi()
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
 	d3dpp.BackBufferCount = 1;
-	d3dpp.BackBufferWidth = ToanCauGame::NhanChieuRong();
-	d3dpp.BackBufferHeight = ToanCauGame::NhanChieuCao();
+	d3dpp.BackBufferWidth = ToanCauGame::iChieuRong();
+	d3dpp.BackBufferHeight = ToanCauGame::iChieuCao();
 
 	HRESULT dvresult = mD3d->CreateDevice(D3DADAPTER_DEFAULT,
 		D3DDEVTYPE_HAL,
-		ToanCauGame::NhanCuaSoXuLy(),
+		ToanCauGame::hwCuaSoXuLy(),
 		D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 		&d3dpp,
 		&mThietBi);
 
 	ToanCauGame::ThietLapThietBi(mThietBi);
 
-	D3DXCreateSprite(ToanCauGame::NhanThietBi(), &mXuLyHinhAnh);
+	D3DXCreateSprite(ToanCauGame::ddThietBi(), &mXuLyHinhAnh);
 
 	ToanCauGame::ThietLapXuLyHinhAnh(mXuLyHinhAnh);
 
@@ -122,7 +122,7 @@ LRESULT CALLBACK ThuTucCuaSo(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 	switch (message)
 	{
 	case WM_DESTROY:
-		ToanCauGame::mLaGameDangChay = false;
+		ToanCauGame::mGameDangChay = false;
 		PostQuitMessage(0);
 		break;
 

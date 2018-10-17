@@ -1,13 +1,13 @@
-#pragma once
+﻿#pragma once
 
 #include <Windows.h>
 
 class ThoiGianGame
 {
 public:
-	static ThoiGianGame* NhanTruongHop();
+	static ThoiGianGame* NhanTruongHop(); // Kiểu dữ liệu là 1 lớp, ko cần ghi kiểu dữ liệu phía trước hàm
 	void BatDauDem();
-	float NhanThoiGianDemDuoc();
+	float fThoiGianDemDuoc();
 
 private:
 	LARGE_INTEGER mBatDau, mKetThuc, mTyLeThoiGian;

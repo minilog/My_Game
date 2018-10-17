@@ -30,7 +30,7 @@ Camera::Camera(int in_ChieuRong, int in_ChieuCao)
 /*								 Các hàm đơn giản					             */
 ///////////////////////////////////////////////////////////////////////////////////
 
-RECT Camera::NhanGioiHanHCN()
+RECT Camera::rHCNGioiHan()
 {
 	RECT lHCN;
 
@@ -43,27 +43,27 @@ RECT Camera::NhanGioiHanHCN()
 }
 
 
-void Camera::ThietLapViTri(D3DXVECTOR3 in_ViTri)
+void Camera::ThietLapToaDo(D3DXVECTOR3 in_ViTri)
 {
 	mViTri = in_ViTri;
 }
 
-void Camera::ThietLapViTri(float in_X, float in_Y)
+void Camera::ThietLapToaDo(float in_X, float in_Y)
 {
-	ThietLapViTri(D3DXVECTOR3(in_X, in_Y, 0));
+	ThietLapToaDo(D3DXVECTOR3(in_X, in_Y, 0));
 }
 
-int Camera::NhanChieuRong()
+int Camera::iChieuRong()
 {
 	return mChieuRong;
 }
 
-int Camera::NhanChieuCao()
+int Camera::iChieuCao()
 {
 	return mChieuCao;
 }
 
-D3DXVECTOR3 Camera::NhanViTri()
+D3DXVECTOR3 Camera::vViTri()
 {
 	return mViTri;
 }

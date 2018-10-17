@@ -8,17 +8,17 @@ class ToanCauGame
 {
 public:
 	static void ThietLapTruongHopXuLy(HINSTANCE in_TruongHopXuLy);
-	static HINSTANCE NhanTruongHopXuLy();
+	static HINSTANCE hiTruongHopXuLy();
 	static void ThietLapCuaSoXuLy(HWND in_CuaSoXuLy);
-	static HWND NhanCuaSoXuLy();
+	static HWND hwCuaSoXuLy();
 	static void ThietLapXuLyHinhAnh(LPD3DXSPRITE in_XuLyHinhAnh);
-	static LPD3DXSPRITE NhanXuLyHinhAnh();
+	static LPD3DXSPRITE sXuLyHinhAnh();
 	static void ThietLapThietBi(LPDIRECT3DDEVICE9 in_ThietBi);
-	static LPDIRECT3DDEVICE9 NhanThietBi();
+	static LPDIRECT3DDEVICE9 ddThietBi();
 	static void ThietLapChieuRong(int in_ChieuRong);
-	static int NhanChieuRong();
+	static int iChieuRong();
 	static void ThietLapChieuCao(int in_ChieuCao);
-	static int NhanChieuCao();
+	static int iChieuCao();
 
 private:
 	static HINSTANCE			mTruongHopXuLy;
@@ -29,5 +29,5 @@ private:
 	static int					mChieuCao;
 public:
 	static LPDIRECT3DSURFACE9	mMatSau;
-	static bool					mLaGameDangChay;
+	static bool					mGameDangChay;
 };
