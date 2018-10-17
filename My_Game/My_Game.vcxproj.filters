@@ -140,6 +140,9 @@
     <ClCompile Include="GachBinhThuong.cpp">
       <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachBinhThuong</Filter>
     </ClCompile>
+    <ClCompile Include="GachVang.cpp">
+      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachVang</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -252,6 +255,9 @@
     </ClInclude>
     <ClInclude Include="GachBinhThuong.h">
       <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachBinhThuong</Filter>
+    </ClInclude>
+    <ClInclude Include="GachVang.h">
+      <Filter>Framework\5.DoiTuong\DoiTuongTrongBanDo\VienGach\GachVang</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

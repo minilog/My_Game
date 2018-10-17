@@ -128,6 +128,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CayBonNhanh.cpp" />
     <ClCompile Include="GachBinhThuong.cpp" />
+    <ClCompile Include="GachVang.cpp" />
     <ClCompile Include="HinhAnh.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
     <ClCompile Include="main.cpp" />
@@ -161,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="CayBonNhanh.h" />
     <ClInclude Include="GachBinhThuong.h" />
+    <ClInclude Include="GachVang.h" />
     <ClInclude Include="KieuDuLieuEnum.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ManGame.h" />
