@@ -5,7 +5,7 @@
 class ThoiGianGame
 {
 public:
-	static ThoiGianGame* NhanTruongHop(); // Kiểu dữ liệu là 1 lớp, ko cần ghi kiểu dữ liệu phía trước hàm
+	static ThoiGianGame* tggTruongHop(); // Kiểu dữ liệu là 1 lớp, ko cần ghi kiểu dữ liệu phía trước hàm
 	void BatDauDem();
 
 public:

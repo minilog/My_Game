@@ -125,6 +125,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BanDoGame.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CayBonNhanh.cpp" />
     <ClCompile Include="GachBinhThuong.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="VienGach.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BanDoGame.h" />
     <ClInclude Include="CayBonNhanh.h" />
     <ClInclude Include="GachBinhThuong.h" />
     <ClInclude Include="GachVang.h" />

@@ -7,12 +7,11 @@ class QuanLyManGame
 private:
 	QuanLyManGame();
 public:
-	static QuanLyManGame *NhanTruongHop();
-	void CapNhat(float in_tg);
+	static QuanLyManGame *qlmgTruongHop();
 	void ThayTheManGame(ManGame *in_BanDo);
 
 public:
-	ManGame* NhanManGameHienTai();
+	ManGame* mgManGameHienTai();
 
 private:
 	static QuanLyManGame *mTruongHop;

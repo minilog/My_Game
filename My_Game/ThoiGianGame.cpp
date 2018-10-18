@@ -44,7 +44,7 @@ float ThoiGianGame::fThoiGianDemDuoc()
 /*								 Các hàm đơn giản					             */
 ///////////////////////////////////////////////////////////////////////////////////
 
-ThoiGianGame * ThoiGianGame::NhanTruongHop()
+ThoiGianGame * ThoiGianGame::tggTruongHop()
 {
 	if (!mTruongHop)
 	{

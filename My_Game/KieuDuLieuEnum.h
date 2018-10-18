@@ -4,10 +4,10 @@
 
 enum ePhiaVaCham
 {
-	Trai, Phai, Tren, Duoi,
-	TraiBenTren, PhaiBenTren, 
-	TraiBenDuoi, PhaiBenDuoi,
-	KhongXacDinh
+	eTrai, ePhai, eTren, eDuoi,
+	eTraiBenTren, ePhaiBenTren, 
+	eTraiBenDuoi, ePhaiBenDuoi,
+	eKhongXacDinh
 };
 
 struct eKetQuaVaCham
@@ -18,17 +18,15 @@ struct eKetQuaVaCham
 
 enum eLoaiThucThe
 {
-	KhongCo, VienGach, KeThu, Mario, ThucTheTinh, VienGachVangBinhThuong, VienGachVangAnDuoc
+	eKhongCo, eVienGach, eKeThu, eMario, eThucTheTinh, eVienGachVangBinhThuong, eVienGachVangAnDuoc
 };
 
 enum eHuongDiChuyen
 {
-	DiChuyenSangTrai,
-	DiChuyenSangPhai,
-	DungIm
+	eDiChuyenSangTrai, eDiChuyenSangPhai, eDungIm
 };
 
 enum eTrangThai
 {
-	DangDung, DangChay, DangRoi, DangNhay, HiSinh // hi sinh = chết :))
+	dDangDung, eDangChay, eDangRoi, eDangNhay, eHiSinh // hi sinh = chết :))
 };

@@ -7,11 +7,6 @@ QuanLyManGame::QuanLyManGame()
 	mManGameHienTai = nullptr;
 }
 
-void QuanLyManGame::CapNhat(float in_tg)
-{
-	mManGameHienTai->CapNhat(in_tg);
-}
-
 void QuanLyManGame::ThayTheManGame(ManGame * in_BanDo)
 {
 	delete mManGameHienTai;
@@ -41,7 +36,7 @@ void QuanLyManGame::ThayTheManGame(ManGame * in_BanDo)
 /*								 Các hàm đơn giản					             */
 ///////////////////////////////////////////////////////////////////////////////////
 
-QuanLyManGame * QuanLyManGame::NhanTruongHop()
+QuanLyManGame * QuanLyManGame::qlmgTruongHop()
 {
 	if (!mTruongHop)
 	{
@@ -50,7 +45,7 @@ QuanLyManGame * QuanLyManGame::NhanTruongHop()
 	return mTruongHop;
 }
 
-ManGame * QuanLyManGame::NhanManGameHienTai()
+ManGame * QuanLyManGame::mgManGameHienTai()
 {
 	return mManGameHienTai;
 }

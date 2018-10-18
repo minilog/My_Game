@@ -2,7 +2,7 @@
 
 ThucThe::ThucThe()
 {
-	mLoaiThucThe = KhongCo;
+	mLoaiThucThe = eKhongCo;
 }
 
 void ThucThe::CapNhat(float in_tg)

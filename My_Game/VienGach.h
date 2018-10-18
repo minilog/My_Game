@@ -8,6 +8,7 @@
 class VienGach : ThucThe
 {
 public:
+	VienGach() = default;
 	void CapNhat(float in_tg);
 	void Ve(D3DXVECTOR2 in_DoDoi);
 protected:

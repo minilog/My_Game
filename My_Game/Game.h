@@ -1,3 +1,6 @@
+﻿//bắt đầu từ Game -> Màn Game -> Bản Đồ Game
+//bắt đầu từ Game -> Màn Game -> Người Chơi
+
 #pragma once
 
 #include "d3dx9.h"

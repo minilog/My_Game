@@ -1,4 +1,6 @@
-﻿#include "Game.h"
+﻿//bắt đầu từ Game -> Màn Game -> Bản Đồ Game
+//bắt đầu từ Game -> Màn Game -> Người Chơi
+#include "Game.h"
 #include "ToanCauGame.h"
 #include "ThoiGianGame.h"
 
@@ -16,7 +18,7 @@ void Game::TaoVongLapGame()
 
 	while (ToanCauGame::mGameDangChay)
 	{
-		ThoiGianGame::NhanTruongHop()->BatDauDem();
+		ThoiGianGame::tggTruongHop()->BatDauDem();
 
 		if (PeekMessage(&lMessage, NULL, 0, 0, PM_REMOVE))
 		{
@@ -24,7 +26,7 @@ void Game::TaoVongLapGame()
 			DispatchMessage(&lMessage);
 		}
 
-		lThoiGian += ThoiGianGame::NhanTruongHop()->fThoiGianDemDuoc();
+		lThoiGian += ThoiGianGame::tggTruongHop()->fThoiGianDemDuoc();
 
 		if (lThoiGian >= lThoiGianThayDoi)
 		{

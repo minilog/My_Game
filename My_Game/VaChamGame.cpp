@@ -49,25 +49,25 @@ ePhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, eKetQuaVaCham in_Ke
 		//lay cos cua goc neu ma nam trong khoang goc 70 -> 110 thi va cham Tren
 		if (lVec.x <= 0.35f && lVec.x >= -0.35f)
 		{
-			return ePhiaVaCham::Tren;
+			return ePhiaVaCham::eTren;
 		}
 		else if (lVec.x > 0.35f && lVec.x < 0.8f)
 		{
 			//goc trong khoang 35 -> 70 phia ben Tren - Phai
-			return ePhiaVaCham::PhaiBenTren;
+			return ePhiaVaCham::ePhaiBenTren;
 		}
 		else if (lVec.x >= 0.8f)
 		{
-			return ePhiaVaCham::Phai;
+			return ePhiaVaCham::ePhai;
 		}
 		else if (lVec.x < -0.35f && lVec.x >= -0.8f)
 		{
 			// va chạm phía Trên - Trái
-			return ePhiaVaCham::TraiBenTren;
+			return ePhiaVaCham::eTraiBenTren;
 		}
 		else
 		{
-			return ePhiaVaCham::Trai;
+			return ePhiaVaCham::eTrai;
 		}
 	}
 	else
@@ -76,29 +76,29 @@ ePhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, eKetQuaVaCham in_Ke
 		//lay cos cua goc neu ma nam trong khoang goc 70 -> 110 thi va cham top
 		if (lVec.x <= 0.35f && lVec.x >= -0.35)
 		{
-			return ePhiaVaCham::Duoi;
+			return ePhiaVaCham::eDuoi;
 		}
 		else if (lVec.x > 0.35 && lVec.x < 0.8)
 		{
 			//goc trong khoang 35 -> 70 phia ben top - right
-			return ePhiaVaCham::PhaiBenDuoi;
+			return ePhiaVaCham::ePhaiBenDuoi;
 		}
 		else if (lVec.x >= 0.8)
 		{
-			return ePhiaVaCham::Phai;
+			return ePhiaVaCham::ePhai;
 		}
 		else if (lVec.x < -0.35f && lVec.x > -0.8f)
 		{
 			//va cham phia top - left
-			return ePhiaVaCham::TraiBenDuoi;
+			return ePhiaVaCham::eTraiBenDuoi;
 		}
 		else
 		{
-			return ePhiaVaCham::Trai;
+			return ePhiaVaCham::eTrai;
 		}
 	}
 
-	return ePhiaVaCham::KhongXacDinh;
+	return ePhiaVaCham::eKhongXacDinh;
 }
 
 ePhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucThe2)
@@ -120,27 +120,27 @@ ePhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucTh
 			if (lWy > -lHx)
 			{
 				/*va cham phia tren Thực Thể 1*/
-				return ePhiaVaCham::Tren;
+				return ePhiaVaCham::eTren;
 			}
 			else
 			{
 				/*va chạm phía bên phải Thực Thể 1*/
-				return ePhiaVaCham::Phai;
+				return ePhiaVaCham::ePhai;
 			}
 		}
 		else if (lWy > -lHx)
 		{
 			/*va chạm phía bên trái Thực Thể 1*/
-			return ePhiaVaCham::Trai;
+			return ePhiaVaCham::eTrai;
 		}
 		else
 		{
 			/*va chạm phía bên dưới Thực Thể 1*/
-			return ePhiaVaCham::Duoi;
+			return ePhiaVaCham::eDuoi;
 		}
 	}
 
-	return ePhiaVaCham::KhongXacDinh;
+	return ePhiaVaCham::eKhongXacDinh;
 }
 
 
