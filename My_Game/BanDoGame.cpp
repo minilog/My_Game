@@ -36,6 +36,7 @@ void BanDoGame::TaiBanDo(char * in_DuongDan)
 	}
 #pragma endregion
 
+//cách thêm Viên Gạch này ko khả thi, ko áp dụng vào bài làm
 #pragma region Tao Cac Vien Gach
 	for (int i = 0; i < mBanDo->GetNumLayers(); i++)
 	{
@@ -117,6 +118,84 @@ void BanDoGame::CapNhat(float in_tg)
 
 void BanDoGame::Ve()
 {
+	D3DXVECTOR2 lDoDoi = D3DXVECTOR2(ToanCauGame::iChieuRong() / 2.0f - mCamera->vToaDo().x,
+		ToanCauGame::iChieuCao() / 2.0f - mCamera->vToaDo().y);
+
+#pragma region Ve TileSet
+	for (size_t i = 0; i < mBanDo->GetNumTileLayers(); i++)
+	{
+		const Tmx::TileLayer *lLopHinhAnh = mBanDo->GetTileLayer(i);
+
+		if (!lLopHinhAnh->IsVisible())
+		{
+			continue;
+		}
+
+		for (size_t j = 0; j < mBanDo->GetNumTilesets(); j++)
+		{
+			const Tmx::Tileset *lTileSet = mBanDo->GetTileset(j);
+
+			RECT sourceRECT;
+
+			int lSoTileChieuNgangCuaTileSet = lTileSet->GetImage()->GetWidth() / mChieuRongTile;
+			int lSoTileChieuDocCuaTileSet = lTileSet->GetImage()->GetHeight() / mChieuCaoTile;
+
+			for (int m = 0; m < lLopHinhAnh->GetHeight(); m++)
+			{
+				for (int n = 0; n < lLopHinhAnh->GetWidth(); n++)
+				{
+					if (lLopHinhAnh->GetTileTilesetIndex(n, m) != -1)
+					{
+						int tileID = lLopHinhAnh->GetTileId(n, m);
+
+						int y = tileID / lSoTileChieuNgangCuaTileSet;
+						int x = tileID - y * lSoTileChieuNgangCuaTileSet;
+
+						sourceRECT.top = y * mChieuCaoTile;
+						sourceRECT.bottom = sourceRECT.top + mChieuCaoTile;
+						sourceRECT.left = x * mChieuRongTile;
+						sourceRECT.right = sourceRECT.left + mChieuRongTile;
+
+						HinhAnh* sprite = mDanhSanhTileSet[j];
+
+						//tru tilewidth/2 va tileheight/2 vi Sprite ve o vi tri giua hinh anh cho nen doi hinh de cho
+						//dung toa do (0,0) cua the gioi thuc la (0,0) neu khong thi se la (-tilewidth/2, -tileheigth/2);
+						D3DXVECTOR3 position(n * mChieuRongTile + mChieuRongTile / 2, 
+							m * mChieuCaoTile + mChieuCaoTile / 2, 0);
+
+						if (mCamera != NULL)
+						{
+							RECT objRECT;
+							objRECT.left = position.x - mChieuRongTile / 2;
+							objRECT.top = position.y - mChieuCaoTile / 2;
+							objRECT.right = objRECT.left + mChieuRongTile;
+							objRECT.bottom = objRECT.top + mChieuCaoTile;
+
+							if (!VaChamGame::kqvcHCNVaHCN(mCamera->rHCNGioiHan(), objRECT).DaVaCham)
+								continue;
+						}
+
+						sprite->ThietLapToaDo(position);
+						sprite->ThietLapChieuRong(mChieuRongTile);
+						sprite->ThietLapChieuCao(mChieuCaoTile);
+						sprite->ThietLapHCN(sourceRECT);
+						sprite->ThietLapDoDoi(lDoDoi);
+						sprite->Ve();
+					}
+				}
+			}
+		}
+	}
+#pragma endregion
+
+#pragma region DRAW BRICK
+
+	for (size_t i = 0; i < mListBricks.size(); i++)
+	{
+		mListBricks[i]->Draw(trans);
+	}
+
+#pragma endregion
 
 }
 

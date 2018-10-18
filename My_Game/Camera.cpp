@@ -63,7 +63,7 @@ int Camera::iChieuCao()
 	return mChieuCao;
 }
 
-D3DXVECTOR3 Camera::vViTri()
+D3DXVECTOR3 Camera::vToaDo()
 {
 	return mViTri;
 }

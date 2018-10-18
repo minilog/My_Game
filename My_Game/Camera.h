@@ -10,7 +10,7 @@ public:
 	void ThietLapToaDo(D3DXVECTOR3 in_ViTri);
 	void ThietLapToaDo(float in_X, float in_Y);
 
-	D3DXVECTOR3 vViTri();
+	D3DXVECTOR3 vToaDo();
 	int iChieuRong();
 	int iChieuCao();
 	RECT rHCNGioiHan();
