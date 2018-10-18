@@ -46,7 +46,7 @@ private:
 	int mChieuRongTile;
 	int mChieuCaoTile;
 	Camera *mCamera;
-	std::map<int, HinhAnh*> mDanhSanhTileSet;
+	std::map<int, HinhAnh*> mDanhSachTileSet;
 	std::vector<VienGach*> mDanhSachVienGach;
 	CayBonNhanh *mCayBonNhanh;
 };

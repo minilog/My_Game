@@ -18,6 +18,7 @@ BanDoGame::BanDoGame(char * in_DuongDan)
 
 void BanDoGame::TaiBanDo(char * in_DuongDan)
 {
+
 #pragma region tao Cay Bon Nhanh
 	RECT lR;
 	lR.left = 0;
@@ -32,49 +33,43 @@ void BanDoGame::TaiBanDo(char * in_DuongDan)
 	{
 		const Tmx::Tileset *lTileSet = mBanDo->GetTileset(i);
 		HinhAnh *lHinhAnh = new HinhAnh(lTileSet->GetImage()->GetSource().c_str());
-		mDanhSanhTileSet.insert(pair<int, HinhAnh*>(i, lHinhAnh));
+		mDanhSachTileSet.insert(pair<int, HinhAnh*>(i, lHinhAnh));
 	}
 #pragma endregion
 
-//cách thêm Viên Gạch này ko khả thi, ko áp dụng vào bài làm
-#pragma region Tao Cac Vien Gach
-	for (int i = 0; i < mBanDo->GetNumLayers(); i++)
+#pragma region Tao Cac Vien Gach Objects
+	for (int i = 0; i < mBanDo->GetNumObjectGroups(); i++)
 	{
-		// xét từng lớp hình ảnh tạo nên Bản Đồ
-		const Tmx::TileLayer *lLopHinhAnh = mBanDo->GetTileLayer(i);
-		
-		if (lLopHinhAnh->IsVisible())
-		{
-			continue;
-		}
-		if (lLopHinhAnh->GetName() == "brick" || lLopHinhAnh->GetName() == "coin")
-		{
-			for (int m = 0; m < lLopHinhAnh->GetHeight(); m++)
-			{
-				for (int n = 0; n < lLopHinhAnh->GetWidth(); n++)
-				{
-					if (lLopHinhAnh->GetTileTilesetIndex(n, m) != -1)
-					{
-						D3DXVECTOR3 lToaDo(float(n * mChieuRongTile + mChieuRongTile / 2.0f),
-							float(m * mChieuCaoTile + mChieuCaoTile / 2.0f), float(0.0f));
-						VienGach *lVienGach = nullptr;
-						if (lLopHinhAnh->GetName() == "brick")
-						{
-							lVienGach = new GachBinhThuong(lToaDo);
-							lVienGach->mLoaiThucThe = eLoaiThucThe::eVienGachVangBinhThuong;
-						}
-						else
-						{
-							lVienGach = new GachVang(lToaDo);
-							lVienGach->mLoaiThucThe = eLoaiThucThe::eVienGachVangAnDuoc;
-						}
+		const Tmx::ObjectGroup *lNhomObject = mBanDo->GetObjectGroup(i);
 
-						mDanhSachVienGach.push_back(lVienGach);
-						if (lVienGach)
-						{
-							mCayBonNhanh->ThemThucThe(lVienGach);
-						}
-					}
+		if (lNhomObject->GetName() == "GachBinhThuong" || lNhomObject->GetName() == "GachVang")
+		{
+			for (int j = 0; j < lNhomObject->GetNumObjects(); j++)
+			{
+				Tmx::Object *lObject = lNhomObject->GetObjects().at(j);
+				
+				// lấy tọa độ của Object từ trong Bản Đồ
+				D3DXVECTOR3 lToaDo(float(lObject->GetX() + lObject->GetWidth() / 2.0f),
+					float(lObject->GetY() - lObject->GetHeight() / 2.0f), float (0.0f));
+				
+				// tạo viên gạch NULL
+				VienGach *lVienGach = nullptr;
+
+				if (lNhomObject->GetName() == "GachBinhThuong")
+				{
+					lVienGach = new GachBinhThuong(lToaDo);
+					lVienGach->mLoaiThucThe = eLoaiThucThe::eVienGachVangBinhThuong;
+				}
+				else if (lNhomObject->GetName() == "GachVang")
+				{
+					lVienGach = new GachVang(lToaDo);
+					lVienGach->mLoaiThucThe = eLoaiThucThe::eVienGachVangAnDuoc;
+				}
+				mDanhSachVienGach.push_back(lVienGach);
+
+				if (lVienGach != NULL)
+				{
+					mCayBonNhanh->ThemThucThe(lVienGach);
 				}
 			}
 		}
@@ -102,10 +97,6 @@ void BanDoGame::TaiBanDo(char * in_DuongDan)
 	}
 #pragma endregion
 
-	//chú ý
-	//thêm thực thể = các object là các hình ảnh cụ thể thì 
-	//lThucThe->ThietLapToaDo(lVatThe->GetX() + lVatThe->GetWidth() / 2,
-	//lVatThe->GetY() - lVatThe->GetHeight() / 2);
 }
 
 void BanDoGame::CapNhat(float in_tg)
@@ -122,7 +113,7 @@ void BanDoGame::Ve()
 		ToanCauGame::iChieuCao() / 2.0f - mCamera->vToaDo().y);
 
 #pragma region Ve TileSet
-	for (size_t i = 0; i < mBanDo->GetNumTileLayers(); i++)
+	for (int i = 0; i < mBanDo->GetNumTileLayers(); i++)
 	{
 		const Tmx::TileLayer *lLopHinhAnh = mBanDo->GetTileLayer(i);
 
@@ -131,139 +122,160 @@ void BanDoGame::Ve()
 			continue;
 		}
 
-		for (size_t j = 0; j < mBanDo->GetNumTilesets(); j++)
+		for (int m = 0; m < lLopHinhAnh->GetHeight(); m++)
 		{
-			const Tmx::Tileset *lTileSet = mBanDo->GetTileset(j);
-
-			RECT sourceRECT;
-
-			int lSoTileChieuNgangCuaTileSet = lTileSet->GetImage()->GetWidth() / mChieuRongTile;
-			int lSoTileChieuDocCuaTileSet = lTileSet->GetImage()->GetHeight() / mChieuCaoTile;
-
-			for (int m = 0; m < lLopHinhAnh->GetHeight(); m++)
+			for (int n = 0; n < lLopHinhAnh->GetWidth(); n++)
 			{
-				for (int n = 0; n < lLopHinhAnh->GetWidth(); n++)
+				// Kiểm tra xem Ảnh Lát Gạch (có tọa độ trong Bản Đồ) này có cần vẽ lên hay không
+				D3DXVECTOR3 lToaDo(float(n * mChieuRongTile + mChieuRongTile / 2.0f),
+					float(m * mChieuCaoTile + mChieuCaoTile / 2.0f), float(0.0f));
+				if (mCamera != NULL)
 				{
-					if (lLopHinhAnh->GetTileTilesetIndex(n, m) != -1)
-					{
-						int tileID = lLopHinhAnh->GetTileId(n, m);
+					RECT objRECT;
+					objRECT.left = long(lToaDo.x - mChieuRongTile / 2.0f);
+					objRECT.top = long(lToaDo.y - mChieuCaoTile / 2.0f);
+					objRECT.right = objRECT.left + mChieuRongTile;
+					objRECT.bottom = objRECT.top + mChieuCaoTile;
 
-						int y = tileID / lSoTileChieuNgangCuaTileSet;
-						int x = tileID - y * lSoTileChieuNgangCuaTileSet;
+					if (!VaChamGame::kqvcHCNVaHCN(mCamera->rHCNGioiHan(), objRECT).DaVaCham)
+						continue;
+				}
 
-						sourceRECT.top = y * mChieuCaoTile;
-						sourceRECT.bottom = sourceRECT.top + mChieuCaoTile;
-						sourceRECT.left = x * mChieuRongTile;
-						sourceRECT.right = sourceRECT.left + mChieuRongTile;
+				int lViTriIndexCuaTileSet = lLopHinhAnh->GetTileTilesetIndex(n, m);
+				if (lViTriIndexCuaTileSet != -1)
+				{
+					// từ vị trí Index của TileSet ta lấy ra hình ảnh của nó
+					HinhAnh* lHinhAnh = mDanhSachTileSet[lViTriIndexCuaTileSet];
+					int lSoTileChieuNgangCuaTileSet = lHinhAnh->iChieuRong() / mChieuRongTile;
 
-						HinhAnh* sprite = mDanhSanhTileSet[j];
+					int lViTriCuaTileTrongTileSet = lLopHinhAnh->GetTileId(n, m);
 
-						//tru tilewidth/2 va tileheight/2 vi Sprite ve o vi tri giua hinh anh cho nen doi hinh de cho
-						//dung toa do (0,0) cua the gioi thuc la (0,0) neu khong thi se la (-tilewidth/2, -tileheigth/2);
-						D3DXVECTOR3 position(n * mChieuRongTile + mChieuRongTile / 2, 
-							m * mChieuCaoTile + mChieuCaoTile / 2, 0);
+					int lY = lViTriCuaTileTrongTileSet / lSoTileChieuNgangCuaTileSet;
+					int lX = lViTriCuaTileTrongTileSet - lY * lSoTileChieuNgangCuaTileSet;
 
-						if (mCamera != NULL)
-						{
-							RECT objRECT;
-							objRECT.left = position.x - mChieuRongTile / 2;
-							objRECT.top = position.y - mChieuCaoTile / 2;
-							objRECT.right = objRECT.left + mChieuRongTile;
-							objRECT.bottom = objRECT.top + mChieuCaoTile;
+					RECT lHCN;
+					lHCN.left = lX * mChieuRongTile;
+					lHCN.right = lHCN.left + mChieuRongTile;
+					lHCN.top = lY * mChieuCaoTile;
+					lHCN.bottom = lHCN.top + mChieuCaoTile;
 
-							if (!VaChamGame::kqvcHCNVaHCN(mCamera->rHCNGioiHan(), objRECT).DaVaCham)
-								continue;
-						}
-
-						sprite->ThietLapToaDo(position);
-						sprite->ThietLapChieuRong(mChieuRongTile);
-						sprite->ThietLapChieuCao(mChieuCaoTile);
-						sprite->ThietLapHCN(sourceRECT);
-						sprite->ThietLapDoDoi(lDoDoi);
-						sprite->Ve();
-					}
+					lHinhAnh->ThietLapToaDo(lToaDo);
+					lHinhAnh->ThietLapChieuRong(mChieuRongTile);
+					lHinhAnh->ThietLapChieuCao(mChieuCaoTile);
+					lHinhAnh->ThietLapHCN(lHCN);
+					lHinhAnh->ThietLapDoDoi(lDoDoi);
+					lHinhAnh->Ve();
 				}
 			}
 		}
 	}
 #pragma endregion
 
-#pragma region DRAW BRICK
+#pragma region Ve Cac Vien Gach
 
-	for (size_t i = 0; i < mListBricks.size(); i++)
+	for (int i = 0; i < int(mDanhSachVienGach.size()); i++)
 	{
-		mListBricks[i]->Draw(trans);
+		mDanhSachVienGach[i]->Ve(lDoDoi);
 	}
 
 #pragma endregion
 
 }
 
+
 BanDoGame::~BanDoGame()
 {
+	delete mBanDo;
+	delete mCamera;
+
+	for (int i = 0; i < int(mDanhSachTileSet.size()); i++)
+	{
+		if (mDanhSachTileSet[i])
+			delete mDanhSachTileSet[i];
+	}
+	mDanhSachTileSet.clear();
+	
+	for (size_t i = 0; i < mDanhSachVienGach.size(); i++)
+	{
+		if (mDanhSachVienGach[i])
+			delete mDanhSachVienGach[i];
+	}
+	mDanhSachVienGach.clear();
+
+	//mCayBonNhanh->DonDep();
+	//delete mCayBonNhanh;
 }
 
+
+#pragma region Cac Ham Don Gian
 Tmx::Map * BanDoGame::bdBanDo()
 {
-	return nullptr;
+	return mBanDo;
 }
 
 int BanDoGame::iChieuRong()
 {
-	return 0;
+	return mChieuRong;
 }
 
 int BanDoGame::iChieuCao()
 {
-	return 0;
+	return mChieuCao;
 }
 
 int BanDoGame::iChieuRongTile()
 {
-	return 0;
+	return mChieuRongTile;
 }
 
 int BanDoGame::iChieuCaoTile()
 {
-	return 0;
+	return mChieuCaoTile;
 }
 
 RECT BanDoGame::rHCNGioiHanBanDo()
 {
-	return RECT();
+	RECT lHCN;
+	lHCN.left = lHCN.top = 0;
+	lHCN.right = mChieuRong;
+	lHCN.bottom = mChieuCao;
+
+	return lHCN;
 }
 
 bool BanDoGame::bCaMeraChamBienTrai()
 {
-	return false;
+	return (mCamera->rHCNGioiHan().left == 0);
 }
 
 bool BanDoGame::bCameraChamBienPhai()
 {
-	return false;
+	return (mCamera->rHCNGioiHan().right == mChieuRong);
 }
 
 bool BanDoGame::bCameraChamBienTren()
 {
-	return false;
+	return (mCamera->rHCNGioiHan().top == 0);
 }
 
 bool BanDoGame::bCameraChamBienDuoi()
 {
-	return false;
+	return (mCamera->rHCNGioiHan().bottom == mChieuCao);
 }
 
 std::map<int, HinhAnh*> BanDoGame::sDanhSachTileSet()
 {
-	return std::map<int, HinhAnh*>();
+	return mDanhSachTileSet;
 }
 
 std::vector<VienGach*> BanDoGame::vgDanhSachVienGach()
 {
-	return std::vector<VienGach*>();
+	return mDanhSachVienGach;
 }
 
 CayBonNhanh * BanDoGame::cbnCayBonNhanh()
 {
-	return nullptr;
+	return mCayBonNhanh;
 }
+
+#pragma endregion

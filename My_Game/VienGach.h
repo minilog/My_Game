@@ -14,6 +14,8 @@ public:
 protected:
 	void KhoiTao(D3DXVECTOR3 in_ToaDo);
 	void ThietLapToaDo(D3DXVECTOR3 in_ToaDo);
+
+protected:
 	// bắt buộc phải Định Nghĩa các hàm này ở các lớp kế thừa
 	virtual const char* cTenFile() = 0;
 	virtual int iTongKhuonHinh() = 0;
