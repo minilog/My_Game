@@ -5,57 +5,50 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Framework">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Framework\FileDocMap">
-      <UniqueIdentifier>{3bdb088f-fe07-4b71-84ec-5724b56d9727}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\1.ThanhPhan">
+    <Filter Include="1.ThanhPhan">
       <UniqueIdentifier>{33419ef9-a572-4d63-82b9-3cc00f495a20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\1.ThanhPhan\CacLopKhongCanChinhSua">
-      <UniqueIdentifier>{8842663b-464b-4c01-bb01-899c8782c8af}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\2.CacManGame">
+    <Filter Include="2.CacManGame">
       <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\3.DieuKhien">
+    <Filter Include="3.DieuKhien">
       <UniqueIdentifier>{82ddea42-1406-439d-8805-0f1c3c2c32c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\4.DoiTuong">
+    <Filter Include="4.DoiTuong">
       <UniqueIdentifier>{327dbaa2-0f46-4f2e-aeec-9d3956c84b71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\4.DoiTuong\DoiTuongTrongBanDo">
-      <UniqueIdentifier>{14d81299-b602-44bd-83d9-7b7254290711}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\4.DoiTuong\DoiTuongTrongBanDo\VienGach">
-      <UniqueIdentifier>{84a7b43e-6409-4cae-b9c8-92fcd71a9243}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\4.DoiTuong\DoiTuongTrongBanDo\VienGach\GachBinhThuong">
-      <UniqueIdentifier>{b3549d01-a3fa-4c75-aa6c-c57945fe4d79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\4.DoiTuong\DoiTuongTrongBanDo\VienGach\GachVang">
-      <UniqueIdentifier>{ceef2d1b-2d5b-4b1e-8ab0-47e5710d153b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Framework\4.DoiTuong\NguoiChoi">
+    <Filter Include="4.DoiTuong\NguoiChoi">
       <UniqueIdentifier>{a92a7610-faf7-4422-ae5b-349216be2d1d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\4.DoiTuong\NguoiChoi\TrangThai">
+    <Filter Include="4.DoiTuong\NguoiChoi\TrangThai">
       <UniqueIdentifier>{fcbfc5f3-dc80-4a99-b1c5-2454dfb25fc3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\4.DoiTuong\NguoiChoi\TrangThai\DungIm">
+    <Filter Include="4.DoiTuong\NguoiChoi\TrangThai\DungIm">
       <UniqueIdentifier>{a8706ab7-8215-4942-a092-54e76ce4ea3e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\4.DoiTuong\NguoiChoi\TrangThai\DangNhay">
+    <Filter Include="4.DoiTuong\NguoiChoi\TrangThai\DangNhay">
       <UniqueIdentifier>{c462c516-1f80-40c0-b6ac-ea2d8ac5f824}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\4.DoiTuong\NguoiChoi\TrangThai\DangRoi">
+    <Filter Include="4.DoiTuong\NguoiChoi\TrangThai\DangRoi">
       <UniqueIdentifier>{43d7e29f-a2b1-4121-a60a-985be85037e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Framework\4.DoiTuong\NguoiChoi\TrangThai\DangChay">
+    <Filter Include="4.DoiTuong\NguoiChoi\TrangThai\DangChay">
       <UniqueIdentifier>{17a9e3aa-90fb-4e98-a9b4-bf1f8f6b625e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.DoiTuong\VienGach">
+      <UniqueIdentifier>{84a7b43e-6409-4cae-b9c8-92fcd71a9243}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.DoiTuong\VienGach\GachBinhThuong">
+      <UniqueIdentifier>{b3549d01-a3fa-4c75-aa6c-c57945fe4d79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4.DoiTuong\VienGach\GachVang">
+      <UniqueIdentifier>{ceef2d1b-2d5b-4b1e-8ab0-47e5710d153b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FileDocMap">
+      <UniqueIdentifier>{3bdb088f-fe07-4b71-84ec-5724b56d9727}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.NenTangGame">
+      <UniqueIdentifier>{95f4a8bc-7b8a-4158-8ddd-6a7355f162df}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,245 +56,245 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTile.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTileLayer.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTileOffset.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTileset.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxUtil.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\base64.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\miniz.c">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\tinyxml2.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxEllipse.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxImage.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxImageLayer.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxLayer.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxMap.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxObject.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxObjectGroup.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxPolygon.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxPolyline.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxPropertySet.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTerrain.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="MapReader\TmxTerrainArray.cpp">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClCompile>
     <ClCompile Include="QuanLyManGame.cpp">
-      <Filter>Framework\3.DieuKhien</Filter>
+      <Filter>3.DieuKhien</Filter>
     </ClCompile>
     <ClCompile Include="ThucThe.cpp">
-      <Filter>Framework\4.DoiTuong</Filter>
+      <Filter>4.DoiTuong</Filter>
     </ClCompile>
     <ClCompile Include="GachBinhThuong.cpp">
-      <Filter>Framework\4.DoiTuong\DoiTuongTrongBanDo\VienGach\GachBinhThuong</Filter>
+      <Filter>4.DoiTuong\VienGach\GachBinhThuong</Filter>
     </ClCompile>
     <ClCompile Include="GachVang.cpp">
-      <Filter>Framework\4.DoiTuong\DoiTuongTrongBanDo\VienGach\GachVang</Filter>
+      <Filter>4.DoiTuong\VienGach\GachVang</Filter>
     </ClCompile>
     <ClCompile Include="NguoiChoi.cpp">
-      <Filter>Framework\4.DoiTuong\NguoiChoi</Filter>
+      <Filter>4.DoiTuong\NguoiChoi</Filter>
     </ClCompile>
     <ClCompile Include="TrangThai.cpp">
-      <Filter>Framework\4.DoiTuong\NguoiChoi\TrangThai</Filter>
+      <Filter>4.DoiTuong\NguoiChoi\TrangThai</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
-      <Filter>Framework\1.ThanhPhan</Filter>
-    </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClCompile>
-    <ClCompile Include="CayBonNhanh.cpp">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClCompile>
-    <ClCompile Include="HinhAnh.cpp">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClCompile>
-    <ClCompile Include="HoatHinh.cpp">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClCompile>
-    <ClCompile Include="ThoiGianGame.cpp">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClCompile>
-    <ClCompile Include="ToanCauGame.cpp">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClCompile>
-    <ClCompile Include="VaChamGame.cpp">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
+      <Filter>1.ThanhPhan</Filter>
     </ClCompile>
     <ClCompile Include="BanDoGame.cpp">
-      <Filter>Framework\1.ThanhPhan</Filter>
+      <Filter>1.ThanhPhan</Filter>
     </ClCompile>
     <ClCompile Include="VienGach.cpp">
-      <Filter>Framework\4.DoiTuong\DoiTuongTrongBanDo\VienGach</Filter>
+      <Filter>4.DoiTuong\VienGach</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>0.NenTangGame</Filter>
+    </ClCompile>
+    <ClCompile Include="CayBonNhanh.cpp">
+      <Filter>0.NenTangGame</Filter>
+    </ClCompile>
+    <ClCompile Include="HinhAnh.cpp">
+      <Filter>0.NenTangGame</Filter>
+    </ClCompile>
+    <ClCompile Include="HoatHinh.cpp">
+      <Filter>0.NenTangGame</Filter>
+    </ClCompile>
+    <ClCompile Include="ThoiGianGame.cpp">
+      <Filter>0.NenTangGame</Filter>
+    </ClCompile>
+    <ClCompile Include="ToanCauGame.cpp">
+      <Filter>0.NenTangGame</Filter>
+    </ClCompile>
+    <ClCompile Include="VaChamGame.cpp">
+      <Filter>0.NenTangGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxTile.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxTileLayer.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxTileOffset.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxTileset.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxUtil.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\zconf.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\zlib.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\base64.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\tinyxml2.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxEllipse.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxImage.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxImageLayer.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxLayer.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxMap.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxMapTile.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxObject.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxObjectGroup.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxPoint.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxPolygon.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxPolyline.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxPropertySet.h">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="MapReader\TmxTerrain.h">
-      <Filter>Framework\FileDocMap</Filter>
-    </ClInclude>
-    <ClInclude Include="ManGame.h">
-      <Filter>Framework\1.ThanhPhan</Filter>
+      <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="QuanLyManGame.h">
-      <Filter>Framework\3.DieuKhien</Filter>
+      <Filter>3.DieuKhien</Filter>
     </ClInclude>
     <ClInclude Include="ThucThe.h">
-      <Filter>Framework\4.DoiTuong</Filter>
-    </ClInclude>
-    <ClInclude Include="KieuDuLieuEnum.h">
-      <Filter>Framework\4.DoiTuong</Filter>
-    </ClInclude>
-    <ClInclude Include="VatTheGame.h">
-      <Filter>Framework\4.DoiTuong\DoiTuongTrongBanDo</Filter>
+      <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="GachBinhThuong.h">
-      <Filter>Framework\4.DoiTuong\DoiTuongTrongBanDo\VienGach\GachBinhThuong</Filter>
+      <Filter>4.DoiTuong\VienGach\GachBinhThuong</Filter>
     </ClInclude>
     <ClInclude Include="GachVang.h">
-      <Filter>Framework\4.DoiTuong\DoiTuongTrongBanDo\VienGach\GachVang</Filter>
+      <Filter>4.DoiTuong\VienGach\GachVang</Filter>
     </ClInclude>
     <ClInclude Include="NguoiChoi.h">
-      <Filter>Framework\4.DoiTuong\NguoiChoi</Filter>
+      <Filter>4.DoiTuong\NguoiChoi</Filter>
     </ClInclude>
     <ClInclude Include="TrangThai.h">
-      <Filter>Framework\4.DoiTuong\NguoiChoi\TrangThai</Filter>
+      <Filter>4.DoiTuong\NguoiChoi\TrangThai</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>Framework\1.ThanhPhan</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClInclude>
-    <ClInclude Include="CayBonNhanh.h">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClInclude>
-    <ClInclude Include="HinhAnh.h">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClInclude>
-    <ClInclude Include="HoatHinh.h">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClInclude>
-    <ClInclude Include="ThoiGianGame.h">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClInclude>
-    <ClInclude Include="ToanCauGame.h">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
-    </ClInclude>
-    <ClInclude Include="VaChamGame.h">
-      <Filter>Framework\1.ThanhPhan\CacLopKhongCanChinhSua</Filter>
+      <Filter>1.ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="BanDoGame.h">
-      <Filter>Framework\1.ThanhPhan</Filter>
+      <Filter>1.ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="VienGach.h">
-      <Filter>Framework\4.DoiTuong\DoiTuongTrongBanDo\VienGach</Filter>
+      <Filter>4.DoiTuong\VienGach</Filter>
+    </ClInclude>
+    <ClInclude Include="VatTheGame.h">
+      <Filter>4.DoiTuong</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>0.NenTangGame</Filter>
+    </ClInclude>
+    <ClInclude Include="CayBonNhanh.h">
+      <Filter>0.NenTangGame</Filter>
+    </ClInclude>
+    <ClInclude Include="HinhAnh.h">
+      <Filter>0.NenTangGame</Filter>
+    </ClInclude>
+    <ClInclude Include="HoatHinh.h">
+      <Filter>0.NenTangGame</Filter>
+    </ClInclude>
+    <ClInclude Include="ThoiGianGame.h">
+      <Filter>0.NenTangGame</Filter>
+    </ClInclude>
+    <ClInclude Include="ToanCauGame.h">
+      <Filter>0.NenTangGame</Filter>
+    </ClInclude>
+    <ClInclude Include="VaChamGame.h">
+      <Filter>0.NenTangGame</Filter>
+    </ClInclude>
+    <ClInclude Include="KieuDuLieuEnum.h">
+      <Filter>0.NenTangGame</Filter>
+    </ClInclude>
+    <ClInclude Include="ManGame.h">
+      <Filter>2.CacManGame</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">
-      <Filter>Framework\FileDocMap</Filter>
+      <Filter>FileDocMap</Filter>
     </None>
   </ItemGroup>
 </Project>

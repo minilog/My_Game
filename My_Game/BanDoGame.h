@@ -13,30 +13,41 @@
 #include "CayBonNhanh.h"
 #include "VienGach.h"
 
-
 class BanDoGame
 {
 public:
 	BanDoGame(char *in_DuongDan);
-	~BanDoGame();
-	void ThietLapCamera(Camera *in_Camera);
-	void CapNhat(int in_tg);
+private:
+	void TaiBanDo(char* in_DuongDan);
+public:
+	void CapNhat(float in_tg);
 	void Ve();
+	~BanDoGame();
+
+public:
 	Tmx::Map *bdBanDo();
-	RECT rHCNGioiHanBanDo();
 	int iChieuRong();
 	int iChieuCao();
 	int iChieuRongTile();
 	int iChieuCaoTile();
-	std::map<int, HinhAnh*> sDanhSachTileSet();
+	RECT rHCNGioiHanBanDo();
 	bool bCaMeraChamBienTrai();
 	bool bCameraChamBienPhai();
 	bool bCameraChamBienTren();
 	bool bCameraChamBienDuoi();
-
+	std::map<int, HinhAnh*> sDanhSachTileSet();
 	std::vector<VienGach*> vgDanhSachVienGach();
+	CayBonNhanh* cbnCayBonNhanh();
 
 private:
-	std::vector<VienGach*> vsDanhSachVienGach;
+	Tmx::Map *mBanDo;
+	int mChieuRong;
+	int mChieuCao;
+	int mChieuRongTile;
+	int mChieuCaoTile;
+	Camera *mCamera;
+	std::map<int, HinhAnh*> mDanhSanhTileSet;
+	std::vector<VienGach*> mDanhSachVienGach;
+	CayBonNhanh *mCayBonNhanh;
 };
 

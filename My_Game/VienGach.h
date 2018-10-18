@@ -5,7 +5,7 @@
 
 // kế thừa từ Thực Thể
 // là 1 lớp giao diện, dùng để trỏ đến Viên Gạch thực sự
-class VienGach : ThucThe
+class VienGach : public ThucThe
 {
 public:
 	VienGach() = default;
