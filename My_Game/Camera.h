@@ -5,14 +5,23 @@
 
 class Camera
 {
+// chỉ có một Camera duy nhất
 public:
-	Camera(int in_ChieuRong, int in_ChieuCao);
+	static Camera *DuyNhat();
+private:
+	Camera();
+	static Camera *mCamera;
+
+public:
+	void KhoiTao(const D3DXVECTOR3& in_ToaDo, int in_ChieuRong, int in_ChieuCao);
 	void ThietLapToaDo(const D3DXVECTOR3& in_ToaDo);
 
-	D3DXVECTOR3 vToaDo() const;
+#pragma region lấy dữ liệu
+	const D3DXVECTOR3& vToaDo() const;
 	int iChieuRong() const;
 	int iChieuCao() const;
-	RECT rHCNGioiHan() const;
+	const RECT& rHCNGioiHan() const;
+#pragma endregion
 
 private:
 	D3DXVECTOR3 mToaDo; // chính giữa camera

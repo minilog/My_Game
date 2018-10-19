@@ -1,15 +1,35 @@
 ﻿#include "Camera.h"
+#include <assert.h>
 
-Camera::Camera(int in_ChieuRong, int in_ChieuCao)
+Camera *Camera::mCamera = NULL;
+
+Camera * Camera::DuyNhat()
 {
-	mChieuRong = in_ChieuRong;
-	mChieuCao = in_ChieuCao;
-	mToaDo = D3DXVECTOR3(0, 0, 0);
+	if (mCamera == NULL)
+	{
+		mCamera = new Camera();
+	}
+
+	return mCamera;
 }
 
-#pragma region Cac Ham Don Gian
+Camera::Camera()
+{
+	mToaDo = D3DXVECTOR3(0, 0, 0);
+	mChieuRong = 0;
+	mChieuCao = 0;
+}
 
-RECT Camera::rHCNGioiHan() const
+void Camera::KhoiTao(const D3DXVECTOR3& in_ToaDo, int in_ChieuRong, int in_ChieuCao)
+{
+	mToaDo = in_ToaDo;
+	mChieuRong = in_ChieuRong;
+	mChieuCao = in_ChieuCao;
+}
+
+#pragma region các hàm đơn giản
+
+const RECT& Camera::rHCNGioiHan() const
 {
 	RECT lHCN;
 
@@ -20,7 +40,6 @@ RECT Camera::rHCNGioiHan() const
 
 	return lHCN;
 }
-
 
 void Camera::ThietLapToaDo(const D3DXVECTOR3& in_ToaDo)
 {
@@ -37,7 +56,7 @@ int Camera::iChieuCao() const
 	return mChieuCao;
 }
 
-D3DXVECTOR3 Camera::vToaDo() const
+const D3DXVECTOR3& Camera::vToaDo() const
 {
 	return mToaDo;
 }

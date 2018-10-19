@@ -3,6 +3,7 @@
 #include "BanDoGame.h"
 #include "GachBinhThuong.h"
 #include "GachVang.h"
+#include "Camera.h"
 
 BanDoGame::BanDoGame(char * in_DuongDan)
 {
@@ -111,59 +112,70 @@ void BanDoGame::Ve()
 	D3DXVECTOR2 lDoDoi = D3DXVECTOR2(ToanCauGame::iChieuRong() / 2.0f - mCamera->vToaDo().x,
 		ToanCauGame::iChieuCao() / 2.0f - mCamera->vToaDo().y);
 
+// Copy Code
 #pragma region Ve TileSet
-	for (int i = 0; i < mBanDo->GetNumTileLayers(); i++)
+	for (size_t i = 0; i < mBanDo->GetNumTileLayers(); i++)
 	{
-		const Tmx::TileLayer *lLopHinhAnh = mBanDo->GetTileLayer(i);
+		const Tmx::TileLayer *layer = mBanDo->GetTileLayer(i);
 
-		if (!lLopHinhAnh->IsVisible())
+		if (!layer->IsVisible())
 		{
 			continue;
 		}
 
-		for (int m = 0; m < lLopHinhAnh->GetHeight(); m++)
+		for (size_t j = 0; j < mBanDo->GetNumTilesets(); j++)
 		{
-			for (int n = 0; n < lLopHinhAnh->GetWidth(); n++)
+			const Tmx::Tileset *tileSet = mBanDo->GetTileset(j);
+
+			RECT sourceRECT;
+
+			int tileWidth = mBanDo->GetTileWidth();
+			int tileHeight = mBanDo->GetTileHeight();
+
+			int tileSetWidth = tileSet->GetImage()->GetWidth() / tileWidth;
+			int tileSetHeight = tileSet->GetImage()->GetHeight() / tileHeight;
+
+			for (size_t m = 0; m < layer->GetHeight(); m++)
 			{
-				// Kiểm tra xem Ảnh Lát Gạch (có tọa độ trong Bản Đồ) này có cần vẽ lên hay không
-				D3DXVECTOR3 lToaDo(float(n * mChieuRongTile + mChieuRongTile / 2.0f),
-					float(m * mChieuCaoTile + mChieuCaoTile / 2.0f), float(0.0f));
-				if (mCamera != NULL)
+				for (size_t n = 0; n < layer->GetWidth(); n++)
 				{
-					RECT objRECT;
-					objRECT.left = long(lToaDo.x - mChieuRongTile / 2.0f);
-					objRECT.top = long(lToaDo.y - mChieuCaoTile / 2.0f);
-					objRECT.right = objRECT.left + mChieuRongTile;
-					objRECT.bottom = objRECT.top + mChieuCaoTile;
+					if (layer->GetTileTilesetIndex(n, m) == j)
+					{
+						int tileID = layer->GetTileId(n, m);
 
-					if (!VaChamGame::kqvcHCNVaHCN(mCamera->rHCNGioiHan(), objRECT).DaVaCham)
-						continue;
-				}
+						int y = tileID / tileSetWidth;
+						int x = tileID - y * tileSetWidth;
 
-				int lViTriIndexCuaTileSet = lLopHinhAnh->GetTileTilesetIndex(n, m);
-				if (lViTriIndexCuaTileSet != -1)
-				{
-					// từ vị trí Index của TileSet ta lấy ra hình ảnh của nó
-					HinhAnh* lHinhAnh = mDanhSachTileSet[lViTriIndexCuaTileSet];
-					int lSoTileChieuNgangCuaTileSet = lHinhAnh->iChieuRong() / mChieuRongTile;
+						sourceRECT.top = y * tileHeight;
+						sourceRECT.bottom = sourceRECT.top + tileHeight;
+						sourceRECT.left = x * tileWidth;
+						sourceRECT.right = sourceRECT.left + tileWidth;
 
-					int lViTriCuaTileTrongTileSet = lLopHinhAnh->GetTileId(n, m);
+						HinhAnh* lHinhAnh = mDanhSachTileSet[j];
 
-					int lX = lViTriCuaTileTrongTileSet / lSoTileChieuNgangCuaTileSet;
-					int lY = lViTriCuaTileTrongTileSet - lX * lSoTileChieuNgangCuaTileSet;
+						//tru tilewidth/2 va tileheight/2 vi Sprite ve o vi tri giua hinh anh cho nen doi hinh de cho
+						//dung toa do (0,0) cua the gioi thuc la (0,0) neu khong thi se la (-tilewidth/2, -tileheigth/2);
+						D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, m * tileHeight + tileHeight / 2, 0);
 
-					RECT lHCN;
-					lHCN.left = lX * mChieuRongTile;
-					lHCN.right = lHCN.left + mChieuRongTile;
-					lHCN.top = lY * mChieuCaoTile;
-					lHCN.bottom = lHCN.top + mChieuCaoTile;
+						if (mCamera != NULL)
+						{
+							RECT objRECT;
+							objRECT.left = position.x - tileWidth / 2;
+							objRECT.top = position.y - tileHeight / 2;
+							objRECT.right = objRECT.left + tileWidth;
+							objRECT.bottom = objRECT.top + tileHeight;
 
-					lHinhAnh->ThietLapToaDo(lToaDo);
-					lHinhAnh->ThietLapChieuRong(mChieuRongTile);
-					lHinhAnh->ThietLapChieuCao(mChieuCaoTile);
-					lHinhAnh->ThietLapHCN(lHCN);
-					lHinhAnh->ThietLapDoDoi(lDoDoi);
-					lHinhAnh->Ve();
+							if (!VaChamGame::kqvcHCNVaHCN(mCamera->rHCNGioiHan(), objRECT).DaVaCham)
+								continue;
+						}
+
+						lHinhAnh->ThietLapToaDo(position);
+						lHinhAnh->ThietLapChieuRong(mChieuRongTile);
+						lHinhAnh->ThietLapChieuCao(mChieuCaoTile);
+						lHinhAnh->ThietLapHCN(sourceRECT);
+						lHinhAnh->ThietLapDoDoi(lDoDoi);
+						lHinhAnh->Ve();
+					}
 				}
 			}
 		}
