@@ -56,9 +56,9 @@ void HoatHinh::CapNhat(float in_tg)
 			}
 		}
 
-		HinhAnh::mHCN.left = mCotHienTai * HinhAnh::mChieuRong;
+		HinhAnh::mHCN.left = mHangHienTai * HinhAnh::mChieuRong;
 		HinhAnh::mHCN.right = HinhAnh::mHCN.left + HinhAnh::mChieuRong;
-		HinhAnh::mHCN.top = mHangHienTai * HinhAnh::mChieuCao;
+		HinhAnh::mHCN.top = mCotHienTai * HinhAnh::mChieuCao;
 		HinhAnh::mHCN.bottom = HinhAnh::mHCN.top + HinhAnh::mChieuCao;
 	}
 }

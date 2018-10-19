@@ -4,68 +4,42 @@ Camera::Camera(int in_ChieuRong, int in_ChieuCao)
 {
 	mChieuRong = in_ChieuRong;
 	mChieuCao = in_ChieuCao;
-	mViTri = D3DXVECTOR3(0, 0, 0);
+	mToaDo = D3DXVECTOR3(0, 0, 0);
 }
 
+#pragma region Cac Ham Don Gian
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////
-/*								 Các hàm đơn giản					             */
-///////////////////////////////////////////////////////////////////////////////////
-
-RECT Camera::rHCNGioiHan()
+RECT Camera::rHCNGioiHan() const
 {
 	RECT lHCN;
 
-	lHCN.left = int(mViTri.x - mChieuRong / 2);
+	lHCN.left = int(mToaDo.x - mChieuRong / 2);
 	lHCN.right = lHCN.left + mChieuRong;
-	lHCN.top = int(mViTri.y - mChieuCao / 2);
+	lHCN.top = int(mToaDo.y - mChieuCao / 2);
 	lHCN.bottom = lHCN.top + mChieuCao;
 
 	return lHCN;
 }
 
 
-void Camera::ThietLapToaDo(D3DXVECTOR3 in_ViTri)
+void Camera::ThietLapToaDo(const D3DXVECTOR3& in_ToaDo)
 {
-	mViTri = in_ViTri;
+	mToaDo = in_ToaDo;
 }
 
-void Camera::ThietLapToaDo(float in_X, float in_Y)
-{
-	ThietLapToaDo(D3DXVECTOR3(in_X, in_Y, 0));
-}
-
-int Camera::iChieuRong()
+int Camera::iChieuRong() const
 {
 	return mChieuRong;
 }
 
-int Camera::iChieuCao()
+int Camera::iChieuCao() const
 {
 	return mChieuCao;
 }
 
-D3DXVECTOR3 Camera::vToaDo()
+D3DXVECTOR3 Camera::vToaDo() const
 {
-	return mViTri;
+	return mToaDo;
 }
 
-
+#pragma endregion

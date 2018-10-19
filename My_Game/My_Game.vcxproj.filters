@@ -17,15 +17,6 @@
     <Filter Include="4.DoiTuong">
       <UniqueIdentifier>{327dbaa2-0f46-4f2e-aeec-9d3956c84b71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="4.DoiTuong\VienGach">
-      <UniqueIdentifier>{84a7b43e-6409-4cae-b9c8-92fcd71a9243}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.DoiTuong\VienGach\GachBinhThuong">
-      <UniqueIdentifier>{b3549d01-a3fa-4c75-aa6c-c57945fe4d79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.DoiTuong\VienGach\GachVang">
-      <UniqueIdentifier>{ceef2d1b-2d5b-4b1e-8ab0-47e5710d153b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="FileDocMap">
       <UniqueIdentifier>{3bdb088f-fe07-4b71-84ec-5724b56d9727}</UniqueIdentifier>
     </Filter>
@@ -103,20 +94,11 @@
     <ClCompile Include="ThucThe.cpp">
       <Filter>4.DoiTuong</Filter>
     </ClCompile>
-    <ClCompile Include="GachBinhThuong.cpp">
-      <Filter>4.DoiTuong\VienGach\GachBinhThuong</Filter>
-    </ClCompile>
-    <ClCompile Include="GachVang.cpp">
-      <Filter>4.DoiTuong\VienGach\GachVang</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>1.ThanhPhan</Filter>
     </ClCompile>
     <ClCompile Include="BanDoGame.cpp">
       <Filter>1.ThanhPhan</Filter>
-    </ClCompile>
-    <ClCompile Include="VienGach.cpp">
-      <Filter>4.DoiTuong\VienGach</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>0.NenTangGame</Filter>
@@ -141,6 +123,15 @@
     </ClCompile>
     <ClCompile Include="ManGioiThieu.cpp">
       <Filter>2.CacManGame</Filter>
+    </ClCompile>
+    <ClCompile Include="GachBinhThuong.cpp">
+      <Filter>4.DoiTuong</Filter>
+    </ClCompile>
+    <ClCompile Include="GachVang.cpp">
+      <Filter>4.DoiTuong</Filter>
+    </ClCompile>
+    <ClCompile Include="VienGach.cpp">
+      <Filter>4.DoiTuong</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -219,20 +210,11 @@
     <ClInclude Include="ThucThe.h">
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
-    <ClInclude Include="GachBinhThuong.h">
-      <Filter>4.DoiTuong\VienGach\GachBinhThuong</Filter>
-    </ClInclude>
-    <ClInclude Include="GachVang.h">
-      <Filter>4.DoiTuong\VienGach\GachVang</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>1.ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="BanDoGame.h">
       <Filter>1.ThanhPhan</Filter>
-    </ClInclude>
-    <ClInclude Include="VienGach.h">
-      <Filter>4.DoiTuong\VienGach</Filter>
     </ClInclude>
     <ClInclude Include="VatTheGame.h">
       <Filter>4.DoiTuong</Filter>
@@ -266,6 +248,15 @@
     </ClInclude>
     <ClInclude Include="ManGioiThieu.h">
       <Filter>2.CacManGame</Filter>
+    </ClInclude>
+    <ClInclude Include="GachBinhThuong.h">
+      <Filter>4.DoiTuong</Filter>
+    </ClInclude>
+    <ClInclude Include="GachVang.h">
+      <Filter>4.DoiTuong</Filter>
+    </ClInclude>
+    <ClInclude Include="VienGach.h">
+      <Filter>4.DoiTuong</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

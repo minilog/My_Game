@@ -7,16 +7,15 @@ class Camera
 {
 public:
 	Camera(int in_ChieuRong, int in_ChieuCao);
-	void ThietLapToaDo(D3DXVECTOR3 in_ViTri);
-	void ThietLapToaDo(float in_X, float in_Y);
+	void ThietLapToaDo(const D3DXVECTOR3& in_ToaDo);
 
-	D3DXVECTOR3 vToaDo();
-	int iChieuRong();
-	int iChieuCao();
-	RECT rHCNGioiHan();
+	D3DXVECTOR3 vToaDo() const;
+	int iChieuRong() const;
+	int iChieuCao() const;
+	RECT rHCNGioiHan() const;
 
 private:
-	D3DXVECTOR3 mViTri; // chính giữa camera
+	D3DXVECTOR3 mToaDo; // chính giữa camera
 	int mChieuRong;
 	int mChieuCao;
 };

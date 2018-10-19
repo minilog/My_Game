@@ -9,7 +9,9 @@
 Game::Game(int in_FPS)
 {
 	mFPS = in_FPS;
-	QuanLyManGame::qlmgTruongHop()->ThayTheManGame(new ManGioiThieu());
+	//QuanLyManGame::qlmgTruongHop()->ThayTheManGame(new ManGioiThieu());
+	mHoatHinh = new HoatHinh("Resources/Zero.png", 15, 10, 1, 1.0f);
+	mHoatHinh->ThietLapToaDo(D3DXVECTOR3(300, 300, 0));
 	TaoVongLapGame();
 }
 
@@ -45,7 +47,7 @@ void Game::TaoVongLapGame()
 
 void Game::CapNhat(float in_tg)
 {
-	QuanLyManGame::qlmgTruongHop()->mgManGameHienTai()->CapNhat(in_tg);
+	mHoatHinh->CapNhat(in_tg);
 
 	Ve();
 }
@@ -53,8 +55,8 @@ void Game::CapNhat(float in_tg)
 void Game::Ve()
 {
 	auto lThietBi = ToanCauGame::ddThietBi();
-	auto lManGame = QuanLyManGame::qlmgTruongHop()->mgManGameHienTai();
-	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, lManGame->cMauNen(), 0.0f, 0);
+	//auto lManGame = QuanLyManGame::qlmgTruongHop()->mgManGameHienTai();
+	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, /*lManGame->cMauNen()*/D3DCOLOR_XRGB(255, 255, 255), 0.0f, 0);
 
 	{
 		lThietBi->BeginScene();
@@ -63,7 +65,8 @@ void Game::Ve()
 		ToanCauGame::sXuLyHinhAnh()->Begin(D3DXSPRITE_ALPHABLEND);
 
 		// vẽ ở đây
-		lManGame->Ve();
+		mHoatHinh->Ve();
+		//lManGame->Ve();
 
 		// kết thúc vẽ
 		ToanCauGame::sXuLyHinhAnh()->End();

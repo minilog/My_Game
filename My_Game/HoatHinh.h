@@ -23,9 +23,6 @@ protected:
 	int mTongSoKhuonHinh;
 	int mSoHang;
 	int mSoCot;
-	//int mViTriIndexBatDau;
-	//int mViTriIndexKetThuc;
-	//int mViTriIndexHienTai;
 	float mThoiGianThayDoi;
 	int mHangHienTai;
 	int mCotHienTai;
