@@ -134,6 +134,7 @@
     <ClCompile Include="HinhAnh.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ManGioiThieu.cpp" />
     <ClCompile Include="MapReader\base64.cpp" />
     <ClCompile Include="MapReader\miniz.c" />
     <ClCompile Include="MapReader\tinyxml2.cpp" />
@@ -154,12 +155,10 @@
     <ClCompile Include="MapReader\TmxTileOffset.cpp" />
     <ClCompile Include="MapReader\TmxTileset.cpp" />
     <ClCompile Include="MapReader\TmxUtil.cpp" />
-    <ClCompile Include="NguoiChoi.cpp" />
     <ClCompile Include="QuanLyManGame.cpp" />
     <ClCompile Include="ThoiGianGame.cpp" />
     <ClCompile Include="ThucThe.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
-    <ClCompile Include="TrangThai.cpp" />
     <ClCompile Include="VaChamGame.cpp" />
     <ClCompile Include="VienGach.cpp" />
   </ItemGroup>
@@ -174,6 +173,7 @@
     <ClInclude Include="ManGame.h" />
     <ClInclude Include="HinhAnh.h" />
     <ClInclude Include="HoatHinh.h" />
+    <ClInclude Include="ManGioiThieu.h" />
     <ClInclude Include="MapReader\base64.h" />
     <ClInclude Include="MapReader\tinyxml2.h" />
     <ClInclude Include="MapReader\TmxEllipse.h" />
@@ -197,12 +197,10 @@
     <ClInclude Include="MapReader\TmxUtil.h" />
     <ClInclude Include="MapReader\zconf.h" />
     <ClInclude Include="MapReader\zlib.h" />
-    <ClInclude Include="NguoiChoi.h" />
     <ClInclude Include="QuanLyManGame.h" />
     <ClInclude Include="ThoiGianGame.h" />
     <ClInclude Include="ThucThe.h" />
     <ClInclude Include="ToanCauGame.h" />
-    <ClInclude Include="TrangThai.h" />
     <ClInclude Include="VaChamGame.h" />
     <ClInclude Include="VatTheGame.h" />
     <ClInclude Include="VienGach.h" />

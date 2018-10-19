@@ -28,5 +28,5 @@ enum eHuongDiChuyen
 
 enum eTrangThai
 {
-	dDangDung, eDangChay, eDangRoi, eDangNhay, eHiSinh // hi sinh = chết :))
+	eDangDung, eDangChay, eDangRoi, eDangNhay, eHiSinh // hi sinh = chết :))
 };

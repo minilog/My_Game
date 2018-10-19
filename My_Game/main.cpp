@@ -8,6 +8,7 @@
 #include "ToanCauGame.h"
 #include "ThoiGianGame.h"
 #include "QuanLyManGame.h"
+#include "Game.h"
 
 using namespace std;
 
@@ -75,7 +76,7 @@ int	KhoiTaoCuaSo(int cmdShow)
 
 	if (KhoiTaoThietBi())
 	{
-		// Bat dau GAME
+		Game *game = new Game(FPS);
 	}
 
 	return 0;

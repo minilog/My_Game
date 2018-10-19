@@ -12,7 +12,7 @@ void ThucThe::CapNhat(float in_tg)
 	mY += mVY * in_tg;
 }
 
-void ThucThe::KhiVaCham(ThucThe * in_NguoiVaCham, eKetQuaVaCham in_KetQuaVaCham, ePhiaVaCham in_PhiaVaCham)
+void ThucThe::XuLyVaCham(ThucThe * in_NguoiVaCham, eKetQuaVaCham in_KetQuaVaCham, ePhiaVaCham in_PhiaVaCham)
 {
 	mVX = 0;
 	mVY = 0;

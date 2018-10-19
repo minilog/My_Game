@@ -17,6 +17,7 @@ class BanDoGame
 {
 public:
 	BanDoGame(char *in_DuongDan);
+	void ThietLapCamera(Camera *in_Camera);
 private:
 	void TaiBanDo(char* in_DuongDan);
 public:

@@ -3,11 +3,13 @@
 #include "Game.h"
 #include "ToanCauGame.h"
 #include "ThoiGianGame.h"
+#include "QuanLyManGame.h"
+#include "ManGioiThieu.h"
 
 Game::Game(int in_FPS)
 {
 	mFPS = in_FPS;
-	//SceneManager::GetInstance()->ReplaceScene(new DemoScene());
+	QuanLyManGame::qlmgTruongHop()->ThayTheManGame(new ManGioiThieu());
 	TaoVongLapGame();
 }
 
@@ -41,9 +43,9 @@ void Game::TaoVongLapGame()
 	}
 }
 
-void Game::CapNhat(float dt)
+void Game::CapNhat(float in_tg)
 {
-	//SceneManager::GetInstance()->GetCurrentScene()->Update(dt);
+	QuanLyManGame::qlmgTruongHop()->mgManGameHienTai()->CapNhat(in_tg);
 
 	Ve();
 }
@@ -51,8 +53,8 @@ void Game::CapNhat(float dt)
 void Game::Ve()
 {
 	auto lThietBi = ToanCauGame::ddThietBi();
-	//auto scene = SceneManager::GetInstance()->GetCurrentScene();
-	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, /*scene->GetBackcolor()*/ NULL, 0.0f, 0);
+	auto lManGame = QuanLyManGame::qlmgTruongHop()->mgManGameHienTai();
+	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, lManGame->cMauNen(), 0.0f, 0);
 
 	{
 		lThietBi->BeginScene();
@@ -61,7 +63,7 @@ void Game::Ve()
 		ToanCauGame::sXuLyHinhAnh()->Begin(D3DXSPRITE_ALPHABLEND);
 
 		// vẽ ở đây
-		//scene->Draw();
+		lManGame->Ve();
 
 		// kết thúc vẽ
 		ToanCauGame::sXuLyHinhAnh()->End();

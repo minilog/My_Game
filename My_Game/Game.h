@@ -14,7 +14,7 @@ public:
 	Game(int in_FPS = 60);
 protected:
 	void TaoVongLapGame();
-	void CapNhat(float dt);
+	void CapNhat(float in_tg);
 	void Ve();
 
 protected:

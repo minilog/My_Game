@@ -12,8 +12,12 @@ BanDoGame::BanDoGame(char * in_DuongDan)
 	mChieuCao = mBanDo->GetHeight() * mBanDo->GetTileHeight();
 	mChieuRongTile = mBanDo->GetTileWidth();
 	mChieuCaoTile = mBanDo->GetTileHeight();
-	mCamera = new Camera(ToanCauGame::iChieuRong(), ToanCauGame::iChieuCao());
 	TaiBanDo(in_DuongDan);
+}
+
+void BanDoGame::ThietLapCamera(Camera * in_Camera)
+{
+	mCamera = in_Camera;
 }
 
 void BanDoGame::TaiBanDo(char * in_DuongDan)
@@ -37,13 +41,14 @@ void BanDoGame::TaiBanDo(char * in_DuongDan)
 	}
 #pragma endregion
 
-#pragma region Tao Cac Vien Gach Objects
+#pragma region Tao Cac Vien Gach Va Cac Object Tinh
 	for (int i = 0; i < mBanDo->GetNumObjectGroups(); i++)
 	{
 		const Tmx::ObjectGroup *lNhomObject = mBanDo->GetObjectGroup(i);
 
 		if (lNhomObject->GetName() == "GachBinhThuong" || lNhomObject->GetName() == "GachVang")
 		{
+			//đối với các Object động thì chỉ cần lấy Tọa Độ của nó trong Map
 			for (int j = 0; j < lNhomObject->GetNumObjects(); j++)
 			{
 				Tmx::Object *lObject = lNhomObject->GetObjects().at(j);
@@ -73,30 +78,24 @@ void BanDoGame::TaiBanDo(char * in_DuongDan)
 				}
 			}
 		}
-	}
-#pragma endregion
-
-#pragma region Tao Cac Vat The Tinh
-	for (int i = 0; i < mBanDo->GetNumObjectGroups(); i++)
-	{
-		const Tmx::ObjectGroup *lNhomVatThe = mBanDo->GetObjectGroup(i);
-		
-		for (int j = 0; j < lNhomVatThe->GetNumObjects(); j++)
+		else
 		{
-			Tmx::Object *lVatThe = lNhomVatThe->GetObjects().at(j);
+			for (int j = 0; j < lNhomObject->GetNumObjects(); j++)
+			{
+				Tmx::Object *lObject = lNhomObject->GetObjects().at(j);
 
-			ThucThe *lThucThe = new ThucThe();
-			lThucThe->ThietLapToaDo(float(lVatThe->GetX() + lVatThe->GetWidth() / 2.0f),
-				float(lVatThe->GetY() + lVatThe->GetHeight() / 2.0f));
-			lThucThe->ThietLapChieuRong(lVatThe->GetWidth());
-			lThucThe->ThietLapChieuCao(lVatThe->GetHeight());
-			lThucThe->mLoaiThucThe = eLoaiThucThe::eThucTheTinh;
+				ThucThe *lThucThe = new ThucThe();
+				lThucThe->ThietLapToaDo(float(lObject->GetX() + lObject->GetWidth() / 2.0f),
+					float(lObject->GetY() + lObject->GetHeight() / 2.0f));
+				lThucThe->ThietLapChieuRong(lObject->GetWidth());
+				lThucThe->ThietLapChieuCao(lObject->GetHeight());
+				lThucThe->mLoaiThucThe = eLoaiThucThe::eThucTheTinh;
 
-			mCayBonNhanh->ThemThucThe(lThucThe);
+				mCayBonNhanh->ThemThucThe(lThucThe);
+			}
 		}
 	}
 #pragma endregion
-
 }
 
 void BanDoGame::CapNhat(float in_tg)

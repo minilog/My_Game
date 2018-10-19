@@ -17,24 +17,6 @@
     <Filter Include="4.DoiTuong">
       <UniqueIdentifier>{327dbaa2-0f46-4f2e-aeec-9d3956c84b71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="4.DoiTuong\NguoiChoi">
-      <UniqueIdentifier>{a92a7610-faf7-4422-ae5b-349216be2d1d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.DoiTuong\NguoiChoi\TrangThai">
-      <UniqueIdentifier>{fcbfc5f3-dc80-4a99-b1c5-2454dfb25fc3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.DoiTuong\NguoiChoi\TrangThai\DungIm">
-      <UniqueIdentifier>{a8706ab7-8215-4942-a092-54e76ce4ea3e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.DoiTuong\NguoiChoi\TrangThai\DangNhay">
-      <UniqueIdentifier>{c462c516-1f80-40c0-b6ac-ea2d8ac5f824}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.DoiTuong\NguoiChoi\TrangThai\DangRoi">
-      <UniqueIdentifier>{43d7e29f-a2b1-4121-a60a-985be85037e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4.DoiTuong\NguoiChoi\TrangThai\DangChay">
-      <UniqueIdentifier>{17a9e3aa-90fb-4e98-a9b4-bf1f8f6b625e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4.DoiTuong\VienGach">
       <UniqueIdentifier>{84a7b43e-6409-4cae-b9c8-92fcd71a9243}</UniqueIdentifier>
     </Filter>
@@ -127,12 +109,6 @@
     <ClCompile Include="GachVang.cpp">
       <Filter>4.DoiTuong\VienGach\GachVang</Filter>
     </ClCompile>
-    <ClCompile Include="NguoiChoi.cpp">
-      <Filter>4.DoiTuong\NguoiChoi</Filter>
-    </ClCompile>
-    <ClCompile Include="TrangThai.cpp">
-      <Filter>4.DoiTuong\NguoiChoi\TrangThai</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>1.ThanhPhan</Filter>
     </ClCompile>
@@ -162,6 +138,9 @@
     </ClCompile>
     <ClCompile Include="VaChamGame.cpp">
       <Filter>0.NenTangGame</Filter>
+    </ClCompile>
+    <ClCompile Include="ManGioiThieu.cpp">
+      <Filter>2.CacManGame</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -246,12 +225,6 @@
     <ClInclude Include="GachVang.h">
       <Filter>4.DoiTuong\VienGach\GachVang</Filter>
     </ClInclude>
-    <ClInclude Include="NguoiChoi.h">
-      <Filter>4.DoiTuong\NguoiChoi</Filter>
-    </ClInclude>
-    <ClInclude Include="TrangThai.h">
-      <Filter>4.DoiTuong\NguoiChoi\TrangThai</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>1.ThanhPhan</Filter>
     </ClInclude>
@@ -289,6 +262,9 @@
       <Filter>0.NenTangGame</Filter>
     </ClInclude>
     <ClInclude Include="ManGame.h">
+      <Filter>2.CacManGame</Filter>
+    </ClInclude>
+    <ClInclude Include="ManGioiThieu.h">
       <Filter>2.CacManGame</Filter>
     </ClInclude>
   </ItemGroup>
