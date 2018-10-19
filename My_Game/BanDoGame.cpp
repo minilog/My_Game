@@ -149,8 +149,8 @@ void BanDoGame::Ve()
 
 					int lViTriCuaTileTrongTileSet = lLopHinhAnh->GetTileId(n, m);
 
-					int lY = lViTriCuaTileTrongTileSet / lSoTileChieuNgangCuaTileSet;
-					int lX = lViTriCuaTileTrongTileSet - lY * lSoTileChieuNgangCuaTileSet;
+					int lX = lViTriCuaTileTrongTileSet / lSoTileChieuNgangCuaTileSet;
+					int lY = lViTriCuaTileTrongTileSet - lX * lSoTileChieuNgangCuaTileSet;
 
 					RECT lHCN;
 					lHCN.left = lX * mChieuRongTile;

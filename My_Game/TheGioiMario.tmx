@@ -71,7 +71,7 @@
   <object id="39" gid="2" x="126" y="738" width="32" height="32"/>
   <object id="40" gid="2" x="189" y="740" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="Object Layer 3">
+ <objectgroup name="Object Layer 3" visible="0">
   <object id="27" x="-1" y="769" width="2238" height="191"/>
   <object id="28" x="2237" y="91" width="115" height="679"/>
   <object id="29" x="-139" y="90" width="138" height="679"/>
