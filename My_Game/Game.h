@@ -24,7 +24,6 @@ protected:
 	int						mChieuCao;
 	PDIRECT3DSURFACE9       mMatSau;
 	PDIRECT3DSURFACE9		mDemSau;
-
 	HoatHinh *mHoatHinh;
 };
 

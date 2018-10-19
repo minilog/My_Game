@@ -4,8 +4,8 @@ HINSTANCE ToanCauGame::mTruongHopXuLy = NULL;
 HWND ToanCauGame::mCuaSoXuLy = NULL;
 LPD3DXSPRITE ToanCauGame::mXuLyHinhAnh = NULL;
 LPDIRECT3DDEVICE9 ToanCauGame::mThietBi = NULL;
-int ToanCauGame::mChieuRong = 600;
-int ToanCauGame::mChieuCao = 600;
+int ToanCauGame::mChieuRong = 800;
+int ToanCauGame::mChieuCao = 700;
 IDirect3DSurface9* ToanCauGame::mMatSau = nullptr;
 bool ToanCauGame::mGameDangChay = true;
 

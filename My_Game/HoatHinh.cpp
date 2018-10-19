@@ -13,8 +13,8 @@ void HoatHinh::KhoiTaoVoiHoatHinh(int in_TongKhuonHinh, int in_SoHang, int in_So
 	mSoHang = in_SoHang;
 	mSoCot = in_SoCot;
 	//mChieuCao, mChieuRong bây giờ là của khuôn hình Hoạt Hình
-	HinhAnh::mChieuRong /= mSoHang;
-	HinhAnh::mChieuCao /= mSoCot;
+	HinhAnh::mChieuRong /= mSoCot;
+	HinhAnh::mChieuCao /= mSoHang;
 
 	mThoiGianThayDoi = in_ThoiGianThayDoi;
 	mHangHienTai = 0;
@@ -56,9 +56,9 @@ void HoatHinh::CapNhat(float in_tg)
 			}
 		}
 
-		HinhAnh::mHCN.left = mHangHienTai * HinhAnh::mChieuRong;
+		HinhAnh::mHCN.left = mCotHienTai * HinhAnh::mChieuRong;
 		HinhAnh::mHCN.right = HinhAnh::mHCN.left + HinhAnh::mChieuRong;
-		HinhAnh::mHCN.top = mCotHienTai * HinhAnh::mChieuCao;
+		HinhAnh::mHCN.top = mHangHienTai * HinhAnh::mChieuCao;
 		HinhAnh::mHCN.bottom = HinhAnh::mHCN.top + HinhAnh::mChieuCao;
 	}
 }

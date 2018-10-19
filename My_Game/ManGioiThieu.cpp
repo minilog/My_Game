@@ -13,15 +13,17 @@ void ManGioiThieu::TaiDuLieu()
 
 	mBanDoGame = new BanDoGame("TheGioiMario.tmx");
 	mCamera = new Camera(ToanCauGame::iChieuRong(), ToanCauGame::iChieuCao());
+	mCamera->ThietLapToaDo(D3DXVECTOR3(ToanCauGame::iChieuRong() / 2, 
+		mBanDoGame->iChieuCao() -ToanCauGame::iChieuCao() / 2, 0));
 	mBanDoGame->ThietLapCamera(mCamera);
 }
 
 void ManGioiThieu::CapNhat(float in_tg)
 {
-	KiemTraVaCham();
+	//KiemTraVaCham();
 	mBanDoGame->CapNhat(in_tg);
 
-	DieuKhienCamera();
+	//DieuKhienCamera();
 }
 
 void ManGioiThieu::Ve()
