@@ -16,6 +16,7 @@ public:
 	static DanhSachDoiTuong *DuyNhat();
 
 	void ThemDoiTuong(DoiTuong *in_DoiTuong);
+	// lúc tạo Màn Game mới, tức là Bản Đồ mới sẽ cần dọn dẹp Màn Game Cũ
 	void DonDep();
 
 private:

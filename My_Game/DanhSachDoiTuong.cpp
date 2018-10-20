@@ -15,7 +15,8 @@ void DanhSachDoiTuong::ThemDoiTuong(DoiTuong * in_DoiTuong)
 
 void DanhSachDoiTuong::DonDep()
 {
-	// chỉ làm trống danh sách, chứ không xóa các con trỏ Đối Tượng trong đó
+	// chỉ làm trống Danh Sách, chứ không xóa các con trỏ Đối Tượng trong đó
 	// việc xóa các con trỏ Đối Tượng do Lớp khác quyết định
+	// mà việc xóa con trỏ đối tượng sẽ dẫn đến phần tử trong Danh Sách có giá trị (gần như) NULL
 	mDanhSach.clear();
 }
