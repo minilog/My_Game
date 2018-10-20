@@ -5,10 +5,15 @@
 #include "ThoiGianGame.h"
 #include "QuanLyManGame.h"
 #include "ManGioiThieu.h"
+#include "Camera.h"
+#include "DanhSachDoiTuong.h"
+#include "DoiTuong.h"
+#include "GachVang.h"
 
 Game::Game(int in_FPS)
 {
 	mFPS = in_FPS;
+
 	QuanLyManGame::qlmgTruongHop()->ThayTheManGame(new ManGioiThieu());
 	TaoVongLapGame();
 }
@@ -53,7 +58,7 @@ void Game::Ve()
 {
 	auto lThietBi = ToanCauGame::ddThietBi();
 	auto lManGame = QuanLyManGame::qlmgTruongHop()->mgManGameHienTai();
-	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, /*lManGame->cMauNen()*/D3DCOLOR_XRGB(255, 255, 255), 0.0f, 0);
+	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, lManGame->cMauNen(), 0.0f, 0);
 
 	{
 		lThietBi->BeginScene();

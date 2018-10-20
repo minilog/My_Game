@@ -1,5 +1,6 @@
 ﻿#include "ManGioiThieu.h"
 #include "KieuDuLieuEnum.h"
+#include "Camera.h"
 
 ManGioiThieu::ManGioiThieu()
 {
@@ -12,10 +13,9 @@ void ManGioiThieu::TaiDuLieu()
 	mMauNen = 0x54acd2;
 
 	mBanDoGame = new BanDoGame("TheGioiMario.tmx");
-	//mCamera = new Camera(ToanCauGame::iChieuRong(), ToanCauGame::iChieuCao());
-	//mCamera->ThietLapToaDo(D3DXVECTOR3(ToanCauGame::iChieuRong() / 2, 
-	//	mBanDoGame->iChieuCao() -ToanCauGame::iChieuCao() / 2, 0));
-	/*mBanDoGame->ThietLapCamera(mCamera);*/
+	Camera::DuyNhat()->CungCapDuLieu(D3DXVECTOR3(ToanCauGame::iChieuRong() / 2.0f,
+		mBanDoGame->iChieuCao() - ToanCauGame::iChieuCao() / 2.0f, 0.0f), 
+		ToanCauGame::iChieuRong(), ToanCauGame::iChieuCao());
 }
 
 void ManGioiThieu::CapNhat(float in_tg)

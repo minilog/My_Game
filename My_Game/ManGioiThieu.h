@@ -26,7 +26,6 @@ protected:
 
 protected:
 	BanDoGame *mBanDoGame;
-	//Camera *mCamera;
 	std::map<int, bool> mKeys;
 };
 

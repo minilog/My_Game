@@ -13,11 +13,17 @@ private:
 		// dữ liệu sẽ được thêm ở hàm Thêm Thực Thể
 	}
 public:
-	static DanhSachDoiTuong *DuyNhat();
+	static DanhSachDoiTuong *DuyNhat() {
+		if (mDuyNhat == NULL)
+		{
+			mDuyNhat = new DanhSachDoiTuong();
+		}
+		return mDuyNhat;
+	}
 
-	void ThemDoiTuong(DoiTuong *in_DoiTuong);
-	// lúc tạo Màn Game mới, tức là Bản Đồ mới sẽ cần dọn dẹp Màn Game Cũ
-	void DonDep();
+	std::vector<DoiTuong*>& DanhSach() { // đưa con trỏ & vào để thực thi trên chính Danh Sách
+		return mDanhSach;
+	}
 
 private:
 	std::vector<DoiTuong*> mDanhSach;

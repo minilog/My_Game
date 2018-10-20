@@ -4,6 +4,8 @@
 #include "GachBinhThuong.h"
 #include "GachVang.h"
 #include "Camera.h"
+#include "DanhSachDoiTuong.h"
+#include "DoiTuong.h"
 
 BanDoGame::BanDoGame(char * in_DuongDan)
 {
@@ -13,25 +15,13 @@ BanDoGame::BanDoGame(char * in_DuongDan)
 	mChieuCao = mBanDo->GetHeight() * mBanDo->GetTileHeight();
 	mChieuRongTile = mBanDo->GetTileWidth();
 	mChieuCaoTile = mBanDo->GetTileHeight();
+	Camera::DuyNhat()->ThietLapToaDo(D3DXVECTOR3(Camera::DuyNhat()->iChieuRong() / 2.0f,
+		mChieuCao - Camera::DuyNhat()->iChieuCao() / 2.0f, 0.0f));
 	TaiBanDo(in_DuongDan);
-}
-
-void BanDoGame::ThietLapCamera(Camera * in_Camera)
-{
-	mCamera = in_Camera;
 }
 
 void BanDoGame::TaiBanDo(char * in_DuongDan)
 {
-
-#pragma region tao Cay Bon Nhanh
-	RECT lR;
-	lR.left = 0;
-	lR.top = 0;
-	lR.right = this->iChieuRong();
-	lR.bottom = this->iChieuCao();
-	mCayBonNhanh = new CayBonNhanh(0, lR);
-#pragma endregion
 
 #pragma region tao cac TileSet
 	for (int i = 0; i < mBanDo->GetNumTilesets(); i++)
@@ -59,23 +49,22 @@ void BanDoGame::TaiBanDo(char * in_DuongDan)
 					float(lObject->GetY() - lObject->GetHeight() / 2.0f), float (0.0f));
 				
 				// tạo viên gạch NULL
-				VienGach *lVienGach = nullptr;
+				DoiTuong *lDoiTuong = nullptr;
 
 				if (lNhomObject->GetName() == "GachBinhThuong")
 				{
-					lVienGach = new GachBinhThuong(lToaDo);
-					lVienGach->mLoaiThucThe = eLoaiThucThe::eVienGachVangBinhThuong;
+					lDoiTuong = new GachBinhThuong(lToaDo);
+					lDoiTuong->mLoaiDoiTuong = eLoaiDoiTuong::eVienGachVangBinhThuong;
 				}
 				else if (lNhomObject->GetName() == "GachVang")
 				{
-					lVienGach = new GachVang(lToaDo);
-					lVienGach->mLoaiThucThe = eLoaiThucThe::eVienGachVangAnDuoc;
+					lDoiTuong = new GachVang(lToaDo);
+					lDoiTuong->mLoaiDoiTuong = eLoaiDoiTuong::eVienGachVangAnDuoc;
 				}
-				mDanhSachVienGach.push_back(lVienGach);
 
-				if (lVienGach != NULL)
+				if (lDoiTuong != NULL)
 				{
-					mCayBonNhanh->ThemThucThe(lVienGach);
+					DanhSachDoiTuong::DuyNhat()->DanhSach().push_back(lDoiTuong);
 				}
 			}
 		}
@@ -84,15 +73,15 @@ void BanDoGame::TaiBanDo(char * in_DuongDan)
 			for (int j = 0; j < lNhomObject->GetNumObjects(); j++)
 			{
 				Tmx::Object *lObject = lNhomObject->GetObjects().at(j);
+				D3DXVECTOR3 lToaDo(float(lObject->GetX() + lObject->GetWidth() / 2.0f),
+					float(lObject->GetY() + lObject->GetHeight() / 2.0f), 0.0f);
 
-				ThucThe *lThucThe = new ThucThe();
-				lThucThe->ThietLapToaDo(float(lObject->GetX() + lObject->GetWidth() / 2.0f),
-					float(lObject->GetY() + lObject->GetHeight() / 2.0f));
-				lThucThe->ThietLapChieuRong(lObject->GetWidth());
-				lThucThe->ThietLapChieuCao(lObject->GetHeight());
-				lThucThe->mLoaiThucThe = eLoaiThucThe::eThucTheTinh;
+				DoiTuong * lDoiTuong = new DoiTuong(lToaDo, D3DXVECTOR3(0, 0, 0), lObject->GetWidth(),
+						lObject->GetHeight());
 
-				mCayBonNhanh->ThemThucThe(lThucThe);
+				lDoiTuong->mLoaiDoiTuong = eLoaiDoiTuong::eThucTheTinh;
+
+				DanhSachDoiTuong::DuyNhat()->DanhSach().push_back(lDoiTuong);
 			}
 		}
 	}
@@ -101,16 +90,16 @@ void BanDoGame::TaiBanDo(char * in_DuongDan)
 
 void BanDoGame::CapNhat(float in_tg)
 {
-	for (int i = 0; i < int(mDanhSachVienGach.size()); i++)
+	for (int i = 0; i < int(DanhSachDoiTuong::DuyNhat()->DanhSach().size()); i++)
 	{
-		mDanhSachVienGach[i]->CapNhat(in_tg);
+		DanhSachDoiTuong::DuyNhat()->DanhSach()[i]->CapNhat(in_tg);
 	}
 }
 
 void BanDoGame::Ve()
 {
-	D3DXVECTOR2 lDoDoi = D3DXVECTOR2(ToanCauGame::iChieuRong() / 2.0f - mCamera->vToaDo().x,
-		ToanCauGame::iChieuCao() / 2.0f - mCamera->vToaDo().y);
+	D3DXVECTOR2 lDoDoi = D3DXVECTOR2(ToanCauGame::iChieuRong() / 2.0f - Camera::DuyNhat()->vToaDo().x,
+		ToanCauGame::iChieuCao() / 2.0f - Camera::DuyNhat()->vToaDo().y);
 
 // Copy Code
 #pragma region Ve TileSet
@@ -139,6 +128,22 @@ void BanDoGame::Ve()
 			{
 				for (size_t n = 0; n < layer->GetWidth(); n++)
 				{
+					//tru tilewidth/2 va tileheight/2 vi Sprite ve o vi tri giua hinh anh cho nen doi hinh de cho
+					//dung toa do (0,0) cua the gioi thuc la (0,0) neu khong thi se la (-tilewidth/2, -tileheigth/2);
+					D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, m * tileHeight + tileHeight / 2, 0);
+
+					if (Camera::DuyNhat() != NULL)
+					{
+						RECT objRECT;
+						objRECT.left = position.x - tileWidth / 2;
+						objRECT.top = position.y - tileHeight / 2;
+						objRECT.right = objRECT.left + tileWidth;
+						objRECT.bottom = objRECT.top + tileHeight;
+
+						if (!VaChamGame::kqvcHCNVaHCN(Camera::DuyNhat()->rHCNGioiHan(), objRECT).DaVaCham)
+							continue;
+					}
+
 					if (layer->GetTileTilesetIndex(n, m) == j)
 					{
 						int tileID = layer->GetTileId(n, m);
@@ -152,22 +157,6 @@ void BanDoGame::Ve()
 						sourceRECT.right = sourceRECT.left + tileWidth;
 
 						HinhAnh* lHinhAnh = mDanhSachTileSet[j];
-
-						//tru tilewidth/2 va tileheight/2 vi Sprite ve o vi tri giua hinh anh cho nen doi hinh de cho
-						//dung toa do (0,0) cua the gioi thuc la (0,0) neu khong thi se la (-tilewidth/2, -tileheigth/2);
-						D3DXVECTOR3 position(n * tileWidth + tileWidth / 2, m * tileHeight + tileHeight / 2, 0);
-
-						if (mCamera != NULL)
-						{
-							RECT objRECT;
-							objRECT.left = position.x - tileWidth / 2;
-							objRECT.top = position.y - tileHeight / 2;
-							objRECT.right = objRECT.left + tileWidth;
-							objRECT.bottom = objRECT.top + tileHeight;
-
-							if (!VaChamGame::kqvcHCNVaHCN(mCamera->rHCNGioiHan(), objRECT).DaVaCham)
-								continue;
-						}
 
 						lHinhAnh->ThietLapToaDo(position);
 						lHinhAnh->ThietLapChieuRong(mChieuRongTile);
@@ -184,9 +173,9 @@ void BanDoGame::Ve()
 
 #pragma region Ve Cac Vien Gach
 
-	for (int i = 0; i < int(mDanhSachVienGach.size()); i++)
+	for (int i = 0; i < int(DanhSachDoiTuong::DuyNhat()->DanhSach().size()); i++)
 	{
-		mDanhSachVienGach[i]->Ve(lDoDoi);
+		DanhSachDoiTuong::DuyNhat()->DanhSach()[i]->Ve(lDoDoi);
 	}
 
 #pragma endregion
@@ -197,7 +186,6 @@ void BanDoGame::Ve()
 BanDoGame::~BanDoGame()
 {
 	delete mBanDo;
-	delete mCamera;
 
 	for (int i = 0; i < int(mDanhSachTileSet.size()); i++)
 	{
@@ -206,12 +194,13 @@ BanDoGame::~BanDoGame()
 	}
 	mDanhSachTileSet.clear();
 	
-	for (size_t i = 0; i < mDanhSachVienGach.size(); i++)
+	for (size_t i = 0; i < DanhSachDoiTuong::DuyNhat()->DanhSach().size(); i++)
 	{
-		if (mDanhSachVienGach[i])
-			delete mDanhSachVienGach[i];
+		eLoaiDoiTuong lLoai = DanhSachDoiTuong::DuyNhat()->DanhSach()[i]->mLoaiDoiTuong;
+		if (lLoai != eLoaiDoiTuong::eMario)
+			delete DanhSachDoiTuong::DuyNhat()->DanhSach()[i];
 	}
-	mDanhSachVienGach.clear();
+	DanhSachDoiTuong::DuyNhat()->DanhSach().clear();
 
 	//mCayBonNhanh->DonDep();
 	//delete mCayBonNhanh;
@@ -256,37 +245,27 @@ RECT BanDoGame::rHCNGioiHanBanDo()
 
 bool BanDoGame::bCaMeraChamBienTrai()
 {
-	return (mCamera->rHCNGioiHan().left == 0);
+	return (Camera::DuyNhat()->rHCNGioiHan().left == 0);
 }
 
 bool BanDoGame::bCameraChamBienPhai()
 {
-	return (mCamera->rHCNGioiHan().right == mChieuRong);
+	return (Camera::DuyNhat()->rHCNGioiHan().right == mChieuRong);
 }
 
 bool BanDoGame::bCameraChamBienTren()
 {
-	return (mCamera->rHCNGioiHan().top == 0);
+	return (Camera::DuyNhat()->rHCNGioiHan().top == 0);
 }
 
 bool BanDoGame::bCameraChamBienDuoi()
 {
-	return (mCamera->rHCNGioiHan().bottom == mChieuCao);
+	return (Camera::DuyNhat()->rHCNGioiHan().bottom == mChieuCao);
 }
 
 std::map<int, HinhAnh*> BanDoGame::sDanhSachTileSet()
 {
 	return mDanhSachTileSet;
-}
-
-std::vector<VienGach*> BanDoGame::vgDanhSachVienGach()
-{
-	return mDanhSachVienGach;
-}
-
-CayBonNhanh * BanDoGame::cbnCayBonNhanh()
-{
-	return mCayBonNhanh;
 }
 
 #pragma endregion

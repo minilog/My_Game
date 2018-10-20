@@ -118,15 +118,6 @@
     <ClCompile Include="ManGioiThieu.cpp">
       <Filter>2.ManGame</Filter>
     </ClCompile>
-    <ClCompile Include="GachBinhThuong.cpp">
-      <Filter>4.DoiTuong</Filter>
-    </ClCompile>
-    <ClCompile Include="GachVang.cpp">
-      <Filter>4.DoiTuong</Filter>
-    </ClCompile>
-    <ClCompile Include="VienGach.cpp">
-      <Filter>4.DoiTuong</Filter>
-    </ClCompile>
     <ClCompile Include="DoiTuong.cpp">
       <Filter>4.DoiTuong</Filter>
     </ClCompile>
@@ -244,9 +235,6 @@
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="GachVang.h">
-      <Filter>4.DoiTuong</Filter>
-    </ClInclude>
-    <ClInclude Include="VienGach.h">
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="DoiTuong.h">

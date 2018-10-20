@@ -17,6 +17,9 @@ public:
 
 	// cung cấp dữ liệu: phải thực thi hàm này trước trước khi các hàm khác được thực thi
 	void CungCapDuLieu(D3DXVECTOR3 in_ToaDo, int in_ChieuRong, int in_ChieuCao);
+	void ThietLapToaDo(D3DXVECTOR3 in_ToaDo) {
+		mToaDo = in_ToaDo;
+	}
 
 	D3DXVECTOR3 vToaDo() const;
 	int iChieuRong() const;
@@ -27,6 +30,5 @@ private:
 	D3DXVECTOR3 mToaDo; // chính giữa camera
 	int mChieuRong;
 	int mChieuCao;
-	bool mDaCungCapDuLieu;
 };
 

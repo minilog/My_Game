@@ -16,7 +16,7 @@ struct eKetQuaVaCham
 	RECT VungVaCham;
 };
 
-enum eLoaiThucThe
+enum eLoaiDoiTuong
 {
 	eKhongCo, eVienGach, eKeThu, eMario, eThucTheTinh, eVienGachVangBinhThuong, eVienGachVangAnDuoc
 };

@@ -8,6 +8,7 @@
 #include <Windows.h>
 #include <dinput.h>
 #include "HoatHinh.h"
+#include "DoiTuong.h"
 
 class Game
 {
@@ -24,6 +25,5 @@ protected:
 	int						mChieuCao;
 	PDIRECT3DSURFACE9       mMatSau;
 	PDIRECT3DSURFACE9		mDemSau;
-	HoatHinh *mHoatHinh;
 };
 

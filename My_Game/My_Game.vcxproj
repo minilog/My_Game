@@ -129,8 +129,6 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DanhSachDoiTuong.cpp" />
     <ClCompile Include="DoiTuong.cpp" />
-    <ClCompile Include="GachBinhThuong.cpp" />
-    <ClCompile Include="GachVang.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="HinhAnh.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
@@ -160,7 +158,6 @@
     <ClCompile Include="ThoiGianGame.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
     <ClCompile Include="VaChamGame.cpp" />
-    <ClCompile Include="VienGach.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BanDoGame.h" />
@@ -202,7 +199,6 @@
     <ClInclude Include="ThoiGianGame.h" />
     <ClInclude Include="ToanCauGame.h" />
     <ClInclude Include="VaChamGame.h" />
-    <ClInclude Include="VienGach.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in" />

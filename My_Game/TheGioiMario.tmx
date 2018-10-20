@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="32" tileheight="32" infinite="0" nextobjectid="41">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="32" tileheight="32" infinite="0" nextobjectid="48">
  <tileset firstgid="1" source="TheGioiMario.tsx"/>
  <layer name="Tile Layer 1" width="100" height="30">
   <data encoding="csv">
@@ -36,44 +36,17 @@
 </data>
  </layer>
  <objectgroup name="GachVang">
-  <object id="1" gid="25" x="320" y="736" width="32" height="32"/>
-  <object id="2" gid="25" x="352" y="705" width="32" height="32"/>
-  <object id="3" gid="25" x="384" y="674" width="32" height="32"/>
-  <object id="4" gid="25" x="418" y="639" width="32" height="32"/>
-  <object id="5" gid="25" x="450" y="608" width="32" height="32"/>
-  <object id="6" gid="25" x="673" y="736" width="32" height="32"/>
-  <object id="7" gid="25" x="705" y="706" width="32" height="32"/>
-  <object id="8" gid="25" x="737" y="674" width="32" height="32"/>
-  <object id="9" gid="25" x="769" y="640" width="32" height="32"/>
-  <object id="10" gid="25" x="800" y="608" width="32" height="32"/>
+  <object id="1" gid="25" x="1" y="576" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="GachBinhThuong">
-  <object id="16" gid="19" x="225" y="735" width="32" height="32"/>
-  <object id="17" gid="19" x="482" y="643" width="32" height="32"/>
-  <object id="18" gid="19" x="517" y="674" width="32" height="32"/>
-  <object id="19" gid="19" x="547" y="707" width="32" height="32"/>
-  <object id="20" gid="19" x="577" y="738" width="32" height="32"/>
-  <object id="21" gid="19" x="611" y="768" width="32" height="32"/>
-  <object id="22" gid="19" x="833" y="637" width="32" height="32"/>
-  <object id="23" gid="19" x="866" y="670" width="32" height="32"/>
-  <object id="24" gid="19" x="895" y="704" width="32" height="32"/>
-  <object id="25" gid="19" x="929" y="736" width="32" height="32"/>
-  <object id="26" gid="19" x="962" y="768" width="32" height="32"/>
-  <object id="30" gid="2" x="-6" y="735" width="32" height="32"/>
-  <object id="31" gid="2" x="27" y="739" width="32" height="32"/>
-  <object id="32" gid="2" x="53" y="737" width="32" height="32"/>
-  <object id="33" gid="2" x="83" y="738" width="32" height="32"/>
-  <object id="34" gid="2" x="110" y="737" width="32" height="32"/>
-  <object id="35" gid="2" x="150" y="735" width="32" height="32"/>
-  <object id="36" gid="2" x="187" y="732" width="32" height="32"/>
-  <object id="37" gid="2" x="207" y="733" width="32" height="32"/>
-  <object id="38" gid="2" x="163" y="734" width="32" height="32"/>
-  <object id="39" gid="2" x="126" y="738" width="32" height="32"/>
-  <object id="40" gid="2" x="189" y="740" width="32" height="32"/>
+  <object id="41" gid="34" x="417" y="641" width="32" height="32"/>
+  <object id="42" gid="34" x="448" y="641" width="32" height="32"/>
+  <object id="43" gid="34" x="481" y="640" width="32" height="32"/>
+  <object id="44" gid="34" x="513" y="641" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="Object Layer 3" visible="0">
-  <object id="27" x="-1" y="769" width="2238" height="191"/>
-  <object id="28" x="2237" y="91" width="115" height="679"/>
-  <object id="29" x="-139" y="90" width="138" height="679"/>
+ <objectgroup name="Object Layer 3">
+  <object id="45" x="1" y="767" width="2239" height="191"/>
+  <object id="46" x="2239" y="-1" width="79" height="767"/>
+  <object id="47" x="-95" y="1" width="97" height="768"/>
  </objectgroup>
 </map>

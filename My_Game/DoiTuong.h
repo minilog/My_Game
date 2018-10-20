@@ -9,18 +9,19 @@
 class DoiTuong
 {
 public:
-	DoiTuong(D3DXVECTOR3 in_ToaDo, D3DXVECTOR3 in_VanToc, 
+	DoiTuong(D3DXVECTOR3 in_ToaDo, D3DXVECTOR3 in_VanToc,
 		int in_ChieuRong, int in_ChieuCao)
 	{
-		mLoaiThucThe = eLoaiThucThe::eKhongCo;
+		mLoaiDoiTuong = eLoaiDoiTuong::eKhongCo;
 		mToaDo = in_ToaDo;
 		mVanToc = in_VanToc;
 		mChieuRong = in_ChieuRong;
 		mChieuCao = in_ChieuCao;
 	}
 	virtual void CapNhat(float in_tg) {}
-	virtual void XuLyVaCham(const DoiTuong* in_DoiTuong, eKetQuaVaCham in_KetQuaVaCham, 
-		ePhiaVaCham in_PhiaVaCham){}
+	virtual void Ve(D3DXVECTOR2 in_DoDoi) {};
+	virtual void XuLyVaCham(const DoiTuong* in_DoiTuong, eKetQuaVaCham in_KetQuaVaCham,
+		ePhiaVaCham in_PhiaVaCham) {}
 	void ThietLapToaDo(D3DXVECTOR3 in_ToaDo);
 	void ThietLapVanToc(D3DXVECTOR3 in_VanToc);
 	void ThietLapChieuRong(int in_ChieuRong);
@@ -33,7 +34,7 @@ public:
 	RECT rHCNGioiHan() const;
 
 public:
-	eLoaiThucThe mLoaiThucThe;
+	eLoaiDoiTuong mLoaiDoiTuong;
 protected:
 	D3DXVECTOR3 mToaDo;
 	D3DXVECTOR3 mVanToc;
