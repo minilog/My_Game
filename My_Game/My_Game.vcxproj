@@ -128,6 +128,8 @@
     <ClCompile Include="BanDoGame.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CayBonNhanh.cpp" />
+    <ClCompile Include="DanhSachDoiTuong.cpp" />
+    <ClCompile Include="DoiTuong.cpp" />
     <ClCompile Include="GachBinhThuong.cpp" />
     <ClCompile Include="GachVang.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -165,6 +167,8 @@
   <ItemGroup>
     <ClInclude Include="BanDoGame.h" />
     <ClInclude Include="CayBonNhanh.h" />
+    <ClInclude Include="DanhSachDoiTuong.h" />
+    <ClInclude Include="DoiTuong.h" />
     <ClInclude Include="GachBinhThuong.h" />
     <ClInclude Include="GachVang.h" />
     <ClInclude Include="Game.h" />

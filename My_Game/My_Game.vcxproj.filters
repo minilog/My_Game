@@ -8,9 +8,6 @@
     <Filter Include="1.ThanhPhan">
       <UniqueIdentifier>{33419ef9-a572-4d63-82b9-3cc00f495a20}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2.CacManGame">
-      <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3.DieuKhien">
       <UniqueIdentifier>{82ddea42-1406-439d-8805-0f1c3c2c32c1}</UniqueIdentifier>
     </Filter>
@@ -22,6 +19,9 @@
     </Filter>
     <Filter Include="0.NenTangGame">
       <UniqueIdentifier>{95f4a8bc-7b8a-4158-8ddd-6a7355f162df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2.ManGame">
+      <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -122,7 +122,7 @@
       <Filter>0.NenTangGame</Filter>
     </ClCompile>
     <ClCompile Include="ManGioiThieu.cpp">
-      <Filter>2.CacManGame</Filter>
+      <Filter>2.ManGame</Filter>
     </ClCompile>
     <ClCompile Include="GachBinhThuong.cpp">
       <Filter>4.DoiTuong</Filter>
@@ -131,6 +131,12 @@
       <Filter>4.DoiTuong</Filter>
     </ClCompile>
     <ClCompile Include="VienGach.cpp">
+      <Filter>4.DoiTuong</Filter>
+    </ClCompile>
+    <ClCompile Include="DanhSachDoiTuong.cpp">
+      <Filter>0.NenTangGame</Filter>
+    </ClCompile>
+    <ClCompile Include="DoiTuong.cpp">
       <Filter>4.DoiTuong</Filter>
     </ClCompile>
   </ItemGroup>
@@ -244,10 +250,10 @@
       <Filter>0.NenTangGame</Filter>
     </ClInclude>
     <ClInclude Include="ManGame.h">
-      <Filter>2.CacManGame</Filter>
+      <Filter>2.ManGame</Filter>
     </ClInclude>
     <ClInclude Include="ManGioiThieu.h">
-      <Filter>2.CacManGame</Filter>
+      <Filter>2.ManGame</Filter>
     </ClInclude>
     <ClInclude Include="GachBinhThuong.h">
       <Filter>4.DoiTuong</Filter>
@@ -256,6 +262,12 @@
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="VienGach.h">
+      <Filter>4.DoiTuong</Filter>
+    </ClInclude>
+    <ClInclude Include="DanhSachDoiTuong.h">
+      <Filter>0.NenTangGame</Filter>
+    </ClInclude>
+    <ClInclude Include="DoiTuong.h">
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
   </ItemGroup>

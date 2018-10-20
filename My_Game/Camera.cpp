@@ -1,27 +1,21 @@
 ﻿#include "Camera.h"
 #include <assert.h>
 
-Camera *Camera::mCamera = NULL;
+Camera *Camera::mDuyNhat = NULL;
 
 Camera * Camera::DuyNhat()
 {
-	if (mCamera == NULL)
+	if (mDuyNhat == NULL)
 	{
-		mCamera = new Camera();
+		mDuyNhat = new Camera();
 	}
 
-	return mCamera;
+	return mDuyNhat;
 }
 
-Camera::Camera()
+void Camera::KhoiTao(D3DXVECTOR3 in_ToaDo, int in_ChieuRong, int in_ChieuCao)
 {
-	mToaDo = D3DXVECTOR3(0, 0, 0);
-	mChieuRong = 0;
-	mChieuCao = 0;
-}
-
-void Camera::KhoiTao(const D3DXVECTOR3& in_ToaDo, int in_ChieuRong, int in_ChieuCao)
-{
+	mDaKhoiTao = true;
 	mToaDo = in_ToaDo;
 	mChieuRong = in_ChieuRong;
 	mChieuCao = in_ChieuCao;
@@ -29,10 +23,11 @@ void Camera::KhoiTao(const D3DXVECTOR3& in_ToaDo, int in_ChieuRong, int in_Chieu
 
 #pragma region các hàm đơn giản
 
-const RECT& Camera::rHCNGioiHan() const
+RECT Camera::rHCNGioiHan() const
 {
-	RECT lHCN;
+	assert(mDaKhoiTao == true);
 
+	RECT lHCN;
 	lHCN.left = int(mToaDo.x - mChieuRong / 2);
 	lHCN.right = lHCN.left + mChieuRong;
 	lHCN.top = int(mToaDo.y - mChieuCao / 2);
@@ -41,23 +36,31 @@ const RECT& Camera::rHCNGioiHan() const
 	return lHCN;
 }
 
-void Camera::ThietLapToaDo(const D3DXVECTOR3& in_ToaDo)
+void Camera::ThietLapToaDo(D3DXVECTOR3 in_ToaDo)
 {
+	assert(mDaKhoiTao == true);
+
 	mToaDo = in_ToaDo;
 }
 
 int Camera::iChieuRong() const
 {
+	assert(mDaKhoiTao == true);
+
 	return mChieuRong;
 }
 
 int Camera::iChieuCao() const
 {
+	assert(mDaKhoiTao == true);
+
 	return mChieuCao;
 }
 
-const D3DXVECTOR3& Camera::vToaDo() const
+D3DXVECTOR3 Camera::vToaDo() const
 {
+	assert(mDaKhoiTao == true);
+
 	return mToaDo;
 }
 
