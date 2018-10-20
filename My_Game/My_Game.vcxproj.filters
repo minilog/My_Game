@@ -91,9 +91,6 @@
     <ClCompile Include="QuanLyManGame.cpp">
       <Filter>3.DieuKhien</Filter>
     </ClCompile>
-    <ClCompile Include="ThucThe.cpp">
-      <Filter>4.DoiTuong</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>1.ThanhPhan</Filter>
     </ClCompile>
@@ -213,17 +210,11 @@
     <ClInclude Include="QuanLyManGame.h">
       <Filter>3.DieuKhien</Filter>
     </ClInclude>
-    <ClInclude Include="ThucThe.h">
-      <Filter>4.DoiTuong</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>1.ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="BanDoGame.h">
       <Filter>1.ThanhPhan</Filter>
-    </ClInclude>
-    <ClInclude Include="VatTheGame.h">
-      <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>0.NenTangGame</Filter>
