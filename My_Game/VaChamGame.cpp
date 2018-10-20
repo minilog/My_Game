@@ -22,13 +22,13 @@ eKetQuaVaCham VaChamGame::kqvcHCNVaHCN(RECT in_HCN1, RECT in_HCN2)
 	return lKetQuaVaCham;
 }
 
-ePhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, eKetQuaVaCham in_KetQuaVaCham)
+ePhiaVaCham VaChamGame::pvcPhiaVaCham(const DoiTuong * in_DoiTuong, eKetQuaVaCham in_KetQuaVaCham)
 {
 	float lTrungTamVaChamX = in_KetQuaVaCham.VungVaCham.left + (in_KetQuaVaCham.VungVaCham.right - in_KetQuaVaCham.VungVaCham.left) / 2.0f;
 	float lTrungTamVaChamY = in_KetQuaVaCham.VungVaCham.top + (in_KetQuaVaCham.VungVaCham.bottom - in_KetQuaVaCham.VungVaCham.top) / 2.0f;
 
 	D3DXVECTOR2 lTrungTamVaCham = D3DXVECTOR2(lTrungTamVaChamX, lTrungTamVaChamY);
-	D3DXVECTOR2 lTrungTamThucThe = in_ThucThe1->vToaDo();
+	D3DXVECTOR2 lTrungTamThucThe = in_DoiTuong->vToaDo();
 
 	// lấy vector nối từ Thực Thể đến Vùng Va Chạm
 	D3DXVECTOR2 lVec = lTrungTamVaCham - lTrungTamThucThe;
@@ -101,13 +101,13 @@ ePhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, eKetQuaVaCham in_Ke
 	return ePhiaVaCham::eKhongXacDinh;
 }
 
-ePhiaVaCham VaChamGame::pvcPhiaVaCham(ThucThe * in_ThucThe1, ThucThe * in_ThucThe2)
+ePhiaVaCham VaChamGame::pvcPhiaVaCham(const DoiTuong * in_DoiTuong1, const DoiTuong * in_DoiTuong2)
 {
-	float lW = (in_ThucThe1->fChieuRong() + in_ThucThe2->fChieuRong()) / 2.0f;
-	float lH = (in_ThucThe1->fChieuCao() + in_ThucThe2->fChieuCao()) / 2.0f;
+	float lW = (in_DoiTuong1->iChieuRong() + in_DoiTuong2->iChieuRong()) / 2.0f;
+	float lH = (in_DoiTuong1->iChieuCao() + in_DoiTuong2->iChieuCao()) / 2.0f;
 
-	float lDx = in_ThucThe1->vToaDo().x - in_ThucThe2->vToaDo().y;
-	float lDy = in_ThucThe1->vToaDo().x - in_ThucThe2->vToaDo().y;
+	float lDx = in_DoiTuong1->vToaDo().x - in_DoiTuong2->vToaDo().y;
+	float lDy = in_DoiTuong1->vToaDo().x - in_DoiTuong2->vToaDo().y;
 
 	if (abs(lDx) <= lW && abs(lDy) <= lH)
 	{
@@ -181,10 +181,10 @@ bool VaChamGame::bDaVaCham(RECT in_HCN1, RECT in_HCN2)
 
 bool VaChamGame::bDiemVaHCN(float in_X, float in_Y, RECT in_HCN)
 {
-	if (in_X < in_HCN.left ||
-		in_X > in_HCN.right ||
-		in_Y < in_HCN.top ||
-		in_Y > in_HCN.bottom)
+	if (int(in_X) < in_HCN.left ||
+		int(in_X) > in_HCN.right ||
+		int(in_Y) < in_HCN.top ||
+		int(in_Y) > in_HCN.bottom)
 	{
 		return false;
 	}

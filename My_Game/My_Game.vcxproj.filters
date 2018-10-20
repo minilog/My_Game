@@ -17,11 +17,11 @@
     <Filter Include="FileDocMap">
       <UniqueIdentifier>{3bdb088f-fe07-4b71-84ec-5724b56d9727}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.NenTangGame">
-      <UniqueIdentifier>{95f4a8bc-7b8a-4158-8ddd-6a7355f162df}</UniqueIdentifier>
-    </Filter>
     <Filter Include="2.ManGame">
       <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0.NenTang">
+      <UniqueIdentifier>{95f4a8bc-7b8a-4158-8ddd-6a7355f162df}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -98,25 +98,22 @@
       <Filter>1.ThanhPhan</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>0.NenTangGame</Filter>
-    </ClCompile>
-    <ClCompile Include="CayBonNhanh.cpp">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClCompile>
     <ClCompile Include="HinhAnh.cpp">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClCompile>
     <ClCompile Include="HoatHinh.cpp">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClCompile>
     <ClCompile Include="ThoiGianGame.cpp">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClCompile>
     <ClCompile Include="ToanCauGame.cpp">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClCompile>
     <ClCompile Include="VaChamGame.cpp">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClCompile>
     <ClCompile Include="ManGioiThieu.cpp">
       <Filter>2.ManGame</Filter>
@@ -130,11 +127,11 @@
     <ClCompile Include="VienGach.cpp">
       <Filter>4.DoiTuong</Filter>
     </ClCompile>
-    <ClCompile Include="DanhSachDoiTuong.cpp">
-      <Filter>0.NenTangGame</Filter>
-    </ClCompile>
     <ClCompile Include="DoiTuong.cpp">
       <Filter>4.DoiTuong</Filter>
+    </ClCompile>
+    <ClCompile Include="DanhSachDoiTuong.cpp">
+      <Filter>0.NenTang</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,28 +214,25 @@
       <Filter>1.ThanhPhan</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>0.NenTangGame</Filter>
-    </ClInclude>
-    <ClInclude Include="CayBonNhanh.h">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="HinhAnh.h">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="HoatHinh.h">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="ThoiGianGame.h">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="ToanCauGame.h">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="VaChamGame.h">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="KieuDuLieuEnum.h">
-      <Filter>0.NenTangGame</Filter>
+      <Filter>0.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="ManGame.h">
       <Filter>2.ManGame</Filter>
@@ -255,11 +249,11 @@
     <ClInclude Include="VienGach.h">
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
-    <ClInclude Include="DanhSachDoiTuong.h">
-      <Filter>0.NenTangGame</Filter>
-    </ClInclude>
     <ClInclude Include="DoiTuong.h">
       <Filter>4.DoiTuong</Filter>
+    </ClInclude>
+    <ClInclude Include="DanhSachDoiTuong.h">
+      <Filter>0.NenTang</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
