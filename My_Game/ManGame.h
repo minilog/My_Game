@@ -3,32 +3,37 @@
 #include <d3dx9.h>
 #include <d3d9.h>
 #include "ToanCauGame.h"
+#include "MapReader/Tmx.h.in"
+#include "HinhAnh.h"
 
 // Là 1 lớp giao diện, sử dụng để gọi đến Màn Game thực sự
 class ManGame
 {
 protected:
-	ManGame()
-	{
-		mMauNen = 0x4866ff;
-		TaiDuLieu();
-	}
+	ManGame() { }
 public:
-	virtual void CapNhat(float in_tg) {}
-	virtual void TaiDuLieu() {}
-	virtual void Ve() {}
-	virtual void OnKeyDown(int in_KeyCode) {}
-	virtual void OnKeyUp(int in_KeyCode) {}
-	virtual void OnMouseDown(float in_x, float in_y) {}
+	virtual void TaiDuLieu() = 0;
+	virtual void CapNhat(float in_tg) = 0;
+	virtual void Ve() = 0;
+	virtual void OnKeyDown(int in_KeyCode) = 0;
+	virtual void OnKeyUp(int in_KeyCode) = 0;
+	virtual void OnMouseDown(float in_x, float in_y) = 0;
 
 public:
-	D3DCOLOR cMauNen()
-	{
+	D3DCOLOR cMauNen(){
 		return mMauNen;
 	}
 
 protected:
 	D3DCOLOR mMauNen;
+	
+	Tmx::Map *mBanDo;
+	int mChieuRong;
+	int mChieuCao;
+	int mChieuRongTile;
+	int mChieuCaoTile;
+	std::map<int, HinhAnh*> mDanhSachTileset;
+
 };
 
 

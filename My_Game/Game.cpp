@@ -14,7 +14,7 @@ Game::Game(int in_FPS)
 {
 	mFPS = in_FPS;
 
-	QuanLyManGame::qlmgTruongHop()->ThayTheManGame(new ManGioiThieu());
+	QuanLyManGame::ThayTheManGame(new ManGioiThieu());
 	TaoVongLapGame();
 }
 
@@ -50,14 +50,14 @@ void Game::TaoVongLapGame()
 
 void Game::CapNhat(float in_tg)
 {
-	QuanLyManGame::qlmgTruongHop()->mgManGameHienTai()->CapNhat(in_tg);
+	QuanLyManGame::mgManGameHienTai()->CapNhat(in_tg);
 	Ve();
 }
 
 void Game::Ve()
 {
 	auto lThietBi = ToanCauGame::ddThietBi();
-	auto lManGame = QuanLyManGame::qlmgTruongHop()->mgManGameHienTai();
+	auto lManGame = QuanLyManGame::mgManGameHienTai();
 	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, lManGame->cMauNen(), 0.0f, 0);
 
 	{

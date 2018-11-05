@@ -125,16 +125,16 @@ LRESULT CALLBACK ThuTucCuaSo(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		break;
 
 	case WM_LBUTTONDOWN:
-		QuanLyManGame::qlmgTruongHop()->mgManGameHienTai()->OnMouseDown((float)GET_X_LPARAM(lParam),
+		QuanLyManGame::mgManGameHienTai()->OnMouseDown((float)GET_X_LPARAM(lParam),
 			(float)GET_Y_LPARAM(lParam));
 		break;
 
 	case WM_KEYDOWN:
-		QuanLyManGame::qlmgTruongHop()->mgManGameHienTai()->OnKeyDown(wParam);
+		QuanLyManGame::mgManGameHienTai()->OnKeyDown(wParam);
 		break;
 
 	case WM_KEYUP:
-		QuanLyManGame::qlmgTruongHop()->mgManGameHienTai()->OnKeyUp(wParam);
+		QuanLyManGame::mgManGameHienTai()->OnKeyUp(wParam);
 		break;
 
 	default:

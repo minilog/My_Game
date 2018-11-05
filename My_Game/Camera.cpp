@@ -1,16 +1,9 @@
 ﻿#include "Camera.h"
 
-// bắt buộc cung cấp cho Compiler 1 static Camera
-Camera *Camera::mDuyNhat = NULL; 
-
-Camera * Camera::DuyNhat()
-{
-	if (mDuyNhat == NULL)
-	{
-		mDuyNhat = new Camera();
-	}
-	return mDuyNhat;
-}
+// bắt buộc cung cấp cho Compiler
+D3DXVECTOR3 Camera::mToaDo = D3DXVECTOR3(); 
+int Camera::mChieuRong = 0;
+int Camera::mChieuCao = 0;
 
 void Camera::CungCapDuLieu(D3DXVECTOR3 in_ToaDo, int in_ChieuRong, int in_ChieuCao)
 {
@@ -19,9 +12,11 @@ void Camera::CungCapDuLieu(D3DXVECTOR3 in_ToaDo, int in_ChieuRong, int in_ChieuC
 	mChieuCao = in_ChieuCao;
 }
 
-#pragma region các hàm đơn giản
+void Camera::ThietLapToaDo(D3DXVECTOR3 in_ToaDo) {
+	mToaDo = in_ToaDo;
+}
 
-RECT Camera::rHCNGioiHan() const
+RECT Camera::rHCNGioiHan()
 {
 	RECT lHCN;
 	lHCN.left = int(mToaDo.x - mChieuRong / 2);
@@ -32,19 +27,17 @@ RECT Camera::rHCNGioiHan() const
 	return lHCN;
 }
 
-int Camera::iChieuRong() const
+int Camera::iChieuRong()
 {
 	return mChieuRong;
 }
 
-int Camera::iChieuCao() const
+int Camera::iChieuCao()
 {
 	return mChieuCao;
 }
 
-D3DXVECTOR3 Camera::vToaDo() const
+D3DXVECTOR3 Camera::vToaDo()
 {
 	return mToaDo;
 }
-
-#pragma endregion

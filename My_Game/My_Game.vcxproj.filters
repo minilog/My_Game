@@ -94,9 +94,6 @@
     <ClCompile Include="Game.cpp">
       <Filter>1.ThanhPhan</Filter>
     </ClCompile>
-    <ClCompile Include="BanDoGame.cpp">
-      <Filter>1.ThanhPhan</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>0.NenTang</Filter>
     </ClCompile>
@@ -123,6 +120,9 @@
     </ClCompile>
     <ClCompile Include="DanhSachDoiTuong.cpp">
       <Filter>0.NenTang</Filter>
+    </ClCompile>
+    <ClCompile Include="DoiTuongTinh.cpp">
+      <Filter>4.DoiTuong</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,9 +201,6 @@
     <ClInclude Include="Game.h">
       <Filter>1.ThanhPhan</Filter>
     </ClInclude>
-    <ClInclude Include="BanDoGame.h">
-      <Filter>1.ThanhPhan</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>0.NenTang</Filter>
     </ClInclude>
@@ -242,6 +239,9 @@
     </ClInclude>
     <ClInclude Include="DanhSachDoiTuong.h">
       <Filter>0.NenTang</Filter>
+    </ClInclude>
+    <ClInclude Include="DoiTuongTinh.h">
+      <Filter>4.DoiTuong</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

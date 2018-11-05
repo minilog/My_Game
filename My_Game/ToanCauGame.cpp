@@ -9,29 +9,6 @@ int ToanCauGame::mChieuCao = 700;
 IDirect3DSurface9* ToanCauGame::mMatSau = nullptr;
 bool ToanCauGame::mGameDangChay = true;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////
-/*								 Các hàm đơn giản					             */
-///////////////////////////////////////////////////////////////////////////////////
-
 void ToanCauGame::ThietLapTruongHopXuLy(HINSTANCE in_TruongHopXuLy)
 {
 	mTruongHopXuLy = in_TruongHopXuLy;
