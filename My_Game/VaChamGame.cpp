@@ -75,7 +75,7 @@ ePhiaVaCham VaChamGame::get_PhiaVaCham(const DoiTuong * in_DoiTuong, eKetQuaVaCh
 			return ePhiaVaCham::ePVC_Trai;
 		}
 	}
-	else
+	else if (lVec.y > 0)
 	{
 		// va chạm phía bên dưới
 		//lay cos cua goc neu ma nam trong khoang goc 55 -> 125 thi va cham top

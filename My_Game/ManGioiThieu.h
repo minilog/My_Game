@@ -36,7 +36,7 @@ private:
 // Các hàm dùng để đơn giản hóa thuật toán :V
 private:
 	void TaoBanDoVaCamera();
-	void TaoDanhSachTileset();
+	void TaoDanhSachTileset(); // Dùng để vẽ Bản Đồ
 	void TaoDanhSachDoiTuong();
 	void VeHinhAnhBanDoGame(const Vec2& in_DoDoi);
 	void CapNhatDanhSachDoiTuong(float in_tg);

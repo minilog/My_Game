@@ -77,12 +77,17 @@ void ManGioiThieu::TaiDuLieu()
 
 void ManGioiThieu::CapNhat(float in_tg)
 {
+	mMario->XuLyBanPhim(mKeys);
 	for (auto m : mDanhSachDoiTuongTinh)
 	{
-		mMario->XuLyVaCham(m);
+		// các đối tượng nằm trong Camera thì mới xét Xử Lý Va Chạm
+		const eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(Camera::get_HCNGioiHan(), m->get_HCNGioiHan());
+		if (lKQVC.eKQVC_DaVaCham)
+		{ 
+			mMario->XuLyVaCham(m);
+		}
 	}
 	mMario->CapNhat(in_tg);
-	mMario->XuLyBanPhim(mKeys);
 
 	CapNhatDanhSachDoiTuong(in_tg);
 
@@ -217,7 +222,8 @@ void ManGioiThieu::VeHinhAnhBanDoGame(const Vec2& in_DoDoi)
 						m * tileHeight + tileHeight / 2);
 
 					{
-						HinhChuNhat lHCN_2(position.x - tileWidth / 2,
+						HinhChuNhat lHCN_2(
+							position.x - tileWidth / 2,
 							position.x + tileWidth / 2,
 							position.y - tileHeight / 2,
 							position.y + tileHeight / 2);

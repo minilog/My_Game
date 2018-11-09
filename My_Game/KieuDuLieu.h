@@ -63,6 +63,6 @@ enum eTrangThai
 	eTT_DungIm, 
 	eTT_ChaySangTrai, eTT_ChaySangPhai,
 	eTT_Roi, 
-	eTT_NhaySangTrai, eTT_NhaySangPhai,
+	eTT_Nhay,
 	eTT_HiSinh // hi sinh = chết :))
 };
