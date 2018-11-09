@@ -1,52 +1,64 @@
 #include "DoiTuong.h"
 
-void DoiTuong::ThietLapToaDo(D3DXVECTOR3 in_ToaDo)
+DoiTuong::DoiTuong(const Vec2& in_ToaDo, const Vec2& in_VanToc, int in_ChieuRong, int in_ChieuCao)
+{
+	mLoaiDoiTuong = eLoaiDoiTuong::eLDT_KhongCo;
+	mToaDo = in_ToaDo;
+	mVanToc = in_VanToc;
+	mChieuRong = in_ChieuRong;
+	mChieuCao = in_ChieuCao;
+}
+
+void DoiTuong::set_ToaDo(Vec2 in_ToaDo)
 {
 	mToaDo = in_ToaDo;
 }
 
-void DoiTuong::ThietLapVanToc(D3DXVECTOR3 in_VanToc)
+void DoiTuong::set_VanToc(Vec2 in_VanToc)
 {
 	mVanToc = in_VanToc;
 }
 
-void DoiTuong::ThietLapChieuRong(int in_ChieuRong)
+void DoiTuong::set_ChieuRong(int in_ChieuRong)
 {
 	mChieuRong = in_ChieuRong;
 }
 
-void DoiTuong::ThietLapChieuCao(int in_ChieuCao)
+void DoiTuong::set_ChieuCao(int in_ChieuCao)
 {
 	mChieuCao = in_ChieuCao;
 }
 
-D3DXVECTOR3 DoiTuong::vToaDo() const
+Vec2 DoiTuong::get_ToaDo() const
 {
 	return mToaDo;
 }
 
-D3DXVECTOR3 DoiTuong::vVanToc() const
+Vec2 DoiTuong::get_VanToc() const
 {
 	return mVanToc;
 }
 
-int DoiTuong::iChieuRong() const
+int DoiTuong::get_ChieuRong() const
 {
 	return mChieuRong;
 }
 
-int DoiTuong::iChieuCao() const
+int DoiTuong::get_ChieuCao() const
 {
 	return mChieuCao;
 }
 
-RECT DoiTuong::rHCNGioiHan() const
+HinhChuNhat DoiTuong::get_HCNGioiHan() const
 {
-	RECT lHCN;
-	lHCN.left = int(mToaDo.x - mChieuRong / 2.0f);
-	lHCN.right = int(mToaDo.x + mChieuRong / 2.0f);
-	lHCN.top = int(mToaDo.y - mChieuCao / 2.0f);
-	lHCN.bottom = int(mToaDo.y + mChieuCao / 2.0f);
+	return HinhChuNhat(
+		mToaDo.x - mChieuRong / 2,
+		mToaDo.x + mChieuRong / 2,
+		mToaDo.y - mChieuCao / 2,
+		mToaDo.y + mChieuCao / 2);
+}
 
-	return lHCN;
+eLoaiDoiTuong DoiTuong::get_LoaiDoiTuong() const 
+{
+	return mLoaiDoiTuong;
 }

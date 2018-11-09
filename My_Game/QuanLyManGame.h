@@ -5,10 +5,10 @@
 class QuanLyManGame
 {
 public:
-	static void ThayTheManGame(ManGame *in_BanDo);
-	static ManGame* mgManGameHienTai();
+	static void set_ManGame(ManGame *in_BanDo);
+	static ManGame* get_ManGame();
 
 private:
-	static ManGame *mManGameHienTai;
+	static ManGame *mManGame;
 };
 

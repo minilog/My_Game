@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <d3dx9.h>
 #include <d3d9.h>
@@ -6,22 +6,6 @@
 
 class ToanCauGame
 {
-public:
-	static void ThietLapTruongHopXuLy(HINSTANCE in_TruongHopXuLy);
-	static void ThietLapCuaSoXuLy(HWND in_CuaSoXuLy);
-	static void ThietLapThietBi(LPDIRECT3DDEVICE9 in_ThietBi);
-	static void ThietLapXuLyHinhAnh(LPD3DXSPRITE in_XuLyHinhAnh);
-	static void ThietLapChieuRong(int in_ChieuRong);
-	static void ThietLapChieuCao(int in_ChieuCao);
-
-public:
-	static HINSTANCE hiTruongHopXuLy();
-	static HWND hwCuaSoXuLy();
-	static LPD3DXSPRITE sXuLyHinhAnh();
-	static LPDIRECT3DDEVICE9 ddThietBi();
-	static int iChieuRong();
-	static int iChieuCao();
-
 private:
 	static HINSTANCE			mTruongHopXuLy;
 	static HWND					mCuaSoXuLy;
@@ -32,4 +16,30 @@ private:
 public:
 	static LPDIRECT3DSURFACE9	mMatSau;
 	static bool					mGameDangChay;
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////
+/*  Các thủ tục SET - GET  */
+public:
+	static void set_TruongHopXuLy(HINSTANCE in_TruongHopXuLy);
+	static void set_CuaSoXuLy(HWND in_CuaSoXuLy);
+	static void set_ThietBi(LPDIRECT3DDEVICE9 in_ThietBi);
+	static void set_XuLyHinhAnh(LPD3DXSPRITE in_XuLyHinhAnh);
+	static void set_ChieuRong(int in_ChieuRong);
+	static void set_ChieuCao(int in_ChieuCao);
+
+	static HINSTANCE get_TruongHopXuLy();
+	static HWND get_CuaSoXuLy();
+	static LPD3DXSPRITE get_XuLyHinhAnh();
+	static LPDIRECT3DDEVICE9 get_ThietBi();
+	static int get_ChieuRong();
+	static int get_ChieuCao();
 };

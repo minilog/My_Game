@@ -1,14 +1,6 @@
-﻿//bắt đầu từ Game -> Màn Game -> Bản Đồ Game
-//bắt đầu từ Game -> Màn Game -> Người Chơi
+﻿#pragma once
 
-#pragma once
-
-#include "d3dx9.h"
-#include "d3d9.h"
-#include <Windows.h>
-#include <dinput.h>
-#include "HoatHinh.h"
-#include "DoiTuong.h"
+#include <d3d9.h>
 
 class Game
 {

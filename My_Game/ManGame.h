@@ -1,16 +1,11 @@
 ﻿#pragma once
 
-#include <d3dx9.h>
-#include <d3d9.h>
-#include "ToanCauGame.h"
 #include "MapReader/Tmx.h.in"
 #include "HinhAnh.h"
 
 // Là 1 lớp giao diện, sử dụng để gọi đến Màn Game thực sự
 class ManGame
 {
-protected:
-	ManGame() { }
 public:
 	virtual void TaiDuLieu() = 0;
 	virtual void CapNhat(float in_tg) = 0;
@@ -20,7 +15,8 @@ public:
 	virtual void OnMouseDown(float in_x, float in_y) = 0;
 
 public:
-	D3DCOLOR cMauNen(){
+	D3DCOLOR cMauNen()
+	{
 		return mMauNen;
 	}
 

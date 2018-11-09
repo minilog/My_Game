@@ -1,21 +1,17 @@
-﻿//bắt đầu từ Game -> Màn Game -> Bản Đồ Game
-//bắt đầu từ Game -> Màn Game -> Người Chơi
-#include "Game.h"
+﻿#include "Game.h"
 #include "ToanCauGame.h"
 #include "ThoiGianGame.h"
 #include "QuanLyManGame.h"
 #include "ManGioiThieu.h"
-#include "Camera.h"
-#include "DanhSachDoiTuong.h"
-#include "DoiTuong.h"
-#include "GachVang.h"
 
 Game::Game(int in_FPS)
 {
 	mFPS = in_FPS;
 
-	QuanLyManGame::ThayTheManGame(new ManGioiThieu());
+	QuanLyManGame::set_ManGame(new ManGioiThieu());
+
 	TaoVongLapGame();
+
 }
 
 void Game::TaoVongLapGame()
@@ -25,7 +21,7 @@ void Game::TaoVongLapGame()
 
 	while (ToanCauGame::mGameDangChay)
 	{
-		ThoiGianGame::tggTruongHop()->BatDauDem();
+		ThoiGianGame::get_TruongHop()->BatDauDem();
 
 		if (PeekMessage(&lMessage, NULL, 0, 0, PM_REMOVE))
 		{
@@ -33,7 +29,7 @@ void Game::TaoVongLapGame()
 			DispatchMessage(&lMessage);
 		}
 
-		lThoiGian += ThoiGianGame::tggTruongHop()->fThoiGianDemDuoc();
+		lThoiGian += ThoiGianGame::get_TruongHop()->get_ThoiGianDemDuoc();
 
 		if (lThoiGian >= lThoiGianThayDoi)
 		{
@@ -50,27 +46,27 @@ void Game::TaoVongLapGame()
 
 void Game::CapNhat(float in_tg)
 {
-	QuanLyManGame::mgManGameHienTai()->CapNhat(in_tg);
+	QuanLyManGame::get_ManGame()->CapNhat(in_tg);
+
 	Ve();
 }
 
 void Game::Ve()
 {
-	auto lThietBi = ToanCauGame::ddThietBi();
-	auto lManGame = QuanLyManGame::mgManGameHienTai();
-	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, lManGame->cMauNen(), 0.0f, 0);
+	auto lThietBi = ToanCauGame::get_ThietBi();
+	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, QuanLyManGame::get_ManGame()->cMauNen(), 0.0f, 0);
 
 	{
 		lThietBi->BeginScene();
 
 		// bắt đầu vẽ
-		ToanCauGame::sXuLyHinhAnh()->Begin(D3DXSPRITE_ALPHABLEND);
+		ToanCauGame::get_XuLyHinhAnh()->Begin(D3DXSPRITE_ALPHABLEND);
 
 		// vẽ ở đây
-		lManGame->Ve();
+		QuanLyManGame::get_ManGame()->Ve();	
 
 		// kết thúc vẽ
-		ToanCauGame::sXuLyHinhAnh()->End();
+		ToanCauGame::get_XuLyHinhAnh()->End();
 
 		lThietBi->EndScene();
 	}

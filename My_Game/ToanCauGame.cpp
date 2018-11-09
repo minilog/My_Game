@@ -9,62 +9,62 @@ int ToanCauGame::mChieuCao = 700;
 IDirect3DSurface9* ToanCauGame::mMatSau = nullptr;
 bool ToanCauGame::mGameDangChay = true;
 
-void ToanCauGame::ThietLapTruongHopXuLy(HINSTANCE in_TruongHopXuLy)
+void ToanCauGame::set_TruongHopXuLy(HINSTANCE in_TruongHopXuLy)
 {
 	mTruongHopXuLy = in_TruongHopXuLy;
 }
 
-HINSTANCE ToanCauGame::hiTruongHopXuLy()
+HINSTANCE ToanCauGame::get_TruongHopXuLy()
 {
 	return mTruongHopXuLy;
 }
 
-void ToanCauGame::ThietLapCuaSoXuLy(HWND in_CuaSoXuLy)
+void ToanCauGame::set_CuaSoXuLy(HWND in_CuaSoXuLy)
 {
 	mCuaSoXuLy = in_CuaSoXuLy;
 }
 
-HWND ToanCauGame::hwCuaSoXuLy()
+HWND ToanCauGame::get_CuaSoXuLy()
 {
 	return mCuaSoXuLy;
 }
 
-void ToanCauGame::ThietLapXuLyHinhAnh(LPD3DXSPRITE in_XuLyHinhAnh)
+void ToanCauGame::set_XuLyHinhAnh(LPD3DXSPRITE in_XuLyHinhAnh)
 {
 	mXuLyHinhAnh = in_XuLyHinhAnh;
 }
 
-LPD3DXSPRITE ToanCauGame::sXuLyHinhAnh()
+LPD3DXSPRITE ToanCauGame::get_XuLyHinhAnh()
 {
 	return mXuLyHinhAnh;
 }
 
-void ToanCauGame::ThietLapThietBi(LPDIRECT3DDEVICE9 in_ThietBi)
+void ToanCauGame::set_ThietBi(LPDIRECT3DDEVICE9 in_ThietBi)
 {
 	mThietBi = in_ThietBi;
 }
 
-LPDIRECT3DDEVICE9 ToanCauGame::ddThietBi()
+LPDIRECT3DDEVICE9 ToanCauGame::get_ThietBi()
 {
 	return mThietBi;
 }
 
-void ToanCauGame::ThietLapChieuRong(int in_ChieuRong)
+void ToanCauGame::set_ChieuRong(int in_ChieuRong)
 {
 	mChieuRong = in_ChieuRong;
 }
 
-int ToanCauGame::iChieuRong()
+int ToanCauGame::get_ChieuRong()
 {
 	return mChieuRong;
 }
 
-void ToanCauGame::ThietLapChieuCao(int in_ChieuCao)
+void ToanCauGame::set_ChieuCao(int in_ChieuCao)
 {
 	mChieuCao = in_ChieuCao;
 }
 
-int ToanCauGame::iChieuCao()
+int ToanCauGame::get_ChieuCao()
 {
 	return mChieuCao;
 }

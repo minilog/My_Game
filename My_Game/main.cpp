@@ -61,15 +61,15 @@ int	KhoiTaoCuaSo(int cmdShow)
 		WS_OVERLAPPEDWINDOW,
 		300,
 		100,
-		ToanCauGame::iChieuRong(),
-		ToanCauGame::iChieuCao(),
+		ToanCauGame::get_ChieuRong(),
+		ToanCauGame::get_ChieuCao(),
 		NULL,
 		NULL,
 		mTruongHopXuLy,
 		NULL);
 
-	ToanCauGame::ThietLapTruongHopXuLy(mTruongHopXuLy);
-	ToanCauGame::ThietLapCuaSoXuLy(cuaSoXuLy);
+	ToanCauGame::set_TruongHopXuLy(mTruongHopXuLy);
+	ToanCauGame::set_CuaSoXuLy(cuaSoXuLy);
 
 	ShowWindow(cuaSoXuLy, cmdShow);
 	UpdateWindow(cuaSoXuLy);
@@ -93,21 +93,21 @@ int KhoiTaoThietBi()
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
 	d3dpp.BackBufferCount = 1;
-	d3dpp.BackBufferWidth = ToanCauGame::iChieuRong();
-	d3dpp.BackBufferHeight = ToanCauGame::iChieuCao();
+	d3dpp.BackBufferWidth = ToanCauGame::get_ChieuRong();
+	d3dpp.BackBufferHeight = ToanCauGame::get_ChieuCao();
 
 	HRESULT dvresult = mD3d->CreateDevice(D3DADAPTER_DEFAULT,
 		D3DDEVTYPE_HAL,
-		ToanCauGame::hwCuaSoXuLy(),
+		ToanCauGame::get_CuaSoXuLy(),
 		D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 		&d3dpp,
 		&mThietBi);
 
-	ToanCauGame::ThietLapThietBi(mThietBi);
+	ToanCauGame::set_ThietBi(mThietBi);
 
-	D3DXCreateSprite(ToanCauGame::ddThietBi(), &mXuLyHinhAnh);
+	D3DXCreateSprite(ToanCauGame::get_ThietBi(), &mXuLyHinhAnh);
 
-	ToanCauGame::ThietLapXuLyHinhAnh(mXuLyHinhAnh);
+	ToanCauGame::set_XuLyHinhAnh(mXuLyHinhAnh);
 
 	return 1;
 }
@@ -125,16 +125,16 @@ LRESULT CALLBACK ThuTucCuaSo(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 		break;
 
 	case WM_LBUTTONDOWN:
-		QuanLyManGame::mgManGameHienTai()->OnMouseDown((float)GET_X_LPARAM(lParam),
+		QuanLyManGame::get_ManGame()->OnMouseDown((float)GET_X_LPARAM(lParam),
 			(float)GET_Y_LPARAM(lParam));
 		break;
 
 	case WM_KEYDOWN:
-		QuanLyManGame::mgManGameHienTai()->OnKeyDown(wParam);
+		QuanLyManGame::get_ManGame()->OnKeyDown(wParam);
 		break;
 
 	case WM_KEYUP:
-		QuanLyManGame::mgManGameHienTai()->OnKeyUp(wParam);
+		QuanLyManGame::get_ManGame()->OnKeyUp(wParam);
 		break;
 
 	default:

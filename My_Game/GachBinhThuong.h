@@ -6,22 +6,26 @@
 class GachBinhThuong : public DoiTuong
 {
 public:
-	GachBinhThuong(D3DXVECTOR3 in_ToaDo) : 
-		DoiTuong(in_ToaDo, D3DXVECTOR3(0.0f, 0.0f, 0.0f), 32, 32) 
+	GachBinhThuong(Vec2 in_ToaDo) : 
+		DoiTuong(in_ToaDo, Vec2(), 32, 32) 
 	{
 		mHoatHinh = new HoatHinh("Resources/normalbrick.png", 1, 1, 1, 1.0f);
+		DoiTuong::mLoaiDoiTuong = eLDT_VienGachBinhThuong;
 	}
 
 	void CapNhat(float in_tg)
 	{
-		mHoatHinh->ThietLapToaDo(mToaDo);
 		mHoatHinh->CapNhat(in_tg);
 	}
-	void Ve(D3DXVECTOR2 in_DoDoi)
+	void Ve(const Vec2& in_DoDoi)
 	{
-		mHoatHinh->ThietLapDoDoi(in_DoDoi);
+		mHoatHinh->set_ToaDo(mToaDo);
+		mHoatHinh->set_DoDoi(in_DoDoi);
 		mHoatHinh->Ve();
 	}
+
+	virtual void XuLyVaCham(const DoiTuong* in_DoiTuong) 
+	{}
 private:
 	HoatHinh *mHoatHinh;
 };

@@ -3,34 +3,31 @@
 HoatHinh::HoatHinh(const char * in_DuongDan, int in_TongKhuonHinh, int in_SoHang, int in_SoCot, float in_ThoiGianThayDoi)
 	:HinhAnh(in_DuongDan)
 {
-	KhoiTaoVoiHoatHinh(in_TongKhuonHinh, in_SoHang, in_SoCot, in_ThoiGianThayDoi);
-}
-
-void HoatHinh::KhoiTaoVoiHoatHinh(int in_TongKhuonHinh, int in_SoHang, int in_SoCot, float in_ThoiGianThayDoi)
-{
 	//GAMELOG("HoatHinh: TongKhuonHinh: %d, SoHang: %d, SoCot: %d, ThoiGianThayDoi: %f" in_TongKhuonHinh, in_SoHang, in_SoCot, in_ThoiGianThayDoi)
-	mTongSoKhuonHinh = in_TongKhuonHinh;
+	mTongKhuonHinh = in_TongKhuonHinh;
 	mSoHang = in_SoHang;
 	mSoCot = in_SoCot;
 	//mChieuCao, mChieuRong bây giờ là của khuôn hình Hoạt Hình
 	HinhAnh::mChieuRong /= mSoCot;
 	HinhAnh::mChieuCao /= mSoHang;
 
-	mThoiGianThayDoi = in_ThoiGianThayDoi;
 	mHangHienTai = 0;
 	mCotHienTai = 0;
+
+	mThoiGianThayDoi = in_ThoiGianThayDoi;
 	mTongThoiGianHienTai = 0.0f;
 
 	// chỉnh hình chữ nhật để đúng khuôn Hình được vẽ ra
-	HinhAnh::mHCN.left = 0;
-	HinhAnh::mHCN.right = HinhAnh::mChieuRong;
-	HinhAnh::mHCN.top = 0;
-	HinhAnh::mHCN.bottom = HinhAnh::mChieuCao;
+	HinhAnh::mHCN = HinhChuNhat(
+		0,
+		HinhAnh::mChieuRong,
+		0,
+		HinhAnh::mChieuCao);
 }
 
 void HoatHinh::CapNhat(float in_tg)
 {
-	if (mTongSoKhuonHinh <= 1)
+	if (mTongKhuonHinh <= 1)
 	{
 		return;
 	}
@@ -56,35 +53,13 @@ void HoatHinh::CapNhat(float in_tg)
 			}
 		}
 
-		HinhAnh::mHCN.left = mCotHienTai * HinhAnh::mChieuRong;
-		HinhAnh::mHCN.right = HinhAnh::mHCN.left + HinhAnh::mChieuRong;
-		HinhAnh::mHCN.top = mHangHienTai * HinhAnh::mChieuCao;
-		HinhAnh::mHCN.bottom = HinhAnh::mHCN.top + HinhAnh::mChieuCao;
+		HinhAnh::mHCN = HinhChuNhat(
+			mCotHienTai * HinhAnh::mChieuRong,
+			mCotHienTai * HinhAnh::mChieuRong + HinhAnh::mChieuRong,
+			mHangHienTai * HinhAnh::mChieuCao,
+			mHangHienTai * HinhAnh::mChieuCao + HinhAnh::mChieuCao);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////
-/*								 Các hàm đơn giản					             */
-///////////////////////////////////////////////////////////////////////////////////
 
 void HoatHinh::Ve()
 {

@@ -1,20 +1,17 @@
 ﻿#pragma once
 
-#include <d3dx9.h>
-#include <d3d9.h>
 #include "DoiTuong.h"
-#include "KieuDuLieuEnum.h"
 
 class VaChamGame
 {
 public:
-	static eKetQuaVaCham kqvcHCNVaHCN(RECT in_HCN1, RECT in_HCN2);
-	static ePhiaVaCham pvcPhiaVaCham(const DoiTuong *in_DoiTuong, eKetQuaVaCham in_KetQuaVaCham);
+	static eKetQuaVaCham get_KetQuaVaCham(const HinhChuNhat& in_HCN1, const HinhChuNhat& in_HCN2);
+	static ePhiaVaCham get_PhiaVaCham(const DoiTuong *in_DoiTuong, eKetQuaVaCham in_KetQuaVaCham);
 	// nếu Rectangle quá to thì va chạm có thể bị sai
-	static ePhiaVaCham pvcPhiaVaCham(const DoiTuong *in_DoiTuong1, const DoiTuong *in_DoiTuong2);
+	static ePhiaVaCham get_PhiaVaCham(const DoiTuong *in_DoiTuong1, const DoiTuong *in_DoiTuong2);
 
-	static bool bDaVaCham(RECT in_HCN1, RECT in_HCN2);
-	static bool bDiemVaHCN(float in_X, float in_Y, RECT in_HCN);
-	static bool bHCNVaHinhTron(RECT in_HCN, int in_TamX, int in_TamY, int in_BanKinh);
+	static bool get_DaVaCham(const HinhChuNhat& in_HCN1, const HinhChuNhat& in_HCN2);
+	static bool get_DiemVaHCN(int in_X, int in_Y, const HinhChuNhat& in_HCN);
+	static bool get_HCNVaHinhTron(const HinhChuNhat& in_HCN, int in_TamX, int in_TamY, int in_BanKinh);
 };
 

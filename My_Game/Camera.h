@@ -1,22 +1,36 @@
 ﻿#pragma once
 
-#include <d3dx9.h>
-#include <d3d9.h>
+#include "KieuDuLieu.h"
 
 class Camera
 {
-public:
-	static void CungCapDuLieu(D3DXVECTOR3 in_ToaDo, int in_ChieuRong, int in_ChieuCao);
-	static void ThietLapToaDo(D3DXVECTOR3 in_ToaDo);
-
-	static D3DXVECTOR3 vToaDo();
-	static int iChieuRong();
-	static int iChieuCao();
-	static RECT rHCNGioiHan();
-
 private:
-	static D3DXVECTOR3 mToaDo; // chính giữa camera
+	static Vec2 mToaDo; // chính giữa camera
 	static int mChieuRong;
 	static int mChieuCao;
+	static int mGioiHanTrai;
+	static int mGioiHanPhai;
+	static int mGioiHanTren;
+	static int mGioiHanDuoi;
+
+
+
+
+
+
+
+	
+	
+/////////////////////////////
+/*  Các thủ tục SET - GET  */
+public:
+	static void set_ToaDo(const Vec2& in_ToaDo);
+	static void set_KichThuoc(int in_ChieuRong, int in_ChieuCao);
+	static void set_GioiHan(int in_Trai, int in_Phai, int in_Tren, int in_Duoi);
+
+	static Vec2 get_ToaDo();
+	static int get_ChieuRong();
+	static int get_ChieuCao();
+	static HinhChuNhat get_HCNGioiHan();
 };
 

@@ -1,34 +1,39 @@
 ﻿#include "VaChamGame.h"
+#include "map"
 
-eKetQuaVaCham VaChamGame::kqvcHCNVaHCN(RECT in_HCN1, RECT in_HCN2)
+eKetQuaVaCham VaChamGame::get_KetQuaVaCham(const HinhChuNhat& in_HCN1, const HinhChuNhat& in_HCN2)
 {
 	eKetQuaVaCham lKetQuaVaCham;
 
-	if (!bDaVaCham(in_HCN1, in_HCN2))
+	if (!get_DaVaCham(in_HCN1, in_HCN2))
 	{
-		lKetQuaVaCham.DaVaCham = false;
+		lKetQuaVaCham.eKQVC_DaVaCham = false;
 
 		return lKetQuaVaCham;
 	}
 
-	lKetQuaVaCham.DaVaCham = true;
+	lKetQuaVaCham.eKQVC_DaVaCham = true;
 
 	// vùng va chạm hình chữ nhật
-	lKetQuaVaCham.VungVaCham.left = in_HCN1.left > in_HCN2.left ? in_HCN1.left : in_HCN2.left;
-	lKetQuaVaCham.VungVaCham.right = in_HCN1.right < in_HCN2.right ? in_HCN1.right : in_HCN2.right;
-	lKetQuaVaCham.VungVaCham.bottom = in_HCN1.bottom < in_HCN2.bottom ? in_HCN1.bottom : in_HCN2.bottom;
-	lKetQuaVaCham.VungVaCham.top = in_HCN1.top > in_HCN2.top ? in_HCN1.top : in_HCN2.top;
+	lKetQuaVaCham.eKQVC_VungVaCham.Trai = in_HCN1.Trai > in_HCN2.Trai ? in_HCN1.Trai : in_HCN2.Trai;
+	lKetQuaVaCham.eKQVC_VungVaCham.Phai = in_HCN1.Phai < in_HCN2.Phai ? in_HCN1.Phai : in_HCN2.Phai;
+	lKetQuaVaCham.eKQVC_VungVaCham.Duoi = in_HCN1.Duoi < in_HCN2.Duoi ? in_HCN1.Duoi : in_HCN2.Duoi;
+	lKetQuaVaCham.eKQVC_VungVaCham.Tren = in_HCN1.Tren > in_HCN2.Tren ? in_HCN1.Tren : in_HCN2.Tren;
 
 	return lKetQuaVaCham;
 }
 
-ePhiaVaCham VaChamGame::pvcPhiaVaCham(const DoiTuong * in_DoiTuong, eKetQuaVaCham in_KetQuaVaCham)
+ePhiaVaCham VaChamGame::get_PhiaVaCham(const DoiTuong * in_DoiTuong, eKetQuaVaCham in_KetQuaVaCham)
 {
-	float lTrungTamVaChamX = in_KetQuaVaCham.VungVaCham.left + (in_KetQuaVaCham.VungVaCham.right - in_KetQuaVaCham.VungVaCham.left) / 2.0f;
-	float lTrungTamVaChamY = in_KetQuaVaCham.VungVaCham.top + (in_KetQuaVaCham.VungVaCham.bottom - in_KetQuaVaCham.VungVaCham.top) / 2.0f;
+	float lTrungTamVaChamX = in_KetQuaVaCham.eKQVC_VungVaCham.Trai + (in_KetQuaVaCham.eKQVC_VungVaCham.Phai - in_KetQuaVaCham.eKQVC_VungVaCham.Trai) / 2.0f;
+	float lTrungTamVaChamY = in_KetQuaVaCham.eKQVC_VungVaCham.Tren + (in_KetQuaVaCham.eKQVC_VungVaCham.Duoi - in_KetQuaVaCham.eKQVC_VungVaCham.Tren) / 2.0f;
 
-	D3DXVECTOR2 lTrungTamVaCham = D3DXVECTOR2(lTrungTamVaChamX, lTrungTamVaChamY);
-	D3DXVECTOR2 lTrungTamThucThe = in_DoiTuong->vToaDo();
+	D3DXVECTOR2 lTrungTamVaCham = D3DXVECTOR2(
+		lTrungTamVaChamX, 
+		lTrungTamVaChamY);
+	D3DXVECTOR2 lTrungTamThucThe = D3DXVECTOR2(
+		(float)in_DoiTuong->get_ToaDo().x, 
+		(float)in_DoiTuong->get_ToaDo().y);
 
 	// lấy vector nối từ Thực Thể đến Vùng Va Chạm
 	D3DXVECTOR2 lVec = lTrungTamVaCham - lTrungTamThucThe;
@@ -46,68 +51,68 @@ ePhiaVaCham VaChamGame::pvcPhiaVaCham(const DoiTuong * in_DoiTuong, eKetQuaVaCha
 	if (lVec.y < 0)
 	{
 		// va chạm phía bên trên
-		//lay cos cua goc neu ma nam trong khoang goc 70 -> 110 thi va cham Tren
-		if (lVec.x <= 0.35f && lVec.x >= -0.35f)
+		//lay cos cua goc neu ma nam trong khoang goc 55 -> 125 thi va cham Tren
+		if (lVec.x <= 0.57f && lVec.x >= -0.57f)
 		{
-			return ePhiaVaCham::eTren;
+			return ePhiaVaCham::ePVC_Tren;
 		}
-		else if (lVec.x > 0.35f && lVec.x < 0.8f)
+		else if (lVec.x > 0.57f && lVec.x < 0.82f)
 		{
-			//goc trong khoang 35 -> 70 phia ben Tren - Phai
-			return ePhiaVaCham::ePhaiBenTren;
+			//goc trong khoang 35 -> 55 phia ben Tren - Phai
+			return ePhiaVaCham::ePVC_PhaiTren;
 		}
-		else if (lVec.x >= 0.8f)
+		else if (lVec.x >= 0.82f)
 		{
-			return ePhiaVaCham::ePhai;
+			return ePhiaVaCham::ePVC_Phai;
 		}
-		else if (lVec.x < -0.35f && lVec.x >= -0.8f)
+		else if (lVec.x < -0.57f && lVec.x > -0.82f)
 		{
 			// va chạm phía Trên - Trái
-			return ePhiaVaCham::eTraiBenTren;
+			return ePhiaVaCham::ePVC_TraiTren;
 		}
 		else
 		{
-			return ePhiaVaCham::eTrai;
+			return ePhiaVaCham::ePVC_Trai;
 		}
 	}
 	else
 	{
 		// va chạm phía bên dưới
-		//lay cos cua goc neu ma nam trong khoang goc 70 -> 110 thi va cham top
-		if (lVec.x <= 0.35f && lVec.x >= -0.35)
+		//lay cos cua goc neu ma nam trong khoang goc 55 -> 125 thi va cham top
+		if (lVec.x <= 0.57f && lVec.x >= -0.57f)
 		{
-			return ePhiaVaCham::eDuoi;
+			return ePhiaVaCham::ePVC_Duoi;
 		}
-		else if (lVec.x > 0.35 && lVec.x < 0.8)
+		else if (lVec.x > 0.57f && lVec.x < 0.82f)
 		{
-			//goc trong khoang 35 -> 70 phia ben top - right
-			return ePhiaVaCham::ePhaiBenDuoi;
+			//goc trong khoang 35 -> 55 phia ben top - right
+			return ePhiaVaCham::ePVC_PhaiDuoi;
 		}
-		else if (lVec.x >= 0.8)
+		else if (lVec.x >= 0.82f)
 		{
-			return ePhiaVaCham::ePhai;
+			return ePhiaVaCham::ePVC_Phai;
 		}
-		else if (lVec.x < -0.35f && lVec.x > -0.8f)
+		else if (lVec.x < -0.57f && lVec.x > -0.82f)
 		{
 			//va cham phia top - left
-			return ePhiaVaCham::eTraiBenDuoi;
+			return ePhiaVaCham::ePVC_TraiDuoi;
 		}
 		else
 		{
-			return ePhiaVaCham::eTrai;
+			return ePhiaVaCham::ePVC_Trai;
 		}
 	}
 
-	return ePhiaVaCham::eKhongXacDinh;
+	return ePhiaVaCham::ePVC_KhongXacDinh;
 }
 
-ePhiaVaCham VaChamGame::pvcPhiaVaCham(const DoiTuong * in_DoiTuong1, const DoiTuong * in_DoiTuong2)
+ePhiaVaCham VaChamGame::get_PhiaVaCham(const DoiTuong * in_DoiTuong1, const DoiTuong * in_DoiTuong2)
 {
-	float lW = (in_DoiTuong1->iChieuRong() + in_DoiTuong2->iChieuRong()) / 2.0f;
-	float lH = (in_DoiTuong1->iChieuCao() + in_DoiTuong2->iChieuCao()) / 2.0f;
+	float lW = (in_DoiTuong1->get_ChieuRong() + in_DoiTuong2->get_ChieuRong()) / 2.0f;
+	float lH = (in_DoiTuong1->get_ChieuCao() + in_DoiTuong2->get_ChieuCao()) / 2.0f;
 
-	float lDx = in_DoiTuong1->vToaDo().x - in_DoiTuong2->vToaDo().y;
-	float lDy = in_DoiTuong1->vToaDo().x - in_DoiTuong2->vToaDo().y;
+	float lDx = (float)in_DoiTuong1->get_ToaDo().x - in_DoiTuong2->get_ToaDo().y;
+	float lDy = (float)in_DoiTuong1->get_ToaDo().x - in_DoiTuong2->get_ToaDo().y;
 
 	if (abs(lDx) <= lW && abs(lDy) <= lH)
 	{
@@ -120,27 +125,27 @@ ePhiaVaCham VaChamGame::pvcPhiaVaCham(const DoiTuong * in_DoiTuong1, const DoiTu
 			if (lWy > -lHx)
 			{
 				/*va cham phia tren Thực Thể 1*/
-				return ePhiaVaCham::eTren;
+				return ePhiaVaCham::ePVC_Tren;
 			}
 			else
 			{
 				/*va chạm phía bên phải Thực Thể 1*/
-				return ePhiaVaCham::ePhai;
+				return ePhiaVaCham::ePVC_Phai;
 			}
 		}
 		else if (lWy > -lHx)
 		{
 			/*va chạm phía bên trái Thực Thể 1*/
-			return ePhiaVaCham::eTrai;
+			return ePhiaVaCham::ePVC_Trai;
 		}
 		else
 		{
 			/*va chạm phía bên dưới Thực Thể 1*/
-			return ePhiaVaCham::eDuoi;
+			return ePhiaVaCham::ePVC_Duoi;
 		}
 	}
 
-	return ePhiaVaCham::eKhongXacDinh;
+	return ePhiaVaCham::ePVC_KhongXacDinh;
 }
 
 
@@ -166,12 +171,12 @@ ePhiaVaCham VaChamGame::pvcPhiaVaCham(const DoiTuong * in_DoiTuong1, const DoiTu
 /*								 Các hàm đơn giản					             */
 ///////////////////////////////////////////////////////////////////////////////////
 
-bool VaChamGame::bDaVaCham(RECT in_HCN1, RECT in_HCN2)
+bool VaChamGame::get_DaVaCham(const HinhChuNhat& in_HCN1, const HinhChuNhat& in_HCN2)
 {
-	if (in_HCN1.left > in_HCN2.right ||
-		in_HCN1.right < in_HCN2.left ||
-		in_HCN1.top > in_HCN2.bottom ||
-		in_HCN1.bottom < in_HCN2.top)
+	if (in_HCN1.Trai > in_HCN2.Phai ||
+		in_HCN1.Phai < in_HCN2.Trai ||
+		in_HCN1.Tren > in_HCN2.Duoi ||
+		in_HCN1.Duoi < in_HCN2.Tren)
 	{
 		return false;
 	}
@@ -179,12 +184,12 @@ bool VaChamGame::bDaVaCham(RECT in_HCN1, RECT in_HCN2)
 	return true;
 }
 
-bool VaChamGame::bDiemVaHCN(float in_X, float in_Y, RECT in_HCN)
+bool VaChamGame::get_DiemVaHCN(int in_X, int in_Y, const HinhChuNhat& in_HCN)
 {
-	if (int(in_X) < in_HCN.left ||
-		int(in_X) > in_HCN.right ||
-		int(in_Y) < in_HCN.top ||
-		int(in_Y) > in_HCN.bottom)
+	if (int(in_X) < in_HCN.Trai ||
+		int(in_X) > in_HCN.Phai ||
+		int(in_Y) < in_HCN.Tren ||
+		int(in_Y) > in_HCN.Duoi)
 	{
 		return false;
 	}
@@ -192,20 +197,20 @@ bool VaChamGame::bDiemVaHCN(float in_X, float in_Y, RECT in_HCN)
 	return true;
 }
 
-bool VaChamGame::bHCNVaHinhTron(RECT in_HCN, int in_TamX, int in_TamY, int in_BanKinh)
+bool VaChamGame::get_HCNVaHinhTron(const HinhChuNhat& in_HCN, int in_TamX, int in_TamY, int in_BanKinh)
 {
 	int lPx = in_TamX;
 	int lPy = in_TamY;
 
-	if (lPx < in_HCN.left)
-		lPx = in_HCN.left;
-	else if (lPx > in_HCN.right)
-		lPx = in_HCN.right;
+	if (lPx < in_HCN.Trai)
+		lPx = in_HCN.Trai;
+	else if (lPx > in_HCN.Phai)
+		lPx = in_HCN.Phai;
 
-	if (lPy > in_HCN.bottom)
-		lPy = in_HCN.bottom;
-	else if (lPy < in_HCN.top)
-		lPy = in_HCN.top;
+	if (lPy > in_HCN.Duoi)
+		lPy = in_HCN.Duoi;
+	else if (lPy < in_HCN.Tren)
+		lPy = in_HCN.Tren;
 
 	int lDx = lPx - in_TamX;
 	int lDy = lPy - in_TamY;

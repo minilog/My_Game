@@ -1,38 +1,15 @@
 ﻿#include "QuanLyManGame.h"
 
-ManGame* QuanLyManGame::mManGameHienTai = nullptr;
+ManGame* QuanLyManGame::mManGame = nullptr;
 
-void QuanLyManGame::ThayTheManGame(ManGame * in_BanDo)
+void QuanLyManGame::set_ManGame(ManGame * in_BanDo)
 {
-	delete mManGameHienTai;
-	mManGameHienTai = in_BanDo;
+	delete mManGame;
+	mManGame = in_BanDo;
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-///////////////////////////////////////////////////////////////////////////////////
-/*								 Các hàm đơn giản					             */
-///////////////////////////////////////////////////////////////////////////////////
-
-
-ManGame * QuanLyManGame::mgManGameHienTai()
+ManGame * QuanLyManGame::get_ManGame()
 {
-	return mManGameHienTai;
+	return mManGame;
 }
