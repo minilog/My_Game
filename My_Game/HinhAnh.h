@@ -22,7 +22,7 @@ protected:
 	int                     mChieuRong; 
 	int						mChieuCao;			// kích thước của Kết Cấu Hình Ảnh
 	HinhChuNhat             mHCN;				// hình chữ nhật cắt từ Kết Cấu Hình Ảnh
-	Vec2					mTiLe;
+	D3DXVECTOR2				mTiLe;
 	bool					mLatTheoChieuNgang;
 	bool                    mLatTheoChieuDoc;
 	int						mGocXoayHinh;
@@ -43,7 +43,7 @@ public:
 	void set_ChieuRong(int in_ChieuRong);
 	void set_ChieuCao(int in_ChieuCao);
 	void set_HCN(const HinhChuNhat& in_HCN);
-	void set_TiLe(const Vec2& in_TiLe);
+	void set_TiLe(const D3DXVECTOR2& in_TiLe);
 	void set_LatTheoChieuNgang(bool in_Co);
 	void set_LatTheoChieuDoc(bool in_Co);
 	void set_GocXoayHinh(int in_GocXoay);
@@ -54,7 +54,7 @@ public:
 	Vec2 get_ToaDo() const;
 	int get_ChieuRong();
 	int get_ChieuCao();
-	Vec2 get_TiLe() const;
+	D3DXVECTOR2 get_TiLe() const;
 	bool get_LatTheoChieuNgang();
 	bool get_LatTheoChieuDoc();
 	int	get_GocXoayHinh();

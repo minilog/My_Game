@@ -9,7 +9,7 @@ HinhAnh::HinhAnh(const char * in_DuongDan)
 	mChieuRong = mThongTinHinhAnh.Width;
 	mChieuCao = mThongTinHinhAnh.Height;
 	mHCN = HinhChuNhat(0, mChieuRong, 0, mChieuCao);
-	mTiLe = Vec2(1, 1);
+	mTiLe = D3DXVECTOR2(1.0f, 1.0f);
 	mLatTheoChieuNgang = false;
 	mLatTheoChieuDoc = false;
 	mGocXoayHinh = 0;
@@ -154,12 +154,12 @@ void HinhAnh::set_HCN(const HinhChuNhat& in_HCN)
 	mHCN = in_HCN;
 }
 
-void HinhAnh::set_TiLe(const Vec2& in_TiLe)
+void HinhAnh::set_TiLe(const D3DXVECTOR2& in_TiLe)
 {
 	mTiLe = in_TiLe;
 }
 
-Vec2 HinhAnh::get_TiLe() const
+D3DXVECTOR2 HinhAnh::get_TiLe() const
 {
 	return mTiLe;
 }

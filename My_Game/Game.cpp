@@ -34,7 +34,7 @@ void Game::TaoVongLapGame()
 		if (lThoiGian >= lThoiGianThayDoi)
 		{
 			CapNhat((lThoiGian));
-			lThoiGian = 0;
+			lThoiGian -= lThoiGianThayDoi;
 		}
 		else
 		{

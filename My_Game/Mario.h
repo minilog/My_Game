@@ -8,7 +8,7 @@
 class Mario : public DoiTuong
 {	
 public:
-	Mario();
+	Mario(const Vec2& in_ToaDo = Vec2(200, 800));
 	~Mario();
 
 	void CapNhat(float in_tg);
@@ -36,8 +36,8 @@ private:
 	// phải xét hết tất cả đối tượng, nếu không có đối tượng nào bên dưới thì mới rơi
 	bool mDangDungTuNhienRoi = false;
 
-	static constexpr float mGiaTocTrongTruong = 0.25f;
-	float mGiaTocTrongTruongHienTai = 0.0f;
-	static constexpr int mVanTocNhayCaoNhat = 8;
+	static constexpr float mGiaTocTrongTruong = 0.28f;
+	float mBienDemGiaTocTrongTruong = 0.0f;
+	static constexpr int mVanTocNhayCaoNhat = 9;
 };
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="32" tileheight="32" infinite="0" nextobjectid="138">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="32" tileheight="32" infinite="0" nextobjectid="163">
  <tileset firstgid="1" source="TheGioiMario.tsx"/>
  <layer name="Tile Layer 1" width="100" height="30">
   <data encoding="csv">
@@ -35,7 +35,7 @@
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
 </data>
  </layer>
- <objectgroup name="GachVang" visible="0">
+ <objectgroup name="GachVang">
   <object id="62" gid="25" x="481" y="417" width="32" height="32"/>
   <object id="63" gid="25" x="353" y="417" width="32" height="32"/>
   <object id="64" gid="25" x="385" y="417" width="32" height="32"/>
@@ -46,25 +46,30 @@
   <object id="69" gid="25" x="993" y="512" width="32" height="32"/>
   <object id="70" gid="25" x="1025" y="512" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="GachBinhThuong" visible="0">
-  <object id="71" gid="3" x="161" y="705" width="32" height="32"/>
-  <object id="72" gid="3" x="161" y="673" width="32" height="32"/>
-  <object id="73" gid="3" x="161" y="641" width="32" height="32"/>
-  <object id="74" gid="3" x="193" y="704" width="32" height="32"/>
-  <object id="75" gid="3" x="225" y="704" width="32" height="32"/>
-  <object id="76" gid="3" x="225" y="672" width="32" height="32"/>
-  <object id="77" gid="3" x="225" y="640" width="32" height="32"/>
-  <object id="78" gid="3" x="288" y="640" width="32" height="32"/>
-  <object id="79" gid="3" x="288" y="672" width="32" height="32"/>
-  <object id="80" gid="3" x="288" y="704" width="32" height="32"/>
-  <object id="81" gid="3" x="353" y="641" width="32" height="32"/>
-  <object id="85" gid="3" x="385" y="641" width="32" height="32"/>
-  <object id="86" gid="3" x="417" y="641" width="32" height="32"/>
-  <object id="87" gid="3" x="385" y="673" width="32" height="32"/>
-  <object id="88" gid="3" x="385" y="705" width="32" height="32"/>
+ <objectgroup name="GachBinhThuong">
+  <object id="142" gid="3" x="192" y="832" width="32" height="32"/>
+  <object id="144" gid="3" x="128" y="832" width="32" height="32"/>
+  <object id="145" gid="3" x="256" y="832" width="32" height="32"/>
+  <object id="146" gid="3" x="160" y="832" width="32" height="32"/>
+  <object id="147" gid="3" x="224" y="832" width="32" height="32"/>
+  <object id="148" gid="3" x="128" y="640" width="32" height="32"/>
+  <object id="149" gid="3" x="128" y="672" width="32" height="32"/>
+  <object id="150" gid="3" x="128" y="704" width="32" height="32"/>
+  <object id="151" gid="3" x="160" y="704" width="32" height="32"/>
+  <object id="152" gid="3" x="192" y="704" width="32" height="32"/>
+  <object id="153" gid="3" x="192" y="672" width="32" height="32"/>
+  <object id="154" gid="3" x="192" y="640" width="32" height="32"/>
+  <object id="155" gid="3" x="256" y="640" width="32" height="32"/>
+  <object id="156" gid="3" x="256" y="672" width="32" height="32"/>
+  <object id="157" gid="3" x="256" y="704" width="32" height="32"/>
+  <object id="158" gid="3" x="352" y="640" width="32" height="32"/>
+  <object id="159" gid="3" x="352" y="672" width="32" height="32"/>
+  <object id="160" gid="3" x="352" y="704" width="32" height="32"/>
+  <object id="161" gid="3" x="320" y="640" width="32" height="32"/>
+  <object id="162" gid="3" x="384" y="640" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="DoiTuongTinh">
-  <object id="89" x="0" y="-2" width="30" height="960"/>
+  <object id="89" x="0" y="0" width="30" height="958"/>
   <object id="90" x="0" y="896" width="3199" height="62"/>
   <object id="92" x="3168" y="1" width="32" height="955"/>
   <object id="93" x="2699" y="399"/>

@@ -1,8 +1,8 @@
 ﻿#include "Mario.h"
 #include "Camera.h"
 
-Mario::Mario() :
-	DoiTuong(Vec2(40, 800), Vec2(), 28, 32)
+Mario::Mario(const Vec2& in_ToaDo) :
+	DoiTuong(in_ToaDo, Vec2(), 30, 30)
 {
 	mLoaiDoiTuong = eLoaiDoiTuong::eLDT_Mario;
 
@@ -28,23 +28,22 @@ void Mario::CapNhat(float in_tg) {
 	switch (mTT_HienTai)
 	{
 	case eTT_Nhay:
-		mGiaTocTrongTruongHienTai += mGiaTocTrongTruong;
-		if (mGiaTocTrongTruongHienTai >= 1.0f)
+		mBienDemGiaTocTrongTruong += mGiaTocTrongTruong;
+		if (mBienDemGiaTocTrongTruong >= 1.0f)
 		{
-			mGiaTocTrongTruongHienTai -= 1.0f;
+			mBienDemGiaTocTrongTruong -= 1.0f;
 			mVanToc.y += 1;
 		}
 		if (mVanToc.y >= 0)
 		{
-			mVanToc.y = 0;
 			Roi();
 		}
 		break;
 	case eTT_Roi:
-		mGiaTocTrongTruongHienTai += mGiaTocTrongTruong;
-		if (mGiaTocTrongTruongHienTai >= 1.0f)
+		mBienDemGiaTocTrongTruong += mGiaTocTrongTruong;
+		if (mBienDemGiaTocTrongTruong >= 1.0f)
 		{
-			mGiaTocTrongTruongHienTai -= 1.0f;
+			mBienDemGiaTocTrongTruong -= 1.0f;
 			mVanToc.y += 1;
 		}
 		if (mVanToc.y > mVanTocNhayCaoNhat)
@@ -84,7 +83,7 @@ void Mario::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		switch (in_DoiTuong->get_LoaiDoiTuong())
 		{
 		case eLDT_DoiTuongTinh:
-
+		case eLDT_VienGachBinhThuong:
 			if (lPVC == ePVC_Duoi)
 			{
 				switch (mTT_HienTai)
@@ -106,6 +105,7 @@ void Mario::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			if (lPVC == ePVC_Tren)
 			{
 				mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+				Roi();
 			}
 			break;
 		}
@@ -125,6 +125,7 @@ void Mario::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			switch (in_DoiTuong->get_LoaiDoiTuong())
 			{
 			case eLDT_DoiTuongTinh:
+			case eLDT_VienGachBinhThuong:
 				if (lPVC == ePVC_Duoi)
 				{					
 					mDangDungTuNhienRoi = false;
@@ -148,7 +149,7 @@ void Mario::XuLyBanPhim(std::map<int, bool> in_Keys) {
 		{
 			ChaySangTrai();
 		}
-		if (in_Keys[VK_SPACE])
+		if (in_Keys['C'])
 		{
 			Nhay();
 		}
@@ -158,7 +159,7 @@ void Mario::XuLyBanPhim(std::map<int, bool> in_Keys) {
 		{
 			DungIm();
 		}
-		if (in_Keys[VK_SPACE])
+		if (in_Keys['C'])
 		{
 			Nhay();
 		}
@@ -168,7 +169,7 @@ void Mario::XuLyBanPhim(std::map<int, bool> in_Keys) {
 		{
 			DungIm();
 		}
-		if (in_Keys[VK_SPACE])
+		if (in_Keys['C'])
 		{
 			Nhay();
 		}
@@ -188,9 +189,9 @@ void Mario::XuLyBanPhim(std::map<int, bool> in_Keys) {
 		{
 			mVanToc.x = 0;
 		}
-		if (!in_Keys[VK_SPACE])
+		if (!in_Keys['C'])
 		{
-			mVanToc.y += mVanTocNhayCaoNhat / 4;
+			mVanToc.y += mVanTocNhayCaoNhat / 5;
 			if (mVanToc.y > 0)
 			{
 				mVanToc.y = 0;
@@ -218,6 +219,8 @@ void Mario::XuLyBanPhim(std::map<int, bool> in_Keys) {
 void Mario::Roi() {
 	mHH_HienTai = mHH_Nhay;
 	mTT_HienTai = eTT_Roi;
+	mVanToc.y = 0;
+	mBienDemGiaTocTrongTruong = 0.0f;
 }
 
 void Mario::DungIm() {
@@ -247,5 +250,6 @@ void Mario::Nhay()
 	mHH_HienTai = mHH_Nhay;
 	mTT_HienTai = eTT_Nhay;
 	mVanToc.y = -mVanTocNhayCaoNhat;
+	mBienDemGiaTocTrongTruong = 0.0f;
 }
 

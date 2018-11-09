@@ -6,7 +6,7 @@
 
 ManGioiThieu::ManGioiThieu() {
 	TaiDuLieu();
-	mMario = new Mario();
+	mMario = new Mario(Vec2(210, 850));
 }
 
 ManGioiThieu::~ManGioiThieu()
@@ -77,19 +77,34 @@ void ManGioiThieu::TaiDuLieu()
 
 void ManGioiThieu::CapNhat(float in_tg)
 {
-	mMario->XuLyBanPhim(mKeys);
-	for (auto m : mDanhSachDoiTuongTinh)
+	// xử lý va chạm
+	for (auto lDTT : mDanhSachDoiTuongTinh)
 	{
 		// các đối tượng nằm trong Camera thì mới xét Xử Lý Va Chạm
-		const eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(Camera::get_HCNGioiHan(), m->get_HCNGioiHan());
+		const eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(Camera::get_HCNGioiHan(), lDTT->get_HCNGioiHan());
 		if (lKQVC.eKQVC_DaVaCham)
 		{ 
-			mMario->XuLyVaCham(m);
+			mMario->XuLyVaCham(lDTT);
 		}
 	}
-	mMario->CapNhat(in_tg);
+	for (auto lGBT : mDanhSachGachBinhThuong)
+	{
+		const eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(Camera::get_HCNGioiHan(), lGBT->get_HCNGioiHan());
+		if (lKQVC.eKQVC_DaVaCham && !lGBT->get_BiPhaHuy())
+		{
+			// xét va chạm Gạch Bình Thường trước, vì sau khi Mario xử lý va chạm thì
+			// tọa độ của nó sẽ thay đổi
+			lGBT->XuLyVaCham(mMario);
+			mMario->XuLyVaCham(lGBT);
+		}
+	}
 
+	// cập nhật
+	mMario->CapNhat(in_tg);
 	CapNhatDanhSachDoiTuong(in_tg);
+
+	// xử lý bàn phím
+	mMario->XuLyBanPhim(mKeys);
 
 	// điều khiển Camera
 	Camera::set_ToaDo(mMario->get_ToaDo());
