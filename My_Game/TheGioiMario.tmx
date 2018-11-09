@@ -64,13 +64,12 @@
   <object id="88" gid="3" x="385" y="705" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="DoiTuongTinh">
-  <object id="89" x="-2" y="-2" width="32" height="960"/>
+  <object id="89" x="0" y="-2" width="30" height="960"/>
   <object id="90" x="0" y="896" width="3199" height="62"/>
   <object id="92" x="3168" y="1" width="32" height="955"/>
   <object id="93" x="2699" y="399"/>
   <object id="95" x="0" y="-1" width="3199" height="32"/>
-  <object id="96" x="353" y="802" width="62" height="25"/>
-  <object id="97" x="356" y="826" width="54" height="69"/>
+  <object id="97" x="356" y="802" width="54" height="97"/>
   <object id="99" x="481" y="865" width="287" height="31"/>
   <object id="100" x="511" y="832" width="256" height="32"/>
   <object id="101" x="545" y="801" width="222" height="28"/>

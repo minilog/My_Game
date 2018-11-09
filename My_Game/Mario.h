@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "DoiTuong.h"
 #include "HoatHinh.h"
@@ -32,6 +32,9 @@ private:
 	eTrangThai	mTT_HienTai;
 	bool		mLatHinh = false;
 
+	// vì hàm xử lý va chạm: thực hiện với một DS đối tượng trước khi Cập Nhật
+	// phải xét hết tất cả đối tượng, nếu không có đối tượng nào bên dưới thì mới rơi
+	bool mDangDungTuNhienRoi = false;
 
 	static constexpr float mGiaTocTrongTruong = 0.25f;
 	float mGiaTocTrongTruongHienTai = 0.0f;

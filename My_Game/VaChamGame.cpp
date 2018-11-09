@@ -75,7 +75,7 @@ ePhiaVaCham VaChamGame::get_PhiaVaCham(const DoiTuong * in_DoiTuong, eKetQuaVaCh
 			return ePhiaVaCham::ePVC_Trai;
 		}
 	}
-	else if (lVec.y > 0)
+	else
 	{
 		// va chạm phía bên dưới
 		//lay cos cua goc neu ma nam trong khoang goc 55 -> 125 thi va cham top
@@ -173,15 +173,15 @@ ePhiaVaCham VaChamGame::get_PhiaVaCham(const DoiTuong * in_DoiTuong1, const DoiT
 
 bool VaChamGame::get_DaVaCham(const HinhChuNhat& in_HCN1, const HinhChuNhat& in_HCN2)
 {
-	if (in_HCN1.Trai > in_HCN2.Phai ||
-		in_HCN1.Phai < in_HCN2.Trai ||
-		in_HCN1.Tren > in_HCN2.Duoi ||
-		in_HCN1.Duoi < in_HCN2.Tren)
+	if (in_HCN1.Trai <= in_HCN2.Phai &&
+		in_HCN1.Phai >= in_HCN2.Trai &&
+		in_HCN1.Tren <= in_HCN2.Duoi &&
+		in_HCN1.Duoi >= in_HCN2.Tren)
 	{
-		return false;
+		return true;
 	}
 
-	return true;
+	return false;
 }
 
 bool VaChamGame::get_DiemVaHCN(int in_X, int in_Y, const HinhChuNhat& in_HCN)

@@ -177,7 +177,8 @@ void ManGioiThieu::TaoDanhSachDoiTuong()
 			}
 			else if (lNhomObject->GetName() == "DoiTuongTinh")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
-				const Vec2 lToaDoDoiTuongTinh(lObject->GetX() + lObject->GetWidth() / 2,
+				const Vec2 lToaDoDoiTuongTinh(
+					lObject->GetX() + lObject->GetWidth() / 2,
 					lObject->GetY() + lObject->GetHeight() / 2);
 
 				DoiTuongTinh *lDoiTuongTinh = new DoiTuongTinh(lToaDoDoiTuongTinh,
