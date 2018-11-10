@@ -174,7 +174,7 @@ void Sound::loadSound(char* fileName, std::string name)
 	if (wavData != NULL)
 		delete wavData;
 	wavData = 0;
-	long tempVolume = (volume) / 100 * (-DSBVOLUME_MIN) + DSBVOLUME_MIN;
+	long tempVolume = (long)(volume) / 100 * (-DSBVOLUME_MIN) + DSBVOLUME_MIN;
 	(*pSecondaryBuffer)->SetVolume(tempVolume);
 
 	soundBufferMap[name] = secondaryBuffer;
@@ -230,7 +230,7 @@ void Sound::setVolume(float percentage, std::string name)
 	volume = percentage;
 	if (name == "")
 	{
-		long volumne = (percentage) / 100 * (-DSBVOLUME_MIN) + DSBVOLUME_MIN;
+		long volumne = (long)(percentage) / 100 * (-DSBVOLUME_MIN) + DSBVOLUME_MIN;
 		for (std::map< std::string, IDirectSoundBuffer8*> ::iterator it = soundBufferMap.begin(); it != soundBufferMap.end(); it++)
 		{
 			it->second->SetVolume(volumne);
@@ -242,7 +242,7 @@ void Sound::setVolume(float percentage, std::string name)
 		it = soundBufferMap.find(name);
 		if (it == soundBufferMap.end())
 			return;
-		long volumne = (percentage) / 100 * (-DSBVOLUME_MIN) + DSBVOLUME_MIN;
+		long volumne = (long)(percentage) / 100 * (-DSBVOLUME_MIN) + DSBVOLUME_MIN;
 		it->second->SetVolume(volumne);
 	}
 }
