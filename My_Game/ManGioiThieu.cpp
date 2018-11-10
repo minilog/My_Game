@@ -81,8 +81,8 @@ void ManGioiThieu::TaiDuLieu()
 
 	mDebugDraw = new GameDebugDraw();
 
-	Sound::getInstance()->loadSound("Resources/man1.wav", "man1");
-	Sound::getInstance()->play("man1", true, 10);
+	Sound::getInstance()->loadSound("Resources/man2.wav", "man1");
+	Sound::getInstance()->play("man1", false, 1);
 }
 
 void ManGioiThieu::CapNhat(float in_tg)
