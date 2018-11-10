@@ -4,6 +4,7 @@
 #include "HoatHinh.h"
 #include "VaChamGame.h"
 #include "KieuDuLieu.h"
+#include "Sound.h"
 
 class GachBinhThuong : public DoiTuong
 {
@@ -12,8 +13,8 @@ public:
 		DoiTuong(in_ToaDo, Vec2(), 32, 32) 
 	{
 		mHoatHinh = new HoatHinh("Resources/normalbrick.png", 1, 1, 1, 1.0f);
-		mHoatHinhBiPhaHuy = new HoatHinh("Resources/No.png", 1, 1, 1, 1.0f);
-		mHoatHinhBiPhaHuy->set_TiLe(D3DXVECTOR2(0.045f, 0.045f));
+		mHoatHinhBiPhaHuy = new HoatHinh("Resources/No.png", 1, 1, 1, 0.5f);
+		mHoatHinhBiPhaHuy->set_TiLe(Vec2(0.045f, 0.045f));
 		DoiTuong::mLoaiDoiTuong = eLDT_VienGachBinhThuong;
 	}
 
@@ -73,7 +74,7 @@ public:
 private:
 	HoatHinh *mHoatHinh;
 	HoatHinh *mHoatHinhBiPhaHuy;
-	float mThoiGianHienThiNo = 1.0f;
+	float mThoiGianHienThiNo = 0.2f;
 	float mThoiGianDem = 0.0f;
 	bool mBiPhaHuy = false;
 };

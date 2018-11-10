@@ -2,7 +2,7 @@
 #include "ToanCauGame.h"
 
 // bắt buộc cung cấp cho Compiler
-Vec2 Camera::mToaDo = Vec2(0, 0); 
+Vec2 Camera::mToaDo = Vec2(0.0f, 0.0f); 
 int Camera::mChieuRong = 0;
 int Camera::mChieuCao = 0;
 int Camera::mGioiHanTrai = -9999;
@@ -14,21 +14,21 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 {
 	mToaDo = in_ToaDo;
 
-	if (mToaDo.x < mGioiHanTrai + mChieuRong / 2)
+	if (mToaDo.x < mGioiHanTrai + mChieuRong / 2.0f)
 	{
-		mToaDo.x = mGioiHanTrai + mChieuRong / 2;
+		mToaDo.x = mGioiHanTrai + mChieuRong / 2.0f;
 	}
-	if (mToaDo.x > mGioiHanPhai - mChieuRong / 2)
+	if (mToaDo.x > mGioiHanPhai - mChieuRong / 2.0f)
 	{
-		mToaDo.x = mGioiHanPhai - mChieuRong / 2;
+		mToaDo.x = mGioiHanPhai - mChieuRong / 2.0f;
 	}
-	if (mToaDo.y < mGioiHanTren + mChieuCao / 2)
+	if (mToaDo.y < mGioiHanTren + mChieuCao / 2.0f)
 	{
-		mToaDo.y = mGioiHanTren + mChieuCao / 2;
+		mToaDo.y = mGioiHanTren + mChieuCao / 2.0f;
 	}
-	if (mToaDo.y > mGioiHanDuoi - mChieuCao / 2)
+	if (mToaDo.y > mGioiHanDuoi - mChieuCao / 2.0f)
 	{
-		mToaDo.y = mGioiHanDuoi - mChieuCao / 2;
+		mToaDo.y = mGioiHanDuoi - mChieuCao / 2.0f;
 	}
 
 }
@@ -50,10 +50,10 @@ void Camera::set_GioiHan(int in_Trai, int in_Phai, int in_Tren, int in_Duoi)
 HinhChuNhat Camera::get_HCNGioiHan()
 {
 	return HinhChuNhat(
-		mToaDo.x - mChieuRong / 2,
-		mToaDo.x + mChieuRong / 2,
-		mToaDo.y - mChieuCao / 2,
-		mToaDo.y + mChieuCao / 2);;
+		int(mToaDo.x - mChieuRong / 2.0f),
+		int(mToaDo.x + mChieuRong / 2.0f),
+		int(mToaDo.y - mChieuCao / 2.0f),
+		int(mToaDo.y + mChieuCao / 2.0f));;
 }
 
 int Camera::get_ChieuRong()

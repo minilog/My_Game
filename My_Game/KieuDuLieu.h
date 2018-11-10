@@ -3,7 +3,8 @@
 class HinhChuNhat
 {
 public:
-	HinhChuNhat(int in_Trai = 0, int in_Phai = 0, int in_Tren = 0, int in_Duoi = 0){
+	HinhChuNhat(int in_Trai = 0, int in_Phai = 0, int in_Tren = 0, int in_Duoi = 0)
+	{
 		Trai = in_Trai;
 		Phai = in_Phai;
 		Tren = in_Tren;
@@ -19,7 +20,7 @@ public:
 class Vec2
 {
 public:
-	Vec2(int in_x = 0, int in_y = 0){
+	Vec2(float in_x = 0, float in_y = 0){
 		x = in_x;
 		y = in_y;
 	}
@@ -29,8 +30,8 @@ public:
 		y += in.y;
 		return *this;
 	}
-	int x;
-	int y;
+	float x;
+	float y;
 };
 
 enum ePhiaVaCham

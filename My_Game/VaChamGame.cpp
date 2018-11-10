@@ -32,8 +32,8 @@ ePhiaVaCham VaChamGame::get_PhiaVaCham(const DoiTuong * in_DoiTuong, eKetQuaVaCh
 		lTrungTamVaChamX, 
 		lTrungTamVaChamY);
 	D3DXVECTOR2 lTrungTamThucThe = D3DXVECTOR2(
-		(float)in_DoiTuong->get_ToaDo().x, 
-		(float)in_DoiTuong->get_ToaDo().y);
+		in_DoiTuong->get_ToaDo().x, 
+		in_DoiTuong->get_ToaDo().y);
 
 	// lấy vector nối từ Thực Thể đến Vùng Va Chạm
 	D3DXVECTOR2 lVec = lTrungTamVaCham - lTrungTamThucThe;
@@ -108,11 +108,11 @@ ePhiaVaCham VaChamGame::get_PhiaVaCham(const DoiTuong * in_DoiTuong, eKetQuaVaCh
 
 ePhiaVaCham VaChamGame::get_PhiaVaCham(const DoiTuong * in_DoiTuong1, const DoiTuong * in_DoiTuong2)
 {
-	float lW = (in_DoiTuong1->get_ChieuRong() + in_DoiTuong2->get_ChieuRong()) / 2.0f;
-	float lH = (in_DoiTuong1->get_ChieuCao() + in_DoiTuong2->get_ChieuCao()) / 2.0f;
+	float lW = float(in_DoiTuong1->get_ChieuRong() + in_DoiTuong2->get_ChieuRong()) / 2.0f;
+	float lH = float(in_DoiTuong1->get_ChieuCao() + in_DoiTuong2->get_ChieuCao()) / 2.0f;
 
-	float lDx = (float)in_DoiTuong1->get_ToaDo().x - in_DoiTuong2->get_ToaDo().y;
-	float lDy = (float)in_DoiTuong1->get_ToaDo().x - in_DoiTuong2->get_ToaDo().y;
+	float lDx = in_DoiTuong1->get_ToaDo().x - in_DoiTuong2->get_ToaDo().y;
+	float lDy = in_DoiTuong1->get_ToaDo().x - in_DoiTuong2->get_ToaDo().y;
 
 	if (abs(lDx) <= lW && abs(lDy) <= lH)
 	{
@@ -186,10 +186,10 @@ bool VaChamGame::get_DaVaCham(const HinhChuNhat& in_HCN1, const HinhChuNhat& in_
 
 bool VaChamGame::get_DiemVaHCN(int in_X, int in_Y, const HinhChuNhat& in_HCN)
 {
-	if (int(in_X) < in_HCN.Trai ||
-		int(in_X) > in_HCN.Phai ||
-		int(in_Y) < in_HCN.Tren ||
-		int(in_Y) > in_HCN.Duoi)
+	if (in_X < in_HCN.Trai ||
+		in_X > in_HCN.Phai ||
+		in_Y < in_HCN.Tren ||
+		in_Y > in_HCN.Duoi)
 	{
 		return false;
 	}

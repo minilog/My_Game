@@ -11,6 +11,8 @@
 #include "Mario.h"
 #include "KieuDuLieu.h"
 
+#include "GameDebugDraw.h"
+
 class ManGioiThieu : public ManGame
 {
 public:
@@ -41,5 +43,7 @@ private:
 	void VeHinhAnhBanDoGame(const Vec2& in_DoDoi);
 	void CapNhatDanhSachDoiTuong(float in_tg);
 	void VeDanhSachDoiTuong(const Vec2& in_DoDoi);
+
+	GameDebugDraw *mDebugDraw;
 };
 

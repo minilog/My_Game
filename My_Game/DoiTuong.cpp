@@ -52,10 +52,10 @@ int DoiTuong::get_ChieuCao() const
 HinhChuNhat DoiTuong::get_HCNGioiHan() const
 {
 	return HinhChuNhat(
-		mToaDo.x - mChieuRong / 2,
-		mToaDo.x + mChieuRong / 2,
-		mToaDo.y - mChieuCao / 2,
-		mToaDo.y + mChieuCao / 2);
+		int(mToaDo.x - mChieuRong / 2.0f),
+		int(mToaDo.x + mChieuRong / 2.0f),
+		int(mToaDo.y - mChieuCao / 2.0f),
+		int(mToaDo.y + mChieuCao / 2.0f));
 }
 
 eLoaiDoiTuong DoiTuong::get_LoaiDoiTuong() const 

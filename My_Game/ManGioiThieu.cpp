@@ -3,6 +3,9 @@
 #include "Camera.h"
 #include "VaChamGame.h"
 #include "ToanCauGame.h"
+#include "GameLog.h"
+
+#include "Sound.h"
 
 ManGioiThieu::ManGioiThieu() {
 	TaiDuLieu();
@@ -73,10 +76,21 @@ void ManGioiThieu::TaiDuLieu()
 	TaoDanhSachTileset();
 
 	TaoDanhSachDoiTuong();
+
+	GAMELOG("So Luong Gach: %d", mDanhSachGachBinhThuong.size());
+
+	mDebugDraw = new GameDebugDraw();
+
+	Sound::getInstance()->loadSound("Resources/man1.wav", "man1");
+	Sound::getInstance()->play("man1", true, 10);
 }
 
 void ManGioiThieu::CapNhat(float in_tg)
 {
+	// cập nhật
+	mMario->CapNhat(in_tg);
+	CapNhatDanhSachDoiTuong(in_tg);
+
 	// xử lý va chạm
 	for (auto lDTT : mDanhSachDoiTuongTinh)
 	{
@@ -99,9 +113,7 @@ void ManGioiThieu::CapNhat(float in_tg)
 		}
 	}
 
-	// cập nhật
-	mMario->CapNhat(in_tg);
-	CapNhatDanhSachDoiTuong(in_tg);
+
 
 	// xử lý bàn phím
 	mMario->XuLyBanPhim(mKeys);
@@ -120,12 +132,24 @@ void ManGioiThieu::Ve()
 	VeDanhSachDoiTuong(lDoDoi);
 
 	mMario->Ve(lDoDoi);
+
+	//RECT lHCN;
+	//lHCN.left = mMario->get_HCNGioiHan().Trai;
+	//lHCN.right = mMario->get_HCNGioiHan().Phai;
+	//lHCN.top = mMario->get_HCNGioiHan().Tren;
+	//lHCN.bottom = mMario->get_HCNGioiHan().Duoi;
+	//mDebugDraw->DrawRect(lHCN);
 }
 
 void ManGioiThieu::OnKeyDown(int in_Keys)
 {
 	mKeys[in_Keys] = true;
 
+
+	if (in_Keys == VK_ESCAPE)
+	{
+		ToanCauGame::mGameDangChay = false;
+	}
 }
 
 void ManGioiThieu::OnKeyUp(int in_Keys)
@@ -147,8 +171,8 @@ void ManGioiThieu::TaoBanDoVaCamera()
 
 	// TAO_CAMERA
 	Camera::set_ToaDo(Vec2(
-		ToanCauGame::get_ChieuRong() / 2,
-		mChieuCao - ToanCauGame::get_ChieuCao() / 2));
+		ToanCauGame::get_ChieuRong() / 2.0f,
+		mChieuCao - ToanCauGame::get_ChieuCao() / 2.0f));
 	Camera::set_KichThuoc(800, 700);
 	Camera::set_GioiHan(0, ManGame::mChieuRong, 0, ManGame::mChieuCao);
 }
@@ -176,8 +200,8 @@ void ManGioiThieu::TaoDanhSachDoiTuong()
 			const Tmx::Object *lObject = lNhomObject->GetObjects().at(j);
 
 			// lấy toạ độ
-			const Vec2 lToaDo(lObject->GetX() + lObject->GetWidth() / 2,
-				lObject->GetY() - lObject->GetHeight() / 2);
+			const Vec2 lToaDo(lObject->GetX() + lObject->GetWidth() / 2.0f,
+				lObject->GetY() - lObject->GetHeight() / 2.0f);
 
 			// khởi tạo danh sách Gạch Vàng, Gạch Bình Thường
 			if (lNhomObject->GetName() == "GachBinhThuong")
@@ -193,8 +217,8 @@ void ManGioiThieu::TaoDanhSachDoiTuong()
 			else if (lNhomObject->GetName() == "DoiTuongTinh")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 				const Vec2 lToaDoDoiTuongTinh(
-					lObject->GetX() + lObject->GetWidth() / 2,
-					lObject->GetY() + lObject->GetHeight() / 2);
+					lObject->GetX() + lObject->GetWidth() / 2.0f,
+					lObject->GetY() + lObject->GetHeight() / 2.0f);
 
 				DoiTuongTinh *lDoiTuongTinh = new DoiTuongTinh(lToaDoDoiTuongTinh,
 					lObject->GetWidth(), lObject->GetHeight());
@@ -234,15 +258,15 @@ void ManGioiThieu::VeHinhAnhBanDoGame(const Vec2& in_DoDoi)
 				{
 					//tru tilewidth/2 va tileheight/2 vi Sprite ve o vi tri giua hinh anh cho nen doi hinh de cho
 					//dung toa do (0,0) cua the gioi thuc la (0,0) neu khong thi se la (-tilewidth/2, -tileheigth/2);
-					Vec2 position(n * tileWidth + tileWidth / 2,
-						m * tileHeight + tileHeight / 2);
+					Vec2 position(n * tileWidth + tileWidth / 2.0f,
+						m * tileHeight + tileHeight / 2.0f);
 
 					{
 						HinhChuNhat lHCN_2(
-							position.x - tileWidth / 2,
-							position.x + tileWidth / 2,
-							position.y - tileHeight / 2,
-							position.y + tileHeight / 2);
+							int(position.x - tileWidth / 2.0f),
+							int(position.x + tileWidth / 2.0f),
+							int(position.y - tileHeight / 2.0f),
+							int(position.y + tileHeight / 2.0f));
 
 						if (!VaChamGame::get_KetQuaVaCham(Camera::get_HCNGioiHan(), lHCN_2).eKQVC_DaVaCham)
 							continue;

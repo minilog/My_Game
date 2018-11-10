@@ -32,9 +32,10 @@ void HoatHinh::CapNhat(float in_tg)
 		return;
 	}
 
+	mTongThoiGianHienTai += in_tg;
+
 	if (mTongThoiGianHienTai < mThoiGianThayDoi)
 	{
-		mTongThoiGianHienTai += in_tg;
 		return;
 	}
 	else

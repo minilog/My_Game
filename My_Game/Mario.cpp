@@ -28,29 +28,21 @@ void Mario::CapNhat(float in_tg) {
 	switch (mTT_HienTai)
 	{
 	case eTT_Nhay:
-		mBienDemGiaTocTrongTruong += mGiaTocTrongTruong;
-		if (mBienDemGiaTocTrongTruong >= 1.0f)
-		{
-			mBienDemGiaTocTrongTruong -= 1.0f;
-			mVanToc.y += 1;
-		}
+		mVanToc.y += mGiaTocTrongTruong;
 		if (mVanToc.y >= 0)
 		{
 			Roi();
 		}
 		break;
+
 	case eTT_Roi:
-		mBienDemGiaTocTrongTruong += mGiaTocTrongTruong;
-		if (mBienDemGiaTocTrongTruong >= 1.0f)
-		{
-			mBienDemGiaTocTrongTruong -= 1.0f;
-			mVanToc.y += 1;
-		}
+		mVanToc.y += mGiaTocTrongTruong;
 		if (mVanToc.y > mVanTocNhayCaoNhat)
 		{
 			mVanToc.y = mVanTocNhayCaoNhat;
 		}
 		break;
+
 	case eTT_ChaySangTrai:
 	case eTT_ChaySangPhai:
 	case eTT_DungIm:
@@ -191,7 +183,7 @@ void Mario::XuLyBanPhim(std::map<int, bool> in_Keys) {
 		}
 		if (!in_Keys['C'])
 		{
-			mVanToc.y += mVanTocNhayCaoNhat / 5;
+			mVanToc.y += mVanTocNhayCaoNhat / 7.0f;
 			if (mVanToc.y > 0)
 			{
 				mVanToc.y = 0;
@@ -220,7 +212,6 @@ void Mario::Roi() {
 	mHH_HienTai = mHH_Nhay;
 	mTT_HienTai = eTT_Roi;
 	mVanToc.y = 0;
-	mBienDemGiaTocTrongTruong = 0.0f;
 }
 
 void Mario::DungIm() {
@@ -250,6 +241,5 @@ void Mario::Nhay()
 	mHH_HienTai = mHH_Nhay;
 	mTT_HienTai = eTT_Nhay;
 	mVanToc.y = -mVanTocNhayCaoNhat;
-	mBienDemGiaTocTrongTruong = 0.0f;
 }
 

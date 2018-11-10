@@ -5,15 +5,15 @@ HinhAnh::HinhAnh(const char * in_DuongDan)
 {
 	mXuLyHinhAnh = ToanCauGame::get_XuLyHinhAnh();
 	D3DXGetImageInfoFromFileA(in_DuongDan, &mThongTinHinhAnh);
-	mToaDo = Vec2(0, 0);
+	mToaDo = Vec2(0.0f, 0.0f);
 	mChieuRong = mThongTinHinhAnh.Width;
 	mChieuCao = mThongTinHinhAnh.Height;
 	mHCN = HinhChuNhat(0, mChieuRong, 0, mChieuCao);
-	mTiLe = D3DXVECTOR2(1.0f, 1.0f);
+	mTiLe = Vec2(1.0f, 1.0f);
 	mLatTheoChieuNgang = false;
 	mLatTheoChieuDoc = false;
-	mGocXoayHinh = 0;
-	mDoDoi = Vec2(0, 0);
+	mGocXoayHinh = 0.0f;
+	mDoDoi = Vec2(0.0f, 0.0f);
 
 	LPDIRECT3DDEVICE9 lThietBi;
 	mXuLyHinhAnh->GetDevice(&lThietBi);
@@ -44,10 +44,10 @@ HinhAnh::~HinhAnh()
 
 void HinhAnh::Ve()
 {
-	D3DXVECTOR2 lTrungTamTiLe = D3DXVECTOR2(float(mToaDo.x), float(mToaDo.y));
-	D3DXVECTOR2 lTrungTamXoayHinh = D3DXVECTOR2(float(mToaDo.x), float(mToaDo.y));
-	D3DXVECTOR2 lTiLe = D3DXVECTOR2(float(mTiLe.x), float(mTiLe.y));
-	D3DXVECTOR2 lDoDoi = D3DXVECTOR2(float(mDoDoi.x), float(mDoDoi.y));
+	D3DXVECTOR2 lTrungTamTiLe = D3DXVECTOR2(mToaDo.x, mToaDo.y);
+	D3DXVECTOR2 lTrungTamXoayHinh = D3DXVECTOR2(mToaDo.x, mToaDo.y);
+	D3DXVECTOR2 lTiLe = D3DXVECTOR2(mTiLe.x, mTiLe.y);
+	D3DXVECTOR2 lDoDoi = D3DXVECTOR2(mDoDoi.x, mDoDoi.y);
 
 	D3DXMatrixTransformation2D(
 		&mMaTran,
@@ -134,7 +134,7 @@ void HinhAnh::set_ChieuRong(int in_ChieuRong)
 	mChieuRong = in_ChieuRong;
 }
 
-int HinhAnh::get_ChieuRong()
+int HinhAnh::get_ChieuRong() const
 {
 	return mChieuRong;
 }
@@ -144,7 +144,7 @@ void HinhAnh::set_ChieuCao(int in_ChieuCao)
 	mChieuCao = in_ChieuCao;
 }
 
-int HinhAnh::get_ChieuCao()
+int HinhAnh::get_ChieuCao() const
 {
 	return mChieuCao;
 }
@@ -154,32 +154,32 @@ void HinhAnh::set_HCN(const HinhChuNhat& in_HCN)
 	mHCN = in_HCN;
 }
 
-void HinhAnh::set_TiLe(const D3DXVECTOR2& in_TiLe)
+void HinhAnh::set_TiLe(const Vec2& in_TiLe)
 {
 	mTiLe = in_TiLe;
 }
 
-D3DXVECTOR2 HinhAnh::get_TiLe() const
+Vec2 HinhAnh::get_TiLe() const
 {
 	return mTiLe;
 }
 
-bool HinhAnh::get_LatTheoChieuNgang()
+bool HinhAnh::get_LatTheoChieuNgang() const
 {
 	return mLatTheoChieuNgang;
 }
 
-bool HinhAnh::get_LatTheoChieuDoc()
+bool HinhAnh::get_LatTheoChieuDoc() const
 {
 	return mLatTheoChieuDoc;
 }
 
-void HinhAnh::set_GocXoayHinh(int in_GocXoay)
+void HinhAnh::set_GocXoayHinh(float in_GocXoay)
 {
 	mGocXoayHinh = in_GocXoay;
 }
 
-int HinhAnh::get_GocXoayHinh()
+float HinhAnh::get_GocXoayHinh() const
 {
 	return mGocXoayHinh;
 }
