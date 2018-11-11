@@ -127,12 +127,12 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DoiTuong.cpp" />
-    <ClCompile Include="DXErr.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameDebugDraw.cpp" />
     <ClCompile Include="GameLog.cpp" />
     <ClCompile Include="HinhAnh.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
+    <ClCompile Include="HoatHinh2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ManGioiThieu.cpp" />
     <ClCompile Include="MapReader\base64.cpp" />
@@ -158,22 +158,19 @@
     <ClCompile Include="Mario.cpp" />
     <ClCompile Include="QuanLyManGame.cpp" />
     <ClCompile Include="Sound.cpp" />
-    <ClCompile Include="Sound2.cpp" />
     <ClCompile Include="ThoiGianGame.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
     <ClCompile Include="VaChamGame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ChiliException.h" />
-    <ClInclude Include="ChiliWin.h" />
     <ClInclude Include="DoiTuong.h" />
     <ClInclude Include="DoiTuongTinh.h" />
-    <ClInclude Include="DXErr.h" />
     <ClInclude Include="GachBinhThuong.h" />
     <ClInclude Include="GachVang.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDebugDraw.h" />
     <ClInclude Include="GameLog.h" />
+    <ClInclude Include="HoatHinh2.h" />
     <ClInclude Include="KieuDuLieu.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ManGame.h" />
@@ -206,8 +203,6 @@
     <ClInclude Include="Mario.h" />
     <ClInclude Include="QuanLyManGame.h" />
     <ClInclude Include="Sound.h" />
-    <ClInclude Include="Sound2.h" />
-    <ClInclude Include="SoundEffect.h" />
     <ClInclude Include="ThoiGianGame.h" />
     <ClInclude Include="ToanCauGame.h" />
     <ClInclude Include="VaChamGame.h" />

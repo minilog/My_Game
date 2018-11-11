@@ -15,7 +15,6 @@ Mario::Mario(const Vec2& in_ToaDo) :
 
 Mario::~Mario()
 {
-	delete mHH_HienTai;
 	delete mHH_DungIm;
 	delete mHH_Chay;
 	delete mHH_Nhay;
