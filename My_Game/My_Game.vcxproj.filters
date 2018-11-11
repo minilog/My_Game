@@ -20,6 +20,9 @@
     <Filter Include="3.DoiTuong">
       <UniqueIdentifier>{327dbaa2-0f46-4f2e-aeec-9d3956c84b71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Chili">
+      <UniqueIdentifier>{8a8a5b7c-29fb-4d71-af91-764557da79b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -124,8 +127,14 @@
     <ClCompile Include="GameDebugDraw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sound.cpp">
+    <ClCompile Include="Sound2.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Chili</Filter>
+    </ClCompile>
+    <ClCompile Include="DXErr.cpp">
+      <Filter>Chili</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,8 +261,23 @@
     <ClInclude Include="GameDebugDraw.h">
       <Filter>0.NenTang</Filter>
     </ClInclude>
-    <ClInclude Include="Sound.h">
+    <ClInclude Include="Sound2.h">
       <Filter>0.NenTang</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Chili</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundEffect.h">
+      <Filter>Chili</Filter>
+    </ClInclude>
+    <ClInclude Include="ChiliException.h">
+      <Filter>Chili</Filter>
+    </ClInclude>
+    <ClInclude Include="ChiliWin.h">
+      <Filter>Chili</Filter>
+    </ClInclude>
+    <ClInclude Include="DXErr.h">
+      <Filter>Chili</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

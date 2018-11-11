@@ -4,7 +4,6 @@
 #include "HoatHinh.h"
 #include "VaChamGame.h"
 #include "KieuDuLieu.h"
-#include "Sound.h"
 
 class GachBinhThuong : public DoiTuong
 {

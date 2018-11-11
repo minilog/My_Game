@@ -5,7 +5,7 @@
 #include "ToanCauGame.h"
 #include "GameLog.h"
 
-#include "Sound.h"
+#include "Sound2.h"
 
 ManGioiThieu::ManGioiThieu() {
 	TaiDuLieu();
@@ -81,8 +81,8 @@ void ManGioiThieu::TaiDuLieu()
 
 	mDebugDraw = new GameDebugDraw();
 
-	Sound::getInstance()->loadSound("Resources/man1.wav", "man1");
-	Sound::getInstance()->play("man1", true, 0);
+	Sound2::getInstance()->loadSound("Resources/man1.wav", "man1");
+	Sound2::getInstance()->play("man1", true, 1);
 }
 
 void ManGioiThieu::CapNhat(float in_tg)
