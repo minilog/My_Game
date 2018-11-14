@@ -4,6 +4,7 @@
 #include "HoatHinh.h"
 #include "VaChamGame.h"
 #include "KieuDuLieu.h"
+#include <vector>
 
 class GachBinhThuong : public DoiTuong
 {
@@ -11,9 +12,18 @@ public:
 	GachBinhThuong(Vec2 in_ToaDo) : 
 		DoiTuong(in_ToaDo, Vec2(), 32, 32) 
 	{
-		mHoatHinh = new HoatHinh("Resources/normalbrick.png", 1, 1, 1, 1.0f);
-		mHoatHinhBiPhaHuy = new HoatHinh("Resources/No.png", 1, 1, 1, 0.5f);
+		std::vector<ThongTinFrame> lDSThongTinFrame;
+
+		lDSThongTinFrame.clear();
+		lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 32, 32));
+		mHoatHinh = new HoatHinh("Resources/normalbrick.png", lDSThongTinFrame, 1.0f);
+
+		lDSThongTinFrame.clear();
+		lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 717, 720));
+		mHoatHinhBiPhaHuy = new HoatHinh("Resources/No.png", lDSThongTinFrame, 1.0f);
+
 		mHoatHinhBiPhaHuy->set_TiLe(Vec2(0.045f, 0.045f));
+
 		DoiTuong::mLoaiDoiTuong = eLDT_VienGachBinhThuong;
 	}
 
@@ -23,7 +33,7 @@ public:
 		{
 			mHoatHinh->CapNhat(in_tg);
 		}
-		else if (mThoiGianDem < mThoiGianHienThiNo)
+		else if (mThoiGianDem < mThoiGianNo)
 		{
 			mThoiGianDem += in_tg;
 			mHoatHinhBiPhaHuy->CapNhat(in_tg);
@@ -37,7 +47,7 @@ public:
 			mHoatHinh->set_DoDoi(in_DoDoi);
 			mHoatHinh->Ve();
 		}
-		else if(mThoiGianDem < mThoiGianHienThiNo) 
+		else if(mThoiGianDem < mThoiGianNo) 
 		{
 			mHoatHinhBiPhaHuy->set_ToaDo(mToaDo);
 			mHoatHinhBiPhaHuy->set_DoDoi(in_DoDoi);
@@ -73,7 +83,7 @@ public:
 private:
 	HoatHinh *mHoatHinh;
 	HoatHinh *mHoatHinhBiPhaHuy;
-	float mThoiGianHienThiNo = 0.2f;
+	float mThoiGianNo = 0.2f;
 	float mThoiGianDem = 0.0f;
 	bool mBiPhaHuy = false;
 };

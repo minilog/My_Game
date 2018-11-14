@@ -1,64 +1,63 @@
 ﻿#include "HoatHinh.h"
 
-HoatHinh::HoatHinh(const char * in_DuongDan, int in_TongKhuonHinh, int in_SoHang, int in_SoCot, float in_ThoiGianThayDoi)
-	:HinhAnh(in_DuongDan)
+HoatHinh::HoatHinh(const char * in_DuongDan, const std::vector<ThongTinFrame>& in_DSThongTinFrame,
+	float in_ThoiGianThayDoi)
+	:HinhAnh(in_DuongDan),
+	mThongTinFrameHienTai(Vec2(0.0f, 0.0f), 0, 0),
+	mViTriFrame(0),
+	mThoiGianThayDoi(in_ThoiGianThayDoi),
+	mThoiGianDem(0.0f)
 {
-	//GAMELOG("HoatHinh: TongKhuonHinh: %d, SoHang: %d, SoCot: %d, ThoiGianThayDoi: %f" in_TongKhuonHinh, in_SoHang, in_SoCot, in_ThoiGianThayDoi)
-	mTongKhuonHinh = in_TongKhuonHinh;
-	mSoHang = in_SoHang;
-	mSoCot = in_SoCot;
-	//mChieuCao, mChieuRong bây giờ là của khuôn hình Hoạt Hình
-	HinhAnh::mChieuRong /= mSoCot;
-	HinhAnh::mChieuCao /= mSoHang;
+	for (auto lThongTinFrame : in_DSThongTinFrame)
+	{
+		mDSThongTinFrame.push_back(lThongTinFrame);
+	}
 
-	mHangHienTai = 0;
-	mCotHienTai = 0;
+	mThongTinFrameHienTai = mDSThongTinFrame[mViTriFrame];
 
-	mThoiGianThayDoi = in_ThoiGianThayDoi;
-	mTongThoiGianHienTai = 0.0f;
+	HinhAnh::mChieuRong = mThongTinFrameHienTai.ChieuRong;
+	HinhAnh::mChieuCao = mThongTinFrameHienTai.ChieuCao;
 
-	// chỉnh hình chữ nhật để đúng khuôn Hình được vẽ ra
 	HinhAnh::mHCN = HCN(
-		0,
-		HinhAnh::mChieuRong,
-		0,
-		HinhAnh::mChieuCao);
+		int(mThongTinFrameHienTai.ToaDo.x),
+		int(mThongTinFrameHienTai.ToaDo.x) + HinhAnh::mChieuRong,
+		int(mThongTinFrameHienTai.ToaDo.y),
+		int(mThongTinFrameHienTai.ToaDo.y) + HinhAnh::mChieuCao);
 }
 
 void HoatHinh::CapNhat(float in_tg)
 {
-	if (mTongKhuonHinh <= 1)
+	if (mDSThongTinFrame.size() <= 1)
 	{
 		return;
 	}
 
-	mTongThoiGianHienTai += in_tg;
+	mThoiGianDem += in_tg;
 
-	if (mTongThoiGianHienTai < mThoiGianThayDoi)
+	if (mThoiGianDem < mThoiGianThayDoi)
 	{
 		return;
 	}
 	else
 	{
-		mTongThoiGianHienTai -= mThoiGianThayDoi;
-		mCotHienTai++;
+		mThoiGianDem -= mThoiGianThayDoi;
+		mViTriFrame++;
 
-		if (mCotHienTai >= mSoCot)
+		if (mViTriFrame >= mDSThongTinFrame.size())
 		{
-			mCotHienTai = 0;
-			mHangHienTai++;
-
-			if (mHangHienTai >= mSoHang)
-			{
-				mHangHienTai = 0;
-			}
+			mViTriFrame = 0;
 		}
 
+		mThongTinFrameHienTai = mDSThongTinFrame[mViTriFrame];
+
+		HinhAnh::mChieuRong = mThongTinFrameHienTai.ChieuRong;
+		HinhAnh::mChieuCao = mThongTinFrameHienTai.ChieuCao;
+
 		HinhAnh::mHCN = HCN(
-			mCotHienTai * HinhAnh::mChieuRong,
-			mCotHienTai * HinhAnh::mChieuRong + HinhAnh::mChieuRong,
-			mHangHienTai * HinhAnh::mChieuCao,
-			mHangHienTai * HinhAnh::mChieuCao + HinhAnh::mChieuCao);
+			int(mThongTinFrameHienTai.ToaDo.x),
+			int(mThongTinFrameHienTai.ToaDo.x) + HinhAnh::mChieuRong,
+			int(mThongTinFrameHienTai.ToaDo.y),
+			int(mThongTinFrameHienTai.ToaDo.y) + HinhAnh::mChieuCao);
 	}
 }
 

@@ -1,14 +1,27 @@
 ﻿#include "Mario.h"
 #include "Camera.h"
+#include "KieuDuLieu.h"
+#include <vector>
 
 Mario::Mario(const Vec2& in_ToaDo) :
 	DoiTuong(in_ToaDo, Vec2(), 30, 30)
 {
 	mLoaiDoiTuong = eLoaiDoiTuong::eLDT_Mario;
 
-	mHH_DungIm = new HoatHinh("Resources/mario/standingright.png", 1, 1, 1, 0);
-	mHH_Chay = new HoatHinh("Resources/mario/runningright.png", 2, 1, 2, 0.15f);
-	mHH_Nhay = new HoatHinh("Resources/mario/jumpingright.png", 1, 1, 1, 0);
+	std::vector<ThongTinFrame> lDSThongTinFrame;
+
+	lDSThongTinFrame.clear();
+	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 24, 32));
+	mHH_DungIm = new HoatHinh("Resources/mario/standingright.png", lDSThongTinFrame, 0.0f);
+	
+	lDSThongTinFrame.clear();
+	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 30, 32));
+	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(30.0f, 0.0f), 30, 32));
+	mHH_Chay = new HoatHinh("Resources/mario/runningright.png", lDSThongTinFrame, 0.15f);
+
+	lDSThongTinFrame.clear();
+	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 32, 32));
+	mHH_Nhay = new HoatHinh("Resources/mario/jumpingright.png", lDSThongTinFrame, 0.0f);
 
 	Roi();
 }

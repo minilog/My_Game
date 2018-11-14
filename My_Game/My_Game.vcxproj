@@ -132,7 +132,6 @@
     <ClCompile Include="GameLog.cpp" />
     <ClCompile Include="HinhAnh.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
-    <ClCompile Include="HoatHinh2.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ManGioiThieu.cpp" />
     <ClCompile Include="MapReader\base64.cpp" />
@@ -171,7 +170,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDebugDraw.h" />
     <ClInclude Include="GameLog.h" />
-    <ClInclude Include="HoatHinh2.h" />
     <ClInclude Include="KieuDuLieu.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="ManGame.h" />

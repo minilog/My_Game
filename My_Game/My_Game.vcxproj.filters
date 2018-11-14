@@ -130,9 +130,6 @@
     <ClCompile Include="Sound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="HoatHinh2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="QuadTree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -253,9 +250,6 @@
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="KieuDuLieu.h">
-      <Filter>1.NenTang</Filter>
-    </ClInclude>
-    <ClInclude Include="HoatHinh2.h">
       <Filter>1.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="QuadTree.h">
