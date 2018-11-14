@@ -8,16 +8,19 @@
     <Filter Include="FileDocMap">
       <UniqueIdentifier>{3bdb088f-fe07-4b71-84ec-5724b56d9727}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0.NenTang">
+    <Filter Include="0.FileMoRong">
+      <UniqueIdentifier>{3e87e4a7-5cc9-49de-af38-7da0545a7ea8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1.NenTang">
       <UniqueIdentifier>{95f4a8bc-7b8a-4158-8ddd-6a7355f162df}</UniqueIdentifier>
     </Filter>
-    <Filter Include="1.ManGame">
+    <Filter Include="2.ManGame">
       <UniqueIdentifier>{c026a73f-790e-4650-aed6-29fe2f1eeb48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="2.DieuKhien">
+    <Filter Include="3.DieuKhien">
       <UniqueIdentifier>{82ddea42-1406-439d-8805-0f1c3c2c32c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3.DoiTuong">
+    <Filter Include="4.DoiTuong">
       <UniqueIdentifier>{327dbaa2-0f46-4f2e-aeec-9d3956c84b71}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -205,67 +208,67 @@
       <Filter>FileDocMap</Filter>
     </ClInclude>
     <ClInclude Include="QuanLyManGame.h">
-      <Filter>2.DieuKhien</Filter>
+      <Filter>3.DieuKhien</Filter>
     </ClInclude>
     <ClInclude Include="HinhAnh.h">
-      <Filter>0.NenTang</Filter>
+      <Filter>1.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="HoatHinh.h">
-      <Filter>0.NenTang</Filter>
+      <Filter>1.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="ThoiGianGame.h">
-      <Filter>0.NenTang</Filter>
+      <Filter>1.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="ToanCauGame.h">
-      <Filter>0.NenTang</Filter>
+      <Filter>1.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="VaChamGame.h">
-      <Filter>0.NenTang</Filter>
+      <Filter>1.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="ManGame.h">
-      <Filter>1.ManGame</Filter>
+      <Filter>2.ManGame</Filter>
     </ClInclude>
     <ClInclude Include="ManGioiThieu.h">
-      <Filter>1.ManGame</Filter>
+      <Filter>2.ManGame</Filter>
     </ClInclude>
     <ClInclude Include="GachBinhThuong.h">
-      <Filter>3.DoiTuong</Filter>
+      <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="GachVang.h">
-      <Filter>3.DoiTuong</Filter>
+      <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="DoiTuong.h">
-      <Filter>3.DoiTuong</Filter>
+      <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="DoiTuongTinh.h">
-      <Filter>3.DoiTuong</Filter>
+      <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
-      <Filter>2.DieuKhien</Filter>
+      <Filter>3.DieuKhien</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
-      <Filter>2.DieuKhien</Filter>
+      <Filter>3.DieuKhien</Filter>
     </ClInclude>
     <ClInclude Include="Mario.h">
-      <Filter>3.DoiTuong</Filter>
+      <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="KieuDuLieu.h">
-      <Filter>0.NenTang</Filter>
-    </ClInclude>
-    <ClInclude Include="GameLog.h">
-      <Filter>0.NenTang</Filter>
-    </ClInclude>
-    <ClInclude Include="GameDebugDraw.h">
-      <Filter>0.NenTang</Filter>
-    </ClInclude>
-    <ClInclude Include="Sound.h">
-      <Filter>0.NenTang</Filter>
+      <Filter>1.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="HoatHinh2.h">
-      <Filter>0.NenTang</Filter>
+      <Filter>1.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="QuadTree.h">
-      <Filter>0.NenTang</Filter>
+      <Filter>1.NenTang</Filter>
+    </ClInclude>
+    <ClInclude Include="GameLog.h">
+      <Filter>0.FileMoRong</Filter>
+    </ClInclude>
+    <ClInclude Include="GameDebugDraw.h">
+      <Filter>0.FileMoRong</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>0.FileMoRong</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -21,7 +21,7 @@ protected:
 	Vec2					mToaDo;
 	int						mChieuRong; 
 	int						mChieuCao;			// kích thước của Kết Cấu Hình Ảnh
-	HCN             mHCN;				// hình chữ nhật cắt từ Kết Cấu Hình Ảnh
+	HCN						mHCN;				// hình chữ nhật cắt từ Kết Cấu Hình Ảnh
 	Vec2					mTiLe;
 	bool					mLatTheoChieuNgang;
 	bool                    mLatTheoChieuDoc;

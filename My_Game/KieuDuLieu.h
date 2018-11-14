@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+
+
 class HCN
 {
 public:
@@ -32,6 +34,22 @@ public:
 	}
 	float x;
 	float y;
+};
+
+// sử dụng cho lớp Hoạt Hình
+class ThongTinFrame
+{
+public:
+	ThongTinFrame(const Vec2& in_ToaDo, int in_ChieuRong, int in_ChieuCao)
+	{
+		ToaDo = in_ToaDo;
+		ChieuRong = in_ChieuRong;
+		ChieuCao = in_ChieuCao;
+	}
+
+	Vec2 ToaDo;
+	int ChieuRong;
+	int ChieuCao;
 };
 
 enum ePhiaVaCham
@@ -67,3 +85,4 @@ enum eTrangThai
 	eTT_Nhay,
 	eTT_HiSinh // hi sinh = chết :))
 };
+
