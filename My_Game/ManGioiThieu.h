@@ -12,6 +12,7 @@
 #include "KieuDuLieu.h"
 
 #include "GameDebugDraw.h"
+#include "HoatHinh2.h"
 
 class ManGioiThieu : public ManGame
 {
@@ -45,5 +46,9 @@ private:
 	void VeDanhSachDoiTuong(const Vec2& in_DoDoi);
 
 	GameDebugDraw *mDebugDraw;
+		
+	HoatHinh2 *mHoatHinhMegaman;
+
+
 };
 

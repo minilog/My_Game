@@ -1,7 +1,7 @@
 ﻿#include "VaChamGame.h"
 #include "map"
 
-eKetQuaVaCham VaChamGame::get_KetQuaVaCham(const HinhChuNhat& in_HCN1, const HinhChuNhat& in_HCN2)
+eKetQuaVaCham VaChamGame::get_KetQuaVaCham(const HCN& in_HCN1, const HCN& in_HCN2)
 {
 	eKetQuaVaCham lKetQuaVaCham;
 
@@ -171,7 +171,7 @@ ePhiaVaCham VaChamGame::get_PhiaVaCham(const DoiTuong * in_DoiTuong1, const DoiT
 /*								 Các hàm đơn giản					             */
 ///////////////////////////////////////////////////////////////////////////////////
 
-bool VaChamGame::get_DaVaCham(const HinhChuNhat& in_HCN1, const HinhChuNhat& in_HCN2)
+bool VaChamGame::get_DaVaCham(const HCN& in_HCN1, const HCN& in_HCN2)
 {
 	if (in_HCN1.Trai <= in_HCN2.Phai &&
 		in_HCN1.Phai >= in_HCN2.Trai &&
@@ -184,7 +184,7 @@ bool VaChamGame::get_DaVaCham(const HinhChuNhat& in_HCN1, const HinhChuNhat& in_
 	return false;
 }
 
-bool VaChamGame::get_DiemVaHCN(int in_X, int in_Y, const HinhChuNhat& in_HCN)
+bool VaChamGame::get_DiemVaHCN(int in_X, int in_Y, const HCN& in_HCN)
 {
 	if (in_X < in_HCN.Trai ||
 		in_X > in_HCN.Phai ||
@@ -197,7 +197,7 @@ bool VaChamGame::get_DiemVaHCN(int in_X, int in_Y, const HinhChuNhat& in_HCN)
 	return true;
 }
 
-bool VaChamGame::get_HCNVaHinhTron(const HinhChuNhat& in_HCN, int in_TamX, int in_TamY, int in_BanKinh)
+bool VaChamGame::get_HCNVaHinhTron(const HCN& in_HCN, int in_TamX, int in_TamY, int in_BanKinh)
 {
 	int lPx = in_TamX;
 	int lPy = in_TamY;

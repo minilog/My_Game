@@ -47,7 +47,7 @@ public:
 
 	void XuLyVaCham(const DoiTuong* in_DoiTuong) 
 	{
-		HinhChuNhat lHCNGioiHanGBT = get_HCNGioiHan();
+		HCN lHCNGioiHanGBT = get_HCNGioiHan();
 
 		eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(lHCNGioiHanGBT, in_DoiTuong->get_HCNGioiHan());
 		ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);

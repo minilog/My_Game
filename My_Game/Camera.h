@@ -31,6 +31,6 @@ public:
 	static Vec2 get_ToaDo();
 	static int get_ChieuRong();
 	static int get_ChieuCao();
-	static HinhChuNhat get_HCNGioiHan();
+	static HCN get_HCNGioiHan();
 };
 

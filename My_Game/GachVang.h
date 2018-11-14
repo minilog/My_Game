@@ -16,14 +16,14 @@ public:
 		HinhAnh *lHA = new HinhAnh("Resources/goldbrick.png");
 		lHA->set_ChieuRong(32);
 		lHA->set_ChieuCao(32);
-		lHA->set_HCN(HinhChuNhat(
+		lHA->set_HCN(HCN(
 			0, 32, 0, 32));
 		lDSHinhAnh.push_back(lHA);
 
 		HinhAnh *lHA2 = new HinhAnh("Resources/goldbrick.png");
 		lHA2->set_ChieuRong(32);
 		lHA2->set_ChieuCao(32);
-		lHA2->set_HCN(HinhChuNhat(
+		lHA2->set_HCN(HCN(
 			32, 64, 0, 32));
 		lDSHinhAnh.push_back(lHA2);
 

@@ -130,6 +130,9 @@
     <ClCompile Include="HoatHinh2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QuadTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -259,6 +262,9 @@
       <Filter>0.NenTang</Filter>
     </ClInclude>
     <ClInclude Include="HoatHinh2.h">
+      <Filter>0.NenTang</Filter>
+    </ClInclude>
+    <ClInclude Include="QuadTree.h">
       <Filter>0.NenTang</Filter>
     </ClInclude>
   </ItemGroup>

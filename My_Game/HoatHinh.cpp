@@ -18,7 +18,7 @@ HoatHinh::HoatHinh(const char * in_DuongDan, int in_TongKhuonHinh, int in_SoHang
 	mTongThoiGianHienTai = 0.0f;
 
 	// chỉnh hình chữ nhật để đúng khuôn Hình được vẽ ra
-	HinhAnh::mHCN = HinhChuNhat(
+	HinhAnh::mHCN = HCN(
 		0,
 		HinhAnh::mChieuRong,
 		0,
@@ -54,7 +54,7 @@ void HoatHinh::CapNhat(float in_tg)
 			}
 		}
 
-		HinhAnh::mHCN = HinhChuNhat(
+		HinhAnh::mHCN = HCN(
 			mCotHienTai * HinhAnh::mChieuRong,
 			mCotHienTai * HinhAnh::mChieuRong + HinhAnh::mChieuRong,
 			mHangHienTai * HinhAnh::mChieuCao,

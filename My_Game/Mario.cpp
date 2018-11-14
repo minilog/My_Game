@@ -65,7 +65,7 @@ void Mario::Ve(const Vec2& in_DoDoi)
 
 void Mario::XuLyVaCham(const DoiTuong * in_DoiTuong) 
 {
-	HinhChuNhat lHCNGioiHanMario = get_HCNGioiHan();
+	HCN lHCNGioiHanMario = get_HCNGioiHan();
 
 	eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(lHCNGioiHanMario, in_DoiTuong->get_HCNGioiHan());
 	ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
@@ -105,7 +105,7 @@ void Mario::XuLyVaCham(const DoiTuong * in_DoiTuong)
 // XỬ LÝ BIẾN mDangDungTuNhienRoi
 	if (mDangDungTuNhienRoi == true)
 	{
-		HinhChuNhat lHCNGioiHanMoRongDay = get_HCNGioiHan();
+		HCN lHCNGioiHanMoRongDay = get_HCNGioiHan();
 		lHCNGioiHanMoRongDay.Duoi += 2;
 
 		eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(lHCNGioiHanMoRongDay, in_DoiTuong->get_HCNGioiHan());

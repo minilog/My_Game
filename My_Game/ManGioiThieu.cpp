@@ -6,10 +6,35 @@
 #include "GameLog.h"
 
 #include "Sound.h"
+#include <vector>
 
 ManGioiThieu::ManGioiThieu() {
 	TaiDuLieu();
 	mMario = new Mario(Vec2(210, 850));
+
+	std::vector<HinhAnh*> lDSHA;
+
+	// mỗi hình ảnh là 1 biến con trỏ riêng, để đưa vào DS cho chính xác
+	HinhAnh *lHA = new HinhAnh("Resources/XMan.png");
+	lHA->set_ChieuRong(22);
+	lHA->set_ChieuCao(35);
+	lHA->set_HCN(HCN(
+		136, 158, 107, 142));
+	lHA->set_TiLe(Vec2(5.0f, 5.0f));
+	lDSHA.push_back(lHA);
+
+	HinhAnh *lHA2 = new HinhAnh("Resources/XMan.png");
+	lHA2->set_ChieuRong(22);
+	lHA2->set_ChieuCao(35);
+	lHA2->set_HCN(HCN(
+		158, 180 , 107, 142));
+	lHA2->set_TiLe(Vec2(5.0f, 5.0f));
+	lDSHA.push_back(lHA2);
+
+	mHoatHinhMegaman = new HoatHinh2(lDSHA, 1.0f);
+	mHoatHinhMegaman->set_ToaDo(Vec2(300.0f, 300.0f));
+
+	//delete mHoatHinhMegaman;
 }
 
 ManGioiThieu::~ManGioiThieu()
@@ -81,8 +106,8 @@ void ManGioiThieu::TaiDuLieu()
 
 	mDebugDraw = new GameDebugDraw();
 
-	Sound::getInstance()->loadSound("Resources/man1.wav", "man1");
-	Sound::getInstance()->play("man1", true, 1);
+	//Sound::getInstance()->loadSound("Sounds/MegaManx3_Music.wav", "man1");
+	//Sound::getInstance()->play("man1", true, 1);
 }
 
 void ManGioiThieu::CapNhat(float in_tg)
@@ -120,6 +145,10 @@ void ManGioiThieu::CapNhat(float in_tg)
 
 	// điều khiển Camera
 	Camera::set_ToaDo(mMario->get_ToaDo());
+
+
+	mHoatHinhMegaman->CapNhat(in_tg);
+	mHoatHinhMegaman->set_ToaDo(Vec2(300.0f, 300.0f));
 }
 
 void ManGioiThieu::Ve()
@@ -132,6 +161,8 @@ void ManGioiThieu::Ve()
 	VeDanhSachDoiTuong(lDoDoi);
 
 	mMario->Ve(lDoDoi);
+
+	mHoatHinhMegaman->Ve();
 
 	//RECT lHCN;
 	//lHCN.left = mMario->get_HCNGioiHan().Trai;
@@ -244,7 +275,7 @@ void ManGioiThieu::VeHinhAnhBanDoGame(const Vec2& in_DoDoi)
 		{
 			const Tmx::Tileset *tileSet = mBanDo->GetTileset(j);
 
-			HinhChuNhat lHCN_1;
+			HCN lHCN_1;
 
 			int tileWidth = mBanDo->GetTileWidth();
 			int tileHeight = mBanDo->GetTileHeight();
@@ -262,7 +293,7 @@ void ManGioiThieu::VeHinhAnhBanDoGame(const Vec2& in_DoDoi)
 						m * tileHeight + tileHeight / 2.0f);
 
 					{
-						HinhChuNhat lHCN_2(
+						HCN lHCN_2(
 							int(position.x - tileWidth / 2.0f),
 							int(position.x + tileWidth / 2.0f),
 							int(position.y - tileHeight / 2.0f),

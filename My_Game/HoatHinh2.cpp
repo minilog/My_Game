@@ -43,7 +43,7 @@ void HoatHinh2::CapNhat(float in_tg)
 		mThoiGianHienTai -= mThoiGianThayDoi;
 
 		mViTriHienTai++;
-		if (mViTriHienTai >= mDSHinhAnh.size())
+		if (mViTriHienTai >= int(mDSHinhAnh.size()))
 		{
 			mViTriHienTai = 0;
 		}

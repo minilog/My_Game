@@ -43,6 +43,6 @@ public:
 	Vec2 get_VanToc() const;
 	int get_ChieuRong() const;
 	int get_ChieuCao() const;
-	HinhChuNhat get_HCNGioiHan() const; // chiều cao, chiều rộng của các thực thể nên chia hết cho 2
+	HCN get_HCNGioiHan() const; // chiều cao, chiều rộng của các thực thể nên chia hết cho 2
 };
 

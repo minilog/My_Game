@@ -47,9 +47,9 @@ void Camera::set_GioiHan(int in_Trai, int in_Phai, int in_Tren, int in_Duoi)
 	mGioiHanDuoi = in_Duoi;
 }
 
-HinhChuNhat Camera::get_HCNGioiHan()
+HCN Camera::get_HCNGioiHan()
 {
-	return HinhChuNhat(
+	return HCN(
 		int(mToaDo.x - mChieuRong / 2.0f),
 		int(mToaDo.x + mChieuRong / 2.0f),
 		int(mToaDo.y - mChieuCao / 2.0f),

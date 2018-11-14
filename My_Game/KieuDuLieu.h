@@ -1,9 +1,9 @@
 ﻿#pragma once
 
-class HinhChuNhat
+class HCN
 {
 public:
-	HinhChuNhat(int in_Trai = 0, int in_Phai = 0, int in_Tren = 0, int in_Duoi = 0)
+	HCN(int in_Trai = 0, int in_Phai = 0, int in_Tren = 0, int in_Duoi = 0)
 	{
 		Trai = in_Trai;
 		Phai = in_Phai;
@@ -45,7 +45,7 @@ enum ePhiaVaCham
 struct eKetQuaVaCham
 {
 	bool eKQVC_DaVaCham;
-	HinhChuNhat eKQVC_VungVaCham;
+	HCN eKQVC_VungVaCham;
 };
 
 enum eLoaiDoiTuong

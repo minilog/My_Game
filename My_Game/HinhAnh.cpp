@@ -8,7 +8,7 @@ HinhAnh::HinhAnh(const char * in_DuongDan)
 	mToaDo = Vec2(0.0f, 0.0f);
 	mChieuRong = mThongTinHinhAnh.Width;
 	mChieuCao = mThongTinHinhAnh.Height;
-	mHCN = HinhChuNhat(0, mChieuRong, 0, mChieuCao);
+	mHCN = HCN(0, mChieuRong, 0, mChieuCao);
 	mTiLe = Vec2(1.0f, 1.0f);
 	mLatTheoChieuNgang = false;
 	mLatTheoChieuDoc = false;
@@ -149,7 +149,7 @@ int HinhAnh::get_ChieuCao() const
 	return mChieuCao;
 }
 
-void HinhAnh::set_HCN(const HinhChuNhat& in_HCN)
+void HinhAnh::set_HCN(const HCN& in_HCN)
 {
 	mHCN = in_HCN;
 }

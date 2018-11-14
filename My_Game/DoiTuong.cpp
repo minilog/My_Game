@@ -49,9 +49,9 @@ int DoiTuong::get_ChieuCao() const
 	return mChieuCao;
 }
 
-HinhChuNhat DoiTuong::get_HCNGioiHan() const
+HCN DoiTuong::get_HCNGioiHan() const
 {
-	return HinhChuNhat(
+	return HCN(
 		int(mToaDo.x - mChieuRong / 2.0f),
 		int(mToaDo.x + mChieuRong / 2.0f),
 		int(mToaDo.y - mChieuCao / 2.0f),

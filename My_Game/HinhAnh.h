@@ -21,7 +21,7 @@ protected:
 	Vec2					mToaDo;
 	int						mChieuRong; 
 	int						mChieuCao;			// kích thước của Kết Cấu Hình Ảnh
-	HinhChuNhat             mHCN;				// hình chữ nhật cắt từ Kết Cấu Hình Ảnh
+	HCN             mHCN;				// hình chữ nhật cắt từ Kết Cấu Hình Ảnh
 	Vec2					mTiLe;
 	bool					mLatTheoChieuNgang;
 	bool                    mLatTheoChieuDoc;
@@ -42,7 +42,7 @@ public:
 	void set_ToaDo(const Vec2& in_ToaDo);
 	void set_ChieuRong(int in_ChieuRong);
 	void set_ChieuCao(int in_ChieuCao);
-	void set_HCN(const HinhChuNhat& in_HCN);
+	void set_HCN(const HCN& in_HCN);
 	void set_TiLe(const Vec2& in_TiLe);
 	void set_LatTheoChieuNgang(bool in_Co);
 	void set_LatTheoChieuDoc(bool in_Co);
