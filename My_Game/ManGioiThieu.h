@@ -35,6 +35,7 @@ private:
 
 
 
+
 // Các hàm dùng để đơn giản hóa thuật toán :V
 private:
 	void TaoBanDoVaCamera();

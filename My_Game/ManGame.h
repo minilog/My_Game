@@ -14,8 +14,7 @@ public:
 	virtual void OnKeyUp(int in_KeyCode) = 0;
 	virtual void OnMouseDown(float in_x, float in_y) = 0;
 
-public:
-	D3DCOLOR cMauNen()
+	D3DCOLOR get_MauNen()
 	{
 		return mMauNen;
 	}
@@ -29,7 +28,6 @@ protected:
 	int mChieuRongTile;
 	int mChieuCaoTile;
 	std::map<int, HinhAnh*> mDanhSachTileset;
-
 };
 
 

@@ -3,12 +3,13 @@
 #include "ThoiGianGame.h"
 #include "QuanLyManGame.h"
 #include "ManGioiThieu.h"
+#include "Man1.h"
 
 Game::Game(int in_FPS)
 {
 	mFPS = in_FPS;
 
-	QuanLyManGame::set_ManGame(new ManGioiThieu());
+	QuanLyManGame::set_ManGame(new Man1());
 
 	font = NULL;
 	D3DXCreateFont(ToanCauGame::get_ThietBi(), 22, 0, FW_NORMAL, 1, false, DEFAULT_CHARSET,
@@ -70,7 +71,7 @@ void Game::CapNhat(float in_tg)
 void Game::Ve()
 {
 	auto lThietBi = ToanCauGame::get_ThietBi();
-	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, QuanLyManGame::get_ManGame()->cMauNen(), 0.0f, 0);
+	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, QuanLyManGame::get_ManGame()->get_MauNen(), 0.0f, 0);
 
 	{
 		lThietBi->BeginScene();

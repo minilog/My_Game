@@ -23,14 +23,14 @@ ManGioiThieu::~ManGioiThieu()
 	}
 
 // XOA_DS_TILESET
-	for (int i = 0; i < int(ManGame::mDanhSachTileset.size()); i++)
+	for (int i = 0; i < int(mDanhSachTileset.size()); i++)
 	{
-		if (ManGame::mDanhSachTileset[i])
+		if (mDanhSachTileset[i])
 		{
-			delete ManGame::mDanhSachTileset[i];
+			delete mDanhSachTileset[i];
 		}
 	}
-	ManGame::mDanhSachTileset.clear();
+	mDanhSachTileset.clear();
 
 // XOA_DS_GACH_BINH_THUONG
 	for (size_t i = 0; i < mDanhSachGachBinhThuong.size(); i++)
@@ -169,8 +169,8 @@ void ManGioiThieu::TaoBanDoVaCamera()
 	ManGame::mChieuRong = ManGame::mBanDo->GetWidth() * ManGame::mBanDo->GetTileWidth();
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
 
-	ManGame::mChieuRongTile = ManGame::mBanDo->GetTileWidth();
-	ManGame::mChieuCaoTile = ManGame::mBanDo->GetTileHeight();
+	mChieuRongTile = ManGame::mBanDo->GetTileWidth();
+	mChieuCaoTile = ManGame::mBanDo->GetTileHeight();
 
 	// TAO_CAMERA
 	Camera::set_ToaDo(Vec2(
