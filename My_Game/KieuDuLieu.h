@@ -40,16 +40,18 @@ public:
 class ThongTinFrame
 {
 public:
-	ThongTinFrame(const Vec2& in_ToaDo, int in_ChieuRong, int in_ChieuCao)
+	ThongTinFrame(const Vec2& in_ToaDo, int in_ChieuRong, int in_ChieuCao, float in_ThoiGian)
 	{
 		ToaDo = in_ToaDo;
 		ChieuRong = in_ChieuRong;
 		ChieuCao = in_ChieuCao;
+		ThoiGian = in_ThoiGian;
 	}
 
 	Vec2 ToaDo;
 	int ChieuRong;
 	int ChieuCao;
+	float ThoiGian;
 };
 
 enum ePhiaVaCham
@@ -69,7 +71,8 @@ struct eKetQuaVaCham
 enum eLoaiDoiTuong
 {
 	eLDT_KhongCo, eLDT_VienGach, eLDT_KeThu, eLDT_Mario, eLDT_DoiTuongTinh, 
-	eLDT_VienGachBinhThuong, eLDT_VienGachVang
+	eLDT_VienGachBinhThuong, eLDT_VienGachVang,
+	eLDT_XMan
 };
 
 enum eHuongDiChuyen
@@ -79,10 +82,12 @@ enum eHuongDiChuyen
 
 enum eTrangThai
 {
-	eTT_DungIm, 
+	eTT_DungIm,
 	eTT_ChaySangTrai, eTT_ChaySangPhai,
-	eTT_Roi, 
+	eTT_Roi,
 	eTT_Nhay,
-	eTT_HiSinh // hi sinh = chết :))
+	eTT_HiSinh, // hi sinh = chết :)),
+	eTT_ChuanBiChaySangPhai, eTT_ChuanBiChaySangTrai,
+	eTT_TiepDat
 };
 

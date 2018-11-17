@@ -1,7 +1,7 @@
 ﻿#include "HinhAnh.h"
 #include "ToanCauGame.h"
 
-HinhAnh::HinhAnh(const char * in_DuongDan)
+HinhAnh::HinhAnh(const char * in_DuongDan, D3DCOLOR in_Color)
 {
 	mXuLyHinhAnh = ToanCauGame::get_XuLyHinhAnh();
 	D3DXGetImageInfoFromFileA(in_DuongDan, &mThongTinHinhAnh);
@@ -28,7 +28,7 @@ HinhAnh::HinhAnh(const char * in_DuongDan)
 		D3DPOOL_DEFAULT,
 		D3DX_DEFAULT,
 		D3DX_DEFAULT,
-		NULL,
+		in_Color, // màu nền màu trắng sẽ bị mất hết
 		&mThongTinHinhAnh,
 		NULL,
 		&mKetCauHinhAnh);
@@ -44,10 +44,10 @@ HinhAnh::~HinhAnh()
 
 void HinhAnh::Ve()
 {
-	D3DXVECTOR2 lTrungTamTiLe = D3DXVECTOR2(mToaDo.x, mToaDo.y);
-	D3DXVECTOR2 lTrungTamXoayHinh = D3DXVECTOR2(mToaDo.x, mToaDo.y);
-	D3DXVECTOR2 lTiLe = D3DXVECTOR2(mTiLe.x, mTiLe.y);
-	D3DXVECTOR2 lDoDoi = D3DXVECTOR2(mDoDoi.x, mDoDoi.y);
+	D3DXVECTOR2 lTrungTamTiLe = D3DXVECTOR2(float((int)mToaDo.x), float((int)mToaDo.y));
+	D3DXVECTOR2 lTrungTamXoayHinh = D3DXVECTOR2(float((int)mToaDo.x), float((int)mToaDo.y));
+	D3DXVECTOR2 lTiLe = D3DXVECTOR2(float((int)mTiLe.x), float((int)mTiLe.y));
+	D3DXVECTOR2 lDoDoi = D3DXVECTOR2(float((int)mDoDoi.x), float((int)mDoDoi.y));
 
 	D3DXMatrixTransformation2D(
 		&mMaTran,
@@ -67,15 +67,16 @@ void HinhAnh::Ve()
 	lHCN.right = long(mHCN.Phai);
 	lHCN.top = long(mHCN.Tren);
 	lHCN.bottom = long(mHCN.Duoi);
-	D3DXVECTOR3 lTrungTam = D3DXVECTOR3(float(mChieuRong / 2.0f), float(mChieuCao / 2.0f), float(0));
-	D3DXVECTOR3 lToaDo = D3DXVECTOR3(float(mToaDo.x), float(mToaDo.y), 0.0f);
+	D3DXVECTOR3 lTrungTam = D3DXVECTOR3(float(mChieuRong) / 2.0f, float(mChieuCao) / 2.0f, float(0));
+	D3DXVECTOR3 lToaDo = D3DXVECTOR3(float((int)mToaDo.x), float((int)mToaDo.y), 0.0f);
 
 	mXuLyHinhAnh->Draw(
 		mKetCauHinhAnh,
 		&lHCN,
 		&lTrungTam,
 		&lToaDo,
-		D3DCOLOR_ARGB(255, 255, 255, 255)); // những pixel nào có màu trắng thì sẽ tô màu này lên
+		D3DCOLOR_ARGB(255, 255, 255, 255)); // những pixel nào có màu trắng		
+											// thì sẽ tô màu này lên
 
 	mXuLyHinhAnh->SetTransform(&lMaTranCu); // thiết lập lại Ma Trận Cũ để Xử Lý Hình Ảnh chỉ áp dụng Transform với class này
 }

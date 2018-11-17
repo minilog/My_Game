@@ -1,7 +1,7 @@
 ﻿#pragma once
 
 #include <d3d9.h>
-#include <string>
+
 #include <d3dx9.h>
 
 class Game
@@ -21,8 +21,6 @@ private:
 	PDIRECT3DSURFACE9       mMatSau;
 	PDIRECT3DSURFACE9		mDemSau;
 
-	ID3DXFont *font;
-	RECT fRectangle;
-	std::string message;
+
 };
 

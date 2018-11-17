@@ -12,6 +12,7 @@
 #include "KieuDuLieu.h"
 
 #include "GameDebugDraw.h"
+#include <string>
 
 class ManGioiThieu : public ManGame
 {
@@ -47,6 +48,8 @@ private:
 
 	GameDebugDraw *mDebugDraw;
 	
-
+	ID3DXFont *font;
+	RECT fRectangle;
+	std::string message;
 };
 

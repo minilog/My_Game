@@ -12,10 +12,23 @@ ManGioiThieu::ManGioiThieu()
 {
 	TaiDuLieu();
 	mMario = new Mario(Vec2(210, 850));
+
+	font = NULL;
+	D3DXCreateFont(ToanCauGame::get_ThietBi(), 22, 0, FW_NORMAL, 1, false, DEFAULT_CHARSET,
+		OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_DONTCARE, L"Arial", &font);
+
+	SetRect(&fRectangle, 0, 0, 500, 300);
+	message = "This is some generic message to\n display on the screen";
 }
 
 ManGioiThieu::~ManGioiThieu()
 {
+	if (font)
+	{
+		font->Release();
+		font = 0;
+	}
+
 // XOA_BAN_DO
 	if (mBanDo)
 	{
@@ -127,6 +140,7 @@ void ManGioiThieu::CapNhat(float in_tg)
 
 void ManGioiThieu::Ve()
 {
+
 	Vec2 lDoDoi (ToanCauGame::get_ChieuRong() / 2 - Camera::get_ToaDo().x,
 		ToanCauGame::get_ChieuCao() / 2 - Camera::get_ToaDo().y);
 
@@ -142,6 +156,11 @@ void ManGioiThieu::Ve()
 	//lHCN.top = mMario->get_HCNGioiHan().Tren;
 	//lHCN.bottom = mMario->get_HCNGioiHan().Duoi;
 	//mDebugDraw->DrawRect(lHCN);
+
+	if (font)
+	{
+		font->DrawTextA(NULL, message.c_str(), -1, &fRectangle, DT_LEFT, D3DCOLOR_XRGB(0, 0, 0));
+	}
 }
 
 void ManGioiThieu::OnKeyDown(int in_Keys)

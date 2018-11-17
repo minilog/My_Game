@@ -8,7 +8,7 @@
 class HinhAnh
 {
 public:
-	HinhAnh(const char* in_DuongDan);
+	HinhAnh(const char* in_DuongDan, D3DCOLOR in_Color = NULL);
 	~HinhAnh();
 	void Ve();
 

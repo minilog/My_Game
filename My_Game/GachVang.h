@@ -14,9 +14,9 @@ public:
 		std::vector<ThongTinFrame> lDSThongTinFrame;
 
 		lDSThongTinFrame.clear();
-		lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 32, 32));
-		lDSThongTinFrame.push_back(ThongTinFrame(Vec2(32.0f, 0.0f), 32, 32));
-		mHoatHinh = new HoatHinh("Resources/goldbrick.png", lDSThongTinFrame, 0.5f);
+		lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 32, 32, 0.5f));
+		lDSThongTinFrame.push_back(ThongTinFrame(Vec2(32.0f, 0.0f), 32, 32, 0.5f));
+		mHoatHinh = new HoatHinh("Resources/goldbrick.png", lDSThongTinFrame);
 
 		DoiTuong::mLoaiDoiTuong = eLDT_VienGachVang;
 	}

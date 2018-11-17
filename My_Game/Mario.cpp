@@ -11,17 +11,17 @@ Mario::Mario(const Vec2& in_ToaDo) :
 	std::vector<ThongTinFrame> lDSThongTinFrame;
 
 	lDSThongTinFrame.clear();
-	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 24, 32));
-	mHH_DungIm = new HoatHinh("Resources/mario/standingright.png", lDSThongTinFrame, 0.0f);
+	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 24, 32 , 0.0f));
+	mHH_DungIm = new HoatHinh("Resources/mario/standingright.png", lDSThongTinFrame);
 	
 	lDSThongTinFrame.clear();
-	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 30, 32));
-	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(30.0f, 0.0f), 30, 32));
-	mHH_Chay = new HoatHinh("Resources/mario/runningright.png", lDSThongTinFrame, 0.15f);
+	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 30, 32, 0.15f));
+	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(30.0f, 0.0f), 30, 32, 0.15f));
+	mHH_Chay = new HoatHinh("Resources/mario/runningright.png", lDSThongTinFrame);
 
 	lDSThongTinFrame.clear();
-	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 32, 32));
-	mHH_Nhay = new HoatHinh("Resources/mario/jumpingright.png", lDSThongTinFrame, 0.0f);
+	lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 32, 32 , 0.0f));
+	mHH_Nhay = new HoatHinh("Resources/mario/jumpingright.png", lDSThongTinFrame);
 
 	Roi();
 }

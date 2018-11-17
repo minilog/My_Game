@@ -15,12 +15,12 @@ public:
 		std::vector<ThongTinFrame> lDSThongTinFrame;
 
 		lDSThongTinFrame.clear();
-		lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 32, 32));
-		mHoatHinh = new HoatHinh("Resources/normalbrick.png", lDSThongTinFrame, 1.0f);
+		lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 32, 32, 0.0f));
+		mHoatHinh = new HoatHinh("Resources/normalbrick.png", lDSThongTinFrame);
 
 		lDSThongTinFrame.clear();
-		lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 717, 720));
-		mHoatHinhBiPhaHuy = new HoatHinh("Resources/No.png", lDSThongTinFrame, 1.0f);
+		lDSThongTinFrame.push_back(ThongTinFrame(Vec2(0.0f, 0.0f), 717, 720, 0.0f));
+		mHoatHinhBiPhaHuy = new HoatHinh("Resources/No.png", lDSThongTinFrame);
 
 		mHoatHinhBiPhaHuy->set_TiLe(Vec2(0.045f, 0.045f));
 

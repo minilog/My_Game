@@ -162,6 +162,7 @@
     <ClCompile Include="ThoiGianGame.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
     <ClCompile Include="VaChamGame.cpp" />
+    <ClCompile Include="XMan.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DoiTuong.h" />
@@ -208,6 +209,7 @@
     <ClInclude Include="ThoiGianGame.h" />
     <ClInclude Include="ToanCauGame.h" />
     <ClInclude Include="VaChamGame.h" />
+    <ClInclude Include="XMan.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

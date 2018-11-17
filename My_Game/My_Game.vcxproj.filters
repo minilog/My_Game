@@ -136,6 +136,9 @@
     <ClCompile Include="Man1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="XMan.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -269,6 +272,9 @@
     </ClInclude>
     <ClInclude Include="Man1.h">
       <Filter>2.ManGame</Filter>
+    </ClInclude>
+    <ClInclude Include="XMan.h">
+      <Filter>4.DoiTuong</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

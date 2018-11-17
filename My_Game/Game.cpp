@@ -11,24 +11,13 @@ Game::Game(int in_FPS)
 
 	QuanLyManGame::set_ManGame(new Man1());
 
-	font = NULL;
-	D3DXCreateFont(ToanCauGame::get_ThietBi(), 22, 0, FW_NORMAL, 1, false, DEFAULT_CHARSET,
-		OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_DONTCARE, L"Arial", &font);
-
-	SetRect(&fRectangle, 0, 0, 500, 300);
-	message = "This is some generic message to\n display on the screen";
-
 	TaoVongLapGame();
 
 }
 
 Game::~Game()
 {
-	if (font)
-	{
-		font->Release();
-		font = 0;
-	}
+
 }
 
 void Game::TaoVongLapGame()
@@ -84,14 +73,10 @@ void Game::Ve()
 		QuanLyManGame::get_ManGame()->Ve();
 
 
-
 		// kết thúc vẽ
 		ToanCauGame::get_XuLyHinhAnh()->End();
 
-		if (font)
-		{
-			font->DrawTextA(NULL, message.c_str(), -1, &fRectangle, DT_LEFT, D3DCOLOR_XRGB(0, 0, 0));
-		}
+
 
 		lThietBi->EndScene();
 	}

@@ -1,11 +1,9 @@
 ﻿#include "HoatHinh.h"
 
-HoatHinh::HoatHinh(const char * in_DuongDan, const std::vector<ThongTinFrame>& in_DSThongTinFrame,
-	float in_ThoiGianThayDoi)
+HoatHinh::HoatHinh(const char * in_DuongDan, const std::vector<ThongTinFrame>& in_DSThongTinFrame)
 	:HinhAnh(in_DuongDan),
-	mThongTinFrameHienTai(Vec2(0.0f, 0.0f), 0, 0),
+	mThongTinFrameHienTai(Vec2(0.0f, 0.0f), 0, 0, 0.0f),
 	mViTriFrame(0),
-	mThoiGianThayDoi(in_ThoiGianThayDoi),
 	mThoiGianDem(0.0f)
 {
 	for (auto lThongTinFrame : in_DSThongTinFrame)
@@ -34,16 +32,16 @@ void HoatHinh::CapNhat(float in_tg)
 
 	mThoiGianDem += in_tg;
 
-	if (mThoiGianDem < mThoiGianThayDoi)
+	if (mThoiGianDem < mThongTinFrameHienTai.ThoiGian)
 	{
 		return;
 	}
 	else
 	{
-		mThoiGianDem -= mThoiGianThayDoi;
+		mThoiGianDem -= mThongTinFrameHienTai.ThoiGian;
 		mViTriFrame++;
 
-		if (mViTriFrame >= mDSThongTinFrame.size())
+		if (mViTriFrame >= (int)mDSThongTinFrame.size())
 		{
 			mViTriFrame = 0;
 		}
@@ -64,4 +62,20 @@ void HoatHinh::CapNhat(float in_tg)
 void HoatHinh::Ve()
 {
 	HinhAnh::Ve();
+}
+
+void HoatHinh::Remake()
+{
+	mThoiGianDem = 0.0f;
+	mViTriFrame = 0;
+	mThongTinFrameHienTai = mDSThongTinFrame[mViTriFrame];
+
+	HinhAnh::mChieuRong = mThongTinFrameHienTai.ChieuRong;
+	HinhAnh::mChieuCao = mThongTinFrameHienTai.ChieuCao;
+
+	HinhAnh::mHCN = HCN(
+		int(mThongTinFrameHienTai.ToaDo.x),
+		int(mThongTinFrameHienTai.ToaDo.x) + HinhAnh::mChieuRong,
+		int(mThongTinFrameHienTai.ToaDo.y),
+		int(mThongTinFrameHienTai.ToaDo.y) + HinhAnh::mChieuCao);
 }

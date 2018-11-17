@@ -60,13 +60,14 @@ int	KhoiTaoCuaSo(int cmdShow)
 		WIN_TITLE,
 		WS_OVERLAPPEDWINDOW,
 		300,
-		100,
-		ToanCauGame::get_ChieuRong(),
-		ToanCauGame::get_ChieuCao(),
+		50,
+		int(ToanCauGame::get_ChieuRong() * 3.3f),
+		int(ToanCauGame::get_ChieuCao() * 3.3f),
 		NULL,
 		NULL,
 		mTruongHopXuLy,
 		NULL);
+
 
 	ToanCauGame::set_TruongHopXuLy(mTruongHopXuLy);
 	ToanCauGame::set_CuaSoXuLy(cuaSoXuLy);
