@@ -28,6 +28,22 @@ XMan::~XMan()
 	{
 		delete mHH_Chay;
 	}
+	if (mHH_Nhay)
+	{
+		delete mHH_Nhay;
+	}
+	if (mHH_TiepDat)
+	{
+		delete mHH_TiepDat;
+	}
+	if (mHH_Roi)
+	{
+		delete mHH_Roi;
+	}
+	if (mHH_Luot)
+	{
+		delete mHH_TiepDat;
+	}
 }
 
 void XMan::CapNhat(float in_tg)
@@ -89,6 +105,7 @@ void XMan::CapNhat(float in_tg)
 			Roi();
 		}
 		break;
+
 	default: 
 		break;
 	}
@@ -118,13 +135,19 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			{
 			case ePVC_Duoi:
 				mToaDo.y -= lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
-				GAMELOG("VA CHAM DUOI");
 				if (mTrangThai == eTT_Roi)
 				{
 					TiepDat();
-					GAMELOG("TIEP DAT");
 				}
 				break;
+			case ePVC_Tren:
+				if (mTrangThai == eTT_Nhay)
+				{
+					mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+					Roi();
+				}
+				break;
+
 			case ePVC_Trai:
 			case ePVC_TraiTren:
 			case ePVC_TraiDuoi:
@@ -148,9 +171,9 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 					(mTrangThai == eTT_Chay || mTrangThai == eTT_ChuanBiChay))
 				{
 					DungIm();
-
 				}
 				break;
+
 			default:
 				break;
 			}
@@ -204,7 +227,11 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 				ChuanBiChay();
 			}
 		}
-
+		if (in_Keys['X'] && !mLatHinh)
+		{
+			mVanToc.x = 2 * mVanTocChayToiDa;
+			Luot();
+		}
 		break;
 
 	case eTT_Chay:
@@ -214,7 +241,6 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 		{
 			DungIm();
 		}
-
 		break;
 
 	case eTT_Nhay:
@@ -264,6 +290,14 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 			mChoPhepNhay = true;
 		}
 		break;
+
+	case eTT_Luot:
+		if (!in_Keys['X'])
+		{
+			DungIm();
+		}
+		break;
+
 	default:
 		break;
 	}
@@ -300,7 +334,7 @@ void XMan::LoadHinhAnhVao()
 	lDSTTFrame.clear();
 	//lDSTTFrame.push_back(ThongTinFrame(Vec2(202.0f, 63.0f), 24, 38, 0.05f));
 	lDSTTFrame.push_back(ThongTinFrame(Vec2(230.0f, 59.0f), 16, 42, 0.15f));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(252.0f, 54.0f), 20, 46, 999.9f));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(252.0f, 52.0f), 20, 48, 999.9f));
 	mHH_Nhay = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
 
 	lDSTTFrame.clear();
@@ -312,6 +346,11 @@ void XMan::LoadHinhAnhVao()
 	lDSTTFrame.push_back(ThongTinFrame(Vec2(331.0f, 62.0f), 24, 38, 0.05f));
 	lDSTTFrame.push_back(ThongTinFrame(Vec2(356.0f, 68.0f), 30, 32, 999.9f));
 	mHH_TiepDat = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(285.0f, 154.0f), 28, 36, 0.05f));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(317.0f, 155.0f), 44, 34, 999.9f));
+	mHH_Luot = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
 }
 
 void XMan::DungIm()
@@ -362,6 +401,13 @@ void XMan::TiepDat()
 	mHH_HienTai = mHH_TiepDat;
 	mHH_HienTai->Remake();
 	mTG_DemTiepDat = 0.0f;
+}
+
+void XMan::Luot()
+{
+	mTrangThai = eTT_Luot;
+	mHH_HienTai = mHH_Luot;
+	mHH_HienTai->Remake();
 }
 
 

@@ -157,6 +157,7 @@ void Mario::XuLyBanPhim(std::map<int, bool> in_Keys) {
 			Nhay();
 		}
 		break;
+
 	case eTT_Chay:
 		if (!in_Keys[VK_RIGHT])
 		{
@@ -167,6 +168,7 @@ void Mario::XuLyBanPhim(std::map<int, bool> in_Keys) {
 			Nhay();
 		}
 		break;
+
 	case eTT_Nhay:
 		if (in_Keys[VK_LEFT])
 		{
@@ -190,6 +192,7 @@ void Mario::XuLyBanPhim(std::map<int, bool> in_Keys) {
 				mVanToc.y = 0;
 			}
 		}
+		break;
 	case eTT_Roi:
 		if (in_Keys[VK_LEFT])
 		{

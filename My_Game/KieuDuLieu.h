@@ -89,6 +89,7 @@ enum eTrangThai
 	eTT_HiSinh, // hi sinh = chết :)),
 	eTT_ChuanBiChay,
 	eTT_TiepDat,
-	eTT_Truot
+	eTT_Truot,
+	eTT_Luot
 };
 

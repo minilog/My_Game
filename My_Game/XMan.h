@@ -23,13 +23,16 @@ private:
 		*mHH_ChuanBiChay,
 		*mHH_Nhay,
 		*mHH_Roi,
-		*mHH_TiepDat;
+		*mHH_TiepDat,
+		*mHH_Luot;
 	HoatHinh *mHH_HienTai;
 
 	float mTG_ChuanBiChay = 0.02f;
 	float mTG_DemChuanBiChay = 0.0f;
 	float mTG_TiepDat = 0.1f;
 	float mTG_DemTiepDat = 0.0f;
+	float mTG_Luot = 0.5f;
+	float mTG_DemLuot = 0.0f;
 
 	float mGiaTocTrongTruong = 1200.0f;
 	float mVanTocRoiToiDa = 350.0f;
@@ -57,5 +60,6 @@ private:
 	void Nhay();
 	void Roi();
 	void TiepDat();
+	void Luot();
 };
 
