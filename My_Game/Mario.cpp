@@ -55,8 +55,7 @@ void Mario::CapNhat(float in_tg) {
 		}
 		break;
 
-	case eTT_ChaySangTrai:
-	case eTT_ChaySangPhai:
+	case eTT_Chay:
 	case eTT_DungIm:
 		if (mDangDungTuNhienRoi == true)
 		{
@@ -158,18 +157,8 @@ void Mario::XuLyBanPhim(std::map<int, bool> in_Keys) {
 			Nhay();
 		}
 		break;
-	case eTT_ChaySangPhai:
+	case eTT_Chay:
 		if (!in_Keys[VK_RIGHT])
-		{
-			DungIm();
-		}
-		if (in_Keys['C'])
-		{
-			Nhay();
-		}
-		break;
-	case eTT_ChaySangTrai:
-		if (!in_Keys[VK_LEFT])
 		{
 			DungIm();
 		}
@@ -236,7 +225,7 @@ void Mario::ChaySangTrai()
 {
 	mLatHinh = true;
 	mHH_HienTai = mHH_Chay;
-	mTT_HienTai = eTT_ChaySangTrai;
+	mTT_HienTai = eTT_Chay;
 	mVanToc.x = -5;
 }
 
@@ -244,7 +233,7 @@ void Mario::ChaySangPhai()
 {
 	mLatHinh = false;
 	mHH_HienTai = mHH_Chay;
-	mTT_HienTai = eTT_ChaySangPhai;
+	mTT_HienTai = eTT_Chay;
 	mVanToc.x = 5;
 }
 

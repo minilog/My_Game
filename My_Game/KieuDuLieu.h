@@ -83,11 +83,12 @@ enum eHuongDiChuyen
 enum eTrangThai
 {
 	eTT_DungIm,
-	eTT_ChaySangTrai, eTT_ChaySangPhai,
+	eTT_Chay,
 	eTT_Roi,
 	eTT_Nhay,
 	eTT_HiSinh, // hi sinh = chết :)),
-	eTT_ChuanBiChaySangPhai, eTT_ChuanBiChaySangTrai,
-	eTT_TiepDat
+	eTT_ChuanBiChay,
+	eTT_TiepDat,
+	eTT_Truot
 };
 

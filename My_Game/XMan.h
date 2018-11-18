@@ -38,7 +38,8 @@ private:
 
 	std::map<int, bool> mKeys;
 	bool mChoPhepNhay = true;
-
+	bool mCoChuongNgaiVatTrai = false;
+	bool mCoChuongNgaiVatPhai = false;
 
 	eTrangThai mTrangThai;
 
@@ -51,10 +52,8 @@ private:
 	void LoadHinhAnhVao();
 
 	void DungIm();
-	void ChuanBiChaySangTrai();
-	void ChuanBiChaySangPhai();
-	void ChaySangTrai();
-	void ChaySangPhai();
+	void ChuanBiChay();
+	void Chay();
 	void Nhay();
 	void Roi();
 	void TiepDat();

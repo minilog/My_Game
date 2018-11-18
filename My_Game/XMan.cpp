@@ -4,7 +4,7 @@
 #include "GameLog.h"
 
 XMan::XMan(const Vec2& in_ToaDo)
-	:DoiTuong(in_ToaDo, Vec2(), 22, 32)
+	:DoiTuong(in_ToaDo, Vec2(), 18, 32)
 {
 	DoiTuong::mLoaiDoiTuong = eLDT_XMan;
 
@@ -38,28 +38,14 @@ void XMan::CapNhat(float in_tg)
 
 	switch (mTrangThai)
 	{
-	case eTT_ChuanBiChaySangPhai:
+	case eTT_ChuanBiChay:
 		mTG_DemChuanBiChay += in_tg;
 		if (mTG_DemChuanBiChay >= mTG_ChuanBiChay)
 		{
-			ChaySangPhai();
-		}
-		if (mDangDungTuNhienRoi == true)
-		{
-			Roi();
+			Chay();
 		}
 		break;
-	case eTT_ChuanBiChaySangTrai:
-		mTG_DemChuanBiChay += in_tg;
-		if (mTG_DemChuanBiChay >= mTG_ChuanBiChay)
-		{
-			ChaySangTrai();
-		}
-		if (mDangDungTuNhienRoi == true)
-		{
-			Roi();
-		}
-		break;
+
 	case eTT_TiepDat:
 		mTG_DemTiepDat += in_tg;
 		if (mTG_DemTiepDat >= mTG_TiepDat)
@@ -67,18 +53,19 @@ void XMan::CapNhat(float in_tg)
 			DungIm();
 		}
 		break;
+
 	case eTT_Nhay:
 		mVanToc.y += mGiaTocTrongTruong * in_tg;
 		if (!mKeys['C'])
 		{
 			mVanToc.y += mGiaTocTrongTruong * in_tg * 10;
 		}
-
 		if (mVanToc.y >= 0.0f)
 		{
 			Roi();
 		}
 		break;
+
 	case eTT_Roi:
 		mVanToc.y += mGiaTocTrongTruong * in_tg;
 		if (mVanToc.y > mVanTocRoiToiDa)
@@ -86,19 +73,28 @@ void XMan::CapNhat(float in_tg)
 			mVanToc.y = mVanTocRoiToiDa;
 		}
 		break;
+
+	default:
+		break;
+	}
+
+// XÉT mDangDungTunNhienRoi
+	switch (mTrangThai)
+	{
 	case eTT_DungIm:
-	case eTT_ChaySangPhai:
-	case eTT_ChaySangTrai:
+	case eTT_Chay:
+	case eTT_ChuanBiChay:
 		if (mDangDungTuNhienRoi == true)
 		{
 			Roi();
 		}
 		break;
-	default:
+	default: 
 		break;
 	}
 
 	mDangDungTuNhienRoi = true;
+	mCoChuongNgaiVatTrai = mCoChuongNgaiVatPhai = false;
 }
 
 void XMan::Ve(const Vec2 & in_DoDoi)
@@ -122,11 +118,37 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			{
 			case ePVC_Duoi:
 				mToaDo.y -= lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
-				GAMELOG("VA CHAM");
+				GAMELOG("VA CHAM DUOI");
 				if (mTrangThai == eTT_Roi)
 				{
 					TiepDat();
 					GAMELOG("TIEP DAT");
+				}
+				break;
+			case ePVC_Trai:
+			case ePVC_TraiTren:
+			case ePVC_TraiDuoi:
+				mToaDo.x += lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
+				mCoChuongNgaiVatTrai = true;
+
+				if (mLatHinh &&
+					(mTrangThai == eTT_Chay || mTrangThai == eTT_ChuanBiChay ) )
+				{
+					DungIm();
+				}
+				break;
+
+			case ePVC_Phai:
+			case ePVC_PhaiTren:
+			case ePVC_PhaiDuoi:
+				mToaDo.x -= lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
+				mCoChuongNgaiVatPhai = true;
+
+				if (!mLatHinh &&
+					(mTrangThai == eTT_Chay || mTrangThai == eTT_ChuanBiChay))
+				{
+					DungIm();
+
 				}
 				break;
 			default:
@@ -167,91 +189,81 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 	switch (mTrangThai)
 	{
 	case eTT_DungIm:
-		if (in_Keys[VK_RIGHT] && in_Keys[VK_LEFT])
+		if (!in_Keys[VK_RIGHT] || !in_Keys[VK_LEFT])
 		{
-			if (mLatHinh)
+			if (in_Keys[VK_RIGHT] && !mCoChuongNgaiVatPhai)
 			{
-				ChuanBiChaySangTrai();
+				mVanToc = Vec2(mVanTocChayToiDa, 0.0f);
+				mLatHinh = false;
+				ChuanBiChay();
 			}
-			else
+			if (in_Keys[VK_LEFT] && !mCoChuongNgaiVatTrai)
 			{
-				ChuanBiChaySangPhai();
+				mVanToc = Vec2(-mVanTocChayToiDa, 0.0f);
+				mLatHinh = true;
+				ChuanBiChay();
 			}
 		}
-		else
-		{
-			if (in_Keys[VK_RIGHT])
-			{
-				ChuanBiChaySangPhai();
-			}
-			if (in_Keys[VK_LEFT])
-			{
-				ChuanBiChaySangTrai();
-			}
-		}
-		if (in_Keys['C'] && mChoPhepNhay)
-		{
-			Nhay();
-		}
+
 		break;
-	case eTT_ChaySangPhai:
-		if (!in_Keys[VK_RIGHT])
+
+	case eTT_Chay:
+		if ((!in_Keys[VK_LEFT] && mLatHinh) ||
+			(!in_Keys[VK_RIGHT] && !mLatHinh) ||
+			(in_Keys[VK_LEFT] && in_Keys[VK_RIGHT]))
 		{
 			DungIm();
 		}
-		if (in_Keys['C'] && mChoPhepNhay)
-		{
-			Nhay();
-		}
+
 		break;
-	case eTT_ChaySangTrai:
-		if (!in_Keys[VK_LEFT])
-		{
-			DungIm();
-		}
-		if (in_Keys['C'] && mChoPhepNhay)
-		{
-			Nhay();
-		}
-		break;
+
 	case eTT_Nhay:
 	case eTT_Roi:
 	case eTT_TiepDat:
-		if (in_Keys[VK_LEFT] && mVanToc.x == 0.0f)
+	case eTT_ChuanBiChay:
+		if (in_Keys[VK_LEFT] && in_Keys[VK_RIGHT])
+		{
+			mVanToc.x = 0.0f;
+			return;
+		}
+		if ((!in_Keys[VK_LEFT] && mLatHinh) ||
+			(!in_Keys[VK_RIGHT] && !mLatHinh))
+		{
+			mVanToc.x = 0.0f;
+		}
+		if (in_Keys[VK_LEFT])
 		{
 			mLatHinh = true;
 			mVanToc.x = -mVanTocChayToiDa;
 		}
-		if (!in_Keys[VK_LEFT] && mLatHinh)
-		{
-			mVanToc.x = 0.0f;
-		}
-		if (in_Keys[VK_RIGHT] && mVanToc.x == 0.0f)
+		if (in_Keys[VK_RIGHT])
 		{
 			mLatHinh = false;
 			mVanToc.x = mVanTocChayToiDa;
 		}
-		if (!in_Keys[VK_RIGHT] && !mLatHinh)
-		{
-			mVanToc.x = 0.0f;
-		}
 		break;
+
 	default:
 		break;
 	}
 
+	// XÉT điều kiện cho TT_Nhảy
+
 	switch (mTrangThai)
 	{
 	case eTT_DungIm:
-	case eTT_ChaySangPhai:
-	case eTT_ChaySangTrai:
-	case eTT_ChuanBiChaySangPhai:
-	case eTT_ChuanBiChaySangTrai:
+	case eTT_Chay:
+	case eTT_ChuanBiChay:
 	case eTT_TiepDat:
+		if (in_Keys['C'] && mChoPhepNhay)
+		{
+			Nhay();
+		}
 		if (!in_Keys['C'])
 		{
 			mChoPhepNhay = true;
 		}
+		break;
 	default:
 		break;
 	}
@@ -310,40 +322,18 @@ void XMan::DungIm()
 	mVanToc = Vec2(0.0f, 0.0f);
 }
 
-void XMan::ChuanBiChaySangTrai()
+void XMan::ChuanBiChay()
 {
-	mTrangThai = eTT_ChuanBiChaySangTrai;
+	mTrangThai = eTT_ChuanBiChay;
 	mHH_HienTai = mHH_ChuanBiChay;
 	mHH_HienTai->Remake();
-	mVanToc = Vec2(-mVanTocChayToiDa, 0.0f);
 	mTG_DemChuanBiChay = 0.0f;
-	mLatHinh = true;
 }
 
-void XMan::ChuanBiChaySangPhai()
-{
-	mTrangThai = eTT_ChuanBiChaySangPhai;
-	mHH_HienTai = mHH_ChuanBiChay;
-	mHH_HienTai->Remake();
-	mVanToc = Vec2(mVanTocChayToiDa, 0.0f);
-	mTG_DemChuanBiChay = 0.0f;
-	mLatHinh = false;
-}
 
-void XMan::ChaySangTrai()
+void XMan::Chay()
 {
-	mLatHinh = true;
-	mVanToc = Vec2(-mVanTocChayToiDa, 0.0f);
-	mTrangThai = eTT_ChaySangTrai;
-	mHH_HienTai = mHH_Chay;
-	mHH_HienTai->Remake();
-}
-
-void XMan::ChaySangPhai()
-{
-	mLatHinh = false;
-	mVanToc = Vec2(mVanTocChayToiDa, 0.0f);
-	mTrangThai = eTT_ChaySangPhai;
+	mTrangThai = eTT_Chay;
 	mHH_HienTai = mHH_Chay;
 	mHH_HienTai->Remake();
 }
