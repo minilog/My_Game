@@ -81,9 +81,8 @@
   <object id="12" x="256.333" y="768" width="127.333" height="47.6667"/>
   <object id="13" x="383.667" y="256" width="416.333" height="527"/>
   <object id="14" x="944.333" y="688.667" width="79.6667" height="25.6667"/>
-  <object id="17" x="944.333" y="944.667" width="96" height="26"/>
+  <object id="17" x="944.333" y="945.667" width="96" height="26"/>
   <object id="19" x="992.333" y="433" width="189" height="590.667"/>
   <object id="20" x="799.667" y="433" width="47.6667" height="25.6667"/>
-  <object id="21" x="876" y="955.333" width="67.6667" height="25"/>
  </objectgroup>
 </map>

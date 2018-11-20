@@ -31,11 +31,14 @@ private:
 	float mTG_DemChuanBiChay = 0.0f;
 	float mTG_TiepDat = 0.1f;
 	float mTG_DemTiepDat = 0.0f;
-	float mTG_Luot = 0.5f;
+	float mTG_Luot = 0.4f;
 	float mTG_DemLuot = 0.0f;
+	bool mChoPhepLuot = true;
+	bool mDuocTangTocLucDangBay = false;
+	float mVanTocCongThem = 100.0f * 1.5f;
 
 	float mGiaTocTrongTruong = 1200.0f;
-	float mVanTocRoiToiDa = 350.0f;
+	float mVanTocRoiToiDa = 420.0f;
 
 	float mVanTocChayToiDa = 100.0f;
 
@@ -61,5 +64,6 @@ private:
 	void Roi();
 	void TiepDat();
 	void Luot();
+	void Truot();
 };
 
