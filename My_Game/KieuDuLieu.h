@@ -90,6 +90,7 @@ enum eTrangThai
 	eTT_ChuanBiChay,
 	eTT_TiepDat,
 	eTT_Truot,
-	eTT_Luot
+	eTT_Luot,
+	eTT_BatRa
 };
 

@@ -114,6 +114,26 @@ void XMan::CapNhat(float in_tg)
 		}
 		break;
 
+	case eTT_BatRa:
+		mVanToc.y += mGiaTocTrongTruong * in_tg;
+		mTG_DemBatRa += in_tg;
+		if (!mKeys['C'])
+		{
+			mVanToc.y += mGiaTocTrongTruong * in_tg * 10;
+		}
+		if (mVanToc.y >= 0.0f)
+		{
+			Roi();
+		}
+		if (mTG_DemBatRa >= mTG_BatRa)
+		{
+			float lVanTocHienTai = mVanToc.y;
+			Nhay();
+			mVanToc.y = lVanTocHienTai;
+		}
+
+		break;
+
 	default:
 		break;
 	}
@@ -147,11 +167,15 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 				{
 					TiepDat();
 				}
+				if (mTrangThai == eTT_Truot)
+				{
+					TiepDat();
+				}
 				break;
 			case ePVC_Tren:
-				if (mTrangThai == eTT_Nhay)
+				mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+				if (mTrangThai == eTT_Nhay )
 				{
-					mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
 					Roi();
 				}
 				break;
@@ -181,6 +205,7 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 				{
 					DungIm();
 				}
+
 				break;
 
 			default:
@@ -238,15 +263,15 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 				ChuanBiChay();
 			}
 		}
-		if (in_Keys['C'] && mChoPhepNhay)
+		if (in_Keys[JUMP_BUTTON] && mChoPhepNhay)
 		{
 			Nhay();
 		}
-		if (!in_Keys['C'])
+		if (!in_Keys[JUMP_BUTTON])
 		{
 			mChoPhepNhay = true;
 		}
-		if (in_Keys['X'] && mChoPhepLuot)
+		if (in_Keys[PUSH_BUTTON] && mChoPhepLuot)
 		{
 			if (!mLatHinh)
 			{
@@ -259,7 +284,7 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 				Luot();
 			}
 		}
-		if (!in_Keys['X'])
+		if (!in_Keys[PUSH_BUTTON])
 		{
 			mChoPhepLuot = true;
 		}
@@ -275,15 +300,15 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 		{
 			DungIm();
 		}
-		if (in_Keys['C'] && mChoPhepNhay)
+		if (in_Keys[JUMP_BUTTON] && mChoPhepNhay)
 		{
 			Nhay();
 		}
-		if (!in_Keys['C'])
+		if (!in_Keys[JUMP_BUTTON])
 		{
 			mChoPhepNhay = true;
 		}
-		if (in_Keys['X'] && mChoPhepLuot)
+		if (in_Keys[PUSH_BUTTON] && mChoPhepLuot)
 		{
 			if (!mLatHinh)
 			{
@@ -297,7 +322,7 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 			}
 		}
 
-		if (!in_Keys['X'])
+		if (!in_Keys[PUSH_BUTTON])
 		{
 			mChoPhepLuot = true;
 		}
@@ -320,11 +345,19 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 		{
 			mLatHinh = true;
 			mVanToc.x = -(mVanTocChayToiDa + mDuocTangTocLucDangBay * mVanTocCongThem);
+			if (mCoChuongNgaiVatTrai)
+			{
+				Truot();
+			}
 		}
 		if (in_Keys[VK_RIGHT])
 		{
 			mLatHinh = false;
 			mVanToc.x = (mVanTocChayToiDa + mDuocTangTocLucDangBay * mVanTocCongThem);
+			if (mCoChuongNgaiVatPhai)
+			{
+				Truot();
+			}
 		}
 		break;
 #pragma endregion
@@ -352,16 +385,16 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 			mVanToc.x = mVanTocChayToiDa;
 		}
 
-		if (in_Keys['C'] && mChoPhepNhay)
+		if (in_Keys[JUMP_BUTTON] && mChoPhepNhay)
 		{
 			Nhay();
 		}
-		if (!in_Keys['C'])
+		if (!in_Keys[JUMP_BUTTON])
 		{
 			mChoPhepNhay = true;
 		}
 
-		if (in_Keys['X'] && mChoPhepLuot)
+		if (in_Keys[PUSH_BUTTON] && mChoPhepLuot)
 		{
 			if (!mLatHinh)
 			{
@@ -374,7 +407,7 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 				Luot();
 			}
 		}
-		if (!in_Keys['X'])
+		if (!in_Keys[PUSH_BUTTON])
 		{
 			mChoPhepLuot = true;
 		}
@@ -403,15 +436,15 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 			mLatHinh = false;
 			mVanToc.x = mVanTocChayToiDa;
 		}
-		if (in_Keys['C'] && mChoPhepNhay)
+		if (in_Keys[JUMP_BUTTON] && mChoPhepNhay)
 		{
 			Nhay();
 		}
-		if (!in_Keys['C'])
+		if (!in_Keys[JUMP_BUTTON])
 		{
 			mChoPhepNhay = true;
 		}
-		if (in_Keys['X'] && mChoPhepLuot)
+		if (in_Keys[PUSH_BUTTON] && mChoPhepLuot)
 		{
 			if (!mLatHinh)
 			{
@@ -424,7 +457,7 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 				Luot();
 			}
 		}
-		if (!in_Keys['X'])
+		if (!in_Keys[PUSH_BUTTON])
 		{
 			mChoPhepLuot = true;
 		}
@@ -458,7 +491,7 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 
 #pragma region LUOT
 	case eTT_Luot:
-		if (!in_Keys['X'])
+		if (!in_Keys[PUSH_BUTTON])
 		{
 			DungIm();
 		}
@@ -466,11 +499,55 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 		{
 			Roi();
 		}
-		if (in_Keys['C'])
+		if (in_Keys[JUMP_BUTTON])
 		{
 			Nhay();
 		}
 		break;
+#pragma endregion
+
+#pragma region TRUOT
+	case eTT_Truot:
+		if (!in_Keys[VK_RIGHT] && !mLatHinh)
+		{
+			mLatHinh = true;
+			mToaDo.x -= 2.0f;
+			Roi();
+			mVanToc.y = mVanTocTruot;
+		}
+		else 
+		if (!in_Keys[VK_LEFT] && mLatHinh)
+		{
+			mLatHinh = false;
+			Roi();
+			mVanToc.y = mVanTocTruot;
+		}
+		if (!in_Keys[JUMP_BUTTON])
+		{
+			mChoPhepNhay = true;
+		}
+		if ((in_Keys[JUMP_BUTTON]) && !mLatHinh && mChoPhepNhay) // XMan nhìn sang Trái
+		{
+			if (in_Keys[PUSH_BUTTON])
+			{
+				mDuocTangTocLucDangBay = true;
+			}
+			mChoPhepNhay = false;
+			BatRa();
+			mVanToc.x = -(mVanTocChayToiDa + mDuocTangTocLucDangBay * mVanTocCongThem);
+		}
+		if ((in_Keys[JUMP_BUTTON]) && mLatHinh && mChoPhepNhay) // XMan nhìn sang Phải
+		{
+			if (in_Keys[PUSH_BUTTON])
+			{
+				mDuocTangTocLucDangBay = true;
+			}
+			mChoPhepNhay = false;
+			BatRa();
+			mVanToc.x = (mVanTocChayToiDa + mDuocTangTocLucDangBay * mVanTocCongThem);
+		}
+		break;
+
 #pragma endregion
 
 	default:
@@ -526,6 +603,17 @@ void XMan::LoadHinhAnhVao()
 	lDSTTFrame.push_back(ThongTinFrame(Vec2(285.0f, 154.0f), 28, 36, 0.05f));
 	lDSTTFrame.push_back(ThongTinFrame(Vec2(317.0f, 155.0f), 44, 34, 999.9f));
 	mHH_Luot = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(115.0f, 526.0f), 28, 44, 0.1f));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(144.0f, 527.0f), 28, 48, 999.9f));
+	mHH_Truot = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(88.0f, 527.0f), 26, 42, 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(177.0f, 530.0f), 30, 40, 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(207.0f, 525.0f), 28, 48, 999.9f));
+	mHH_BatRa = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
 }
 
 void XMan::DungIm()
@@ -592,6 +680,20 @@ void XMan::Luot()
 
 void XMan::Truot()
 {
+	mVanToc = Vec2(0.0f, mVanTocTruot);
+	mTrangThai = eTT_Truot;
+	mHH_HienTai = mHH_Truot;
+	mHH_HienTai->Remake();
+	mDuocTangTocLucDangBay = false;
+}
+
+void XMan::BatRa()
+{
+	mVanToc.y = -mVanTocRoiToiDa;
+	mTrangThai = eTT_BatRa;
+	mHH_HienTai = mHH_BatRa;
+	mHH_HienTai->Remake();
+	mTG_DemBatRa = 0.0f;
 }
 
 

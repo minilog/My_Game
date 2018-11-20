@@ -24,7 +24,9 @@ private:
 		*mHH_Nhay,
 		*mHH_Roi,
 		*mHH_TiepDat,
-		*mHH_Luot;
+		*mHH_Luot,
+		*mHH_Truot,
+		*mHH_BatRa;
 	HoatHinh *mHH_HienTai;
 
 	float mTG_ChuanBiChay = 0.02f;
@@ -36,9 +38,13 @@ private:
 	bool mChoPhepLuot = true;
 	bool mDuocTangTocLucDangBay = false;
 	float mVanTocCongThem = 100.0f * 1.5f;
+	float mVanTocTruot = 140.0f;
+	
+	float mTG_BatRa = 0.09f;
+	float mTG_DemBatRa = 0.0f;
 
 	float mGiaTocTrongTruong = 1200.0f;
-	float mVanTocRoiToiDa = 420.0f;
+	float mVanTocRoiToiDa = 370.0f;
 
 	float mVanTocChayToiDa = 100.0f;
 
@@ -65,5 +71,11 @@ private:
 	void TiepDat();
 	void Luot();
 	void Truot();
+	void BatRa();
+
+
+	static constexpr int PUSH_BUTTON = 'X';
+	static constexpr int JUMP_BUTTON = 'C';
+	static constexpr int FIRE_BUTTON = 'V';
 };
 
