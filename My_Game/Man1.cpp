@@ -28,9 +28,7 @@ void Man1::TaiDuLieu()
 
 	TaoBanDoVaCamera();
 
-	// TAO_BAN_DO_MAP
-	mBanDoMap1 = new HinhAnh("Map1.png");
-	mBanDoMap1->set_ToaDo(Vec2(3968.0f, 1024.0f));
+	TaoDanhSachTileset();
 
 	TaoDanhSachDoiTuong();
 
@@ -122,10 +120,88 @@ void Man1::TaoDanhSachDoiTuong()
 	}
 }
 
-void Man1::VeHinhAnhBanDoGame(const Vec2 & in_DoDoi)
+void Man1::TaoDanhSachTileset()
 {
-	mBanDoMap1->set_DoDoi(in_DoDoi);
-	mBanDoMap1->Ve();
+	for (int i = 0; i < /*mBanDo->GetNumTilesets()*/1; i++)
+	{
+		const Tmx::Tileset *lTileset = mBanDo->GetTileset(i);
+		HinhAnh *lHinhAnh = new HinhAnh(lTileset->GetImage()->GetSource().c_str());
+		mDanhSachTileset.insert(pair<int, HinhAnh*>(i, lHinhAnh));
+	}
+}
+
+void Man1::VeHinhAnhBanDoGame(const Vec2& in_DoDoi)
+{
+
+	mChieuRongTile = 32/*ManGame::mBanDo->GetTileWidth() */;
+	mChieuCaoTile =  32/*ManGame::mBanDo->GetTileHeight()*/;
+
+	for (int i = 0; i < mBanDo->GetNumTileLayers(); i++)
+	{
+		const Tmx::TileLayer *layer = mBanDo->GetTileLayer(i);
+
+		if (!layer->IsVisible())
+		{
+			continue;
+		}
+
+		for (int j = 0; j < /*mBanDo->GetNumTilesets()*/ 1; j++)
+		{
+			const Tmx::Tileset *tileSet = mBanDo->GetTileset(j);
+
+			HCN lHCN_1;
+
+			int tileWidth = mBanDo->GetTileWidth();
+			int tileHeight = mBanDo->GetTileHeight();
+
+			int tileSetWidth = tileSet->GetImage()->GetWidth() / tileWidth;
+			int tileSetHeight = tileSet->GetImage()->GetHeight() / tileHeight;
+
+			for (int m = 0; m < layer->GetHeight(); m++)
+			{
+				for (int n = 0; n < layer->GetWidth(); n++)
+				{
+					//tru tilewidth/2 va tileheight/2 vi Sprite ve o vi tri giua hinh anh cho nen doi hinh de cho
+					//dung toa do (0,0) cua the gioi thuc la (0,0) neu khong thi se la (-tilewidth/2, -tileheigth/2);
+					Vec2 position(n * tileWidth + tileWidth / 2.0f,
+						m * tileHeight + tileHeight / 2.0f);
+
+					{
+						HCN lHCN_2(
+							int(position.x - tileWidth / 2.0f),
+							int(position.x + tileWidth / 2.0f),
+							int(position.y - tileHeight / 2.0f),
+							int(position.y + tileHeight / 2.0f));
+
+						if (!VaChamGame::get_KetQuaVaCham(Camera::get_HCNGioiHan(), lHCN_2).eKQVC_DaVaCham)
+							continue;
+					}
+
+					if (layer->GetTileTilesetIndex(n, m) == j)
+					{
+						int tileID = layer->GetTileId(n, m);
+
+						int y = tileID / tileSetWidth;
+						int x = tileID - y * tileSetWidth;
+
+						lHCN_1.Tren = y * tileHeight;
+						lHCN_1.Duoi = lHCN_1.Tren + tileHeight;
+						lHCN_1.Trai = x * tileWidth;
+						lHCN_1.Phai = lHCN_1.Trai + tileWidth;
+
+						HinhAnh* lHinhAnh = mDanhSachTileset[j];
+
+						lHinhAnh->set_ToaDo(position);
+						lHinhAnh->set_ChieuRong(mChieuRongTile);
+						lHinhAnh->set_ChieuCao(mChieuCaoTile);
+						lHinhAnh->set_HCN(lHCN_1);
+						lHinhAnh->set_DoDoi(in_DoDoi);
+						lHinhAnh->Ve();
+					}
+				}
+			}
+		}
+	}
 }
 
 void Man1::CapNhatDanhSachDoiTuong(float in_tg)

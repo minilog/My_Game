@@ -5,8 +5,13 @@
 #include "HoatHinh.h"
 #include <map>
 
+
 class XMan : public DoiTuong
 {
+	static constexpr int PUSH_BUTTON = 'X';
+	static constexpr int JUMP_BUTTON = 'C';
+	static constexpr int FIRE_BUTTON = 'V';
+
 public:
 	XMan(const Vec2& in_ToaDo);
 	~XMan();
@@ -27,8 +32,20 @@ private:
 		*mHH_Luot,
 		*mHH_Truot,
 		*mHH_BatRa;
+	HoatHinh *mHH_DungIm_Ban,
+		*mHH_Chay_Ban,
+		*mHH_ChuanBiChay_Ban,
+		*mHH_Nhay_Ban,
+		*mHH_Roi_Ban,
+		*mHH_TiepDat_Ban,
+		*mHH_Luot_Ban,
+		*mHH_Truot_Ban,
+		*mHH_BatRa_Ban;
 	HoatHinh *mHH_HienTai;
 
+	float mTimes = 0.0f;
+	float mTG_BamTuong = 0.04f;
+	float mTG_DemBamTuong = 0.0f;
 	float mTG_ChuanBiChay = 0.02f;
 	float mTG_DemChuanBiChay = 0.0f;
 	float mTG_TiepDat = 0.1f;
@@ -38,9 +55,9 @@ private:
 	bool mChoPhepLuot = true;
 	bool mDuocTangTocLucDangBay = false;
 	float mVanTocCongThem = 100.0f * 1.5f;
-	float mVanTocTruot = 140.0f;
+	float mVanTocTruotToiDa = 160.0f;
 	
-	float mTG_BatRa = 0.09f;
+	float mTG_BatRa = 0.13f;
 	float mTG_DemBatRa = 0.0f;
 
 	float mGiaTocTrongTruong = 1200.0f;
@@ -53,9 +70,12 @@ private:
 	bool mCoChuongNgaiVatTrai = false;
 	bool mCoChuongNgaiVatPhai = false;
 
-	eTrangThai mTrangThai;
+	eTrangThai mTrangThai = eTT_HiSinh;
 
 	bool		mLatHinh = false;
+
+
+	bool mBanDan = false;
 	
 	// vì hàm xử lý va chạm: thực hiện với một DS đối tượng trước khi Cập Nhật
 	// phải xét hết tất cả đối tượng, nếu không có đối tượng nào bên dưới thì mới rơi
@@ -74,8 +94,6 @@ private:
 	void BatRa();
 
 
-	static constexpr int PUSH_BUTTON = 'X';
-	static constexpr int JUMP_BUTTON = 'C';
-	static constexpr int FIRE_BUTTON = 'V';
+
 };
 

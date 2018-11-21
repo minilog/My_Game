@@ -13,7 +13,7 @@ public:
 	~HoatHinh() {}
 	void CapNhat(float in_tg);
 	void Ve();
-	void Remake();
+	void Remake(int in_ViTri = 0, float in_Time = 0.0f);
 
 private:
 	std::vector<ThongTinFrame> mDSThongTinFrame;

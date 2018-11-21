@@ -30,7 +30,9 @@ private:
 
 	void TaoBanDoVaCamera();
 	void TaoDanhSachDoiTuong();
+	void TaoDanhSachTileset();
 	void VeHinhAnhBanDoGame(const Vec2& in_DoDoi);
+
 	void CapNhatDanhSachDoiTuong(float in_tg);
 	void VeDanhSachDoiTuong(const Vec2& in_DoDoi);
 };

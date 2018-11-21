@@ -40,18 +40,20 @@ public:
 class ThongTinFrame
 {
 public:
-	ThongTinFrame(const Vec2& in_ToaDo, int in_ChieuRong, int in_ChieuCao, float in_ThoiGian)
+	ThongTinFrame(const Vec2& in_ToaDo, int in_ChieuRong, int in_ChieuCao, float in_ThoiGian, const HCN& in_Hcn = HCN())
 	{
 		ToaDo = in_ToaDo;
 		ChieuRong = in_ChieuRong;
 		ChieuCao = in_ChieuCao;
 		ThoiGian = in_ThoiGian;
+		Hcn = in_Hcn;
 	}
 
 	Vec2 ToaDo;
 	int ChieuRong;
 	int ChieuCao;
 	float ThoiGian;
+	HCN Hcn;
 };
 
 enum ePhiaVaCham
