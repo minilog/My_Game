@@ -625,11 +625,11 @@ void XMan::LoadHinhAnhVao()
 	mHH_ChuanBiChay_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(137.0f, 105.0f), 20, 38, /*0.045f*/8.0f, HCN(137, 157, 105, 141)));
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(157.0f, 105.0f), 24, 36, 0.045f));
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(181.0f,	105.0f), 32, 36, 0.045f));
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(213.0f,	105.0f), 34, 36, 0.045f));
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(247.0f,	105.0f), 28, 36, 0.045f));
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(137.0f, 105.0f), 18, 38, 0.045f, HCN(137, 157, 105, 141)));
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(157.0f, 105.0f), 26, 36, 0.045f, HCN(157, 181, 105, 141)));
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(181.0f,	105.0f), 30, 38, 0.045f, HCN(181, 212, 105, 141)));
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(213.0f,	105.0f), 36, 40, 0.045f, HCN(213, 247, 105, 141)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(247.0f,	105.0f), 28, 36, 0.045f));
 	//lDSTTFrame.push_back(ThongTinFrame(Vec2(276.0f,	105.0f), 22, 36, 0.045f));
 	//lDSTTFrame.push_back(ThongTinFrame(Vec2(298.0f,	105.0f), 28, 36, 0.045f));
 	//lDSTTFrame.push_back(ThongTinFrame(Vec2(327.0f,	105.0f), 30, 36, 0.045f));
@@ -638,7 +638,11 @@ void XMan::LoadHinhAnhVao()
 	mHH_Chay = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(97.0f, 193.0f), 20, 34, 0.045f, HCN(97, 126, 193, 227)));
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(97.0f, 193.0f), 18, 34, 0.045f, HCN(97, 126, 193, 227)));
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(126.0f, 192.0f), 24, 34, 0.045f, HCN(126, 158, 192, 227)));
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(158.0f, 193.0f), 30, 34, 0.045f, HCN(158, 193, 193, 227)));
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(194.0f, 194.0f), 36, 34, 0.045f, HCN(194, 232, 194, 227)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(194.0f, 194.0f), 36, 34, 0.045f, HCN(194, 232, 194, 227)));
 	mHH_Chay_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
 
 
@@ -730,7 +734,7 @@ void XMan::Roi()
 	mTrangThai = eTT_Roi;
 	mHH_HienTai = mHH_Roi;
 	mHH_HienTai->Remake();
-	GAMELOG("ROI");
+	//GAMELOG("ROI");
 }
 
 void XMan::TiepDat()
