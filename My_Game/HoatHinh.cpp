@@ -109,3 +109,13 @@ void HoatHinh::Remake(int in_ViTri, float in_Time)
 		HinhAnh::mHCN = mThongTinFrameHienTai.Hcn;
 	}
 }
+
+int HoatHinh::get_ViTri() const
+{	
+	return mViTriFrame;
+}
+
+float HoatHinh::get_ThoiGian() const
+{
+	return mThoiGianDem;
+}

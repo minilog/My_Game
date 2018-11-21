@@ -46,7 +46,7 @@ private:
 	float mTimes = 0.0f;
 	float mTG_BamTuong = 0.04f;
 	float mTG_DemBamTuong = 0.0f;
-	float mTG_ChuanBiChay = 0.02f;
+	float mTG_ChuanBiChay = /*0.045f*/0.5f;
 	float mTG_DemChuanBiChay = 0.0f;
 	float mTG_TiepDat = 0.1f;
 	float mTG_DemTiepDat = 0.0f;
@@ -63,19 +63,22 @@ private:
 	float mGiaTocTrongTruong = 1200.0f;
 	float mVanTocRoiToiDa = 370.0f;
 
-	float mVanTocChayToiDa = 100.0f;
+	float mVanTocChayToiDa = /*100.0f*/0.0f;
 
 	std::map<int, bool> mKeys;
 	bool mChoPhepNhay = true;
 	bool mCoChuongNgaiVatTrai = false;
 	bool mCoChuongNgaiVatPhai = false;
 
-	eTrangThai mTrangThai = eTT_HiSinh;
+	eTrangThai mTrangThai;
 
 	bool		mLatHinh = false;
 
-
+	// Xét trạng thái bắn đạn
 	bool mBanDan = false;
+	float mTG_BanDan = /*0.2f*/1.0f;
+	float mTG_DemBanDan = mTG_BanDan + 0.1f;
+	bool mChoPhepBan = true;
 	
 	// vì hàm xử lý va chạm: thực hiện với một DS đối tượng trước khi Cập Nhật
 	// phải xét hết tất cả đối tượng, nếu không có đối tượng nào bên dưới thì mới rơi
@@ -93,7 +96,8 @@ private:
 	void Truot();
 	void BatRa();
 
-
+	void ChuyenHH_BanDan();
+	void ChuyenHH_KoBanDan();
 
 };
 
