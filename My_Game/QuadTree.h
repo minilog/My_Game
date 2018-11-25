@@ -19,6 +19,21 @@ public:
 	void get_TatCaDoiTuong(std::vector<DoiTuong*> &out_CacDoiTuong);
 	int get_TongDoiTuong();
 
+	QuadTree** get_Nodes()
+	{
+		return mBonNhanh;
+	}
+	 
+	RECT get_RECT() const
+	{
+		RECT a;
+		a.left = mGioiHan.Trai;
+		a.right = mGioiHan.Phai;
+		a.top = mGioiHan.Tren;
+		a.bottom = mGioiHan.Duoi;
+		return a;
+	}
+
 private:
 	int get_ViTri(const HCN& in_DoiTuong);
 	void ChiaNhanh();

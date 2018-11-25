@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="248" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="38">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="248" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="44">
  <tileset firstgid="1" source="Map1.tsx"/>
  <layer name="Tile Layer 1" width="248" height="64">
   <data encoding="csv">
@@ -70,19 +70,11 @@
 </data>
  </layer>
  <objectgroup name="DoiTuongTinh">
-  <object id="1" x="765" y="689" width="82.6667" height="25"/>
-  <object id="3" x="0.666667" y="945.583" width="351.833" height="78.6667"/>
-  <object id="4" x="352.667" y="897.333" width="160.667" height="127"/>
-  <object id="5" x="512.667" y="849.667" width="127.667" height="175"/>
-  <object id="6" x="639" y="945.333" width="208.333" height="26"/>
-  <object id="7" x="-0.333333" y="768" width="255.666" height="62.6667"/>
-  <object id="9" x="-26.3333" y="831.333" width="26.3333" height="114.667"/>
-  <object id="10" x="52" y="962.333" width="4.33333" height="15"/>
-  <object id="12" x="256.333" y="768" width="127.333" height="47.6667"/>
-  <object id="13" x="383.667" y="256" width="416.333" height="527"/>
-  <object id="14" x="944.333" y="688.667" width="79.6667" height="25.6667"/>
-  <object id="17" x="944.333" y="945.667" width="96" height="26"/>
-  <object id="19" x="992" y="433" width="189.333" height="590.667"/>
-  <object id="20" x="799.667" y="433" width="47.6667" height="25.6667"/>
+  <object id="3" x="-2.33333" y="948" width="356.25" height="78.6667"/>
+  <object id="39" x="354.5" y="899" width="69.5" height="79"/>
+  <object id="40" x="256.5" y="767.75" width="138.75" height="45.5"/>
+  <object id="41" x="513" y="847.75" width="125.5" height="172.75"/>
+  <object id="42" x="424.75" y="898.5" width="88.75" height="122"/>
+  <object id="43" x="637.25" y="942.75" width="169" height="62.25"/>
  </objectgroup>
 </map>

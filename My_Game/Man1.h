@@ -6,6 +6,7 @@
 #include "GameDebugDraw.h"
 #include "DoiTuongTinh.h"
 #include <vector>
+#include "QuadTree.h"
  
 class Man1 : public ManGame
 {
@@ -19,14 +20,19 @@ public:
 	virtual void OnKeyUp(int in_KeyCode);
 	virtual void OnMouseDown(float in_x, float in_y) {}
 
+	void DrawQuadTree(QuadTree *in_QuadTree);
+	void DrawCollidable();
+
+	QuadTree *mQuadTree;
+
 private:
 	std::map<int, bool> mKeys;
 	HinhAnh *mBanDoMap1;
 	XMan *mXman;
 	HinhAnh *mTest;
-	GameDebugDraw *mGameDebug;
+	GameDebugDraw *mGameDebugDraw;
 
-	std::vector<DoiTuongTinh*> mDanhSachDoiTuongTinh;
+	//std::vector<DoiTuongTinh*> mDanhSachDoiTuongTinh;
 
 	void TaoBanDoVaCamera();
 	void TaoDanhSachDoiTuong();
@@ -35,5 +41,9 @@ private:
 
 	void CapNhatDanhSachDoiTuong(float in_tg);
 	void VeDanhSachDoiTuong(const Vec2& in_DoDoi);
+
+
+	std::vector<DoiTuong*> mDS_DoiTuongXetVaCHam;
+	void XuLyVaChamChung();
 };
 

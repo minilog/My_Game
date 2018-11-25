@@ -22,7 +22,9 @@ Man1::~Man1()
 
 void Man1::TaiDuLieu()
 {
-	mGameDebug = new GameDebugDraw();
+
+	mGameDebugDraw = new GameDebugDraw();
+	mGameDebugDraw->setLineSize(2.0f);
 
 	ManGame::mMauNen = 0x54acd2;
 
@@ -30,6 +32,8 @@ void Man1::TaiDuLieu()
 
 	mBanDoMap1 = new HinhAnh("Map1.png");
 	mBanDoMap1->set_ToaDo(Vec2(3968.0f, 1024.0f));
+
+	mQuadTree = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	TaoDanhSachDoiTuong();
 
@@ -44,10 +48,9 @@ void Man1::CapNhat(float in_tg)
 {
 	mXman->CapNhat(in_tg);
 
-	for (auto lDT_Tinh : mDanhSachDoiTuongTinh)
-	{
-		mXman->XuLyVaCham(lDT_Tinh);
-	}
+	XuLyVaChamChung();
+
+
 
 	mXman->XuLyBanPhim(mKeys);
 
@@ -76,6 +79,7 @@ void Man1::OnKeyUp(int in_KeyCode)
 {
 	mKeys[in_KeyCode] = false;
 }
+
 
 void Man1::TaoBanDoVaCamera()
 {
@@ -115,7 +119,8 @@ void Man1::TaoDanhSachDoiTuong()
 				DoiTuongTinh *lDoiTuongTinh = new DoiTuongTinh(lToaDoDoiTuongTinh,
 					lObject->GetWidth(), lObject->GetHeight());
 
-				mDanhSachDoiTuongTinh.push_back(lDoiTuongTinh);
+				//mDanhSachDoiTuongTinh.push_back(lDoiTuongTinh);
+				mQuadTree->ThemDoiTuong(lDoiTuongTinh);
 			}
 		}
 	}
@@ -143,4 +148,49 @@ void Man1::CapNhatDanhSachDoiTuong(float in_tg)
 
 void Man1::VeDanhSachDoiTuong(const Vec2 & in_DoDoi)
 {
+}
+
+void Man1::XuLyVaChamChung()
+{
+	mDS_DoiTuongXetVaCHam.clear();
+
+	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuongXetVaCHam, mXman);
+
+	for (auto lDT_Tinh : mDS_DoiTuongXetVaCHam)
+	{
+		mXman->XuLyVaCham(lDT_Tinh);
+	}
+}
+
+
+void Man1::DrawQuadTree(QuadTree * in_QuadTree)
+{
+	mGameDebugDraw->DrawRect(in_QuadTree->get_RECT());
+
+	if (in_QuadTree->get_Nodes())
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			DrawQuadTree(in_QuadTree->get_Nodes()[i]);
+		}
+	}
+
+
+
+	//if (mQuadTree->get_Nodes())
+	//{
+	//	for (size_t i = 0; i < 4; i++)
+	//	{
+	//		mGameDebugDraw->DrawRect(mQuadTree->get_Nodes()[i]->get_RECT());
+	//	}
+	//}
+}
+
+void Man1::DrawCollidable()
+{
+	//for (auto child : mDS_DoiTuongXetVaCHam)
+	//{
+	//	mGameDebugDraw->DrawRect(child->get_RECT());
+	//}
+	mGameDebugDraw->DrawRect(mXman->get_RECT());
 }

@@ -107,6 +107,7 @@ int QuadTree::get_TongDoiTuong()
 	return lTong;
 }
 
+
 int QuadTree::get_ViTri(const HCN& in_DoiTuong)
 {
 	float lDuongChiaDoc = (mGioiHan.Trai + mGioiHan.Phai) / 2.0f;
@@ -148,8 +149,8 @@ void QuadTree::ChiaNhanh()
 {
 	mBonNhanh = new QuadTree * [4];
 
-	int lChieuRongNhanh = (mGioiHan.Phai - mGioiHan.Trai / 2);
-	int lChieuCaoNhanh = (mGioiHan.Tren - mGioiHan.Duoi / 2);
+	int lChieuRongNhanh = (mGioiHan.Phai - mGioiHan.Trai) / 2;
+	int lChieuCaoNhanh = (mGioiHan.Duoi - mGioiHan.Tren) / 2;
 
 	mBonNhanh[0] = new QuadTree(mCapDo + 1,HCN(
 		mGioiHan.Trai,

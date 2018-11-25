@@ -60,6 +60,7 @@ void Game::CapNhat(float in_tg)
 void Game::Ve()
 {
 	auto lThietBi = ToanCauGame::get_ThietBi();
+	auto lManGame = QuanLyManGame::get_ManGame();
 	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, QuanLyManGame::get_ManGame()->get_MauNen(), 0.0f, 0);
 
 	{
@@ -70,13 +71,14 @@ void Game::Ve()
 
 		// vẽ ở đây
 
-		QuanLyManGame::get_ManGame()->Ve();
+		lManGame->Ve();
 
 
 		// kết thúc vẽ
 		ToanCauGame::get_XuLyHinhAnh()->End();
 
-
+		((Man1*)lManGame)->DrawQuadTree(((Man1*)lManGame)->mQuadTree);
+		((Man1*)lManGame)->DrawCollidable();
 
 		lThietBi->EndScene();
 	}

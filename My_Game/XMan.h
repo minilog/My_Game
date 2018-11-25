@@ -46,7 +46,7 @@ private:
 	float mTimes = 0.0f;
 	float mTG_BamTuong = 0.04f;
 	float mTG_DemBamTuong = 0.0f;
-	float mTG_ChuanBiChay = /*0.045f*/0.5f;
+	float mTG_ChuanBiChay = 0.045f/*0.5f*/;
 	float mTG_DemChuanBiChay = 0.0f;
 	float mTG_TiepDat = 0.1f;
 	float mTG_DemTiepDat = 0.0f;
@@ -60,10 +60,10 @@ private:
 	float mTG_BatRa = 0.13f;
 	float mTG_DemBatRa = 0.0f;
 
-	float mGiaTocTrongTruong = 1200.0f;
-	float mVanTocRoiToiDa = 370.0f;
+	float mGiaTocTrongTruong = /*1200.0f*/40.0f;
+	float mVanTocRoiToiDa = /*370.0f*/100.0f;
 
-	float mVanTocChayToiDa = /*100.0f*/0.0f;
+	float mVanTocChayToiDa = 110.0f/*0.0f*/;
 
 	std::map<int, bool> mKeys;
 	bool mChoPhepNhay = true;
@@ -76,7 +76,7 @@ private:
 
 	// Xét trạng thái bắn đạn
 	bool mBanDan = false;
-	float mTG_BanDan = /*0.2f*/1.0f;
+	float mTG_BanDan = /*0.2f*/0.3f;
 	float mTG_DemBanDan = mTG_BanDan + 0.1f;
 	bool mChoPhepBan = true;
 	

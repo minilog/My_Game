@@ -44,5 +44,6 @@ public:
 	int get_ChieuRong() const;
 	int get_ChieuCao() const;
 	HCN get_HCNGioiHan() const; // chiều cao, chiều rộng của các thực thể nên chia hết cho 2
+	RECT get_RECT() const;
 };
 

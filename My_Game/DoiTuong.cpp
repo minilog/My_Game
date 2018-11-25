@@ -58,6 +58,17 @@ HCN DoiTuong::get_HCNGioiHan() const
 		int(mToaDo.y + mChieuCao / 2.0f));
 }
 
+RECT DoiTuong::get_RECT() const
+{
+	RECT a;
+	HCN mGioiHan = get_HCNGioiHan();
+	a.left = mGioiHan.Trai;
+	a.right = mGioiHan.Phai;
+	a.top = mGioiHan.Tren;
+	a.bottom = mGioiHan.Duoi;
+	return a;
+}
+
 eLoaiDoiTuong DoiTuong::get_LoaiDoiTuong() const 
 {
 	return mLoaiDoiTuong;
