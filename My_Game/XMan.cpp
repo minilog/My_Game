@@ -1314,17 +1314,17 @@ Vec2 XMan::DoDoiDan() const
 	if (mTrangThai == eTT_Chay || mTrangThai == eTT_ChuanBiChay || mTrangThai ==  eTT_TiepDat)
 	{
 		if (!mLatHinh)
-			lDoDoi = Vec2(22.0f, -3.0f);
+			lDoDoi = Vec2(21.0f, -3.0f);
 		else
-			lDoDoi = Vec2(-22.0f, -3.0f);
+			lDoDoi = Vec2(-21.0f, -3.0f);
 	}
 	else
 	if (mTrangThai == eTT_Luot)
 	{
 		if (!mLatHinh)
-			lDoDoi = Vec2(29.0f, 2.0f);
+			lDoDoi = Vec2(28.0f, 2.0f);
 		else
-			lDoDoi = Vec2(-29.0f, 2.0f);
+			lDoDoi = Vec2(-28.0f, 2.0f);
 	}
 	else
 	if (mTrangThai == eTT_Nhay || mTrangThai == eTT_Roi)

@@ -139,6 +139,6 @@ private:
 	}
 
 public :
-	static constexpr float mVanTocDan = 250.0f;
+	static constexpr float mVanTocDan = 280.0f;
 };
 
