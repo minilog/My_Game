@@ -38,9 +38,6 @@ void Man1::TaiDuLieu()
 	TaoDanhSachDoiTuong();
 
 	mXman = new XMan(Vec2(50.0f, 880.0f));
-
-	//mTest = new HinhAnh("Resources_X3/Xman/SNES - Mega Man X3 - Mega Man X.png", D3DCOLOR_XRGB(50, 96, 166));
-	//mTest->set_ToaDo(Vec2(200.0f, 864.0f));
 }
 
 
@@ -65,9 +62,6 @@ void Man1::Ve()
 	VeHinhAnhBanDoGame(lDoDoi);
 
 	mXman->Ve(lDoDoi);
-
-	//mTest->set_DoDoi(lDoDoi);
-	//mTest->Ve();
 }
 
 void Man1::OnKeyDown(int in_KeyCode)
@@ -192,5 +186,5 @@ void Man1::DrawCollidable()
 	//{
 	//	mGameDebugDraw->DrawRect(child->get_RECT());
 	//}
-	mGameDebugDraw->DrawRect(mXman->get_RECT());
+	//mGameDebugDraw->DrawRect(mXman->get_RECT());
 }

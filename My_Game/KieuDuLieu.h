@@ -32,6 +32,28 @@ public:
 		y += in.y;
 		return *this;
 	}
+	Vec2& operator -= (const Vec2& in)
+	{
+		x -= in.x;
+		y -= in.y;
+		return *this;
+	}
+	friend Vec2 operator - (const Vec2& in_a, const Vec2& in_b)
+	{
+		Vec2 lVec;
+		lVec.x = in_a.x - in_b.x;
+		lVec.y = in_a.y - in_b.y;
+
+		return lVec;
+	}
+	friend Vec2 operator + (const Vec2& in_a, const Vec2& in_b)
+	{
+		Vec2 lVec;
+		lVec.x = in_a.x + in_b.x;
+		lVec.y = in_a.y + in_b.y;
+
+		return lVec;
+	}
 	float x;
 	float y;
 };

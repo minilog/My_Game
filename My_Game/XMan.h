@@ -1,10 +1,14 @@
 ﻿#pragma once
 
+#include <d3d9.h>
+#include <d3dx9.h>
 #include "DoiTuong.h"
 #include "KieuDuLieu.h"
 #include "HoatHinh.h"
 #include <map>
+#include "BuiKhiLuot.h"
 
+#include "HieuUngLuot.h"
 
 class XMan : public DoiTuong
 {
@@ -23,6 +27,13 @@ public:
 	void XuLyBanPhim(std::map<int, bool> in_Keys);
 	
 private:
+	static constexpr int mSoLuongBui = 15;
+	BuiKhiLuot *mDS_BuiKhiLuot[mSoLuongBui];
+	float mTG_Bui = 0.085f;
+	float mTG_DemBui = 0.0f;
+
+	//HieuUngLuot *mHieuUngLuot;
+
 	HoatHinh *mHH_DungIm,
 		*mHH_Chay,
 		*mHH_ChuanBiChay,
@@ -44,24 +55,24 @@ private:
 	HoatHinh *mHH_HienTai;
 
 	float mTimes = 0.0f;
-	float mTG_BamTuong = 0.04f;
+	float mTG_BamTuong = 0.18f;
 	float mTG_DemBamTuong = 0.0f;
-	float mTG_ChuanBiChay = 0.045f/*0.5f*/;
+	float mTG_ChuanBiChay = 0.06f/*0.5f*/;
 	float mTG_DemChuanBiChay = 0.0f;
-	float mTG_TiepDat = 0.1f;
+	float mTG_TiepDat = 0.14f/*3.0f*/;
 	float mTG_DemTiepDat = 0.0f;
-	float mTG_Luot = 0.4f;
+	float mTG_Luot = 0.55f;
 	float mTG_DemLuot = 0.0f;
 	bool mChoPhepLuot = true;
 	bool mDuocTangTocLucDangBay = false;
-	float mVanTocCongThem = 100.0f * 1.5f;
+	float mVanTocCongThem = 100.0f * 1.2f;
 	float mVanTocTruotToiDa = 160.0f;
 	
-	float mTG_BatRa = 0.13f;
+	float mTG_BatRa = 0.15f;
 	float mTG_DemBatRa = 0.0f;
 
-	float mGiaTocTrongTruong = /*1200.0f*/40.0f;
-	float mVanTocRoiToiDa = /*370.0f*/100.0f;
+	float mGiaTocTrongTruong = 970.0f/*40.0f*/;
+	float mVanTocRoiToiDa = 330.0f/*100.0f*/;
 
 	float mVanTocChayToiDa = 110.0f/*0.0f*/;
 
@@ -76,13 +87,15 @@ private:
 
 	// Xét trạng thái bắn đạn
 	bool mBanDan = false;
-	float mTG_BanDan = /*0.2f*/0.3f;
+	float mTG_BanDan = 0.35f/*0.8f*/;
 	float mTG_DemBanDan = mTG_BanDan + 0.1f;
 	bool mChoPhepBan = true;
 	
 	// vì hàm xử lý va chạm: thực hiện với một DS đối tượng trước khi Cập Nhật
 	// phải xét hết tất cả đối tượng, nếu không có đối tượng nào bên dưới thì mới rơi
 	bool mDangDungTuNhienRoi = false;
+
+
 
 	void LoadHinhAnhVao();
 
@@ -98,6 +111,27 @@ private:
 
 	void ChuyenHH_BanDan();
 	void ChuyenHH_KoBanDan();
+			
+	void CapNhat_DungIm();
+	void CapNhat_ChuanBiChay(float in_tg);
+	void CapNhat_Chay();
+	void CapNhat_TiepDat(float in_tg);
+	void CapNhat_Nhay(float in_tg);
+	void CapNhat_Roi(float in_tg);
+	void CapNhat_Luot(float in_tg);
+	void CapNhat_BatRa(float in_tg);
+	void CapNhat_Truot(float in_tg);
 
+	void XuLyBanPhim_DungIm(std::map<int, bool> in_Keys);
+	void XuLyBanPhim_Chay(std::map<int, bool> in_Keys);
+	void XuLyBanPhim_Roi(std::map<int, bool> in_Keys);
+	void XuLyBanPhim_TiepDat(std::map<int, bool> in_Keys);
+	void XuLyBanPhim_ChuanBiChay(std::map<int, bool> in_Keys);
+	void XuLyBanPhim_Nhay(std::map<int, bool> in_Keys);
+	void XuLyBanPhim_Luot(std::map<int, bool> in_Keys);
+	void XuLyBanPhim_Truot(std::map<int, bool> in_Keys);
+
+	void XuLyBanPhim_BanDan(std::map<int, bool> in_Keys);
 };
+
 

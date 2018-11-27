@@ -137,11 +137,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BuiKhiLuot.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DoiTuong.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameDebugDraw.cpp" />
     <ClCompile Include="GameLog.cpp" />
+    <ClCompile Include="HieuUngLuot.cpp" />
     <ClCompile Include="HinhAnh.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
     <ClCompile Include="main.cpp" />
@@ -177,6 +179,7 @@
     <ClCompile Include="XMan.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BuiKhiLuot.h" />
     <ClInclude Include="DoiTuong.h" />
     <ClInclude Include="DoiTuongTinh.h" />
     <ClInclude Include="GachBinhThuong.h" />
@@ -184,6 +187,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDebugDraw.h" />
     <ClInclude Include="GameLog.h" />
+    <ClInclude Include="HieuUngLuot.h" />
     <ClInclude Include="KieuDuLieu.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Man1.h" />

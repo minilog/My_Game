@@ -9,7 +9,7 @@ using namespace std;
 class HoatHinh : public HinhAnh
 {
 public:
-	HoatHinh(const char* in_DuongDan, const std::vector<ThongTinFrame>& in_DSThongTinFrame);
+	HoatHinh(const char* in_DuongDan, const std::vector<ThongTinFrame>& in_DSThongTinFrame, D3DCOLOR in_Color = NULL);
 	~HoatHinh() {}
 	void CapNhat(float in_tg);
 	void Ve();

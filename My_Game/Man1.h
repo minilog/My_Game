@@ -7,7 +7,8 @@
 #include "DoiTuongTinh.h"
 #include <vector>
 #include "QuadTree.h"
- 
+
+
 class Man1 : public ManGame
 {
 public:
@@ -31,8 +32,6 @@ private:
 	XMan *mXman;
 	HinhAnh *mTest;
 	GameDebugDraw *mGameDebugDraw;
-
-	//std::vector<DoiTuongTinh*> mDanhSachDoiTuongTinh;
 
 	void TaoBanDoVaCamera();
 	void TaoDanhSachDoiTuong();

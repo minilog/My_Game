@@ -1,7 +1,7 @@
 ﻿#include "HoatHinh.h"
 
-HoatHinh::HoatHinh(const char * in_DuongDan, const std::vector<ThongTinFrame>& in_DSThongTinFrame)
-	:HinhAnh(in_DuongDan),
+HoatHinh::HoatHinh(const char * in_DuongDan, const std::vector<ThongTinFrame>& in_DSThongTinFrame, D3DCOLOR in_Color)
+	:HinhAnh(in_DuongDan, in_Color),
 	mThongTinFrameHienTai(Vec2(0.0f, 0.0f), 0, 0, 0.0f),
 	mViTriFrame(0),
 	mThoiGianDem(0.0f)
