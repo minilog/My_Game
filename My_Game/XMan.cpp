@@ -1262,15 +1262,100 @@ void XMan::BanRaVienDan()
 {
 	for (int i = 0; i < mSoLuongDanLv1; i++)
 	{
-		if (mDS_DanLv1[i]->get_BiPhaHuy())
+		if (mDS_DanLv1[i]->get_BiPhaHuy() == eTT_DaBiPhaHuy)
 		{
-			GAMELOG("%d",i);
-			mDS_DanLv1[i]->set_ToaDo(mToaDo);
-			mDS_DanLv1[i]->set_VanToc(Vec2(DanLv1::mVanTocDan, 0.0f));
+			Vec2 lDoDoiDan = DoDoiDan();
+
+			mDS_DanLv1[i]->set_ToaDo(mToaDo + lDoDoiDan);
+
+			if (!mLatHinh)
+			{
+				mDS_DanLv1[i]->set_VanToc(Vec2(DanLv1::mVanTocDan, 0.0f));
+			}
+			else
+			{
+				mDS_DanLv1[i]->set_VanToc(Vec2(-DanLv1::mVanTocDan, 0.0f));
+			}
+
+			if (mTrangThai == eTT_Truot)
+			{
+				if (mLatHinh)
+				{
+					mDS_DanLv1[i]->set_VanToc(Vec2(DanLv1::mVanTocDan, 0.0f));
+				}
+				else
+				{
+					mDS_DanLv1[i]->set_VanToc(Vec2(-DanLv1::mVanTocDan, 0.0f));
+				}
+			}
+
 			mDS_DanLv1[i]-> Remake();
 			break;
 		}
 	}
+}
+
+Vec2 XMan::DoDoiDan() const
+{
+	Vec2 lDoDoi;
+
+	if (mTrangThai == eTT_DungIm)
+	{
+		if (!mLatHinh)
+		{
+			lDoDoi = Vec2(16.0f, -1.0f);
+		}
+		else
+		{
+			lDoDoi = Vec2(-16.0f, -1.0f);
+		}
+	}
+	else
+	if (mTrangThai == eTT_Chay || mTrangThai == eTT_ChuanBiChay || mTrangThai ==  eTT_TiepDat)
+	{
+		if (!mLatHinh)
+			lDoDoi = Vec2(22.0f, -3.0f);
+		else
+			lDoDoi = Vec2(-22.0f, -3.0f);
+	}
+	else
+	if (mTrangThai == eTT_Luot)
+	{
+		if (!mLatHinh)
+			lDoDoi = Vec2(29.0f, 2.0f);
+		else
+			lDoDoi = Vec2(-29.0f, 2.0f);
+	}
+	else
+	if (mTrangThai == eTT_Nhay || mTrangThai == eTT_Roi)
+	{
+		if (!mLatHinh)
+			lDoDoi = Vec2(20.0f, -6.0f);
+		else
+			lDoDoi = Vec2(-20.0f, -6.0f);
+	}
+	else
+	if (mTrangThai == eTT_Truot)
+	{
+		if (mLatHinh)
+		{
+			lDoDoi = Vec2(20.0f, -4.0f);
+		}
+		else
+		{
+			lDoDoi = Vec2(-20.0f, -4.0f);
+		}
+	}
+	else
+	if (mTrangThai == eTT_BatRa)
+	{
+		if (!mLatHinh)
+			lDoDoi = Vec2(21.0f, -8.0f);
+		else
+			lDoDoi = Vec2(-21.0f, -8.0f);
+	}
+
+	return lDoDoi;
 }
 
 

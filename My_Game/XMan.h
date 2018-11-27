@@ -141,6 +141,7 @@ private:
 	void XuLyBanPhim_BanDan(std::map<int, bool> in_Keys);
 
 	void BanRaVienDan();
+	Vec2 DoDoiDan() const;
 };
 
 

@@ -116,6 +116,9 @@ enum eTrangThai
 	eTT_TiepDat,
 	eTT_Truot,
 	eTT_Luot,
-	eTT_BatRa
+	eTT_BatRa,
+	eTT_DangTanBien,
+	eTT_DangTonTai,
+	eTT_DaBiPhaHuy
 };
 

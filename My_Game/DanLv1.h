@@ -18,88 +18,125 @@ public:
 	{
 		mLoaiDoiTuong = eLDT_DanLv1;
 
-		std::vector<ThongTinFrame> lDSTTFrame;
+		LoadHinhAnhVao();
 
-		lDSTTFrame.clear();
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 8, 6, 999.9f, HCN(113, 121, 535, 541)));
-		mHoatHinh = new HoatHinh("Resources_X3/XMan/Weapons and Items.png", lDSTTFrame, D3DCOLOR_XRGB(50, 96, 166));
+		mHH_HienTai = mHH_DangTonTai;
 
-		//lDSTTFrame.clear();
-		//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 12, 12, 1.0f, HCN(127, 139, 532, 544)));
-		//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 14, 14, 1.0f, HCN(144, 157, 531, 544)));
-		//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 16, 16, 1.0f, HCN(162, 178, 530, 545)));
-		//mHoatHinhBiPhaHuy = new HoatHinh("Resources_X3/XMan/Weapons and Items.png", lDSTTFrame, D3DCOLOR_XRGB(50, 96, 166));
-
-		//mTG_PhaHuy = 0.0f;
-		//for (int i = 0; i < (int)lDSTTFrame.size(); i++)
-		//{
-		//	mTG_PhaHuy += lDSTTFrame[i].ThoiGian;
-		//}
-		
-		mBiPhaHuy = true;
+		mTrangThai = eTT_DaBiPhaHuy;
 	}
 	~DanLv1()
 	{
-		if (mHoatHinh)
-			delete mHoatHinh;
-		//if (mHoatHinhBiPhaHuy)
-		//	delete mHoatHinhBiPhaHuy;
+		if (mHH_DangTonTai)
+			delete mHH_DangTonTai;
+		if (mHH_DangTanBien)
+			delete mHH_DangTanBien;
 	}
 
 	void CapNhat(float in_tg)
 	{
-		if (mBiPhaHuy)
+		if (mTrangThai == eTT_DaBiPhaHuy)
 		{
 			return;
 		}
 
-		mTG_DemTonTai += in_tg;
-
-		if (mTG_DemTonTai > mTG_TonTai)
+		if (mTrangThai == eTT_DangTonTai)
 		{
-			mBiPhaHuy = true;
-		}
-
-		if (!mBiPhaHuy)
-		{
+			mTG_DemTonTai += in_tg;
 			mToaDo.x += mVanToc.x * in_tg;
 			mToaDo.y += mVanToc.y * in_tg;
+
+			if (mTG_DemTonTai > mTG_TonTai)
+			{
+				DangTanBien();
+			}
+		}
+
+		if (mTrangThai == eTT_DangTanBien)
+		{
+			mHH_HienTai->CapNhat(in_tg);
+			mTG_DemPhaHuy += in_tg;
+			
+			if (mTG_DemPhaHuy > mTG_PhaHuy)
+			{
+				DaBiPhaHuy();
+			}
 		}
 	}
 	void Ve(const Vec2& in_DoDoi)
 	{
-		if (!mBiPhaHuy)
+		if (mTrangThai != eTT_DaBiPhaHuy)
 		{
-			mHoatHinh->set_ToaDo(mToaDo);
-			mHoatHinh->set_DoDoi(in_DoDoi);
-			mHoatHinh->Ve();
+			mHH_HienTai->set_ToaDo(mToaDo);
+			mHH_HienTai->set_DoDoi(in_DoDoi);
+			mHH_HienTai->Ve();
 		}
 	} // Độ dời phụ thuộc Camera hiện tại
 	void XuLyVaCham(const DoiTuong* in_DoiTuong) {}
 
 	void Remake()
 	{
-		mBiPhaHuy = false;
-		mTG_DemTonTai = 0.0f;
-		//mTG_DemPhaHuy = 0.0f;
+		DangTonTai();
 	}
 
-	bool get_BiPhaHuy()
+	eTrangThai get_BiPhaHuy()
 	{
-		return mBiPhaHuy;
+		return mTrangThai;
 	}
 
 private:
-	HoatHinh *mHoatHinh;
-	HoatHinh *mHoatHinhBiPhaHuy;
-
-	bool mBiPhaHuy;
+	HoatHinh *mHH_DangTonTai;
+	HoatHinh *mHH_DangTanBien;
+	HoatHinh *mHH_HienTai;
 
 	float mTG_TonTai = 0.5f;
 	float mTG_DemTonTai = 0.0f;
 
-	//float mTG_PhaHuy;
-	//float mTG_DemPhaHuy = 0.0f;
+	float mTG_PhaHuy; // giá trị phụ thuộc vào HH_BiPhaHuy
+	float mTG_DemPhaHuy = 0.0f;
+
+	eTrangThai mTrangThai;
+
+	void LoadHinhAnhVao()
+	{
+		std::vector<ThongTinFrame> lDSTTFrame;
+
+		lDSTTFrame.clear();
+		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 8, 6, 999.9f, HCN(113, 121, 535, 541)));
+		mHH_DangTonTai = new HoatHinh("Resources_X3/XMan/Weapons and Items.png", lDSTTFrame, D3DCOLOR_XRGB(50, 96, 166));
+
+		lDSTTFrame.clear();
+		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 12, 12, 0.1f, HCN(127, 139, 532, 544)));
+		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 14, 14, 0.1f, HCN(144, 157, 531, 544)));
+		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 16, 16, 0.1f, HCN(162, 178, 530, 545)));
+		mHH_DangTanBien = new HoatHinh("Resources_X3/XMan/Weapons and Items.png", lDSTTFrame, D3DCOLOR_XRGB(50, 96, 166));
+
+		mTG_PhaHuy = 0.0f;
+		for (int i = 0; i < (int)lDSTTFrame.size(); i++)
+		{
+			mTG_PhaHuy += lDSTTFrame[i].ThoiGian;
+		}
+	}
+
+	void DangTanBien()
+	{
+		mTG_DemPhaHuy = 0.0f;
+		mTrangThai = eTT_DangTanBien;
+		mHH_HienTai = mHH_DangTanBien;
+		mHH_HienTai->Remake();
+	}
+
+	void DangTonTai()
+	{
+		mTG_DemTonTai = 0.0f;
+		mTrangThai = eTT_DangTonTai;
+		mHH_HienTai = mHH_DangTonTai;
+		mHH_HienTai->Remake();
+	}
+
+	void DaBiPhaHuy()
+	{
+		mTrangThai = eTT_DaBiPhaHuy;
+	}
 
 public :
 	static constexpr float mVanTocDan = 250.0f;

@@ -86,6 +86,9 @@ void HoatHinh::Ve()
 
 void HoatHinh::Remake(int in_ViTri, float in_Time)
 {
+	if (mDSThongTinFrame.size() <= 1)
+		return;
+
 	mThoiGianDem = in_Time;
 	mViTriFrame = in_ViTri;
 	mThongTinFrameHienTai = mDSThongTinFrame[mViTriFrame];
