@@ -9,6 +9,8 @@
 #include "BuiKhiLuot.h"
 
 #include "HieuUngLuot.h"
+#include "HieuUngBatRa.h"
+#include "DanLv1.h"
 
 class XMan : public DoiTuong
 {
@@ -27,12 +29,17 @@ public:
 	void XuLyBanPhim(std::map<int, bool> in_Keys);
 	
 private:
+
+	static constexpr int mSoLuongDanLv1 = 15;
+	DanLv1 *mDS_DanLv1[mSoLuongDanLv1];
+
 	static constexpr int mSoLuongBui = 15;
 	BuiKhiLuot *mDS_BuiKhiLuot[mSoLuongBui];
 	float mTG_Bui = 0.085f;
 	float mTG_DemBui = 0.0f;
 
-	//HieuUngLuot *mHieuUngLuot;
+	HieuUngLuot *mHieuUngLuot;
+	HieuUngBatRa *mHieuUngBatRa;
 
 	HoatHinh *mHH_DungIm,
 		*mHH_Chay,
@@ -132,6 +139,8 @@ private:
 	void XuLyBanPhim_Truot(std::map<int, bool> in_Keys);
 
 	void XuLyBanPhim_BanDan(std::map<int, bool> in_Keys);
+
+	void BanRaVienDan();
 };
 
 

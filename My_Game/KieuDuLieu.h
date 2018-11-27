@@ -96,7 +96,8 @@ enum eLoaiDoiTuong
 {
 	eLDT_KhongCo, eLDT_VienGach, eLDT_KeThu, eLDT_Mario, eLDT_DoiTuongTinh, 
 	eLDT_VienGachBinhThuong, eLDT_VienGachVang,
-	eLDT_XMan
+	eLDT_XMan,
+	eLDT_DanLv1
 };
 
 enum eHuongDiChuyen

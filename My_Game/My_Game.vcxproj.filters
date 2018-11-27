@@ -23,6 +23,9 @@
     <Filter Include="4.DoiTuong">
       <UniqueIdentifier>{327dbaa2-0f46-4f2e-aeec-9d3956c84b71}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4.DoiTuong\XMan%27s">
+      <UniqueIdentifier>{997cbb7c-b6f1-42fb-bd79-04ea01516392}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -143,6 +146,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="HieuUngLuot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HieuUngBatRa.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DanLv1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -282,11 +291,17 @@
     <ClInclude Include="XMan.h">
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
+    <ClInclude Include="HieuUngLuot.h">
+      <Filter>4.DoiTuong\XMan%27s</Filter>
+    </ClInclude>
     <ClInclude Include="BuiKhiLuot.h">
+      <Filter>4.DoiTuong\XMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="DanLv1.h">
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
-    <ClInclude Include="HieuUngLuot.h">
-      <Filter>4.DoiTuong</Filter>
+    <ClInclude Include="HieuUngBatRa.h">
+      <Filter>4.DoiTuong\XMan%27s</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

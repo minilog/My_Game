@@ -46,7 +46,7 @@ void HinhAnh::Ve()
 {
 	D3DXVECTOR2 lTrungTamTiLe = D3DXVECTOR2(float((int)mToaDo.x), float((int)mToaDo.y));
 	D3DXVECTOR2 lTrungTamXoayHinh = D3DXVECTOR2(float((int)mToaDo.x), float((int)mToaDo.y));
-	D3DXVECTOR2 lTiLe = D3DXVECTOR2(float((int)mTiLe.x), float((int)mTiLe.y));
+	D3DXVECTOR2 lTiLe = D3DXVECTOR2(mTiLe.x, mTiLe.y);
 	D3DXVECTOR2 lDoDoi = D3DXVECTOR2(float((int)mDoDoi.x), float((int)mDoDoi.y));
 
 	D3DXMatrixTransformation2D(

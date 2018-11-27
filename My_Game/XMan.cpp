@@ -13,7 +13,13 @@ XMan::XMan(const Vec2& in_ToaDo)
 		mDS_BuiKhiLuot[i] = new BuiKhiLuot(Vec2());
 	}
 
-	//mHieuUngLuot = new HieuUngLuot();
+	mHieuUngLuot = new HieuUngLuot();
+	mHieuUngBatRa = new HieuUngBatRa();
+
+	for (int i = 0; i < mSoLuongDanLv1; i++)
+	{
+		mDS_DanLv1[i] = new DanLv1();
+	}
 
 	LoadHinhAnhVao();
 
@@ -23,6 +29,12 @@ XMan::XMan(const Vec2& in_ToaDo)
 
 XMan::~XMan()
 {
+	for (int i = 0; i < mSoLuongDanLv1; i++)
+	{
+		if (mDS_DanLv1[i])
+			delete mDS_DanLv1[i];
+	}
+
 	if (mHH_DungIm)
 	{
 		delete mHH_DungIm;
@@ -111,10 +123,19 @@ XMan::~XMan()
 			delete mDS_BuiKhiLuot[i];
 		}
 	}
+	if (mHieuUngBatRa)
+		delete mHieuUngBatRa;
+	if (mHieuUngLuot)
+		delete mHieuUngLuot;
 }
 
 void XMan::CapNhat(float in_tg)
 {
+	for (int i = 0; i < mSoLuongDanLv1; i++)
+	{
+		mDS_DanLv1[i]->CapNhat(in_tg);
+	}
+
 	mTimes = in_tg;
 	mHH_HienTai->CapNhat(in_tg);
 	mToaDo.x += mVanToc.x * in_tg;
@@ -170,7 +191,14 @@ void XMan::CapNhat(float in_tg)
 	{
 		mDS_BuiKhiLuot[i]->CapNhat(in_tg);
 	}
-	//mHieuUngLuot->CapNhat(in_tg);
+	mHieuUngLuot->CapNhat(in_tg);
+
+	if (mTrangThai != eTT_Luot)
+	{
+		mHieuUngLuot->BienMat();
+	}
+
+	mHieuUngBatRa->CapNhat(in_tg);
 }
 
 void XMan::Ve(const Vec2 & in_DoDoi)
@@ -186,7 +214,14 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 		mDS_BuiKhiLuot[i]->Ve(in_DoDoi);
 	}
 
-	//mHieuUngLuot->Ve(in_DoDoi);
+	mHieuUngLuot->Ve(in_DoDoi);
+
+	mHieuUngBatRa->Ve(in_DoDoi);
+
+	for (int i = 0; i < mSoLuongDanLv1; i++)
+	{
+		mDS_DanLv1[i]->Ve(in_DoDoi);
+	}
 }
 
 void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
@@ -566,8 +601,18 @@ void XMan::Luot()
 	mDuocTangTocLucDangBay = true;
 	mTG_DemBui = mTG_Bui;
 
-	//mHieuUngLuot->set_ToaDo(mToaDo);
-	//mHieuUngLuot->Remake();
+	if (!mLatHinh)
+	{
+		mHieuUngLuot->LatHinh(true);
+		mHieuUngLuot->set_ToaDo(mToaDo + Vec2(-14.0f, 2.0f));
+	}
+	else
+	{
+		mHieuUngLuot->LatHinh(false);
+		mHieuUngLuot->set_ToaDo(mToaDo + Vec2(14.0f, 2.0f));
+	}
+
+	mHieuUngLuot->Remake();
 }
 
 void XMan::Truot()
@@ -602,6 +647,10 @@ void XMan::BatRa()
 	}
 	mHH_HienTai->Remake();
 	mTG_DemBatRa = 0.0f;
+
+	mHieuUngBatRa->LatHinh(mLatHinh);
+	mHieuUngBatRa->set_ToaDo(mToaDo);
+	mHieuUngBatRa->Remake();
 }
 
 void XMan::ChuyenHH_BanDan()
@@ -848,11 +897,11 @@ void XMan::CapNhat_Truot(float in_tg)
 			{
 				if (mLatHinh)
 				{
-					mDS_BuiKhiLuot[i]->set_ToaDo(mToaDo + Vec2(- float(mChieuRong / 2 + 5.0f), float(mChieuCao / 2) + 2.0f));
+					mDS_BuiKhiLuot[i]->set_ToaDo(mToaDo + Vec2(- float(mChieuRong / 2 + 5.0f), float(mChieuCao / 2) - 5.0f));
 				}
 				else
 				{
-					mDS_BuiKhiLuot[i]->set_ToaDo(mToaDo + Vec2(float(mChieuRong / 2 + 5.0f), float(mChieuCao / 2) + 2.0f));
+					mDS_BuiKhiLuot[i]->set_ToaDo(mToaDo + Vec2(float(mChieuRong / 2 + 5.0f), float(mChieuCao / 2) - 5.0f));
 				}
 				mDS_BuiKhiLuot[i]->Remake();
 				break;
@@ -890,13 +939,19 @@ void XMan::XuLyBanPhim_DungIm(std::map<int, bool> in_Keys)
 	{
 		if (!mLatHinh)
 		{
-			mVanToc.x = mVanTocChayToiDa + mVanTocCongThem;
-			Luot();
+			if (!mCoChuongNgaiVatPhai)
+			{
+				mVanToc.x = mVanTocChayToiDa + mVanTocCongThem;
+				Luot();
+			}
 		}
 		else
 		{
-			mVanToc.x = -(mVanTocChayToiDa + mVanTocCongThem);
-			Luot();
+			if (!mCoChuongNgaiVatTrai)
+			{
+				mVanToc.x = -(mVanTocChayToiDa + mVanTocCongThem);
+				Luot();
+			}
 		}
 	}
 	if (!in_Keys[PUSH_BUTTON])
@@ -1184,6 +1239,9 @@ void XMan::XuLyBanPhim_BanDan(std::map<int, bool> in_Keys)
 		mTG_DemBanDan = 0.0f;
 		mBanDan = true;
 		mChoPhepBan = false;
+
+		// các đối tượng đạn bay ra
+		BanRaVienDan();
 	}
 	if (!in_Keys[FIRE_BUTTON])
 	{
@@ -1197,6 +1255,21 @@ void XMan::XuLyBanPhim_BanDan(std::map<int, bool> in_Keys)
 	if (!mBanDan && (lBanDan_Tam != mBanDan))
 	{
 		ChuyenHH_KoBanDan();
+	}
+}
+
+void XMan::BanRaVienDan()
+{
+	for (int i = 0; i < mSoLuongDanLv1; i++)
+	{
+		if (mDS_DanLv1[i]->get_BiPhaHuy())
+		{
+			GAMELOG("%d",i);
+			mDS_DanLv1[i]->set_ToaDo(mToaDo);
+			mDS_DanLv1[i]->set_VanToc(Vec2(DanLv1::mVanTocDan, 0.0f));
+			mDS_DanLv1[i]-> Remake();
+			break;
+		}
 	}
 }
 
