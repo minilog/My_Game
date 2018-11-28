@@ -91,9 +91,6 @@
     <ClCompile Include="MapReader\TmxTerrainArray.cpp">
       <Filter>FileDocMap</Filter>
     </ClCompile>
-    <ClCompile Include="ManGioiThieu.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -119,9 +116,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VaChamGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Mario.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GameLog.cpp">
@@ -152,6 +146,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DanLv1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DanLv2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -246,15 +243,6 @@
     <ClInclude Include="ManGame.h">
       <Filter>2.ManGame</Filter>
     </ClInclude>
-    <ClInclude Include="ManGioiThieu.h">
-      <Filter>2.ManGame</Filter>
-    </ClInclude>
-    <ClInclude Include="GachBinhThuong.h">
-      <Filter>4.DoiTuong</Filter>
-    </ClInclude>
-    <ClInclude Include="GachVang.h">
-      <Filter>4.DoiTuong</Filter>
-    </ClInclude>
     <ClInclude Include="DoiTuong.h">
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
@@ -266,9 +254,6 @@
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>3.DieuKhien</Filter>
-    </ClInclude>
-    <ClInclude Include="Mario.h">
-      <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="KieuDuLieu.h">
       <Filter>1.NenTang</Filter>
@@ -297,12 +282,13 @@
     <ClInclude Include="BuiKhiLuot.h">
       <Filter>4.DoiTuong\XMan%27s</Filter>
     </ClInclude>
-    <ClInclude Include="DanLv1.h">
-      <Filter>4.DoiTuong</Filter>
-    </ClInclude>
     <ClInclude Include="HieuUngBatRa.h">
       <Filter>4.DoiTuong\XMan%27s</Filter>
     </ClInclude>
+    <ClInclude Include="DanLv1.h">
+      <Filter>4.DoiTuong\XMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="DanLv2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

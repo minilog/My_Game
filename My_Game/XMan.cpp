@@ -2,6 +2,7 @@
 #include <vector>
 #include "VaChamGame.h"
 #include "GameLog.h"
+#include "Camera.h"
 
 XMan::XMan(const Vec2& in_ToaDo)
 	:DoiTuong(in_ToaDo, Vec2(), 18, 32)
@@ -20,6 +21,8 @@ XMan::XMan(const Vec2& in_ToaDo)
 	{
 		mDS_DanLv1[i] = new DanLv1();
 	}
+
+	mDanLv2 = new DanLv2();
 
 	LoadHinhAnhVao();
 
@@ -131,10 +134,13 @@ XMan::~XMan()
 
 void XMan::CapNhat(float in_tg)
 {
-	for (int i = 0; i < mSoLuongDanLv1; i++)
-	{
-		mDS_DanLv1[i]->CapNhat(in_tg);
-	}
+	if (mToaDo.x < Camera::mGioiHanTrai + float(mChieuRong / 2))
+		mToaDo.x = Camera::mGioiHanTrai + float(mChieuRong / 2);
+
+	if (mToaDo.x > Camera::mGioiHanPhai - float(mChieuRong / 2))
+		mToaDo.x = Camera::mGioiHanPhai - float(mChieuRong / 2);
+
+
 
 	mTimes = in_tg;
 	mHH_HienTai->CapNhat(in_tg);
@@ -198,7 +204,14 @@ void XMan::CapNhat(float in_tg)
 		mHieuUngLuot->BienMat();
 	}
 
+	for (int i = 0; i < mSoLuongDanLv1; i++)
+	{
+		mDS_DanLv1[i]->CapNhat(in_tg);
+	}
+
 	mHieuUngBatRa->CapNhat(in_tg);
+
+	mDanLv2->CapNhat(in_tg);
 }
 
 void XMan::Ve(const Vec2 & in_DoDoi)
@@ -224,15 +237,15 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 	}
 }
 
-void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
+void XMan::XuLyVaCham(DoiTuong * in_DoiTuong)
 {
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
 	{
 		eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
-		ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
 
 		if (lKQVC.eKQVC_DaVaCham)
 		{
+			ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
 			switch (lPVC)
 			{
 			case ePVC_Duoi:
@@ -286,28 +299,39 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 				break;
 			}
 		}
+
+		for (int i = 0; i < mSoLuongDanLv1; i++)
+		{
+			if (mDS_DanLv1[i]->get_TrangThai() != eTTDan_DaBiPhaHuy)
+				mDS_DanLv1[i]->XuLyVaCham(in_DoiTuong);
+		}
 	}
 
 #pragma region XỬ LÝ BIẾN mDangDungTuNhienRoi
 	if (mDangDungTuNhienRoi == true)
 	{
-		HCN lHCNGioiHanMoRongDay = get_HCNGioiHan();
-		lHCNGioiHanMoRongDay.Duoi += 2;
-
-		eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(lHCNGioiHanMoRongDay, in_DoiTuong->get_HCNGioiHan());
-		ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
-
-		if (lKQVC.eKQVC_DaVaCham == true)
+		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
 		{
-			switch (in_DoiTuong->get_LoaiDoiTuong())
+			HCN lHCNGioiHanMoRongDay = get_HCNGioiHan();
+			lHCNGioiHanMoRongDay.Duoi += 2;
+
+			eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(lHCNGioiHanMoRongDay, in_DoiTuong->get_HCNGioiHan());
+
+
+			if (lKQVC.eKQVC_DaVaCham == true)
 			{
-			case eLDT_DoiTuongTinh:
-				if (lPVC == ePVC_Duoi)
+				ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
+
+				switch (in_DoiTuong->get_LoaiDoiTuong())
 				{
-					mDangDungTuNhienRoi = false;
+				case eLDT_DoiTuongTinh:
+					if (lPVC == ePVC_Duoi)
+					{
+						mDangDungTuNhienRoi = false;
+						break;
+					}
 					break;
 				}
-				break;
 			}
 		}
 	}
@@ -1262,7 +1286,7 @@ void XMan::BanRaVienDan()
 {
 	for (int i = 0; i < mSoLuongDanLv1; i++)
 	{
-		if (mDS_DanLv1[i]->get_BiPhaHuy() == eTT_DaBiPhaHuy)
+		if (mDS_DanLv1[i]->get_TrangThai() == eTTDan_DaBiPhaHuy)
 		{
 			Vec2 lDoDoiDan = DoDoiDan();
 
@@ -1357,5 +1381,6 @@ Vec2 XMan::DoDoiDan() const
 
 	return lDoDoi;
 }
+
 
 

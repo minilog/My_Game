@@ -11,9 +11,12 @@
 #include "HieuUngLuot.h"
 #include "HieuUngBatRa.h"
 #include "DanLv1.h"
+#include "DanLv2.h"
 
 class XMan : public DoiTuong
 {
+private:
+
 	static constexpr int PUSH_BUTTON = 'X';
 	static constexpr int JUMP_BUTTON = 'C';
 	static constexpr int FIRE_BUTTON = 'V';
@@ -24,16 +27,17 @@ public:
 
 	virtual void CapNhat(float in_tg);
 	virtual void Ve(const Vec2& in_DoDoi); // Độ dời phụ thuộc Camera hiện tại
-	virtual void XuLyVaCham(const DoiTuong* in_DoiTuong);
+	virtual void XuLyVaCham(DoiTuong* in_DoiTuong);
 
 	void XuLyBanPhim(std::map<int, bool> in_Keys);
 	
 private:
+	DanLv2 *mDanLv2;
 
-	static constexpr int mSoLuongDanLv1 = 15;
+	static constexpr int mSoLuongDanLv1 = 7;
 	DanLv1 *mDS_DanLv1[mSoLuongDanLv1];
 
-	static constexpr int mSoLuongBui = 15;
+	static constexpr int mSoLuongBui = 7;
 	BuiKhiLuot *mDS_BuiKhiLuot[mSoLuongBui];
 	float mTG_Bui = 0.085f;
 	float mTG_DemBui = 0.0f;

@@ -28,6 +28,10 @@ HieuUngBatRa::~HieuUngBatRa()
 
 void HieuUngBatRa::CapNhat(float in_tg)
 {
+	if (mBienMat)
+	{
+		return;
+	}
 	if (!mBienMat)
 	{
 		mTG_DemTonTai += in_tg;

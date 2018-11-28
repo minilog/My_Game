@@ -11,12 +11,19 @@
 Man1::Man1()
 {
 	TaiDuLieu();
+
+	font = NULL;
+	D3DXCreateFont(ToanCauGame::get_ThietBi(), 12, 0, FW_NORMAL, 1, false, DEFAULT_CHARSET,
+		OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_DONTCARE, L"Arial", &font);
+
+	SetRect(&fRectangle, 0, 0, Camera::get_ChieuRong(), Camera::get_ChieuCao());
+	message = "This is some generic message to\n display on the screen";
 }
 
 
 Man1::~Man1()
 {
-	delete mXman;
+	delete mXMan;
 	delete mBanDoMap1;
 }
 
@@ -37,21 +44,23 @@ void Man1::TaiDuLieu()
 
 	TaoDanhSachDoiTuong();
 
-	mXman = new XMan(Vec2(50.0f, 880.0f));
+	mXMan = new XMan(Vec2(50.0f, 880.0f));
 }
 
 
 void Man1::CapNhat(float in_tg)
 {
-	mXman->CapNhat(in_tg);
+	mXMan->CapNhat(in_tg);
 
 	XuLyVaChamChung();
 
 
 
-	mXman->XuLyBanPhim(mKeys);
+	mXMan->XuLyBanPhim(mKeys);
 
-	Camera::set_ToaDo(mXman->get_ToaDo());
+
+	DieuChinhCamera();
+
 }
 
 void Man1::Ve()
@@ -61,7 +70,7 @@ void Man1::Ve()
 
 	VeHinhAnhBanDoGame(lDoDoi);
 
-	mXman->Ve(lDoDoi);
+	mXMan->Ve(lDoDoi);
 }
 
 void Man1::OnKeyDown(int in_KeyCode)
@@ -85,11 +94,13 @@ void Man1::TaoBanDoVaCamera()
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
 
 	// TAO_CAMERA
-	Camera::set_GioiHan(0, ManGame::mChieuRong, 770, 770 + ToanCauGame::get_ChieuCao());
+	Camera::set_KichThuoc(ToanCauGame::get_ChieuRong(), ToanCauGame::get_ChieuCao());
+
+	Camera::set_GioiHan(0, 773 - 4 + Camera::get_ChieuRong() , 770, 770 + ToanCauGame::get_ChieuCao());
 	Camera::set_ToaDo(Vec2(
 		ToanCauGame::get_ChieuRong() / 2.0f,
 		896.0f));
-	Camera::set_KichThuoc(ToanCauGame::get_ChieuRong(), ToanCauGame::get_ChieuCao());
+
 }
 
 void Man1::TaoDanhSachDoiTuong()
@@ -144,15 +155,36 @@ void Man1::VeDanhSachDoiTuong(const Vec2 & in_DoDoi)
 {
 }
 
+void Man1::DieuChinhCamera()
+{
+	Camera::set_ToaDo(mXMan->get_ToaDo());
+
+	//if (mXMan->get_ToaDo().x >= 850.0f && Camera::mGioiHanTren == 770)
+	//{
+	//	Camera::mGioiHanTren = 255;
+	//}
+	//if (mXMan->get_ToaDo().x >= 900.0f && Camera::mGioiHanTrai == 0)
+	//{
+	//	Camera::mGioiHanTrai = 773 - 4;
+	//}
+	//if (mXMan->get_ToaDo().x >= 800.0f &&
+	//	mXMan->get_ToaDo().y <= 400.f &&
+	//	Camera::mGioiHanPhai >= 773 - 4 + Camera::get_ChieuRong() &&
+	//	Camera::mGioiHanPhai < 1500 + Camera::get_ChieuRong())
+	//{
+	//	Camera::mGioiHanPhai++;
+	//}
+}
+
 void Man1::XuLyVaChamChung()
 {
-	mDS_DoiTuongXetVaCHam.clear();
+	mDS_DoiTuongXetVaCham.clear();
 
-	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuongXetVaCHam, mXman);
+	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuongXetVaCham, mXMan);
 
-	for (auto lDT_Tinh : mDS_DoiTuongXetVaCHam)
+	for (int i = 0; i < (int)mDS_DoiTuongXetVaCham.size(); i++)
 	{
-		mXman->XuLyVaCham(lDT_Tinh);
+		mXMan->XuLyVaCham(mDS_DoiTuongXetVaCham[i]);
 	}
 }
 
@@ -182,9 +214,9 @@ void Man1::DrawQuadTree(QuadTree * in_QuadTree)
 
 void Man1::DrawCollidable()
 {
-	//for (auto child : mDS_DoiTuongXetVaCHam)
-	//{
-	//	mGameDebugDraw->DrawRect(child->get_RECT());
-	//}
+	for (auto child : mDS_DoiTuongXetVaCham)
+	{
+		mGameDebugDraw->DrawRect(child->get_RECT());
+	}
 	//mGameDebugDraw->DrawRect(mXman->get_RECT());
 }

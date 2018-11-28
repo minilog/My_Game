@@ -10,12 +10,12 @@
 #include "VaChamGame.h"
 #include "Camera.h"
 
-class DanLv1 :
-	public DoiTuong
+class DanLv2 : public DoiTuong
 {
+
 public:
-	DanLv1(const Vec2& in_ToaDo = Vec2(), const Vec2& in_VanToc = Vec2());
-	~DanLv1();
+	DanLv2(const Vec2& in_ToaDo = Vec2(), const Vec2& in_VanToc = Vec2());
+	~DanLv2();
 
 	void CapNhat(float in_tg);
 	void Ve(const Vec2& in_DoDoi); // Độ dời phụ thuộc Camera hiện tại
@@ -42,17 +42,9 @@ private:
 	eTrangThai mTrangThai;
 
 	void LoadHinhAnhVao();
-
 	void DangTanBien();
-
 	void DangTonTai();
-
-	void DaBiPhaHuy()
-	{
-		mTrangThai = eTTDan_DaBiPhaHuy;
-	}
-
-public :
+	void Ban();
+public:
 	static constexpr float mVanTocDan = 280.0f;
 };
-

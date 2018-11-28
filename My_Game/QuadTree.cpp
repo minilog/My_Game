@@ -60,9 +60,9 @@ void QuadTree::get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*>& out_CacDoiTuon
 
 	if (lViTri != -1)
 	{
-		for (auto lDoiTuong : mDSDoiTuong)
+		for (int i = 0; i < (int)mDSDoiTuong.size(); i++)
 		{
-			out_CacDoiTuong.push_back(lDoiTuong);
+			out_CacDoiTuong.push_back(mDSDoiTuong[i]);
 		}
 
 		if (mBonNhanh != NULL)
@@ -78,9 +78,9 @@ void QuadTree::get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*>& out_CacDoiTuon
 
 void QuadTree::get_TatCaDoiTuong(std::vector<DoiTuong*>& out_CacDoiTuong)
 {
-	for (auto lDoiTuong : mDSDoiTuong)
+	for (int i = 0; i < (int)mDSDoiTuong.size(); i++)
 	{
-		out_CacDoiTuong.push_back(lDoiTuong);
+		out_CacDoiTuong.push_back(mDSDoiTuong[i]);
 	}
 
 	if (mBonNhanh)

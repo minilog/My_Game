@@ -8,6 +8,8 @@ private:
 	static Vec2 mToaDo; // chính giữa camera
 	static int mChieuRong;
 	static int mChieuCao;
+
+public:
 	static int mGioiHanTrai;
 	static int mGioiHanPhai;
 	static int mGioiHanTren;

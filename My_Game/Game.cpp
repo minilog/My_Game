@@ -2,7 +2,6 @@
 #include "ToanCauGame.h"
 #include "ThoiGianGame.h"
 #include "QuanLyManGame.h"
-#include "ManGioiThieu.h"
 #include "Man1.h"
 
 Game::Game(int in_FPS)
@@ -79,6 +78,7 @@ void Game::Ve()
 
 		((Man1*)lManGame)->DrawQuadTree(((Man1*)lManGame)->mQuadTree);
 		((Man1*)lManGame)->DrawCollidable();
+		((Man1*)lManGame)->DrawTextDebug();
 
 		lThietBi->EndScene();
 	}

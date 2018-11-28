@@ -13,6 +13,6 @@ public:
 
 	virtual void CapNhat(float in_tg) {}
 	virtual void Ve(const Vec2& in_DoDoi) {}
-	virtual void XuLyVaCham(const DoiTuong* in_DoiTuong) {}
+	virtual void XuLyVaCham(DoiTuong* in_DoiTuong) {}
 };
 

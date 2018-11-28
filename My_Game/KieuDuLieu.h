@@ -97,7 +97,8 @@ enum eLoaiDoiTuong
 	eLDT_KhongCo, eLDT_VienGach, eLDT_KeThu, eLDT_Mario, eLDT_DoiTuongTinh, 
 	eLDT_VienGachBinhThuong, eLDT_VienGachVang,
 	eLDT_XMan,
-	eLDT_DanLv1
+	eLDT_DanLv1,
+	eLDT_DanLV2
 };
 
 enum eHuongDiChuyen
@@ -117,8 +118,9 @@ enum eTrangThai
 	eTT_Truot,
 	eTT_Luot,
 	eTT_BatRa,
-	eTT_DangTanBien,
-	eTT_DangTonTai,
-	eTT_DaBiPhaHuy
+	eTTDan_DangTanBien,
+	eTTDan_DangTonTai,
+	eTTDan_DaBiPhaHuy,
+	eTTDan_Ban
 };
 
