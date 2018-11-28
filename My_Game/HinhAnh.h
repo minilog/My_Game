@@ -10,7 +10,7 @@ class HinhAnh
 public:
 	HinhAnh(const char* in_DuongDan, D3DCOLOR in_Color = NULL);
 	~HinhAnh();
-	void Ve();
+	void Ve(D3DCOLOR in_SubColor = D3DCOLOR_ARGB(255, 255, 255, 255));
 
 protected:
 	LPD3DXSPRITE            mXuLyHinhAnh;

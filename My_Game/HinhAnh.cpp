@@ -42,7 +42,7 @@ HinhAnh::~HinhAnh()
 	}
 }
 
-void HinhAnh::Ve()
+void HinhAnh::Ve(D3DCOLOR in_SubColor)
 {
 	D3DXVECTOR2 lTrungTamTiLe = D3DXVECTOR2(float((int)mToaDo.x), float((int)mToaDo.y));
 	D3DXVECTOR2 lTrungTamXoayHinh = D3DXVECTOR2(float((int)mToaDo.x), float((int)mToaDo.y));
@@ -75,7 +75,7 @@ void HinhAnh::Ve()
 		&lHCN,
 		&lTrungTam,
 		&lToaDo,
-		D3DCOLOR_ARGB(255, 255, 255, 255)); // những pixel nào có màu trắng		
+		in_SubColor); // những pixel nào có màu trắng		
 											// thì sẽ tô màu này lên
 
 	mXuLyHinhAnh->SetTransform(&lMaTranCu); // thiết lập lại Ma Trận Cũ để Xử Lý Hình Ảnh chỉ áp dụng Transform với class này

@@ -32,6 +32,7 @@ XMan::XMan(const Vec2& in_ToaDo)
 
 XMan::~XMan()
 {
+
 	for (int i = 0; i < mSoLuongDanLv1; i++)
 	{
 		if (mDS_DanLv1[i])
@@ -134,13 +135,40 @@ XMan::~XMan()
 
 void XMan::CapNhat(float in_tg)
 {
+
+	if (mTG_DemTichDan > mTG_TichDanLv2)
+	{
+		mTimeCount_ChangeShining += in_tg;
+		if (mIsShining)
+		{
+			if (mTimeCount_ChangeShining > mTimeChangeShining)
+			{
+				mTimeCount_ChangeShining = 0.0f;
+
+				mIsShining = false;
+			}
+		}
+
+		if (!mIsShining)
+		{
+			if (mTimeCount_ChangeShining > 1.5f * mTimeChangeShining)
+			{
+				mTimeCount_ChangeShining = 0.0f;
+
+				mIsShining = true;
+			}
+		}
+	}
+	else
+	{
+		mIsShining = false;
+	}
+
 	if (mToaDo.x < Camera::mGioiHanTrai + float(mChieuRong / 2))
 		mToaDo.x = Camera::mGioiHanTrai + float(mChieuRong / 2);
 
 	if (mToaDo.x > Camera::mGioiHanPhai - float(mChieuRong / 2))
 		mToaDo.x = Camera::mGioiHanPhai - float(mChieuRong / 2);
-
-
 
 	mTimes = in_tg;
 	mHH_HienTai->CapNhat(in_tg);
@@ -220,7 +248,11 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 	mHH_HienTai->set_ToaDo(mToaDo);
 	mHH_HienTai->set_DoDoi(in_DoDoi);
 	mHH_HienTai->Ve();
-	
+
+	if (mIsShining)
+	{
+		DrawAnimationShining(in_DoDoi);
+	}
 	//Vẽ đối tượng Bụi, LayDa
 	for (int i = 0; i < mSoLuongBui; i++)
 	{
@@ -235,6 +267,10 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 	{
 		mDS_DanLv1[i]->Ve(in_DoDoi);
 	}
+
+
+	mDanLv2->Ve(in_DoDoi);
+
 }
 
 void XMan::XuLyVaCham(DoiTuong * in_DoiTuong)
@@ -305,6 +341,8 @@ void XMan::XuLyVaCham(DoiTuong * in_DoiTuong)
 			if (mDS_DanLv1[i]->get_TrangThai() != eTTDan_DaBiPhaHuy)
 				mDS_DanLv1[i]->XuLyVaCham(in_DoiTuong);
 		}
+
+		mDanLv2->XuLyVaCham(in_DoiTuong);
 	}
 
 #pragma region XỬ LÝ BIẾN mDangDungTuNhienRoi
@@ -389,11 +427,11 @@ void XMan::LoadHinhAnhVao()
 
 #pragma region DUNG_IM
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(226.0f, 29.0f), 30, 34, 3.5f));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(261.0f, 29.0f), 30, 34, 0.25f));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(295.0f, 29.0f), 30, 34, 0.25f));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(261.0f, 29.0f), 30, 34, 0.25f));
-	mHH_DungIm = new HoatHinh("Resources_X3/XMan/XMan_1.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(323.0f, 17.0f), 30, 34, 3.5f));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(357.0f, 17.0f), 30, 34, 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(391.0f, 17.0f), 30, 34, 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(357.0f, 17.0f), 30, 34, 0.25f));
+	mHH_DungIm = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
 
 	lDSTTFrame.clear();
 	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 34, 0.15f, HCN(133, 163, 66, 100)));
@@ -513,6 +551,14 @@ void XMan::LoadHinhAnhVao()
 	mHH_BatRa_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
 #pragma endregion
 
+	mAnimationShining = new HoatHinh("Resources_X3/XMan/XMan_1.png", lDSTTFrame, D3DCOLOR_XRGB(255, 255, 255));
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 2, 2, 0.2f, HCN(9, 10, 16, 17)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 2, 2, 0.2f, HCN(5, 7, 5, 7)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 2, 2, 0.2f, HCN(14, 16, 15, 17)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 2, 2, 0.2f, HCN(5, 7, 5, 7)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 2, 2, 0.2f, HCN(5, 7, 5, 7)));
 }
 
 void XMan::DungIm()
@@ -1250,6 +1296,8 @@ void XMan::XuLyBanPhim_BanDan(std::map<int, bool> in_Keys)
 {
 	bool lBanDan_Tam = mBanDan;
 
+
+
 	if (mBanDan)
 	{
 		mTG_DemBanDan += mTimes;
@@ -1267,9 +1315,27 @@ void XMan::XuLyBanPhim_BanDan(std::map<int, bool> in_Keys)
 		// các đối tượng đạn bay ra
 		BanRaVienDan();
 	}
+
+	if (in_Keys[FIRE_BUTTON])
+	{
+		mTG_DemTichDan += mTimes;
+	}
 	if (!in_Keys[FIRE_BUTTON])
 	{
 		mChoPhepBan = true;
+
+		if (mTG_DemTichDan >= mTG_TichDanLv2)
+		{
+			mTG_DemBanDan = 0.0f;
+			mBanDan = true;
+			mChoPhepBan = false;
+
+			BanDanLv2();
+		}
+
+		mTG_DemTichDan = 0.0f;
+
+
 	}
 
 	if (mBanDan && (lBanDan_Tam != mBanDan))
@@ -1380,6 +1446,112 @@ Vec2 XMan::DoDoiDan() const
 	}
 
 	return lDoDoi;
+}
+
+void XMan::BanDanLv2()
+{
+	if (mDanLv2->get_TrangThai() == eTTDan_DaBiPhaHuy)
+	{
+		Vec2 lDoDoiDan = DoDoiDanLv2();
+
+		mDanLv2->set_ToaDo(mToaDo + lDoDoiDan);
+
+		if (!mLatHinh)
+		{
+			mDanLv2->set_VanToc(Vec2(DanLv2::mVanTocDan, 0.0f));
+		}
+		else
+		{
+			mDanLv2->set_VanToc(Vec2(-DanLv2::mVanTocDan, 0.0f));
+		}
+		mDanLv2->set_LatHinh(mLatHinh);
+
+		if (mTrangThai == eTT_Truot)
+		{
+			if (mLatHinh)
+			{
+				mDanLv2->set_VanToc(Vec2(DanLv2::mVanTocDan, 0.0f));
+			}
+			else
+			{
+				mDanLv2->set_VanToc(Vec2(-DanLv2::mVanTocDan, 0.0f));
+			}
+			mDanLv2->set_LatHinh(!mLatHinh);
+		}
+
+		mDanLv2->Remake();
+	}
+}
+
+Vec2 XMan::DoDoiDanLv2() const
+{
+	Vec2 lDoDoi;
+
+	if (mTrangThai == eTT_DungIm)
+	{
+		if (!mLatHinh)
+		{
+			lDoDoi = Vec2(24.0f, -1.0f);
+		}
+		else
+		{
+			lDoDoi = Vec2(-24.0f, -1.0f);
+		}
+	}
+	else
+	if (mTrangThai == eTT_Chay || mTrangThai == eTT_ChuanBiChay || mTrangThai == eTT_TiepDat)
+	{
+		if (!mLatHinh)
+			lDoDoi = Vec2(29.0f, -3.0f);
+		else
+			lDoDoi = Vec2(-29.0f, -3.0f);
+	}
+	else
+	if (mTrangThai == eTT_Luot)
+	{
+		if (!mLatHinh)
+			lDoDoi = Vec2(37.0f, 2.0f);
+		else
+			lDoDoi = Vec2(-37.0f, 2.0f);
+	}
+	else
+	if (mTrangThai == eTT_Nhay || mTrangThai == eTT_Roi)
+	{
+		if (!mLatHinh)
+			lDoDoi = Vec2(28.0f, -6.0f);
+		else
+			lDoDoi = Vec2(-28.0f, -6.0f);
+	}
+	else
+	if (mTrangThai == eTT_Truot)
+	{
+		if (mLatHinh)
+		{
+			lDoDoi = Vec2(28.0f, 0.0f);
+		}
+		else
+		{
+			lDoDoi = Vec2(-28.0f, 0.0f);
+		}
+	}
+	else
+	if (mTrangThai == eTT_BatRa)
+	{
+		if (!mLatHinh)
+			lDoDoi = Vec2(29.0f, -8.0f);
+		else
+			lDoDoi = Vec2(-29.0f, -8.0f);
+	}
+
+	return lDoDoi;
+}
+
+void XMan::DrawAnimationShining(const Vec2 & in_DoDoi)
+{
+	mAnimationShining->set_LatTheoChieuNgang(mLatHinh);
+	mAnimationShining->set_ToaDo(mToaDo);
+	mAnimationShining->set_DoDoi(in_DoDoi);
+	mAnimationShining->Ve(mHH_HienTai->get_ThongTinFrameHienTai(), D3DCOLOR_ARGB(185, 255, 255, 255));
 }
 
 

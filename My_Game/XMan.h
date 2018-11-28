@@ -32,7 +32,11 @@ public:
 	void XuLyBanPhim(std::map<int, bool> in_Keys);
 	
 private:
+	HoatHinh *mHieuUngNapDanLv2;
+
 	DanLv2 *mDanLv2;
+	float mTG_TichDanLv2 = 0.5f;
+	float mTG_DemTichDan = 0.0f;
 
 	static constexpr int mSoLuongDanLv1 = 7;
 	DanLv1 *mDS_DanLv1[mSoLuongDanLv1];
@@ -64,6 +68,7 @@ private:
 		*mHH_Truot_Ban,
 		*mHH_BatRa_Ban;
 	HoatHinh *mHH_HienTai;
+	HoatHinh *mAnimationShining;
 
 	float mTimes = 0.0f;
 	float mTG_BamTuong = 0.18f;
@@ -146,6 +151,19 @@ private:
 
 	void BanRaVienDan();
 	Vec2 DoDoiDan() const;
+
+	void BanDanLv2();
+	Vec2 DoDoiDanLv2() const;
+
+public:
+	bool mIsShining = false;
+
+private:
+
+	float mTimeChangeShining = 0.03f;
+	float mTimeCount_ChangeShining = 0.0f;
+
+	void DrawAnimationShining(const Vec2& in_DoDoi);
 };
 
 

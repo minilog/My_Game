@@ -66,6 +66,8 @@ public:
 		message.append(std::to_string((int)Camera::get_ToaDo().x - (int)Camera::get_ChieuRong() / 2));
 		message.append("\nTOP = ");
 		message.append(std::to_string((int)Camera::get_ToaDo().y - (int)Camera::get_ChieuCao() / 2));
+		message.append("\n");
+		message.append(std::to_string(mXMan->mIsShining));
 
 		if (font)
 		{

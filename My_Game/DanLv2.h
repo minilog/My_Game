@@ -23,7 +23,7 @@ public:
 
 	void Remake()
 	{
-		DangTonTai();
+		Ban();
 	}
 
 	eTrangThai get_TrangThai()
@@ -31,10 +31,17 @@ public:
 		return mTrangThai;
 	}
 
+	void set_LatHinh(bool a)
+	{
+		mLatHinh = a;
+	}
+
 private:
 	HoatHinh *mHH_DangTonTai;
 	HoatHinh *mHH_DangTanBien;
 	HoatHinh *mHH_HienTai;
+
+	bool mLatHinh = false;
 
 	float mTG_PhaHuy; // giá trị phụ thuộc vào HH_BiPhaHuy
 	float mTG_DemPhaHuy = 0.0f;
@@ -46,5 +53,5 @@ private:
 	void DangTonTai();
 	void Ban();
 public:
-	static constexpr float mVanTocDan = 280.0f;
+	static constexpr float mVanTocDan = 350.0f;
 };

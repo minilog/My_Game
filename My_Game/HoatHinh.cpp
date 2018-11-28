@@ -79,9 +79,9 @@ void HoatHinh::CapNhat(float in_tg)
 	}
 }
 
-void HoatHinh::Ve()
+void HoatHinh::Ve(D3DCOLOR in_SubColor)
 {
-	HinhAnh::Ve();
+	HinhAnh::Ve(in_SubColor);
 }
 
 void HoatHinh::Remake(int in_ViTri, float in_Time)
@@ -111,6 +111,30 @@ void HoatHinh::Remake(int in_ViTri, float in_Time)
 	{
 		HinhAnh::mHCN = mThongTinFrameHienTai.Hcn;
 	}
+}
+
+void HoatHinh::Ve(ThongTinFrame a, D3DCOLOR in_SubColor)
+{
+	HinhAnh::mChieuRong = a.ChieuRong;
+	HinhAnh::mChieuCao = a.ChieuCao;
+
+	if (a.Hcn.Trai == 0 &&
+		a.Hcn.Phai == 0 &&
+		a.Hcn.Tren == 0 &&
+		a.Hcn.Duoi == 0)
+	{
+		HinhAnh::mHCN = HCN(
+			int(a.ToaDo.x),
+			int(a.ToaDo.x) + HinhAnh::mChieuRong,
+			int(a.ToaDo.y),
+			int(a.ToaDo.y) + HinhAnh::mChieuCao);
+	}
+	else
+	{
+		HinhAnh::mHCN = a.Hcn;
+	}
+
+	HoatHinh::Ve(in_SubColor);
 }
 
 int HoatHinh::get_ViTri() const
