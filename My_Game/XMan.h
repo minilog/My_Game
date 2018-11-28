@@ -32,14 +32,15 @@ public:
 	void XuLyBanPhim(std::map<int, bool> in_Keys);
 	
 private:
-	HoatHinh *mHieuUngNapDanLv2;
+	HoatHinh *mHH_HieuUngNapDanLv2;
+	HoatHinh *mHH_HieuUngNapDanLv3;
 
 	DanLv2 *mDanLv2;
 	float mTG_TichDanLv2 = 0.5f;
 	float mTG_DemTichDan = 0.0f;
 
 	static constexpr int mSoLuongDanLv1 = 7;
-	DanLv1 *mDS_DanLv1[mSoLuongDanLv1];
+	DanLv1 *mDS_Dan[mSoLuongDanLv1];
 
 	static constexpr int mSoLuongBui = 7;
 	BuiKhiLuot *mDS_BuiKhiLuot[mSoLuongBui];
@@ -88,9 +89,9 @@ private:
 	float mTG_DemBatRa = 0.0f;
 
 	float mGiaTocTrongTruong = 970.0f/*40.0f*/;
-	float mVanTocRoiToiDa = 330.0f/*100.0f*/;
+	float mVanTocRoiToiDa = 380.0f/*100.0f*/;
 
-	float mVanTocChayToiDa = 110.0f/*0.0f*/;
+	float mVanTocChayToiDa = 130.0f/*0.0f*/;
 
 	std::map<int, bool> mKeys;
 	bool mChoPhepNhay = true;
@@ -149,8 +150,8 @@ private:
 
 	void XuLyBanPhim_BanDan(std::map<int, bool> in_Keys);
 
-	void BanRaVienDan();
-	Vec2 DoDoiDan() const;
+	void BanDanLv1();
+	Vec2 DoDoiDanLv1() const;
 
 	void BanDanLv2();
 	Vec2 DoDoiDanLv2() const;

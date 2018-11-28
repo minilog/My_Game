@@ -151,6 +151,9 @@
     <ClCompile Include="DanLv2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DanLv3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -291,6 +294,7 @@
     <ClInclude Include="DanLv2.h">
       <Filter>4.DoiTuong\XMan%27s</Filter>
     </ClInclude>
+    <ClInclude Include="DanLv3.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

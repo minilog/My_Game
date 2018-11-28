@@ -7,10 +7,8 @@ HieuUngLuot::HieuUngLuot()
 	std::vector<ThongTinFrame> lDSTTFrame;
 
 	lDSTTFrame.clear();
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 30, 0.024f, HCN(144, 154, 812, 842)));
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 30, 0.024f, HCN(144, 157, 812, 842)));
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 30, 0.024f, HCN(144, 160, 812, 842)));
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 30, 0.01f, HCN(144, 163, 812, 842)));
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 30, 0.01f, HCN(144, 154, 812, 842)));
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 30, 0.01f, HCN(144, 157, 812, 842)));
 	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 30, 0.01f, HCN(144, 166, 812, 842)));
 	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 30, 0.01f, HCN(144, 169, 812, 842)));
 	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 30, 0.01f, HCN(185, 212, 812, 842)));

@@ -141,6 +141,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DanLv1.cpp" />
     <ClCompile Include="DanLv2.cpp" />
+    <ClCompile Include="DanLv3.cpp" />
     <ClCompile Include="DoiTuong.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameDebugDraw.cpp" />
@@ -183,6 +184,7 @@
     <ClInclude Include="BuiKhiLuot.h" />
     <ClInclude Include="DanLv1.h" />
     <ClInclude Include="DanLv2.h" />
+    <ClInclude Include="DanLv3.h" />
     <ClInclude Include="DoiTuong.h" />
     <ClInclude Include="DoiTuongTinh.h" />
     <ClInclude Include="Game.h" />
