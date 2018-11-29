@@ -9,8 +9,9 @@
 #include <map>
 #include "VaChamGame.h"
 #include "Camera.h"
+#include "DanLv.h"
 
-class DanLv2 : public DoiTuong
+class DanLv2 : public DanLv
 {
 
 public:

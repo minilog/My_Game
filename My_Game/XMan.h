@@ -13,6 +13,7 @@
 #include "DanLv1.h"
 #include "DanLv2.h"
 #include "DanLv3.h"
+#include "DanLv.h"
 
 class XMan : public DoiTuong
 {
@@ -31,6 +32,8 @@ public:
 	virtual void XuLyVaCham(DoiTuong* in_DoiTuong);
 
 	void XuLyBanPhim(std::map<int, bool> in_Keys);
+
+
 	
 private:
 	HoatHinh *mHH_HieuUngNapDanLv2;
@@ -42,7 +45,7 @@ private:
 	float mTG_DemTichDan = 0.0f;
 
 	static constexpr int mSoLuongDanLv1 = 7;
-	DanLv1 *mDS_Dan[mSoLuongDanLv1];
+	DanLv1 *mDS_DanLv1[mSoLuongDanLv1];
 
 	static constexpr int mSoLuongBui = 7;
 	BuiKhiLuot *mDS_BuiKhiLuot[mSoLuongBui];
@@ -159,15 +162,15 @@ private:
 	Vec2 DoDoiDanLv2() const;
 	void BanDanLv3();
 
-public:
 	bool mIsShining = false;
-
-private:
 
 	float mTimeChangeShining = 0.03f;
 	float mTimeCount_ChangeShining = 0.0f;
 
 	void DrawAnimationShining(const Vec2& in_DoDoi);
+
+public:
+	void get_DS_Dan(std::vector<DanLv*>& out);
 };
 
 

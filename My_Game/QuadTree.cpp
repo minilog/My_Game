@@ -76,6 +76,28 @@ void QuadTree::get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*>& out_CacDoiTuon
 	}
 }
 
+void QuadTree::get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*>& out_CacDoiTuong, const HCN& in_HCN)
+{
+	int lViTri = get_ViTri(in_HCN);
+
+	if (lViTri != -1)
+	{
+		for (int i = 0; i < (int)mDSDoiTuong.size(); i++)
+		{
+			out_CacDoiTuong.push_back(mDSDoiTuong[i]);
+		}
+
+		if (mBonNhanh != NULL)
+		{
+			mBonNhanh[lViTri]->get_CacDoiTuongCoTheVaCham(out_CacDoiTuong, in_HCN);
+		}
+	}
+	else
+	{
+		get_TatCaDoiTuong(out_CacDoiTuong);
+	}
+}
+
 void QuadTree::get_TatCaDoiTuong(std::vector<DoiTuong*>& out_CacDoiTuong)
 {
 	for (int i = 0; i < (int)mDSDoiTuong.size(); i++)

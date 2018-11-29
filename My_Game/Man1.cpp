@@ -45,16 +45,18 @@ void Man1::TaiDuLieu()
 	TaoDanhSachDoiTuong();
 
 	mXMan = new XMan(Vec2(50.0f, 880.0f));
+	mDS_DanLv.clear();
+	mXMan->get_DS_Dan(mDS_DanLv);
 }
 
 
 void Man1::CapNhat(float in_tg)
 {
 	mXMan->CapNhat(in_tg);
+	
+	CapNhatDanhSachDoiTuong(in_tg);
 
 	XuLyVaChamChung();
-
-
 
 	mXMan->XuLyBanPhim(mKeys);
 
@@ -71,6 +73,8 @@ void Man1::Ve()
 	VeHinhAnhBanDoGame(lDoDoi);
 
 	mXMan->Ve(lDoDoi);
+
+	VeDanhSachDoiTuong(lDoDoi);
 }
 
 void Man1::OnKeyDown(int in_KeyCode)
@@ -149,10 +153,18 @@ void Man1::VeHinhAnhBanDoGame(const Vec2& in_DoDoi)
 
 void Man1::CapNhatDanhSachDoiTuong(float in_tg)
 {
+	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	{
+		mDS_DanLv[i]->CapNhat(in_tg);
+	}
 }
 
 void Man1::VeDanhSachDoiTuong(const Vec2 & in_DoDoi)
 {
+	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	{
+		mDS_DanLv[i]->Ve(in_DoDoi);
+	}
 }
 
 void Man1::DieuChinhCamera()
@@ -180,11 +192,20 @@ void Man1::XuLyVaChamChung()
 {
 	mDS_DoiTuongXetVaCham.clear();
 
-	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuongXetVaCham, mXMan);
+	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuongXetVaCham, Camera::get_HCNGioiHan());
 
 	for (int i = 0; i < (int)mDS_DoiTuongXetVaCham.size(); i++)
 	{
 		mXMan->XuLyVaCham(mDS_DoiTuongXetVaCham[i]);
+
+	}
+
+	for (int k = 0; k < (int)mDS_DanLv.size(); k++)
+	{
+		for (int i = 0; i < (int)mDS_DoiTuongXetVaCham.size(); i++)
+		{
+			mDS_DanLv[k]->XuLyVaCham(mDS_DoiTuongXetVaCham[i]);
+		}
 	}
 }
 

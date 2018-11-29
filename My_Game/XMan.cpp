@@ -19,7 +19,7 @@ XMan::XMan(const Vec2& in_ToaDo)
 
 	for (int i = 0; i < mSoLuongDanLv1; i++)
 	{
-		mDS_Dan[i] = new DanLv1();
+		mDS_DanLv1[i] = new DanLv1();
 	}
 
 	mDanLv2 = new DanLv2();
@@ -36,8 +36,8 @@ XMan::~XMan()
 
 	for (int i = 0; i < mSoLuongDanLv1; i++)
 	{
-		if (mDS_Dan[i])
-			delete mDS_Dan[i];
+		if (mDS_DanLv1[i])
+			delete mDS_DanLv1[i];
 	}
 
 	if (mHH_DungIm)
@@ -243,15 +243,7 @@ void XMan::CapNhat(float in_tg)
 		mHieuUngLuot->BienMat();
 	}
 
-	for (int i = 0; i < mSoLuongDanLv1; i++)
-	{
-		mDS_Dan[i]->CapNhat(in_tg);
-	}
-
 	mHieuUngBatRa->CapNhat(in_tg);
-
-	mDanLv2->CapNhat(in_tg);
-	mDanLv3->CapNhat(in_tg);
 }
 
 void XMan::Ve(const Vec2 & in_DoDoi)
@@ -287,13 +279,6 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 		mHH_HieuUngNapDanLv2->Ve();
 	}
 
-	for (int i = 0; i < mSoLuongDanLv1; i++)
-	{
-		mDS_Dan[i]->Ve(in_DoDoi);
-	}
-
-	mDanLv2->Ve(in_DoDoi);
-	mDanLv3->Ve(in_DoDoi);
 }
 
 void XMan::XuLyVaCham(DoiTuong * in_DoiTuong)
@@ -389,6 +374,7 @@ void XMan::XuLyVaCham(DoiTuong * in_DoiTuong)
 		}
 	}
 #pragma endregion
+
 }
 
 void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
@@ -1404,34 +1390,34 @@ void XMan::BanDanLv1()
 {
 	for (int i = 0; i < mSoLuongDanLv1; i++)
 	{
-		if (mDS_Dan[i]->get_TrangThai() == eTTDan_DaBiPhaHuy)
+		if (mDS_DanLv1[i]->get_TrangThai() == eTTDan_DaBiPhaHuy)
 		{
 			Vec2 lDoDoiDan = DoDoiDanLv1();
 
-			mDS_Dan[i]->set_ToaDo(mToaDo + lDoDoiDan);
+			mDS_DanLv1[i]->set_ToaDo(mToaDo + lDoDoiDan);
 
 			if (!mLatHinh)
 			{
-				mDS_Dan[i]->set_VanToc(Vec2(DanLv1::mVanTocDan, 0.0f));
+				mDS_DanLv1[i]->set_VanToc(Vec2(DanLv1::mVanTocDan, 0.0f));
 			}
 			else
 			{
-				mDS_Dan[i]->set_VanToc(Vec2(-DanLv1::mVanTocDan, 0.0f));
+				mDS_DanLv1[i]->set_VanToc(Vec2(-DanLv1::mVanTocDan, 0.0f));
 			}
 
 			if (mTrangThai == eTT_Truot)
 			{
 				if (mLatHinh)
 				{
-					mDS_Dan[i]->set_VanToc(Vec2(DanLv1::mVanTocDan, 0.0f));
+					mDS_DanLv1[i]->set_VanToc(Vec2(DanLv1::mVanTocDan, 0.0f));
 				}
 				else
 				{
-					mDS_Dan[i]->set_VanToc(Vec2(-DanLv1::mVanTocDan, 0.0f));
+					mDS_DanLv1[i]->set_VanToc(Vec2(-DanLv1::mVanTocDan, 0.0f));
 				}
 			}
 
-			mDS_Dan[i]-> Remake();
+			mDS_DanLv1[i]-> Remake();
 			break;
 		}
 	}
@@ -1641,5 +1627,13 @@ void XMan::DrawAnimationShining(const Vec2 & in_DoDoi)
 	mAnimationShining->Ve(mHH_HienTai->get_ThongTinFrameHienTai(), D3DCOLOR_ARGB(210, 255, 255, 255));
 }
 
-
+void XMan::get_DS_Dan(std::vector<DanLv*>& out)
+{
+	for (int i = 0; i < mSoLuongDanLv1; i++)
+	{
+		out.push_back(mDS_DanLv1[i]);
+	}
+	out.push_back(mDanLv2);
+	out.push_back(mDanLv3);
+}
 

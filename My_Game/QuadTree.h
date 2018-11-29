@@ -16,6 +16,7 @@ public:
 	void DonDep();
 	void ThemDoiTuong(DoiTuong *in_DoiTuong);
 	void get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*> &out_CacDoiTuong, DoiTuong *in_DoiTuong);
+	void get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*> &out_CacDoiTuong, const HCN& in_HCN);
 	void get_TatCaDoiTuong(std::vector<DoiTuong*> &out_CacDoiTuong);
 	int get_TongDoiTuong();
 

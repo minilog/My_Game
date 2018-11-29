@@ -7,6 +7,7 @@
 #include "DoiTuongTinh.h"
 #include <vector>
 #include "QuadTree.h"
+#include "DanLv.h"
 
 
 class Man1 : public ManGame
@@ -45,7 +46,10 @@ private:
 
 
 	std::vector<DoiTuong*> mDS_DoiTuongXetVaCham;
+	std::vector<DanLv*> mDS_DanLv;
 	void XuLyVaChamChung();
+
+
 
 
 	ID3DXFont *font;
@@ -66,8 +70,6 @@ public:
 		message.append(std::to_string((int)Camera::get_ToaDo().x - (int)Camera::get_ChieuRong() / 2));
 		message.append("\nTOP = ");
 		message.append(std::to_string((int)Camera::get_ToaDo().y - (int)Camera::get_ChieuCao() / 2));
-		message.append("\n");
-		message.append(std::to_string(mXMan->mIsShining));
 
 		if (font)
 		{

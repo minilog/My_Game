@@ -9,9 +9,10 @@
 #include <map>
 #include "VaChamGame.h"
 #include "Camera.h"
+#include "DanLv.h"
 
 class DanLv1 :
-	public DoiTuong
+	public DanLv
 {
 public:
 	DanLv1(const Vec2& in_ToaDo = Vec2(), const Vec2& in_VanToc = Vec2());

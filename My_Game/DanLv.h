@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "DoiTuong.h"
+
 class DanLv :
 	public DoiTuong
 {
@@ -19,5 +20,6 @@ public:
 	virtual void Ve(const Vec2& in_DoDoi) = 0; // Độ dời phụ thuộc Camera hiện tại
 	virtual void XuLyVaCham(DoiTuong* in_DoiTuong) = 0;
 
+	virtual eTrangThai get_TrangThai() = 0;
 };
 

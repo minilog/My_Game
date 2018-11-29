@@ -4,14 +4,14 @@
 
 DanLv3::DanLv3(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	:
-	DoiTuong(in_ToaDo, in_VanToc, 15, 15)
+	DanLv(in_ToaDo, in_VanToc, 15, 15)
 {
 	mLoaiDoiTuong = eLDT_DanLV2;
 
 	LoadHinhAnhVao();
 
 	mHH_HienTai = mHH_DangTanBien;
-	mTrangThai = eTTDan_BanRa;
+	mTrangThai = eTTDan_DaBiPhaHuy;
 }
 
 DanLv3::~DanLv3()
