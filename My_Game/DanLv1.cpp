@@ -31,13 +31,6 @@ void DanLv1::CapNhat(float in_tg)
 	{
 		mToaDo.x += mVanToc.x * in_tg;
 		mToaDo.y += mVanToc.y * in_tg;
-
-		eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan());
-		if (!lKQVC.eKQVC_DaVaCham)
-		{
-			DaBiPhaHuy();
-		}
-
 	}
 
 	if (mTrangThai == eTTDan_DangTanBien)
@@ -47,8 +40,13 @@ void DanLv1::CapNhat(float in_tg)
 
 		if (mTG_DemPhaHuy > mTG_PhaHuy)
 		{
-			DaBiPhaHuy();
+			mTrangThai = eTTDan_DaBiPhaHuy;
 		}
+	}
+
+	if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
+	{
+		mTrangThai = eTTDan_DaBiPhaHuy;
 	}
 }
 

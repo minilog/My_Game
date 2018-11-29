@@ -47,11 +47,6 @@ private:
 
 	void DangTonTai();
 
-	void DaBiPhaHuy()
-	{
-		mTrangThai = eTTDan_DaBiPhaHuy;
-	}
-
 public :
 	static constexpr float mVanTocDan = 280.0f;
 };

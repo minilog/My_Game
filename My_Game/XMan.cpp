@@ -135,7 +135,7 @@ XMan::~XMan()
 
 void XMan::CapNhat(float in_tg)
 {
-	if (mTG_DemTichDan > mTG_TichDanLv2 * 2)
+	if (mTG_DemTichDan > mTG_TichDanLv2 * 2.5f)
 	{
 		mHH_HieuUngNapDanLv3->CapNhat(in_tg);
 	}
@@ -278,7 +278,7 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 		mDS_Dan[i]->Ve(in_DoDoi);
 	}
 
-	if (mTG_DemTichDan > mTG_TichDanLv2 * 2)
+	if (mTG_DemTichDan > mTG_TichDanLv2 * 2.5f)
 	{
 		mHH_HieuUngNapDanLv3->set_ToaDo(mToaDo);
 		mHH_HieuUngNapDanLv3->set_DoDoi(in_DoDoi);
@@ -1442,11 +1442,11 @@ Vec2 XMan::DoDoiDanLv1() const
 	{
 		if (!mLatHinh)
 		{
-			lDoDoi = Vec2(16.0f, -1.0f);
+			lDoDoi = Vec2(16.0f, -2.0f);
 		}
 		else
 		{
-			lDoDoi = Vec2(-16.0f, -1.0f);
+			lDoDoi = Vec2(-16.0f, -2.0f);
 		}
 	}
 	else

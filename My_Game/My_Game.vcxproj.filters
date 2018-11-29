@@ -294,7 +294,9 @@
     <ClInclude Include="DanLv2.h">
       <Filter>4.DoiTuong\XMan%27s</Filter>
     </ClInclude>
-    <ClInclude Include="DanLv3.h" />
+    <ClInclude Include="DanLv3.h">
+      <Filter>4.DoiTuong\XMan%27s</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">
