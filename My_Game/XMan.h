@@ -87,7 +87,7 @@ private:
 	float mVanTocCongThem = 100.0f * 1.2f;
 	float mVanTocTruotToiDa = 160.0f;
 	
-	float mTG_BatRa = 0.15f;
+	float mTG_BatRa = 0.12f;
 	float mTG_DemBatRa = 0.0f;
 
 	float mGiaTocTrongTruong = 970.0f/*40.0f*/;
