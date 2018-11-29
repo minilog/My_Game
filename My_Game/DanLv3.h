@@ -40,12 +40,16 @@ public:
 private:
 	HoatHinh *mHH_DangTonTai;
 	HoatHinh *mHH_DangTanBien;
+	HoatHinh *mHH_BanRa;
 	HoatHinh *mHH_HienTai;
 
 	bool mLatHinh = false;
 
 	float mTG_PhaHuy; // giá trị phụ thuộc vào HH_BiPhaHuy
 	float mTG_DemPhaHuy = 0.0f;
+
+	float mTG_BanRa;
+	float mTG_DemBanRa = 0.0f;
 
 	eTrangThai mTrangThai;
 
@@ -54,6 +58,6 @@ private:
 	void DangTonTai();
 	void Ban();
 public:
-	static constexpr float mVanTocDan = 350.0f;
+	static constexpr float mVanTocDan = 390.0f /*0.0f*/;
 };
 

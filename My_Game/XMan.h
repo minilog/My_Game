@@ -12,6 +12,7 @@
 #include "HieuUngBatRa.h"
 #include "DanLv1.h"
 #include "DanLv2.h"
+#include "DanLv3.h"
 
 class XMan : public DoiTuong
 {
@@ -35,6 +36,7 @@ private:
 	HoatHinh *mHH_HieuUngNapDanLv2;
 	HoatHinh *mHH_HieuUngNapDanLv3;
 
+	DanLv3 *mDanLv3;
 	DanLv2 *mDanLv2;
 	float mTG_TichDanLv2 = 0.5f;
 	float mTG_DemTichDan = 0.0f;
@@ -155,6 +157,7 @@ private:
 
 	void BanDanLv2();
 	Vec2 DoDoiDanLv2() const;
+	void BanDanLv3();
 
 public:
 	bool mIsShining = false;

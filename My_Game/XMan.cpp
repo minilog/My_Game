@@ -23,6 +23,7 @@ XMan::XMan(const Vec2& in_ToaDo)
 	}
 
 	mDanLv2 = new DanLv2();
+	mDanLv3 = new DanLv3();
 
 	LoadHinhAnhVao();
 
@@ -250,6 +251,7 @@ void XMan::CapNhat(float in_tg)
 	mHieuUngBatRa->CapNhat(in_tg);
 
 	mDanLv2->CapNhat(in_tg);
+	mDanLv3->CapNhat(in_tg);
 }
 
 void XMan::Ve(const Vec2 & in_DoDoi)
@@ -292,7 +294,7 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 	}
 
 	mDanLv2->Ve(in_DoDoi);
-
+	mDanLv3->Ve(in_DoDoi);
 }
 
 void XMan::XuLyVaCham(DoiTuong * in_DoiTuong)
@@ -365,6 +367,7 @@ void XMan::XuLyVaCham(DoiTuong * in_DoiTuong)
 		}
 
 		mDanLv2->XuLyVaCham(in_DoiTuong);
+		mDanLv3->XuLyVaCham(in_DoiTuong);
 	}
 
 #pragma region XỬ LÝ BIẾN mDangDungTuNhienRoi
@@ -1373,7 +1376,15 @@ void XMan::XuLyBanPhim_BanDan(std::map<int, bool> in_Keys)
 	{
 		mChoPhepBan = true;
 
-		if (mTG_DemTichDan >= mTG_TichDanLv2)
+		if (mTG_DemTichDan > mTG_TichDanLv2 * 2.5f)
+		{
+			mTG_DemBanDan = 0.0f;
+			mBanDan = true;
+			mChoPhepBan = false;
+
+			BanDanLv3();
+		}
+		else if (mTG_DemTichDan > mTG_TichDanLv2)
 		{
 			mTG_DemBanDan = 0.0f;
 			mBanDan = true;
@@ -1593,6 +1604,41 @@ Vec2 XMan::DoDoiDanLv2() const
 	}
 
 	return lDoDoi;
+}
+
+void XMan::BanDanLv3()
+{
+	if (mDanLv3->get_TrangThai() == eTTDan_DaBiPhaHuy)
+	{
+		Vec2 lDoDoiDan = DoDoiDanLv2();
+
+		mDanLv3->set_ToaDo(mToaDo + lDoDoiDan);
+
+		if (!mLatHinh)
+		{
+			mDanLv3->set_VanToc(Vec2(DanLv3::mVanTocDan, 0.0f));
+		}
+		else
+		{
+			mDanLv3->set_VanToc(Vec2(-DanLv3::mVanTocDan, 0.0f));
+		}
+		mDanLv3->set_LatHinh(mLatHinh);
+
+		if (mTrangThai == eTT_Truot)
+		{
+			if (mLatHinh)
+			{
+				mDanLv3->set_VanToc(Vec2(DanLv3::mVanTocDan, 0.0f));
+			}
+			else
+			{
+				mDanLv3->set_VanToc(Vec2(-DanLv3::mVanTocDan, 0.0f));
+			}
+			mDanLv3->set_LatHinh(!mLatHinh);
+		}
+
+		mDanLv3->Remake();
+	}
 }
 
 void XMan::DrawAnimationShining(const Vec2 & in_DoDoi)

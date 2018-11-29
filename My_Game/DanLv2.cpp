@@ -26,7 +26,7 @@ void DanLv2::CapNhat(float in_tg)
 
 	mHH_HienTai->CapNhat(in_tg);
 
-	if (mTrangThai == eTTDan_Ban)
+	if (mTrangThai == eTTDan_BanRa)
 	{
 		mTG_DemPhaHuy += in_tg;
 
@@ -113,6 +113,7 @@ void DanLv2::LoadHinhAnhVao()
 void DanLv2::DangTanBien()
 {
 	mHH_HienTai = mHH_DangTanBien;
+	mHH_HienTai->Remake();
 	mTrangThai = eTTDan_DangTanBien;
 	mTG_DemPhaHuy = 0.0f;
 }
@@ -120,12 +121,14 @@ void DanLv2::DangTanBien()
 void DanLv2::DangTonTai()
 {
 	mHH_HienTai = mHH_DangTonTai;
+	mHH_HienTai->Remake();
 	mTrangThai = eTTDan_DangTonTai;
 }
 
 void DanLv2::Ban()
 {
 	mHH_HienTai = mHH_DangTanBien;
-	mTrangThai = eTTDan_Ban;
+	mHH_HienTai->Remake();
+	mTrangThai = eTTDan_BanRa;
 	mTG_DemPhaHuy = 0.0f;
 }
