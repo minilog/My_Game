@@ -58,6 +58,6 @@ private:
 	void DangTonTai();
 	void Ban();
 public:
-	static constexpr float mVanTocDan = 390.0f /*0.0f*/;
+	static constexpr float mVanTocDan = 400.0f /*0.0f*/;
 };
 

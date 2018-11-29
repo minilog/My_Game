@@ -272,13 +272,7 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 	}
 
 	mHieuUngLuot->Ve(in_DoDoi);
-
 	mHieuUngBatRa->Ve(in_DoDoi);
-
-	for (int i = 0; i < mSoLuongDanLv1; i++)
-	{
-		mDS_Dan[i]->Ve(in_DoDoi);
-	}
 
 	if (mTG_DemTichDan > mTG_TichDanLv2 * 2.5f)
 	{
@@ -291,6 +285,11 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 		mHH_HieuUngNapDanLv2->set_ToaDo(mToaDo);
 		mHH_HieuUngNapDanLv2->set_DoDoi(in_DoDoi);
 		mHH_HieuUngNapDanLv2->Ve();
+	}
+
+	for (int i = 0; i < mSoLuongDanLv1; i++)
+	{
+		mDS_Dan[i]->Ve(in_DoDoi);
 	}
 
 	mDanLv2->Ve(in_DoDoi);
@@ -359,15 +358,6 @@ void XMan::XuLyVaCham(DoiTuong * in_DoiTuong)
 				break;
 			}
 		}
-
-		for (int i = 0; i < mSoLuongDanLv1; i++)
-		{
-			if (mDS_Dan[i]->get_TrangThai() != eTTDan_DaBiPhaHuy)
-				mDS_Dan[i]->XuLyVaCham(in_DoiTuong);
-		}
-
-		mDanLv2->XuLyVaCham(in_DoiTuong);
-		mDanLv3->XuLyVaCham(in_DoiTuong);
 	}
 
 #pragma region XỬ LÝ BIẾN mDangDungTuNhienRoi
@@ -1307,8 +1297,9 @@ void XMan::XuLyBanPhim_Truot(std::map<int, bool> in_Keys)
 		mTG_DemBamTuong += mTimes;
 		if (mTG_DemBamTuong >= mTG_BamTuong)
 		{
-			Roi();
 			mLatHinh = true;
+			Roi();
+
 		}
 	}
 	if (!in_Keys[VK_LEFT] && mLatHinh)
@@ -1316,8 +1307,9 @@ void XMan::XuLyBanPhim_Truot(std::map<int, bool> in_Keys)
 		mTG_DemBamTuong += mTimes;
 		if (mTG_DemBamTuong >= mTG_BamTuong)
 		{
-			Roi();
 			mLatHinh = false;
+			Roi();
+
 		}
 	}
 	if (!in_Keys[JUMP_BUTTON])
@@ -1646,7 +1638,7 @@ void XMan::DrawAnimationShining(const Vec2 & in_DoDoi)
 	mAnimationShining->set_LatTheoChieuNgang(mLatHinh);
 	mAnimationShining->set_ToaDo(mToaDo);
 	mAnimationShining->set_DoDoi(in_DoDoi);
-	mAnimationShining->Ve(mHH_HienTai->get_ThongTinFrameHienTai(), D3DCOLOR_ARGB(185, 255, 255, 255));
+	mAnimationShining->Ve(mHH_HienTai->get_ThongTinFrameHienTai(), D3DCOLOR_ARGB(210, 255, 255, 255));
 }
 
 
