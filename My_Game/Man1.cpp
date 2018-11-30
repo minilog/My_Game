@@ -42,7 +42,7 @@ void Man1::TaiDuLieu()
 
 	mQuadTree = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
-	TaoDanhSachDoiTuong();
+	TaoDanhSachDoiTuongVaQuai();
 
 	mXMan = new XMan(Vec2(50.0f, 880.0f));
 	mDS_DanLv.clear();
@@ -75,6 +75,7 @@ void Man1::Ve()
 	mXMan->Ve(lDoDoi);
 
 	VeDanhSachDoiTuong(lDoDoi);
+
 }
 
 void Man1::OnKeyDown(int in_KeyCode)
@@ -107,7 +108,7 @@ void Man1::TaoBanDoVaCamera()
 
 }
 
-void Man1::TaoDanhSachDoiTuong()
+void Man1::TaoDanhSachDoiTuongVaQuai()
 {
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
 	{
@@ -119,17 +120,29 @@ void Man1::TaoDanhSachDoiTuong()
 			// lấy Object trong Bản Đồ
 			const Tmx::Object *lObject = lNhomObject->GetObjects().at(j);
 
+			const Vec2 lToaDoDoiTuong(
+				lObject->GetX() + lObject->GetWidth() / 2.0f,
+				lObject->GetY() + lObject->GetHeight() / 2.0f);
+
 			if (lNhomObject->GetName() == "DoiTuongTinh")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
-				const Vec2 lToaDoDoiTuongTinh(
-					lObject->GetX() + lObject->GetWidth() / 2.0f  ,
-					lObject->GetY() + lObject->GetHeight() / 2.0f);
 
-				DoiTuongTinh *lDoiTuongTinh = new DoiTuongTinh(lToaDoDoiTuongTinh,
+
+				DoiTuongTinh *lDoiTuongTinh = new DoiTuongTinh(lToaDoDoiTuong,
 					lObject->GetWidth(), lObject->GetHeight());
 
 				//mDanhSachDoiTuongTinh.push_back(lDoiTuongTinh);
 				mQuadTree->ThemDoiTuong(lDoiTuongTinh);
+			}
+
+			if (lNhomObject->GetName() == "Ech")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+				const Vec2 lToaDoDoiTuongTinh(
+					lObject->GetX() + lObject->GetWidth() / 2.0f,
+					lObject->GetY() + lObject->GetHeight() / 2.0f);
+
+				mDS_Ech.push_back(new Ech(lToaDoDoiTuongTinh, Vec2(),
+					lObject->GetWidth(), lObject->GetHeight()));
 			}
 		}
 	}
@@ -157,6 +170,11 @@ void Man1::CapNhatDanhSachDoiTuong(float in_tg)
 	{
 		mDS_DanLv[i]->CapNhat(in_tg);
 	}
+
+	for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	{
+		mDS_Ech[i]->CapNhat(in_tg, mXMan);
+	}
 }
 
 void Man1::VeDanhSachDoiTuong(const Vec2 & in_DoDoi)
@@ -164,6 +182,11 @@ void Man1::VeDanhSachDoiTuong(const Vec2 & in_DoDoi)
 	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
 	{
 		mDS_DanLv[i]->Ve(in_DoDoi);
+	}
+
+	for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	{
+		mDS_Ech[i]->Ve(in_DoDoi);
 	}
 }
 
@@ -190,21 +213,28 @@ void Man1::DieuChinhCamera()
 
 void Man1::XuLyVaChamChung()
 {
-	mDS_DoiTuongXetVaCham.clear();
+	mDS_DoiTuongTinhXetVaCham.clear();
 
-	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuongXetVaCham, Camera::get_HCNGioiHan());
+	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuongTinhXetVaCham, Camera::get_HCNGioiHan());
 
-	for (int i = 0; i < (int)mDS_DoiTuongXetVaCham.size(); i++)
+	for (int i = 0; i < (int)mDS_DoiTuongTinhXetVaCham.size(); i++)
 	{
-		mXMan->XuLyVaCham(mDS_DoiTuongXetVaCham[i]);
-
+		mXMan->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
 	}
 
 	for (int k = 0; k < (int)mDS_DanLv.size(); k++)
 	{
-		for (int i = 0; i < (int)mDS_DoiTuongXetVaCham.size(); i++)
+		for (int i = 0; i < (int)mDS_DoiTuongTinhXetVaCham.size(); i++)
 		{
-			mDS_DanLv[k]->XuLyVaCham(mDS_DoiTuongXetVaCham[i]);
+			mDS_DanLv[k]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
+		}
+	}
+
+	for (int k = 0; k < (int)mDS_Ech.size(); k++)
+	{
+		for (int i = 0; i < (int)mDS_DoiTuongTinhXetVaCham.size(); i++)
+		{
+			mDS_Ech[k]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
 		}
 	}
 }
@@ -212,15 +242,15 @@ void Man1::XuLyVaChamChung()
 
 void Man1::DrawQuadTree(QuadTree * in_QuadTree)
 {
-	mGameDebugDraw->DrawRect(in_QuadTree->get_RECT());
+	//mGameDebugDraw->DrawRect(in_QuadTree->get_RECT());
 
-	if (in_QuadTree->get_Nodes())
-	{
-		for (size_t i = 0; i < 4; i++)
-		{
-			DrawQuadTree(in_QuadTree->get_Nodes()[i]);
-		}
-	}
+	//if (in_QuadTree->get_Nodes())
+	//{
+	//	for (size_t i = 0; i < 4; i++)
+	//	{
+	//		DrawQuadTree(in_QuadTree->get_Nodes()[i]);
+	//	}
+	//}
 
 
 
@@ -235,9 +265,19 @@ void Man1::DrawQuadTree(QuadTree * in_QuadTree)
 
 void Man1::DrawCollidable()
 {
-	for (auto child : mDS_DoiTuongXetVaCham)
+	//for (auto child : mDS_DoiTuongXetVaCham)
+	//{
+	//	mGameDebugDraw->DrawRect(child->get_RECT());
+	//}
+	mGameDebugDraw->DrawRect(mXMan->get_RECT());
+
+	for (int i = 0; i < (int)mDS_Ech.size(); i++)
 	{
-		mGameDebugDraw->DrawRect(child->get_RECT());
+		mGameDebugDraw->DrawRect(mDS_Ech[i]->get_RECT());
 	}
-	//mGameDebugDraw->DrawRect(mXman->get_RECT());
+
+	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	{
+		mGameDebugDraw->DrawRect(mDS_DanLv[i]->get_RECT());
+	}
 }

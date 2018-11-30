@@ -99,7 +99,8 @@ enum eLoaiDoiTuong
 	eLDT_XMan,
 	eLDT_DanLv1,
 	eLDT_DanLV2,
-	eLDT_DanLv3
+	eLDT_DanLv3,
+	eLDT_Ech
 };
 
 enum eHuongDiChuyen
@@ -122,6 +123,7 @@ enum eTrangThai
 	eTTDan_DangTanBien,
 	eTTDan_DangTonTai,
 	eTTDan_DaBiPhaHuy,
-	eTTDan_BanRa
+	eTTDan_BanRa,
+	eTT_ChuanBiNhay
 };
 

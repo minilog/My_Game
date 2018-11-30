@@ -10,13 +10,13 @@
 class BuiKhiLuot : public DoiTuong
 {
 public:
-	BuiKhiLuot(const Vec2& in_ToaDo);
+	BuiKhiLuot(const Vec2& in_ToaDo, const Vec2& in_VanToc = Vec2(0.0f, -35.0f));
 
 	~BuiKhiLuot();
 
 	void CapNhat(float in_tg);
 	void Ve(const Vec2& in_DoDoi); // Độ dời phụ thuộc Camera hiện tại
-	void XuLyVaCham(DoiTuong* in_DoiTuong) 
+	void XuLyVaCham(const DoiTuong* in_DoiTuong)
 	{
 	}
 

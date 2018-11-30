@@ -17,7 +17,7 @@ public:
 
 	void CapNhat(float in_tg);
 	void Ve(const Vec2& in_DoDoi); // Độ dời phụ thuộc Camera hiện tại
-	void XuLyVaCham(DoiTuong* in_DoiTuong)
+	void XuLyVaCham(const DoiTuong* in_DoiTuong)
 	{
 	}
 

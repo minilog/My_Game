@@ -281,7 +281,7 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 
 }
 
-void XMan::XuLyVaCham(DoiTuong * in_DoiTuong)
+void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
 	{

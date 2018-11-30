@@ -29,7 +29,7 @@ public:
 
 	virtual void CapNhat(float in_tg);
 	virtual void Ve(const Vec2& in_DoDoi); // Độ dời phụ thuộc Camera hiện tại
-	virtual void XuLyVaCham(DoiTuong* in_DoiTuong);
+	virtual void XuLyVaCham(const DoiTuong* in_DoiTuong);
 
 	void XuLyBanPhim(std::map<int, bool> in_Keys);
 

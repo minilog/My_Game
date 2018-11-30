@@ -1,8 +1,8 @@
 #include "BuiKhiLuot.h"
 
-BuiKhiLuot::BuiKhiLuot(const Vec2 & in_ToaDo)
+BuiKhiLuot::BuiKhiLuot(const Vec2 & in_ToaDo, const Vec2& in_VanToc)
 	:
-	DoiTuong(in_ToaDo, Vec2(0.0f, -35.0f), 0, 0)
+	DoiTuong(in_ToaDo, in_VanToc, 0, 0)
 {
 	std::vector<ThongTinFrame> lDSTTFrame;
 

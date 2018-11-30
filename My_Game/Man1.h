@@ -8,6 +8,7 @@
 #include <vector>
 #include "QuadTree.h"
 #include "DanLv.h"
+#include "Ech.h"
 
 
 class Man1 : public ManGame
@@ -35,7 +36,7 @@ private:
 	GameDebugDraw *mGameDebugDraw;
 
 	void TaoBanDoVaCamera();
-	void TaoDanhSachDoiTuong();
+	void TaoDanhSachDoiTuongVaQuai();
 	void TaoDanhSachTileset();
 	void VeHinhAnhBanDoGame(const Vec2& in_DoDoi);
 
@@ -45,8 +46,10 @@ private:
 	void DieuChinhCamera();
 
 
-	std::vector<DoiTuong*> mDS_DoiTuongXetVaCham;
+	std::vector<DoiTuong*> mDS_DoiTuongTinhXetVaCham;
 	std::vector<DanLv*> mDS_DanLv;
+	std::vector<Ech*> mDS_Ech;
+
 	void XuLyVaChamChung();
 
 

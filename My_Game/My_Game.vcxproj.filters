@@ -26,6 +26,9 @@
     <Filter Include="4.DoiTuong\XMan%27s">
       <UniqueIdentifier>{997cbb7c-b6f1-42fb-bd79-04ea01516392}</UniqueIdentifier>
     </Filter>
+    <Filter Include="4.DoiTuong\Quai">
+      <UniqueIdentifier>{4889a575-723c-4414-abac-d77961054353}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -155,6 +158,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DanLv.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ech.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -302,6 +308,9 @@
     </ClInclude>
     <ClInclude Include="DanLv.h">
       <Filter>4.DoiTuong\XMan%27s</Filter>
+    </ClInclude>
+    <ClInclude Include="Ech.h">
+      <Filter>4.DoiTuong\Quai</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,7 +4,7 @@
 
 DanLv3::DanLv3(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	:
-	DanLv(in_ToaDo, in_VanToc, 15, 15)
+	DanLv(in_ToaDo, in_VanToc, 24, 20)
 {
 	mLoaiDoiTuong = eLDT_DanLV2;
 
@@ -72,7 +72,7 @@ void DanLv3::Ve(const Vec2 & in_DoDoi)
 	mHH_HienTai->Ve();
 }
 
-void DanLv3::XuLyVaCham(DoiTuong * in_DoiTuong)
+void DanLv3::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
 	if (mTrangThai == eTTDan_DaBiPhaHuy || mTrangThai == eTTDan_DangTanBien)
 		return;
@@ -107,9 +107,9 @@ void DanLv3::LoadHinhAnhVao()
 	}
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.03f, HCN(64, 64 + 46, 5, 5 + 32)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 46, 30, 0.03f, HCN(115, 115 + 46, 6, 6 + 30)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 40, 32, 0.03f, HCN(164, 164 + 42, 5, 5 + 32)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 54, 32, 0.03f, HCN(64, 64 + 46, 5, 5 + 32)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 52, 30, 0.03f, HCN(115, 115 + 46, 6, 6 + 30)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.03f, HCN(164, 164 + 42, 5, 5 + 32)));
 	mHH_DangTonTai = new HoatHinh("Resources_X3/XMan/DanLv3.png", lDSTTFrame, D3DCOLOR_XRGB(50, 96, 166));
 
 	lDSTTFrame.clear();

@@ -18,8 +18,8 @@ public:
 
 	virtual void CapNhat(float in_tg) = 0;
 	virtual void Ve(const Vec2& in_DoDoi) = 0; // Độ dời phụ thuộc Camera hiện tại
-	virtual void XuLyVaCham(DoiTuong* in_DoiTuong) = 0;
+	virtual void XuLyVaCham(const DoiTuong* in_DoiTuong) = 0;
 
-	virtual eTrangThai get_TrangThai() = 0;
+	virtual eTrangThai get_TrangThai() const = 0;
 };
 

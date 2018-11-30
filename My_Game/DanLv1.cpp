@@ -62,7 +62,7 @@ void DanLv1::Ve(const Vec2 & in_DoDoi)
 
 // Độ dời phụ thuộc Camera hiện tại
 
-void DanLv1::XuLyVaCham(DoiTuong * in_DoiTuong)
+void DanLv1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
 	if (mTrangThai == eTTDan_DangTonTai)
 	{

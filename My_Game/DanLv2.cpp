@@ -65,7 +65,7 @@ void DanLv2::Ve(const Vec2 & in_DoDoi)
 	mHH_HienTai->Ve();
 }
 
-void DanLv2::XuLyVaCham(DoiTuong * in_DoiTuong)
+void DanLv2::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
 	if (mTrangThai == eTTDan_DaBiPhaHuy || mTrangThai == eTTDan_DangTanBien)
 		return;
@@ -101,12 +101,12 @@ void DanLv2::LoadHinhAnhVao()
 	}
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 12, 0.08f, HCN(75, 103, 8, 20)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 8,  0.08f, HCN(109, 141, 10, 18)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 12, 0.08f, HCN(148, 186, 8, 20)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 36, 22, 0.08f, HCN(191, 227, 3, 25)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 12, 0.08f, HCN(232, 270, 8, 20)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 40, 22, 0.08f, HCN(276, 316, 3, 25)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 36, 12, 0.08f, HCN(75, 103, 8, 20)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 40, 8,  0.08f, HCN(109, 141, 10, 18)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 46, 12, 0.08f, HCN(148, 186, 8, 20)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 22, 0.08f, HCN(191, 227, 3, 25)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 46, 12, 0.08f, HCN(232, 270, 8, 20)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 22, 0.08f, HCN(276, 316, 3, 25)));
 	mHH_DangTonTai = new HoatHinh("Resources_X3/XMan/DanLv2.png", lDSTTFrame, D3DCOLOR_XRGB(50, 96, 166));
 }
 
