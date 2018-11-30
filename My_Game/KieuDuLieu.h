@@ -124,6 +124,19 @@ enum eTrangThai
 	eTTDan_DangTonTai,
 	eTTDan_DaBiPhaHuy,
 	eTTDan_BanRa,
-	eTT_ChuanBiNhay
+	eTT_ChuanBiNhay,
+	eTTEch_NhamBan1,
+	eTTEch_HaNhamBan1,
+	eTTEch_NhamBan3,
+	eTTEch_HaNhamBan3,
+	eTTEch_ChuanBiNhay,
+	eTTEch_Nhay,
+	eTTEch_TiepDat,
+	eTTEch_Roi,
+	eTTEch_BanDan1,
+	eTTEch_BanDan3,
+	eTTEch_NhamBan2,
+	eTTEch_BanDan2,
+	eTTEch_HaNhamBan2
 };
 
