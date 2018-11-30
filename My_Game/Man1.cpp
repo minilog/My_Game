@@ -37,45 +37,61 @@ void Man1::TaiDuLieu()
 
 	TaoBanDoVaCamera();
 
+	// lấy hình ảnh bản đồ map
 	mBanDoMap1 = new HinhAnh("Map1.png");
 	mBanDoMap1->set_ToaDo(Vec2(3968.0f, 1024.0f));
 
+	// tạo cây quad tree
 	mQuadTree = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
+	// tạo danh sách tĩnh, và danh sách ếch
 	TaoDanhSachDoiTuongVaQuai();
 
+	// tạo 1 XMan
 	mXMan = new XMan(Vec2(50.0f, 880.0f));
+	
+	// đưa đạn của XMan vào danh sách
 	mDS_DanLv.clear();
 	mXMan->get_DS_Dan(mDS_DanLv);
+
+	// tạo thanh máu XMan
+	mThanhMauXMan = new ThanhMau();
 }
 
 
 void Man1::CapNhat(float in_tg)
 {
-	mXMan->CapNhat(in_tg);
-	
+	// cập nhật tất cả các đối tượng
 	CapNhatDanhSachDoiTuong(in_tg);
 
+	// nơi xử lý va chạm
 	XuLyVaChamChung();
 
+	// nơi xử lý bàn phím
 	mXMan->XuLyBanPhim(mKeys);
 
-
+	// chiều chỉnh giới hạn Camera theo XMan
 	DieuChinhCamera();
 
 }
 
 void Man1::Ve()
 {
+	// lấy độ dời từ Camera
 	Vec2 lDoDoi(ToanCauGame::get_ChieuRong() / 2 - Camera::get_ToaDo().x,
 		ToanCauGame::get_ChieuCao() / 2 - Camera::get_ToaDo().y);
 
+	// vẽ hình ảnh bản đồ
 	VeHinhAnhBanDoGame(lDoDoi);
 
+	// vẽ XMan
 	mXMan->Ve(lDoDoi);
 
+	// vẽ danh sách đạn XMan, Ếch
 	VeDanhSachDoiTuong(lDoDoi);
 
+	// vẽ thanh máu XMan
+	mThanhMauXMan->Ve(24);
 }
 
 void Man1::OnKeyDown(int in_KeyCode)
@@ -166,6 +182,8 @@ void Man1::VeHinhAnhBanDoGame(const Vec2& in_DoDoi)
 
 void Man1::CapNhatDanhSachDoiTuong(float in_tg)
 {
+	mXMan->CapNhat(in_tg);
+
 	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
 	{
 		mDS_DanLv[i]->CapNhat(in_tg);
@@ -230,11 +248,22 @@ void Man1::XuLyVaChamChung()
 		}
 	}
 
+	// xét Ếch với đối tượng tĩnh
 	for (int k = 0; k < (int)mDS_Ech.size(); k++)
 	{
 		for (int i = 0; i < (int)mDS_DoiTuongTinhXetVaCham.size(); i++)
 		{
 			mDS_Ech[k]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
+		}
+	}
+
+	// xét Ếch với Đạn XMan
+	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	{
+		for (int j = 0; j < (int)mDS_Ech.size(); j++)
+		{
+			mDS_Ech[j]->XuLyVaCham(mDS_DanLv[i]);
+			mDS_DanLv[i]->XuLyVaCham(mDS_Ech[j]);
 		}
 	}
 }

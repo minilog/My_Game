@@ -3,7 +3,7 @@
 DanLv2::DanLv2(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	:DanLv(in_ToaDo, in_VanToc, 15, 12)
 {
-	mLoaiDoiTuong = eLDT_DanLV2;
+	mLoaiDoiTuong = eLDT_DanLv2;
 
 	LoadHinhAnhVao();
 
@@ -79,6 +79,14 @@ void DanLv2::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			else
 				mToaDo.x -= 10.0f;
 
+			DangTanBien();
+		}
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
+	{
+		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
 			DangTanBien();
 		}
 	}

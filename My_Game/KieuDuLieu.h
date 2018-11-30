@@ -98,7 +98,7 @@ enum eLoaiDoiTuong
 	eLDT_VienGachBinhThuong, eLDT_VienGachVang,
 	eLDT_XMan,
 	eLDT_DanLv1,
-	eLDT_DanLV2,
+	eLDT_DanLv2,
 	eLDT_DanLv3,
 	eLDT_Ech
 };

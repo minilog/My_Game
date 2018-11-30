@@ -9,6 +9,7 @@
 #include "QuadTree.h"
 #include "DanLv.h"
 #include "Ech.h"
+#include "ThanhMau.h"
 
 
 class Man1 : public ManGame
@@ -32,6 +33,7 @@ private:
 	std::map<int, bool> mKeys;
 	HinhAnh *mBanDoMap1;
 	XMan *mXMan;
+	ThanhMau *mThanhMauXMan;
 	HinhAnh *mTest;
 	GameDebugDraw *mGameDebugDraw;
 

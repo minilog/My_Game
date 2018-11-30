@@ -6,7 +6,7 @@ DanLv3::DanLv3(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	:
 	DanLv(in_ToaDo, in_VanToc, 24, 20)
 {
-	mLoaiDoiTuong = eLDT_DanLV2;
+	mLoaiDoiTuong = eLDT_DanLv2;
 
 	LoadHinhAnhVao();
 
@@ -89,6 +89,14 @@ void DanLv3::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			DangTanBien();
 		}
 	}
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
+	{
+		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			DangTanBien();
+		}
+	}
+
 }
 
 void DanLv3::LoadHinhAnhVao()

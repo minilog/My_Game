@@ -75,6 +75,14 @@ void DanLv1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 				DangTanBien();
 			}
 		}
+
+		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
+		{
+			if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+			{
+				DangTanBien();
+			}
+		}
 	}
 }
 
