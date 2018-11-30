@@ -37,6 +37,11 @@ public:
 		mLatHinh = a;
 	}
 
+	int get_Damage() const
+	{
+		return 3;
+	}
+
 private:
 	HoatHinh *mHH_DangTonTai;
 	HoatHinh *mHH_DangTanBien;

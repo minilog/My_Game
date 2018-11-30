@@ -21,5 +21,7 @@ public:
 	virtual void XuLyVaCham(const DoiTuong* in_DoiTuong) = 0;
 
 	virtual eTrangThai get_TrangThai() const = 0;
+
+	virtual int get_Damage() const = 0;
 };
 

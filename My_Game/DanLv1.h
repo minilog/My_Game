@@ -32,6 +32,11 @@ public:
 		return mTrangThai;
 	}
 
+	int get_Damage() const
+	{
+		return 1;
+	}
+
 private:
 	HoatHinh *mHH_DangTonTai;
 	HoatHinh *mHH_DangTanBien;
