@@ -18,6 +18,8 @@ Man1::Man1()
 
 	SetRect(&fRectangle, 0, 0, Camera::get_ChieuRong(), Camera::get_ChieuCao());
 	message = "This is some generic message to\n display on the screen";
+
+	std::vector<ThongTinFrame> lDSTTFrame;
 }
 
 
@@ -92,6 +94,7 @@ void Man1::Ve()
 
 	// vẽ thanh máu XMan
 	mThanhMauXMan->Ve(mXMan->get_HP());
+
 }
 
 void Man1::OnKeyDown(int in_KeyCode)

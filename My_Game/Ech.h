@@ -67,6 +67,10 @@ private:
 		*mHH_DangTanBien;
 	HoatHinh *mHH_HienTai;	
 	HoatHinh *mHH_Shining;
+	HoatHinh *mHH_HieuUngNoTung;
+
+	const float mTG_HieuUngNoTung = 0.08f * 6;
+	float mTGDem_HieuUngNoTung = mTG_HieuUngNoTung + 0.1f;
 	
 	float mKhoangCach_XMan;
 

@@ -88,7 +88,12 @@ void DanLv2::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	{
 		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
 		{
+			if (!mLatHinh)
+				mToaDo.x += 10.0f;
+			else
+				mToaDo.x -= 10.0f;
 			DangTanBien();
+
 		}
 	}
 

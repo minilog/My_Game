@@ -166,6 +166,9 @@
     <ClCompile Include="ThanhMau.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DanNo1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -317,6 +320,9 @@
     </ClInclude>
     <ClInclude Include="ThanhMau.h">
       <Filter>4.DoiTuong</Filter>
+    </ClInclude>
+    <ClInclude Include="DanNo1.h">
+      <Filter>4.DoiTuong\Quai</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

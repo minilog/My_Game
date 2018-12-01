@@ -10,6 +10,8 @@
 #include "DanLv.h"
 #include "Ech.h"
 #include "ThanhMau.h"
+#include "HoatHinh.h"
+
 
 
 class Man1 : public ManGame
@@ -60,6 +62,8 @@ private:
 	ID3DXFont *font;
 	RECT fRectangle;
 	std::string message;
+
+	HoatHinh *mHoatHinhTest;
 
 public:
 	void DrawTextDebug()
