@@ -40,11 +40,15 @@ private:
 	void Nhay();
 	void Roi();
 	void TiepDat();
+	void DangTanBien();
 
 	void LoadHinhAnhVao();
 
 private:
-	int mHP = 5;
+	Vec2 mToaDoXuatHien;
+
+	const int mMaxHP = 4;
+	int mHP = mMaxHP;
 
 	BuiKhiLuot *mBui;
 
@@ -63,6 +67,13 @@ private:
 		*mHH_DangTanBien;
 	HoatHinh *mHH_HienTai;	
 	HoatHinh *mHH_Shining;
+	
+	float mKhoangCach_XMan;
+
+	bool mNamTrongCamera = false;
+
+	const float mTG_TanBien = 0.7f;
+	float mTGDem_TanBien = 0.0f;
 
 	bool mIsShining = false;
 	const float mTG_Shining = 0.15f;
@@ -105,21 +116,26 @@ private:
 
 	eTrangThai mTrangThai;
 
-	void CapNhat_NhamBan2(float in_tg, float in_KhoangCach_XMan);
+	void CapNhat_NhamBan2(float in_tg);
 	void CapNhat_BanDan2(float in_tg);
 	void CapNhat_HaNhamBan2(float in_tg);
-	void CapNhat_ChuanBiNhay(float in_tg, float in_KhoangCach_XMan);
+	void CapNhat_ChuanBiNhay(float in_tg);
 	void CapNhat_Nhay(float in_tg);
 	void CapNhat_Roi(float in_tg);
-	void CapNhat_TiepDat(float in_tg, float in_KhoangCach_XMan);
-	void CapNhat_NhamBan1(float in_tg, float in_KhoangCach_XMan);
+	void CapNhat_TiepDat(float in_tg);
+	void CapNhat_NhamBan1(float in_tg);
 	void CapNhat_HaNhamBan1(float in_tg);
 	void CapNhat_BanDan1(float in_tg);
-	void CapNhat_NhamBan3(float in_tg, float in_KhoangCach_XMan);
+	void CapNhat_NhamBan3(float in_tg);
 	void CapNhat_BanDan3(float in_tg);
 	void CapNhat_HaNhamBan3(float in_tg);
+	void CapNhat_DangTanBien(float in_tg);
 
 public:
 	~Ech();
+	eTrangThai get_TrangThai()
+	{
+		return mTrangThai;
+	}
 };
 

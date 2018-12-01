@@ -47,7 +47,7 @@ public:
 		mKhungGiua->Ve();
 		mKhungTren->Ve();
 		
-		for (int i = 0; i < in_HP; i++)
+		for (int i = 0; i < int((in_HP + 4) / (mHPToiDa / 24.0f)); i++)
 		{
 			mMau->set_ToaDo(mToaDo + Vec2(0.0f, -9.0f - i * 2.0f));
 			mMau->Ve();
@@ -61,6 +61,8 @@ private:
 	HinhAnh *mMau;
 	
 	Vec2 mToaDo;
+
+	int mHPToiDa = 100;
 
 public:
 	~ThanhMau()

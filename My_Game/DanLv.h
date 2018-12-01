@@ -22,6 +22,9 @@ public:
 
 	virtual eTrangThai get_TrangThai() const = 0;
 
-	virtual int get_Damage() const = 0;
+	int get_Damage() const { return mDamage; }
+
+protected:
+	int mDamage;
 };
 

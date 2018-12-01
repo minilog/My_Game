@@ -91,7 +91,7 @@ void Man1::Ve()
 	VeDanhSachDoiTuong(lDoDoi);
 
 	// vẽ thanh máu XMan
-	mThanhMauXMan->Ve(24);
+	mThanhMauXMan->Ve(mXMan->get_HP());
 }
 
 void Man1::OnKeyDown(int in_KeyCode)
@@ -231,39 +231,65 @@ void Man1::DieuChinhCamera()
 
 void Man1::XuLyVaChamChung()
 {
+	// chỉ kiểm tra ĐK ở ĐỐI TƯỢNG CONST THAM SỐ
+
 	mDS_DoiTuongTinhXetVaCham.clear();
 
+	// lấy đối tượng tĩnh trong các QuadTree - so với với Camera
 	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuongTinhXetVaCham, Camera::get_HCNGioiHan());
 
+	// các đối tượng va chạm ĐỐI TƯỢNG TĨNH
 	for (int i = 0; i < (int)mDS_DoiTuongTinhXetVaCham.size(); i++)
 	{
+		// nếu đối tượng tĩnh ko có trong Camera thì bỏ qua
+		if (!VaChamGame::get_DaVaCham(mDS_DoiTuongTinhXetVaCham[i]->get_HCNGioiHan(), Camera::get_HCNGioiHan()))
+		{
+			continue;
+		}
+
+		// xử lý va chạm XMAN-ĐỐI TƯỢNG TĨNH 
 		mXMan->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
-	}
 
-	for (int k = 0; k < (int)mDS_DanLv.size(); k++)
-	{
-		for (int i = 0; i < (int)mDS_DoiTuongTinhXetVaCham.size(); i++)
+		// va chạm với đạn XMAN
+		for (int j = 0; j < (int)mDS_DanLv.size(); j++)
 		{
-			mDS_DanLv[k]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
+			mDS_DanLv[j]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
+		}
+
+		for (int j = 0; j < (int)mDS_Ech.size(); j++)
+		{
+			mDS_Ech[j]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
 		}
 	}
 
-	// xét Ếch với đối tượng tĩnh
-	for (int k = 0; k < (int)mDS_Ech.size(); k++)
-	{
-		for (int i = 0; i < (int)mDS_DoiTuongTinhXetVaCham.size(); i++)
-		{
-			mDS_Ech[k]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
-		}
-	}
 
-	// xét Ếch với Đạn XMan
+	// các đối tượng va chạm ĐẠN XMan
 	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
 	{
+		// nếu ĐẠN đã bị phá hủy hoặc đang tan biến thì bỏ qua
+		if (mDS_DanLv[i]->get_TrangThai() == eTTDan_DaBiPhaHuy ||
+			mDS_DanLv[i]->get_TrangThai() == eTTDan_DangTanBien)
+		{
+			continue;
+		}
 		for (int j = 0; j < (int)mDS_Ech.size(); j++)
 		{
 			mDS_Ech[j]->XuLyVaCham(mDS_DanLv[i]);
-			mDS_DanLv[i]->XuLyVaCham(mDS_Ech[j]);
+		}
+	}
+
+	// các đối tượng va chạm với Ếch
+	for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	{
+		// nếu Ếch đã bị phá hoặc đang tan biến thì bỏ qua
+		if (mDS_Ech[i]->get_TrangThai() == eTTEch_DaBiPhaHuy ||
+			mDS_Ech[i]->get_TrangThai() == eTTEch_DangTanBien)
+		{
+			continue;
+		}
+		for (int j = 0; j < (int)mDS_DanLv.size(); j++)
+		{
+			mDS_DanLv[j]->XuLyVaCham(mDS_Ech[i]);
 		}
 	}
 }

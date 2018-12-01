@@ -137,6 +137,8 @@ enum eTrangThai
 	eTTEch_BanDan3,
 	eTTEch_NhamBan2,
 	eTTEch_BanDan2,
-	eTTEch_HaNhamBan2
+	eTTEch_HaNhamBan2,
+	eTTEch_DangTanBien, 
+	eTTEch_DaBiPhaHuy
 };
 

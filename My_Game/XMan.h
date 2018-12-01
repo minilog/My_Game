@@ -23,6 +23,7 @@ private:
 	static constexpr int JUMP_BUTTON = 'C';
 	static constexpr int FIRE_BUTTON = 'V';
 
+
 public:
 	XMan(const Vec2& in_ToaDo);
 	~XMan();
@@ -33,9 +34,12 @@ public:
 
 	void XuLyBanPhim(std::map<int, bool> in_Keys);
 
+	int get_HP() { return mHP; }
 
 	
 private:
+	int mHP = 50;
+
 	HoatHinh *mHH_HieuUngNapDanLv2;
 	HoatHinh *mHH_HieuUngNapDanLv3;
 

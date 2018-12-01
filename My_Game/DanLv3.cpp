@@ -6,7 +6,8 @@ DanLv3::DanLv3(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	:
 	DanLv(in_ToaDo, in_VanToc, 24, 20)
 {
-	mLoaiDoiTuong = eLDT_DanLv2;
+	mLoaiDoiTuong = eLDT_DanLv3;
+	mDamage = 4;
 
 	LoadHinhAnhVao();
 

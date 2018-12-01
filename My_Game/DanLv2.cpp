@@ -4,6 +4,7 @@ DanLv2::DanLv2(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	:DanLv(in_ToaDo, in_VanToc, 15, 12)
 {
 	mLoaiDoiTuong = eLDT_DanLv2;
+	mDamage = 2;
 
 	LoadHinhAnhVao();
 

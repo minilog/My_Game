@@ -5,17 +5,52 @@ Ech::Ech(const Vec2 & in_ToaDo, const Vec2 & in_VanToc, int in_Rong, int in_Cao)
 	:
 	DoiTuong(in_ToaDo, in_VanToc, 22, 30)
 {
+	mToaDoXuatHien = in_ToaDo;
+
 	mLoaiDoiTuong = eLDT_Ech;
 
 	LoadHinhAnhVao();
 
 	mBui = new BuiKhiLuot(Vec2(), Vec2());
+	mHH_HienTai = mHH_DangTanBien;
 
-	ChuanBiNhay();
+	mTrangThai = eTTEch_DaBiPhaHuy;
 }
 
 void Ech::CapNhat(float in_tg, const XMan * in_XMan)
 {
+	// nếu đang nằm trong Camera mà vẫn đang va chạm Camera thì ko có gì xảy ra
+	if (mNamTrongCamera &&
+		!VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
+	{
+		mTrangThai = eTTEch_DaBiPhaHuy;
+		// xét tiếp Tọa độ ban đầu có Nằm trong Camera hay ko?
+		mToaDo = mToaDoXuatHien;
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
+		{
+			mNamTrongCamera = false;
+		}
+	}
+	// nếu đang nằm ngoài Camera mà ko có va chạm Camera thì ko có gì xảy ra
+	else if (!mNamTrongCamera &&
+		VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
+	{
+		ChuanBiNhay();
+		mHP = mMaxHP;
+		mNamTrongCamera = true;
+	}
+
+	// nếu Ếch đã bị phá hủy thì bỏ qua
+	if (mTrangThai == eTTEch_DaBiPhaHuy)
+	{
+		return;
+	}
+
+	if (mHP <= 0 && mTrangThai != eTTEch_DangTanBien)
+	{
+		DangTanBien();
+	}
+
 	if (mIsShining)
 	{
 		mTGDem_Shining += in_tg;
@@ -28,7 +63,7 @@ void Ech::CapNhat(float in_tg, const XMan * in_XMan)
 
 	mBui->CapNhat(in_tg);
 
-	float lKhoangCach_XMan = mToaDo.x - in_XMan->get_ToaDo().x;
+	mKhoangCach_XMan = mToaDo.x - in_XMan->get_ToaDo().x;
 
 	mToaDo.x += mVanToc.x * in_tg;
 	mToaDo.y += mVanToc.y * in_tg;
@@ -38,7 +73,7 @@ void Ech::CapNhat(float in_tg, const XMan * in_XMan)
 	switch (mTrangThai)
 	{
 	case eTTEch_ChuanBiNhay:
-		CapNhat_ChuanBiNhay(in_tg, lKhoangCach_XMan);
+		CapNhat_ChuanBiNhay(in_tg);
 		break;
 
 	case eTTEch_Nhay:
@@ -50,11 +85,11 @@ void Ech::CapNhat(float in_tg, const XMan * in_XMan)
 		break;
 
 	case eTTEch_TiepDat:
-		CapNhat_TiepDat(in_tg, lKhoangCach_XMan);
+		CapNhat_TiepDat(in_tg);
 		break;
 
 	case eTTEch_NhamBan1:
-		CapNhat_NhamBan1(in_tg, lKhoangCach_XMan);
+		CapNhat_NhamBan1(in_tg);
 		break;
 
 	case eTTEch_HaNhamBan1:
@@ -66,7 +101,7 @@ void Ech::CapNhat(float in_tg, const XMan * in_XMan)
 		break;
 
 	case eTTEch_NhamBan3:
-		CapNhat_NhamBan3(in_tg, lKhoangCach_XMan);
+		CapNhat_NhamBan3(in_tg);
 		break;
 
 	case eTTEch_BanDan3:
@@ -78,7 +113,7 @@ void Ech::CapNhat(float in_tg, const XMan * in_XMan)
 		break;
 
 	case eTTEch_NhamBan2:
-		CapNhat_NhamBan2(in_tg, lKhoangCach_XMan);
+		CapNhat_NhamBan2(in_tg);
 		break;
 
 	case eTTEch_BanDan2:
@@ -89,6 +124,10 @@ void Ech::CapNhat(float in_tg, const XMan * in_XMan)
 		CapNhat_HaNhamBan2(in_tg);
 		break;
 
+	case eTTEch_DangTanBien:
+		CapNhat_DangTanBien(in_tg);
+		break;
+
 	default:
 		break;
 	}
@@ -96,18 +135,35 @@ void Ech::CapNhat(float in_tg, const XMan * in_XMan)
 
 void Ech::Ve(const Vec2 & in_DoDoi)
 {
+	// nếu Ếch đã bị phá hủy thì bỏ qua
+	if (mTrangThai == eTTEch_DaBiPhaHuy)
+	{
+		return;
+	}
+
 	//mHH_HienTai->set_TiLe(Vec2(0.8f, 0.8f));
 	mHH_HienTai->set_LatTheoChieuNgang(mLatHinh);
 	mHH_HienTai->set_ToaDo(mToaDo);
 	mHH_HienTai->set_DoDoi(in_DoDoi);
-	mHH_HienTai->Ve();
+
+	if (mTrangThai == eTTEch_DangTanBien)
+	{
+		mHH_HienTai->Ve(D3DCOLOR_ARGB(80, 255, 255, 225));
+	}
+	else
+	{
+		mHH_HienTai->Ve();
+	}
 
 	if (mIsShining)
 	{
-		mHH_Shining->set_LatTheoChieuNgang(mLatHinh);
-		mHH_Shining->set_ToaDo(mToaDo);
-		mHH_Shining->set_DoDoi(in_DoDoi);
-		mHH_Shining->Ve(mHH_HienTai->get_ThongTinFrameHienTai());
+		if (mTrangThai != eTTEch_DangTanBien)
+		{
+			mHH_Shining->set_LatTheoChieuNgang(mLatHinh);
+			mHH_Shining->set_ToaDo(mToaDo);
+			mHH_Shining->set_DoDoi(in_DoDoi);
+			mHH_Shining->Ve(mHH_HienTai->get_ThongTinFrameHienTai());
+		}
 	}
 
 	mBui->Ve(in_DoDoi);
@@ -115,44 +171,21 @@ void Ech::Ve(const Vec2 & in_DoDoi)
 
 void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
-	// xét va chạm với đạn Lv1 đang tồn tại
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv1)
+	// nếu Ếch đã bị phá hủy thì bỏ qua
+	if (mTrangThai == eTTEch_DaBiPhaHuy || mTrangThai == eTTEch_DangTanBien)
 	{
-		if (((DanLv1*)in_DoiTuong)->get_TrangThai() == eTTDan_DangTonTai)
-		{
-			if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
-			{
-				mIsShining = true;
-				mHP -= 1;
-			}
-		}
+		return;
 	}
 
-	// xét va chạm với đạn Lv2 đang tồn tại hoặc mới bắn ra
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv2)
+	// xét va chạm với đạn Lv đang tồn tại
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv1 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv2 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv3)
 	{
-		if (((DanLv2*)in_DoiTuong)->get_TrangThai() == eTTDan_DangTonTai ||
-			((DanLv2*)in_DoiTuong)->get_TrangThai() == eTTDan_BanRa)
+		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
 		{
-			if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
-			{
-				mIsShining = true;
-				mHP -= 2;
-			}
-		}
-	}
-
-	// xét va chạm với đạn Lv3 đang tồn tại hoặc mới bắn ra
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv3)
-	{
-		if (((DanLv3*)in_DoiTuong)->get_TrangThai() == eTTDan_DangTonTai ||
-			((DanLv3*)in_DoiTuong)->get_TrangThai() == eTTDan_BanRa)
-		{
-			if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
-			{
-				mIsShining = true;
-				mHP -= 4;
-			}
+			mIsShining = true;
+			mHP -= ((DanLv*) in_DoiTuong)->get_Damage();
 		}
 	}
 
@@ -290,6 +323,7 @@ void Ech::ChuanBiNhay()
 	mHH_HienTai = mHH_ChuanBiNhay;
 	mHH_HienTai->Remake();
 	mTGDem_ChuanBiNhay = 0.0f;
+	mVanToc.x = mVanToc.y = 0.0f;
 }
 
 void Ech::Nhay()
@@ -314,11 +348,37 @@ void Ech::TiepDat()
 	mVanToc.x = mVanToc.y = 0.0f;
 }
 
+void Ech::DangTanBien()
+{
+	mTGDem_TanBien = 0.0f;
+	mHH_HienTai = mHH_DangTanBien;
+	mTrangThai = eTTEch_DangTanBien;
+	mVanToc.y = -mVanTocRoiToiDa / 1.2f;
+	if (mKhoangCach_XMan < 0.0f)
+	{
+		mVanToc.x = -mVanTocNhay;
+	}
+	else
+	{
+		mVanToc.x = +mVanTocNhay;
+	}
+}
+
+
 void Ech::LoadHinhAnhVao()
 {
 	std::vector<ThongTinFrame> lDSTTFrame;
 
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 58, 26, 99.9f, HCN(31, 31 + 58, 154, 154 + 26)));
+	mHH_DangTanBien = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
 
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.14f, HCN(5, 5 + 40, 6, 38)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 46, 0.14f, HCN(7, 7 + 38, 61, 64 + 40)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 56, 0.14f, HCN(48, 48 + 34, 56, 56 + 44)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 62, 0.14f, HCN(92, 92 + 30, 53, 53 + 48)));
+	mHH_NhamBan2 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
 
 	lDSTTFrame.clear();
 	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.14f, HCN(5, 5 + 40, 6, 38)));
@@ -394,9 +454,9 @@ void Ech::LoadHinhAnhVao()
 	mHH_Shining = new HoatHinh("Resources_X3/Enemies/Ech_Shining.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
 }
 
-void Ech::CapNhat_NhamBan2(float in_tg, float in_KhoangCach_XMan)
+void Ech::CapNhat_NhamBan2(float in_tg)
 {
-	if (in_KhoangCach_XMan < 0)
+	if (mKhoangCach_XMan < 0)
 	{
 		mLatHinh = true;
 	}
@@ -443,10 +503,10 @@ void Ech::CapNhat_HaNhamBan2(float in_tg)
 	}
 }
 
-void Ech::CapNhat_ChuanBiNhay(float in_tg, float in_KhoangCach_XMan)
+void Ech::CapNhat_ChuanBiNhay(float in_tg)
 {
 	mTGDem_ChuanBiNhay += in_tg;
-	if (in_KhoangCach_XMan < 0)
+	if (mKhoangCach_XMan < 0)
 	{
 		mLatHinh = true;
 	}
@@ -487,19 +547,20 @@ void Ech::CapNhat_Roi(float in_tg)
 	}
 }
 
-void Ech::CapNhat_TiepDat(float in_tg, float in_KhoangCach_XMan)
+void Ech::CapNhat_TiepDat(float in_tg)
 {
-	if (in_KhoangCach_XMan < 0)
-		in_KhoangCach_XMan = -in_KhoangCach_XMan;
+	float lKC = mKhoangCach_XMan;
+	if (lKC < 0)
+		lKC = -lKC;
 
 	mTGDem_TiepDat += in_tg;
 	if (mTGDem_TiepDat > mTG_TiepDat)
 	{
-		if (in_KhoangCach_XMan > 100.0f)
+		if (lKC > 100.0f)
 		{
 			NhamBan1();
 		}
-		else if (in_KhoangCach_XMan > 50.0f)
+		else if (lKC > 50.0f)
 		{
 			NhamBan2();
 		}
@@ -510,9 +571,9 @@ void Ech::CapNhat_TiepDat(float in_tg, float in_KhoangCach_XMan)
 	}
 }
 
-void Ech::CapNhat_NhamBan1(float in_tg, float in_KhoangCach_XMan)
+void Ech::CapNhat_NhamBan1(float in_tg)
 {
-	if (in_KhoangCach_XMan < 0)
+	if (mKhoangCach_XMan < 0)
 	{
 		mLatHinh = true;
 	}
@@ -559,9 +620,9 @@ void Ech::CapNhat_BanDan1(float in_tg)
 	}
 }
 
-void Ech::CapNhat_NhamBan3(float in_tg, float in_KhoangCach_XMan)
+void Ech::CapNhat_NhamBan3(float in_tg)
 {
-	if (in_KhoangCach_XMan < 0)
+	if (mKhoangCach_XMan < 0)
 	{
 		mLatHinh = true;
 	}
@@ -599,6 +660,17 @@ void Ech::CapNhat_HaNhamBan3(float in_tg)
 	if (mTGDem_HaNhamBan3 > mTG_HaNhamBan3)
 	{
 		ChuanBiNhay();
+	}
+}
+
+void Ech::CapNhat_DangTanBien(float in_tg)
+{
+	mVanToc.y += mGiaTocTrongTruong * in_tg;
+	mTGDem_TanBien += in_tg;
+	if (mTGDem_TanBien > mTG_TanBien)
+	{
+		mTrangThai = eTTEch_DaBiPhaHuy;
+		mToaDo = mToaDoXuatHien;
 	}
 }
 
