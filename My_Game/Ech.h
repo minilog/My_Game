@@ -72,7 +72,7 @@ private:
 
 	bool mNamTrongCamera = false;
 
-	const float mTG_TanBien = 0.7f;
+	const float mTG_TanBien = 0.3f;
 	float mTGDem_TanBien = 0.0f;
 
 	bool mIsShining = false;

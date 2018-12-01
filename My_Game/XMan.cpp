@@ -136,6 +136,16 @@ XMan::~XMan()
 
 void XMan::CapNhat(float in_tg)
 {
+	if (mTGDem_KoNhanST <= mTG_KoNhanST)
+	{
+		mTGDem_KoNhanST += in_tg;
+		mTGDem_NhapNhay += in_tg;
+		if (mTGDem_NhapNhay > 0.05f)
+		{
+			mTGDem_NhapNhay = 0.0f;
+		}
+	}
+
 	if (mTG_DemTichDan > mTG_TichDanLv2 * 2.5f)
 	{
 		mHH_HieuUngNapDanLv3->CapNhat(in_tg);
@@ -224,6 +234,10 @@ void XMan::CapNhat(float in_tg)
 		CapNhat_Truot(in_tg);
 		break;
 
+	case eTT_DinhSatThuong:
+		CapNhat_DinhSatThuong(in_tg);
+		break;
+
 	default:
 		break;
 	}
@@ -251,7 +265,21 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 	mHH_HienTai->set_LatTheoChieuNgang(mLatHinh);
 	mHH_HienTai->set_ToaDo(mToaDo);
 	mHH_HienTai->set_DoDoi(in_DoDoi);
-	mHH_HienTai->Ve();
+	if (mTGDem_KoNhanST < mTG_KoNhanST)
+	{
+		if ((mTGDem_NhapNhay < 0.025f))
+		{
+			mHH_HienTai->Ve(D3DCOLOR_ARGB(125, 255, 255, 255));
+		}
+		else
+		{
+			mHH_HienTai->Ve(D3DCOLOR_ARGB(160, 255, 255, 255));
+		}
+	}
+	else
+	{
+		mHH_HienTai->Ve();
+	}
 
 	if (mIsShining)
 	{
@@ -342,6 +370,22 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			default:
 				break;
 			}
+		}
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
+	{
+		if (mTrangThai == eTT_DinhSatThuong)
+		{
+			return;
+		}
+		if (mTGDem_KoNhanST < mTG_KoNhanST)
+		{
+			return;
+		}
+		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			DinhSatThuong();
 		}
 	}
 
@@ -590,12 +634,11 @@ void XMan::LoadHinhAnhVao()
 	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 40, 20, 0.04f, HCN(890, 890 + 30, 32, 32 + 20)));
 	mHH_HieuUngNapDanLv3 = new HoatHinh("Resources_X3/XMan/_HieuUngNapDan.png", lDSTTFrame, D3DCOLOR_XRGB(0, 128, 128));
 
-	//lDSTTFrame.clear();
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 4, 50, 0.04f, HCN(23, 23 + 6, 12, 12 + 50)));
-
-	//mHH_HieuUngNapDanLv3 = new HoatHinh("Resources_X3/XMan/_HieuUngNapDan.png", lDSTTFrame, D3DCOLOR_XRGB(0, 128, 128));
-
-	//mHH_DinhSatThuong 
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 20, 36, 0.08f, HCN(15, 15 + 22, 13, 13 + 36)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 20, 36, 0.08f, HCN(40, 40 + 26, 13, 13 + 36)));
+	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 25, 52, 0.08f, HCN(68, 68 + 32, 4, 4 + 48)));
+	mHH_DinhSatThuong = new HoatHinh("Resources_X3/XMan/DinhSatThuong.png", lDSTTFrame, D3DCOLOR_XRGB(255, 255, 255));
 }
 
 void XMan::DungIm()
@@ -758,6 +801,25 @@ void XMan::BatRa()
 	mHieuUngBatRa->LatHinh(mLatHinh);
 	mHieuUngBatRa->set_ToaDo(mToaDo);
 	mHieuUngBatRa->Remake();
+}
+
+void XMan::DinhSatThuong()
+{
+	mTrangThai = eTT_DinhSatThuong;
+	mHH_HienTai = mHH_DinhSatThuong;
+	mHH_HienTai->Remake();
+	if (!mLatHinh)
+	{
+		mVanToc.x = -20.0f;
+	}
+	else
+	{
+		mVanToc.x = 20.0f;
+	}
+	mVanToc.y = -30.0f;
+	mHP -= 5;
+	mTGDem_DinhST = 0.0f;
+	mTGDem_KoNhanST = 0.0f;
 }
 
 void XMan::ChuyenHH_BanDan()
@@ -1014,6 +1076,15 @@ void XMan::CapNhat_Truot(float in_tg)
 				break;
 			}
 		}
+	}
+}
+
+void XMan::CapNhat_DinhSatThuong(float in_tg)
+{
+	mTGDem_DinhST += in_tg;
+	if (mTGDem_DinhST > mTG_DinhST)
+	{
+		Roi();
 	}
 }
 

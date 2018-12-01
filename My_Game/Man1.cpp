@@ -291,6 +291,7 @@ void Man1::XuLyVaChamChung()
 		{
 			mDS_DanLv[j]->XuLyVaCham(mDS_Ech[i]);
 		}
+		mXMan->XuLyVaCham(mDS_Ech[i]);
 	}
 }
 

@@ -38,7 +38,7 @@ public:
 
 	
 private:
-	int mHP = 50;
+	int mHP = 100;
 
 	HoatHinh *mHH_HieuUngNapDanLv2;
 	HoatHinh *mHH_HieuUngNapDanLv3;
@@ -81,10 +81,11 @@ private:
 	HoatHinh *mHH_HienTai;
 	HoatHinh *mAnimationShining;
 
-	const float mTG_DinhST = 0.5f;
+	const float mTG_DinhST = 0.08f * 3;
 	float mTGDem_DinhST = 0.0f;
-	const float mTG_KoNhanST = 1.0f;
-	float mTGDem_KoNhanST = 0.0f;
+	const float mTG_KoNhanST = 0.8f;
+	float mTGDem_KoNhanST = 1.0f;
+	float mTGDem_NhapNhay = 0.0f;
 
 	float mTimes = 0.0f;
 	float mTG_BamTuong = 0.18f;
@@ -140,6 +141,7 @@ private:
 	void Luot();
 	void Truot();
 	void BatRa();
+	void DinhSatThuong();
 
 	void ChuyenHH_BanDan();
 	void ChuyenHH_KoBanDan();
@@ -153,6 +155,7 @@ private:
 	void CapNhat_Luot(float in_tg);
 	void CapNhat_BatRa(float in_tg);
 	void CapNhat_Truot(float in_tg);
+	void CapNhat_DinhSatThuong(float in_tg);
 
 	void XuLyBanPhim_DungIm(std::map<int, bool> in_Keys);
 	void XuLyBanPhim_Chay(std::map<int, bool> in_Keys);
