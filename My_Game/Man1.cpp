@@ -263,7 +263,7 @@ void Man1::XuLyVaChamChung()
 	}
 
 
-	// các đối tượng va chạm ĐẠN XMan
+	// các đối tượng va chạm với ĐẠN XMan
 	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
 	{
 		// nếu ĐẠN đã bị phá hủy hoặc đang tan biến thì bỏ qua

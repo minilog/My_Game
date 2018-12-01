@@ -589,6 +589,13 @@ void XMan::LoadHinhAnhVao()
 	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 12, 0.04f, HCN(846, 846 + 32, 32, 32 + 12)));
 	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 40, 20, 0.04f, HCN(890, 890 + 30, 32, 32 + 20)));
 	mHH_HieuUngNapDanLv3 = new HoatHinh("Resources_X3/XMan/_HieuUngNapDan.png", lDSTTFrame, D3DCOLOR_XRGB(0, 128, 128));
+
+	//lDSTTFrame.clear();
+	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 4, 50, 0.04f, HCN(23, 23 + 6, 12, 12 + 50)));
+
+	//mHH_HieuUngNapDanLv3 = new HoatHinh("Resources_X3/XMan/_HieuUngNapDan.png", lDSTTFrame, D3DCOLOR_XRGB(0, 128, 128));
+
+	//mHH_DinhSatThuong 
 }
 
 void XMan::DungIm()

@@ -148,7 +148,7 @@ void Ech::Ve(const Vec2 & in_DoDoi)
 
 	if (mTrangThai == eTTEch_DangTanBien)
 	{
-		mHH_HienTai->Ve(D3DCOLOR_ARGB(80, 255, 255, 225));
+		mHH_HienTai->Ve(D3DCOLOR_ARGB(120, 255, 255, 225));
 	}
 	else
 	{

@@ -76,9 +76,15 @@ private:
 		*mHH_TiepDat_Ban,
 		*mHH_Luot_Ban,
 		*mHH_Truot_Ban,
-		*mHH_BatRa_Ban;
+		*mHH_BatRa_Ban,
+		*mHH_DinhSatThuong;
 	HoatHinh *mHH_HienTai;
 	HoatHinh *mAnimationShining;
+
+	const float mTG_DinhST = 0.5f;
+	float mTGDem_DinhST = 0.0f;
+	const float mTG_KoNhanST = 1.0f;
+	float mTGDem_KoNhanST = 0.0f;
 
 	float mTimes = 0.0f;
 	float mTG_BamTuong = 0.18f;
