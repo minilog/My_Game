@@ -90,18 +90,18 @@ void DanLv3::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			DangTanBien();
 		}
 	}
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
-	{
-		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
-		{
-			if (!mLatHinh)
-				mToaDo.x += 10.0f;
-			else
-				mToaDo.x -= 10.0f;
+	//if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
+	//{
+	//	if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+	//	{
+	//		if (!mLatHinh)
+	//			mToaDo.x += 10.0f;
+	//		else
+	//			mToaDo.x -= 10.0f;
 
-			DangTanBien();
-		}
-	}
+	//		DangTanBien();
+	//	}
+	//}
 
 }
 

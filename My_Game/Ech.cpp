@@ -14,6 +14,7 @@ Ech::Ech(const Vec2 & in_ToaDo, const Vec2 & in_VanToc, int in_Rong, int in_Cao)
 	mBui = new BuiKhiLuot(Vec2(), Vec2());
 	mHH_HienTai = mHH_DangTanBien;
 
+
 	mTrangThai = eTTEch_DaBiPhaHuy;
 }
 
@@ -23,7 +24,7 @@ void Ech::CapNhat(float in_tg, const XMan * in_XMan)
 	{
 		mTGDem_HieuUngNoTung += in_tg;
 		mHH_HieuUngNoTung->CapNhat(in_tg);
-	}
+	}	
 
 	// nếu đang nằm trong Camera mà vẫn đang va chạm Camera thì ko có gì xảy ra
 	if (mNamTrongCamera &&

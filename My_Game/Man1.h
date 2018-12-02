@@ -32,6 +32,8 @@ public:
 	QuadTree *mQuadTree;
 
 private:
+	DanNo1 *mDanNo1;
+
 	std::map<int, bool> mKeys;
 	HinhAnh *mBanDoMap1;
 	XMan *mXMan;

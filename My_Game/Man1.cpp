@@ -19,7 +19,8 @@ Man1::Man1()
 	SetRect(&fRectangle, 0, 0, Camera::get_ChieuRong(), Camera::get_ChieuCao());
 	message = "This is some generic message to\n display on the screen";
 
-	std::vector<ThongTinFrame> lDSTTFrame;
+	mDanNo1 = new DanNo1();
+	mDanNo1->BanRa(Vec2(50.0f, 880.0f), Vec2(0.0f, 80.0f));
 }
 
 
@@ -63,6 +64,8 @@ void Man1::TaiDuLieu()
 
 void Man1::CapNhat(float in_tg)
 {
+	mDanNo1->CapNhat(in_tg);
+
 	// cập nhật tất cả các đối tượng
 	CapNhatDanhSachDoiTuong(in_tg);
 
@@ -94,6 +97,8 @@ void Man1::Ve()
 
 	// vẽ thanh máu XMan
 	mThanhMauXMan->Ve(mXMan->get_HP());
+
+	mDanNo1->Ve(lDoDoi);
 
 }
 
@@ -263,6 +268,8 @@ void Man1::XuLyVaChamChung()
 		{
 			mDS_Ech[j]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
 		}
+
+		mDanNo1->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
 	}
 
 
@@ -324,10 +331,10 @@ void Man1::DrawQuadTree(QuadTree * in_QuadTree)
 
 void Man1::DrawCollidable()
 {
-	//for (auto child : mDS_DoiTuongXetVaCham)
-	//{
-	//	mGameDebugDraw->DrawRect(child->get_RECT());
-	//}
+	for (auto child : mDS_DoiTuongTinhXetVaCham)
+	{
+		mGameDebugDraw->DrawRect(child->get_RECT());
+	}
 	mGameDebugDraw->DrawRect(mXMan->get_RECT());
 
 	for (int i = 0; i < (int)mDS_Ech.size(); i++)
@@ -339,4 +346,6 @@ void Man1::DrawCollidable()
 	{
 		mGameDebugDraw->DrawRect(mDS_DanLv[i]->get_RECT());
 	}
+
+	mGameDebugDraw->DrawRect(mDanNo1->get_RECT());
 }

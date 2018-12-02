@@ -100,7 +100,8 @@ enum eLoaiDoiTuong
 	eLDT_DanLv1,
 	eLDT_DanLv2,
 	eLDT_DanLv3,
-	eLDT_Ech
+	eLDT_Ech,
+	eLDT_DanNo1
 };
 
 enum eHuongDiChuyen

@@ -10,6 +10,7 @@
 #include "Camera.h"
 #include "DanLv.h"
 #include "XMan.h"
+#include "DanNo1.h"
 
 class Ech : public DoiTuong
 {
@@ -45,6 +46,8 @@ private:
 	void LoadHinhAnhVao();
 
 private:
+	//DanNo1 *mDanNo1; // thêm vào 1 viên đạn nổ
+
 	Vec2 mToaDoXuatHien;
 
 	const int mMaxHP = 4;
