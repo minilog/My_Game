@@ -169,6 +169,9 @@
     <ClCompile Include="DanNo1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="XacUop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -322,6 +325,9 @@
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="DanNo1.h">
+      <Filter>4.DoiTuong\Quai</Filter>
+    </ClInclude>
+    <ClInclude Include="XacUop.h">
       <Filter>4.DoiTuong\Quai</Filter>
     </ClInclude>
   </ItemGroup>

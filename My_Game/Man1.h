@@ -11,6 +11,7 @@
 #include "Ech.h"
 #include "ThanhMau.h"
 #include "HoatHinh.h"
+#include "XacUop.h"
 
 
 
@@ -32,6 +33,7 @@ public:
 	QuadTree *mQuadTree;
 
 private:
+	XacUop *mXacUop;
 	DanNo1 *mDanNo1;
 
 	std::map<int, bool> mKeys;

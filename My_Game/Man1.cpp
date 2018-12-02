@@ -47,7 +47,7 @@ void Man1::TaiDuLieu()
 	// tạo cây quad tree
 	mQuadTree = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
-	// tạo danh sách tĩnh, và danh sách ếch
+	// tạo danh sách tĩnh, và danh sách ếch, xác ướp
 	TaoDanhSachDoiTuongVaQuai();
 
 	// tạo 1 XMan
@@ -64,6 +64,7 @@ void Man1::TaiDuLieu()
 
 void Man1::CapNhat(float in_tg)
 {
+	mXacUop->CapNhat(in_tg, mXMan);
 	mDanNo1->CapNhat(in_tg);
 
 	// cập nhật tất cả các đối tượng
@@ -100,6 +101,7 @@ void Man1::Ve()
 
 	mDanNo1->Ve(lDoDoi);
 
+	mXacUop->Ve(lDoDoi);
 }
 
 void Man1::OnKeyDown(int in_KeyCode)
@@ -161,12 +163,15 @@ void Man1::TaoDanhSachDoiTuongVaQuai()
 
 			if (lNhomObject->GetName() == "Ech")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
-				const Vec2 lToaDoDoiTuongTinh(
-					lObject->GetX() + lObject->GetWidth() / 2.0f,
-					lObject->GetY() + lObject->GetHeight() / 2.0f);
 
-				mDS_Ech.push_back(new Ech(lToaDoDoiTuongTinh, Vec2(),
+				mDS_Ech.push_back(new Ech(lToaDoDoiTuong, Vec2(),
 					lObject->GetWidth(), lObject->GetHeight()));
+			}
+
+			if (lNhomObject->GetName() == "XacUop")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+
+				mXacUop = new XacUop(lToaDoDoiTuong, Vec2());
 			}
 		}
 	}
@@ -348,4 +353,6 @@ void Man1::DrawCollidable()
 	}
 
 	mGameDebugDraw->DrawRect(mDanNo1->get_RECT());
+
+	mGameDebugDraw->DrawRect(mXacUop->get_RECT());
 }
