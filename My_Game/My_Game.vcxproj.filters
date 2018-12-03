@@ -139,9 +139,6 @@
     <ClCompile Include="XMan.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BuiKhiLuot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HieuUngLuot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -170,6 +167,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="XacUop.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Bui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -300,9 +300,6 @@
     <ClInclude Include="HieuUngLuot.h">
       <Filter>4.DoiTuong\XMan%27s</Filter>
     </ClInclude>
-    <ClInclude Include="BuiKhiLuot.h">
-      <Filter>4.DoiTuong\XMan%27s</Filter>
-    </ClInclude>
     <ClInclude Include="HieuUngBatRa.h">
       <Filter>4.DoiTuong\XMan%27s</Filter>
     </ClInclude>
@@ -329,6 +326,9 @@
     </ClInclude>
     <ClInclude Include="XacUop.h">
       <Filter>4.DoiTuong\Quai</Filter>
+    </ClInclude>
+    <ClInclude Include="Bui.h">
+      <Filter>4.DoiTuong\XMan%27s</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

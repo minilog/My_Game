@@ -121,6 +121,8 @@ enum eTrangThai
 	eTT_XMan_HiSinh,
 
 	eTT_DanNo1_BienMat,
-	eTT_DanNo1_TonTai
+	eTT_DanNo1_TonTai,
+
+	eTT_Ech_BienMat
 };
 

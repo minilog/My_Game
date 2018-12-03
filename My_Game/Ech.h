@@ -1,50 +1,28 @@
 ﻿#pragma once
 
-#include <d3d9.h>
-#include <d3dx9.h>
 #include "DoiTuong.h"
-#include "KieuDuLieu.h"
 #include "HoatHinh.h"
-#include <map>
 #include "VaChamGame.h"
 #include "Camera.h"
-#include "DanLv.h"
-#include "XMan.h"
-#include "DanNo1.h"
+#include "Bui.h"
 
 class Ech : public DoiTuong
 {
 public:
 	Ech(const Vec2& in_ToaDo, const Vec2& in_VanToc, int in_Rong = 26, int in_Cao = 30);
 
-
 	// ko xài cái này
 	void CapNhat(float in_tg) 
 	{
 	}
 
-	void CapNhat(float in_tg, const XMan *in_XMan);
+// FUNCTION
+
+	void CapNhat(float in_tg, const DoiTuong *in_XMan);
 	void Ve(const Vec2& in_DoDoi);
 	void XuLyVaCham(const DoiTuong* in_DoiTuong);
 
-private:
-	void NhamBan2();
-	void BanDan2();
-	void HaNhamBan2();
-	void NhamBan3();
-	void BanDan3();
-	void HaNhamBan3();
-	void BanDan1();
-	void NhamBan1();
-	void HaNhamBan1();
-	void ChuanBiNhay();
-	void Nhay();
-	void Roi();
-	void TiepDat();
-	void DangTanBien();
-
-	void LoadHinhAnhVao();
-
+// INFORMATION
 private:
 	//DanNo1 *mDanNo1; // thêm vào 1 viên đạn nổ
 
@@ -53,7 +31,7 @@ private:
 	const int mMaxHP = 4;
 	int mHP = mMaxHP;
 
-	BuiKhiLuot *mBui;
+	Bui *mBui;
 
 	HoatHinh *mHH_ChuanBiNhay,
 		*mHH_Nhay,
@@ -123,6 +101,25 @@ private:
 
 	eTrangThai mTrangThai;
 
+// SUB-FUNCTION
+private:
+	void LoadThongTinHoatHinh();
+
+	void NhamBan2();
+	void BanDan2();
+	void HaNhamBan2();
+	void NhamBan3();
+	void BanDan3();
+	void HaNhamBan3();
+	void BanDan1();
+	void NhamBan1();
+	void HaNhamBan1();
+	void ChuanBiNhay();
+	void Nhay();
+	void Roi();
+	void TiepDat();
+	void DangTanBien();
+
 	void CapNhat_NhamBan2(float in_tg);
 	void CapNhat_BanDan2(float in_tg);
 	void CapNhat_HaNhamBan2(float in_tg);
@@ -138,11 +135,8 @@ private:
 	void CapNhat_HaNhamBan3(float in_tg);
 	void CapNhat_DangTanBien(float in_tg);
 
+// DESTRUCTURE
 public:
 	~Ech();
-	eTrangThai get_TrangThai()
-	{
-		return mTrangThai;
-	}
 };
 

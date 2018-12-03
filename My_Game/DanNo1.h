@@ -87,8 +87,6 @@ private:
 	float mTGDem_NoTung = mTG_NoTung + 0.1f;
 	Vec2 mToaDo_HieuUngNoTung;
 
-	eTrangThai mTrangThai;
-
 // SUB-FUNCTION
 	void LoadThongTinHoatHinh();
 

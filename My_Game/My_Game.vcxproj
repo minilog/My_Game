@@ -137,7 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BuiKhiLuot.cpp" />
+    <ClCompile Include="Bui.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="DanLv.cpp" />
     <ClCompile Include="DanLv1.cpp" />
@@ -186,7 +186,7 @@
     <ClCompile Include="XMan.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BuiKhiLuot.h" />
+    <ClInclude Include="Bui.h" />
     <ClInclude Include="DanLv.h" />
     <ClInclude Include="DanLv1.h" />
     <ClInclude Include="DanLv2.h" />

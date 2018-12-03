@@ -16,6 +16,7 @@ public:
 
 protected:
 	eLoaiDoiTuong mLoaiDoiTuong;
+	eTrangThai mTrangThai;
 	Vec2 mToaDo;
 	Vec2 mVanToc;
 	int mChieuRong;
@@ -45,5 +46,6 @@ public:
 	int get_ChieuCao() const;
 	HCN get_HCNGioiHan() const; // chiều cao, chiều rộng của các thực thể nên chia hết cho 2
 	RECT get_RECT() const;
+	eTrangThai get_TrangThai() const { return mTrangThai; }
 };
 

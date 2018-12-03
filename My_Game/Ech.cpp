@@ -5,20 +5,21 @@ Ech::Ech(const Vec2 & in_ToaDo, const Vec2 & in_VanToc, int in_Rong, int in_Cao)
 	:
 	DoiTuong(in_ToaDo, in_VanToc, 22, 30)
 {
+	mLoaiDoiTuong = eLDT_Ech;
+	mTrangThai = eTT_Ech_BienMat;
+
 	mToaDoXuatHien = in_ToaDo;
 
-	mLoaiDoiTuong = eLDT_Ech;
+	LoadThongTinHoatHinh();
 
-	LoadHinhAnhVao();
-
-	mBui = new BuiKhiLuot(Vec2(), Vec2());
+	mBui = new Bui(Vec2(), Vec2());
 	mHH_HienTai = mHH_DangTanBien;
 
 
-	mTrangThai = eTTEch_DaBiPhaHuy;
+
 }
 
-void Ech::CapNhat(float in_tg, const XMan * in_XMan)
+void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 {
 	if (mTGDem_HieuUngNoTung <= mTG_HieuUngNoTung)
 	{
@@ -386,7 +387,7 @@ void Ech::DangTanBien()
 }
 
 
-void Ech::LoadHinhAnhVao()
+void Ech::LoadThongTinHoatHinh()
 {
 	std::vector<ThongTinFrame> lDSTTFrame;
 
