@@ -11,16 +11,6 @@
 Man1::Man1()
 {
 	TaiDuLieu();
-
-	font = NULL;
-	D3DXCreateFont(ToanCauGame::get_ThietBi(), 12, 0, FW_NORMAL, 1, false, DEFAULT_CHARSET,
-		OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_DONTCARE, L"Arial", &font);
-
-	SetRect(&fRectangle, 0, 0, Camera::get_ChieuRong(), Camera::get_ChieuCao());
-	message = "This is some generic message to\n display on the screen";
-
-	mDanNo1 = new DanNo1();
-	mDanNo1->BanRa(Vec2(50.0f, 880.0f), Vec2(0.0f, 80.0f));
 }
 
 
@@ -54,18 +44,27 @@ void Man1::TaiDuLieu()
 	mXMan = new XMan(Vec2(50.0f, 880.0f));
 	
 	// đưa đạn của XMan vào danh sách
-	mDS_DanLv.clear();
-	mXMan->get_DS_Dan(mDS_DanLv);
+	//mXMan->get_DS_Dan(mDS_DanLv);
 
 	// tạo thanh máu XMan
-	mThanhMauXMan = new ThanhMau();
+	//mThanhMauXMan = new ThanhMau();
+
+	//mDanNo1 = new DanNo1();
+	//mDanNo1->BanRa(Vec2(50.0f, 880.0f), Vec2(0.0f, 80.0f));
+
+// TEST INFO
+	font = NULL;
+	D3DXCreateFont(ToanCauGame::get_ThietBi(), 12, 0, FW_NORMAL, 1, false, DEFAULT_CHARSET,
+		OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_DONTCARE, L"Arial", &font);
+
+	SetRect(&fRectangle, 0, 0, Camera::get_ChieuRong(), Camera::get_ChieuCao());
 }
 
 
 void Man1::CapNhat(float in_tg)
 {
-	mXacUop->CapNhat(in_tg, mXMan);
-	mDanNo1->CapNhat(in_tg);
+	//mXacUop->CapNhat(in_tg, mXMan);
+	//mDanNo1->CapNhat(in_tg);
 
 	// cập nhật tất cả các đối tượng
 	CapNhatDanhSachDoiTuong(in_tg);
@@ -88,7 +87,8 @@ void Man1::Ve()
 		ToanCauGame::get_ChieuCao() / 2 - Camera::get_ToaDo().y);
 
 	// vẽ hình ảnh bản đồ
-	VeHinhAnhBanDoGame(lDoDoi);
+	mBanDoMap1->set_DoDoi(lDoDoi);
+	mBanDoMap1->Ve();
 
 	// vẽ XMan
 	mXMan->Ve(lDoDoi);
@@ -97,11 +97,11 @@ void Man1::Ve()
 	VeDanhSachDoiTuong(lDoDoi);
 
 	// vẽ thanh máu XMan
-	mThanhMauXMan->Ve(mXMan->get_HP());
+	//mThanhMauXMan->Ve(mXMan->get_HP());
 
-	mDanNo1->Ve(lDoDoi);
+	//mDanNo1->Ve(lDoDoi);
 
-	mXacUop->Ve(lDoDoi);
+	//mXacUop->Ve(lDoDoi);
 }
 
 void Man1::OnKeyDown(int in_KeyCode)
@@ -161,64 +161,48 @@ void Man1::TaoDanhSachDoiTuongVaQuai()
 				mQuadTree->ThemDoiTuong(lDoiTuongTinh);
 			}
 
-			if (lNhomObject->GetName() == "Ech")
-			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+			//if (lNhomObject->GetName() == "Ech")
+			//{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
-				mDS_Ech.push_back(new Ech(lToaDoDoiTuong, Vec2(),
-					lObject->GetWidth(), lObject->GetHeight()));
-			}
+			//	mDS_Ech.push_back(new Ech(lToaDoDoiTuong, Vec2(),
+			//		lObject->GetWidth(), lObject->GetHeight()));
+			//}
 
-			if (lNhomObject->GetName() == "XacUop")
-			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+			//if (lNhomObject->GetName() == "XacUop")
+			//{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
-				mXacUop = new XacUop(lToaDoDoiTuong, Vec2());
-			}
+			//	mXacUop = new XacUop(lToaDoDoiTuong, Vec2());
+			//}
 		}
 	}
-}
-
-void Man1::TaoDanhSachTileset()
-{
-	for (int i = 0; i < /*mBanDo->GetNumTilesets()*/1; i++)
-	{
-		const Tmx::Tileset *lTileset = mBanDo->GetTileset(i);
-		HinhAnh *lHinhAnh = new HinhAnh(lTileset->GetImage()->GetSource().c_str());
-		mDanhSachTileset.insert(pair<int, HinhAnh*>(i, lHinhAnh));
-	}
-}
-
-void Man1::VeHinhAnhBanDoGame(const Vec2& in_DoDoi)
-{
-	mBanDoMap1->set_DoDoi(in_DoDoi);
-	mBanDoMap1->Ve();
 }
 
 void Man1::CapNhatDanhSachDoiTuong(float in_tg)
 {
 	mXMan->CapNhat(in_tg);
 
-	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
-	{
-		mDS_DanLv[i]->CapNhat(in_tg);
-	}
+	//for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	//{
+	//	mDS_DanLv[i]->CapNhat(in_tg);
+	//}
 
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		mDS_Ech[i]->CapNhat(in_tg, mXMan);
-	}
+	//for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	//{
+	//	mDS_Ech[i]->CapNhat(in_tg, mXMan);
+	//}
 }
 
 void Man1::VeDanhSachDoiTuong(const Vec2 & in_DoDoi)
 {
-	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
-	{
-		mDS_DanLv[i]->Ve(in_DoDoi);
-	}
+	//for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	//{
+	//	mDS_DanLv[i]->Ve(in_DoDoi);
+	//}
 
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		mDS_Ech[i]->Ve(in_DoDoi);
-	}
+	//for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	//{
+	//	mDS_Ech[i]->Ve(in_DoDoi);
+	//}
 }
 
 void Man1::DieuChinhCamera()
@@ -263,51 +247,51 @@ void Man1::XuLyVaChamChung()
 		// xử lý va chạm XMAN-ĐỐI TƯỢNG TĨNH 
 		mXMan->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
 
-		// va chạm với đạn XMAN
-		for (int j = 0; j < (int)mDS_DanLv.size(); j++)
-		{
-			mDS_DanLv[j]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
-		}
+		//// va chạm với đạn XMAN
+		//for (int j = 0; j < (int)mDS_DanLv.size(); j++)
+		//{
+		//	mDS_DanLv[j]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
+		//}
 
-		for (int j = 0; j < (int)mDS_Ech.size(); j++)
-		{
-			mDS_Ech[j]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
-		}
+		//for (int j = 0; j < (int)mDS_Ech.size(); j++)
+		//{
+		//	mDS_Ech[j]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
+		//}
 
-		mDanNo1->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
+		//mDanNo1->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
 	}
 
 
 	// các đối tượng va chạm với ĐẠN XMan
-	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
-	{
-		// nếu ĐẠN đã bị phá hủy hoặc đang tan biến thì bỏ qua
-		if (mDS_DanLv[i]->get_TrangThai() == eTTDan_DaBiPhaHuy ||
-			mDS_DanLv[i]->get_TrangThai() == eTTDan_DangTanBien)
-		{
-			continue;
-		}
-		for (int j = 0; j < (int)mDS_Ech.size(); j++)
-		{
-			mDS_Ech[j]->XuLyVaCham(mDS_DanLv[i]);
-		}
-	}
+	//for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	//{
+	//	// nếu ĐẠN đã bị phá hủy hoặc đang tan biến thì bỏ qua
+	//	if (mDS_DanLv[i]->get_TrangThai() == eTTDan_DaBiPhaHuy ||
+	//		mDS_DanLv[i]->get_TrangThai() == eTTDan_DangTanBien)
+	//	{
+	//		continue;
+	//	}
+	//	for (int j = 0; j < (int)mDS_Ech.size(); j++)
+	//	{
+	//		mDS_Ech[j]->XuLyVaCham(mDS_DanLv[i]);
+	//	}
+	//}
 
 	// các đối tượng va chạm với Ếch
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		// nếu Ếch đã bị phá hoặc đang tan biến thì bỏ qua
-		if (mDS_Ech[i]->get_TrangThai() == eTTEch_DaBiPhaHuy ||
-			mDS_Ech[i]->get_TrangThai() == eTTEch_DangTanBien)
-		{
-			continue;
-		}
-		for (int j = 0; j < (int)mDS_DanLv.size(); j++)
-		{
-			mDS_DanLv[j]->XuLyVaCham(mDS_Ech[i]);
-		}
-		mXMan->XuLyVaCham(mDS_Ech[i]);
-	}
+	//for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	//{
+	//	// nếu Ếch đã bị phá hoặc đang tan biến thì bỏ qua
+	//	if (mDS_Ech[i]->get_TrangThai() == eTTEch_DaBiPhaHuy ||
+	//		mDS_Ech[i]->get_TrangThai() == eTTEch_DangTanBien)
+	//	{
+	//		continue;
+	//	}
+	//	for (int j = 0; j < (int)mDS_DanLv.size(); j++)
+	//	{
+	//		mDS_DanLv[j]->XuLyVaCham(mDS_Ech[i]);
+	//	}
+	//	mXMan->XuLyVaCham(mDS_Ech[i]);
+	//}
 }
 
 
@@ -342,17 +326,17 @@ void Man1::DrawCollidable()
 	}
 	mGameDebugDraw->DrawRect(mXMan->get_RECT());
 
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		mGameDebugDraw->DrawRect(mDS_Ech[i]->get_RECT());
-	}
+	//for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	//{
+	//	mGameDebugDraw->DrawRect(mDS_Ech[i]->get_RECT());
+	//}
 
-	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
-	{
-		mGameDebugDraw->DrawRect(mDS_DanLv[i]->get_RECT());
-	}
+	//for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	//{
+	//	mGameDebugDraw->DrawRect(mDS_DanLv[i]->get_RECT());
+	//}
 
-	mGameDebugDraw->DrawRect(mDanNo1->get_RECT());
+	//mGameDebugDraw->DrawRect(mDanNo1->get_RECT());
 
-	mGameDebugDraw->DrawRect(mXacUop->get_RECT());
+	//mGameDebugDraw->DrawRect(mXacUop->get_RECT());
 }

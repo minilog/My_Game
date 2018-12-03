@@ -27,7 +27,7 @@ protected:
 	int mChieuCao;
 	int mChieuRongTile;
 	int mChieuCaoTile;
-	std::map<int, HinhAnh*> mDanhSachTileset;
+	//std::map<int, HinhAnh*> mDanhSachTileset;
 };
 
 

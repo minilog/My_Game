@@ -81,6 +81,8 @@ private:
 	HoatHinh *mHH_HienTai;
 	HoatHinh *mAnimationShining;
 
+	HinhAnh *mHinhAnh1; // nơi chứa hình ảnh để hoạt hình trỏ đến
+
 	const float mTG_DinhST = 0.08f * 3;
 	float mTGDem_DinhST = 0.0f;
 	const float mTG_KoNhanST = 0.8f;

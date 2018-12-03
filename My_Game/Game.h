@@ -16,10 +16,10 @@ protected:
 
 private:
 	int						mFPS;
-	int                     mChieuRong;
-	int						mChieuCao;
-	PDIRECT3DSURFACE9       mMatSau;
-	PDIRECT3DSURFACE9		mDemSau;
+	//int                     mChieuRong;
+	//int						mChieuCao;
+	//PDIRECT3DSURFACE9       mMatSau;
+	//PDIRECT3DSURFACE9		mDemSau;
 
 
 };

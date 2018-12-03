@@ -13,9 +13,11 @@ class QuadTree
 public:
 	QuadTree(int in_CapDo, const HCN& in_HCN);
 	~QuadTree();
+
+// FUNCTION
 	void DonDep();
 	void ThemDoiTuong(DoiTuong *in_DoiTuong);
-	void get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*> &out_CacDoiTuong, DoiTuong *in_DoiTuong);
+	void get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*> &out_CacDoiTuong, const DoiTuong *in_DoiTuong);
 	void get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*> &out_CacDoiTuong, const HCN& in_HCN);
 	void get_TatCaDoiTuong(std::vector<DoiTuong*> &out_CacDoiTuong);
 	int get_TongDoiTuong();
@@ -24,7 +26,7 @@ public:
 	{
 		return mBonNhanh;
 	}
-	 
+	
 	RECT get_RECT() const
 	{
 		RECT a;
@@ -35,14 +37,17 @@ public:
 		return a;
 	}
 
+// INFORMATION
 private:
-	int get_ViTri(const HCN& in_DoiTuong);
-	void ChiaNhanh();
-	bool get_CoChua(const DoiTuong *in_DoiTuong);
-
 	int mCapDo;
 	HCN mGioiHan;
 	QuadTree **mBonNhanh;
 	std::vector<DoiTuong*> mDSDoiTuong;
+
+// SUB-FUNCTION
+private:
+	int get_ViTri(const HCN& in_DoiTuong);
+	void ChiaNhanh();
+	bool get_CoChua(const DoiTuong *in_DoiTuong);
 };
 

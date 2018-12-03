@@ -4,14 +4,16 @@
 #include <d3dx9.h>
 #include "KieuDuLieu.h"
 
-// sử dụng để kế thừa cho Hoạt Hình
 class HinhAnh
 {
 public:
-	HinhAnh(const char* in_DuongDan, D3DCOLOR in_Color = NULL);
+	HinhAnh(const char* in_DuongDan, const D3DCOLOR &in_Color = NULL);
 	~HinhAnh();
-	void Ve(D3DCOLOR in_SubColor = D3DCOLOR_ARGB(255, 255, 255, 255));
 
+// FUNCTION
+	void Ve(const D3DCOLOR &in_SubColor = D3DCOLOR_ARGB(255, 255, 255, 255));
+
+// INFORMATION
 protected:
 	LPD3DXSPRITE            mXuLyHinhAnh;
 	D3DXIMAGE_INFO          mThongTinHinhAnh;
@@ -33,11 +35,7 @@ protected:
 
 
 
-
-
-
-/////////////////////////////
-/*  Các thủ tục SET - GET  */
+// SUB-FUNCTION
 public:
 	void set_ToaDo(const Vec2& in_ToaDo);
 	void set_ChieuRong(int in_ChieuRong);
@@ -49,8 +47,6 @@ public:
 	void set_GocXoayHinh(float in_GocXoay);
 	void set_DoDoi(const Vec2& in_DoDoi);
 
-	D3DXIMAGE_INFO get_ThongTinHinhAnh() const;
-	LPDIRECT3DTEXTURE9 get_KetCauHinhAnh();
 	Vec2 get_ToaDo() const;
 	int get_ChieuRong() const;
 	int get_ChieuCao() const;

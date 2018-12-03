@@ -31,15 +31,6 @@ void QuadTree::ThemDoiTuong(DoiTuong * in_DoiTuong)
 {
 	int lViTri = get_ViTri(in_DoiTuong->get_HCNGioiHan());
 
-	//if (mBonNhanh != NULL)
-	//{
-	//	if (lViTri != -1)
-	//	{
-	//		mBonNhanh[lViTri]->ThemDoiTuong(in_DoiTuong);
-	//		return;
-	//	}
-	//}
-
 	if (lViTri == -1)
 	{
 		mDSDoiTuong.push_back(in_DoiTuong);
@@ -54,7 +45,7 @@ void QuadTree::ThemDoiTuong(DoiTuong * in_DoiTuong)
 	}
 }
 
-void QuadTree::get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*>& out_CacDoiTuong, DoiTuong * in_DoiTuong)
+void QuadTree::get_CacDoiTuongCoTheVaCham(std::vector<DoiTuong*>& out_CacDoiTuong, const DoiTuong * in_DoiTuong)
 {
 	int lViTri = get_ViTri(in_DoiTuong->get_HCNGioiHan());
 

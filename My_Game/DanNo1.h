@@ -1,14 +1,8 @@
 ﻿#pragma once
 
-#include <d3d9.h>
-#include <d3dx9.h>
 #include "DoiTuong.h"
-#include "KieuDuLieu.h"
 #include "HoatHinh.h"
-#include <map>
 #include "VaChamGame.h"
-#include "Camera.h"
-#include "GameLog.h"
 
 class DanNo1 : public DoiTuong
 {
@@ -17,25 +11,27 @@ public:
 		:DoiTuong(Vec2(), Vec2(), 8, 8)
 	{
 		mLoaiDoiTuong = eLDT_DanNo1;
-		LoadHinhAnhVao();
+		mTrangThai = eTT_DanNo1_BienMat;
 
-		mTrangThai = eTTDan_DaBiPhaHuy;
+		LoadThongTinHoatHinh();
 	}
 
+// FUNCTION
 	void CapNhat(float in_tg)
 	{
 		// cập nhật hiệu ứng
 		if (mTGDem_NoTung <= mTG_NoTung)
 		{
 			mTGDem_NoTung += in_tg;
-			mHH_HieuUngNoTung->CapNhat(in_tg);
+			mHH_HieuUngPhatNo->CapNhat(in_tg);
 		}
 
 		// nếu đạn đã bị phá hủy -> ko cần Cập Nhật
-		if (mTrangThai == eTTDan_DaBiPhaHuy)
+		if (mTrangThai == eTT_DanNo1_BienMat)
 		{
 			return;
 		}
+
 		mToaDo.x += mVanToc.x * in_tg;
 		mToaDo.y += mVanToc.y * in_tg;
 	}
@@ -43,23 +39,21 @@ public:
 	{
 		if (mTGDem_NoTung <= mTG_NoTung)
 		{
-			mHH_HieuUngNoTung->set_DoDoi(in_DoDoi);
-			mHH_HieuUngNoTung->Ve();
+			mHH_HieuUngPhatNo->Ve(DanNo1::HieuUngPhatNo_png, false, mToaDo_HieuUngNoTung, in_DoDoi);
 		}
 
 		// nếu đã bị phá hủy -> ko cần phải Vẽ ra
-		if (mTrangThai == eTTDan_DaBiPhaHuy)
+		if (mTrangThai == eTT_DanNo1_BienMat)
 		{
 			return;
 		}
-		mHH_Dan->set_ToaDo(mToaDo);
-		mHH_Dan->set_DoDoi(in_DoDoi);
-		mHH_Dan->Ve();
+
+		mHH_Dan->Ve(DanNo1::DanNo1_png, false, mToaDo, in_DoDoi);
 	}
 	void XuLyVaCham(const DoiTuong* in_DoiTuong)
 	{
 		// nếu đã bị phá hủy -> ko cần phải xét va chạm
-		if (mTrangThai == eTTDan_DaBiPhaHuy)
+		if (mTrangThai == eTT_DanNo1_BienMat)
 		{
 			return;
 		}
@@ -68,11 +62,11 @@ public:
 		{
 			if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
 			{
-				mTrangThai = eTTDan_DaBiPhaHuy;
+				mTrangThai = eTT_DanNo1_BienMat;
 				mTGDem_NoTung = 0.0f;
 				// set tọa độ hiệu ứng nổ tung 
-				mHH_HieuUngNoTung->set_ToaDo(mToaDo);
-				mHH_HieuUngNoTung->Remake();
+				mToaDo_HieuUngNoTung = mToaDo;
+				mHH_HieuUngPhatNo->Remake();
 			}
 		}
 
@@ -81,28 +75,38 @@ public:
 	{
 		mToaDo = in_ToaDo;
 		mVanToc = in_VanToc;
-		mTrangThai = eTTDan_DangTonTai;
+		mTrangThai = eTT_DanNo1_TonTai;
 	}
 
+// INFORMATION
 private:
 	HoatHinh *mHH_Dan;
-	HoatHinh *mHH_HieuUngNoTung;
+	HoatHinh *mHH_HieuUngPhatNo;
 
 	const float mTG_NoTung = 0.08f * 6;
 	float mTGDem_NoTung = mTG_NoTung + 0.1f;
+	Vec2 mToaDo_HieuUngNoTung;
 
 	eTrangThai mTrangThai;
 
-	void LoadHinhAnhVao();
+// SUB-FUNCTION
+	void LoadThongTinHoatHinh();
 
+// DESTRUCTURE
 public:
 	~DanNo1()
 	{
 		if (mHH_Dan)
 			delete mHH_Dan;
 		
-		if (mHH_HieuUngNoTung)
-			delete mHH_HieuUngNoTung;
+		if (mHH_HieuUngPhatNo)
+			delete mHH_HieuUngPhatNo;
 	}
+
+
+// NƠI CHỨA HÌNH ẢNH
+public:
+	static HinhAnh *HieuUngPhatNo_png;
+	static HinhAnh *DanNo1_png;
 };
 

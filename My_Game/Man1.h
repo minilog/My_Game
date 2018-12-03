@@ -20,54 +20,43 @@ class Man1 : public ManGame
 public:
 	Man1();
 	~Man1();
-	virtual void TaiDuLieu();
-	virtual void CapNhat(float in_tg);
-	virtual void Ve();
-	virtual void OnKeyDown(int in_KeyCode);
-	virtual void OnKeyUp(int in_KeyCode);
-	virtual void OnMouseDown(float in_x, float in_y) {}
+
+// FUNCTION
+public:
+	void TaiDuLieu();
+	void CapNhat(float in_tg);
+	void Ve();
+	void OnKeyDown(int in_KeyCode);
+	void OnKeyUp(int in_KeyCode);
+	void OnMouseDown(float in_x, float in_y) {}
 
 	void DrawQuadTree(QuadTree *in_QuadTree);
 	void DrawCollidable();
 
-	QuadTree *mQuadTree;
 
+
+// INFORMATION
 private:
-	XacUop *mXacUop;
-	DanNo1 *mDanNo1;
-
-	std::map<int, bool> mKeys;
-	HinhAnh *mBanDoMap1;
+	QuadTree *mQuadTree;
+	//XacUop *mXacUop;
+	//DanNo1 *mDanNo1;
 	XMan *mXMan;
-	ThanhMau *mThanhMauXMan;
-	HinhAnh *mTest;
+	std::vector<DoiTuong*> mDS_DoiTuongTinhXetVaCham;
+	//std::vector<DanLv*> mDS_DanLv;
+	//std::vector<Ech*> mDS_Ech;
+
+	//ThanhMau *mThanhMauXMan;
+	//HinhAnh *mTest;
+	HinhAnh *mBanDoMap1;
+	std::map<int, bool> mKeys;
 	GameDebugDraw *mGameDebugDraw;
 
-	void TaoBanDoVaCamera();
-	void TaoDanhSachDoiTuongVaQuai();
-	void TaoDanhSachTileset();
-	void VeHinhAnhBanDoGame(const Vec2& in_DoDoi);
-
-	void CapNhatDanhSachDoiTuong(float in_tg);
-	void VeDanhSachDoiTuong(const Vec2& in_DoDoi);
-
-	void DieuChinhCamera();
-
-
-	std::vector<DoiTuong*> mDS_DoiTuongTinhXetVaCham;
-	std::vector<DanLv*> mDS_DanLv;
-	std::vector<Ech*> mDS_Ech;
-
-	void XuLyVaChamChung();
-
-
-
-
+// TEST INFOR
 	ID3DXFont *font;
 	RECT fRectangle;
 	std::string message;
 
-	HoatHinh *mHoatHinhTest;
+	//HoatHinh *mHoatHinhTest;
 
 public:
 	void DrawTextDebug()
@@ -89,5 +78,14 @@ public:
 			font->DrawTextA(NULL, message.c_str(), -1, &fRectangle, DT_LEFT, D3DCOLOR_XRGB(255, 25, 25));
 		}
 	}
+
+// SUB-FUNCTION
+private:
+	void TaoBanDoVaCamera();
+	void TaoDanhSachDoiTuongVaQuai();
+	void CapNhatDanhSachDoiTuong(float in_tg);
+	void VeDanhSachDoiTuong(const Vec2& in_DoDoi);
+	void DieuChinhCamera();
+	void XuLyVaChamChung();
 };
 

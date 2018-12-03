@@ -62,20 +62,17 @@ public:
 class ThongTinFrame
 {
 public:
-	ThongTinFrame(const Vec2& in_ToaDo, int in_ChieuRong, int in_ChieuCao, float in_ThoiGian, const HCN& in_Hcn = HCN())
+	ThongTinFrame(int in_ChieuRong, int in_ChieuCao, const HCN& in_Hcn, float in_ThoiGian = 1.0f)
 	{
-		ToaDo = in_ToaDo;
 		ChieuRong = in_ChieuRong;
 		ChieuCao = in_ChieuCao;
 		ThoiGian = in_ThoiGian;
 		Hcn = in_Hcn;
 	}
-
-	Vec2 ToaDo;
 	int ChieuRong;
 	int ChieuCao;
-	float ThoiGian;
 	HCN Hcn;
+	float ThoiGian;
 };
 
 enum ePhiaVaCham
@@ -94,8 +91,7 @@ struct eKetQuaVaCham
 
 enum eLoaiDoiTuong
 {
-	eLDT_KhongCo, eLDT_VienGach, eLDT_KeThu, eLDT_Mario, eLDT_DoiTuongTinh, 
-	eLDT_VienGachBinhThuong, eLDT_VienGachVang,
+	eLDT_DoiTuongTinh, 
 	eLDT_XMan,
 	eLDT_DanLv1,
 	eLDT_DanLv2,
@@ -112,39 +108,19 @@ enum eHuongDiChuyen
 
 enum eTrangThai
 {
-	eTT_DungIm,
-	eTT_Chay,
-	eTT_Roi,
-	eTT_Nhay,
-	eTT_HiSinh, // hi sinh = chết :)),
-	eTT_ChuanBiChay,
-	eTT_TiepDat,
-	eTT_Truot,
-	eTT_Luot,
-	eTT_BatRa,
-	eTTDan_DangTanBien,
-	eTTDan_DangTonTai,
-	eTTDan_DaBiPhaHuy,
-	eTTDan_BanRa,
-	eTT_ChuanBiNhay,
-	eTTEch_NhamBan1,
-	eTTEch_HaNhamBan1,
-	eTTEch_NhamBan3,
-	eTTEch_HaNhamBan3,
-	eTTEch_ChuanBiNhay,
-	eTTEch_Nhay,
-	eTTEch_TiepDat,
-	eTTEch_Roi,
-	eTTEch_BanDan1,
-	eTTEch_BanDan3,
-	eTTEch_NhamBan2,
-	eTTEch_BanDan2,
-	eTTEch_HaNhamBan2,
-	eTTEch_DangTanBien, 
-	eTTEch_DaBiPhaHuy,
-	eTT_DinhSatThuong,
-	eTTXacUop_DungIm,
-	eTTXacUop_DiChuyen,
-	eTTXacUop_TanCong
+	// XMAN
+	eTT_XMan_DungIm,
+	eTT_XMan_Chay,
+	eTT_XMan_Roi,
+	eTT_XMan_Nhay,
+	eTT_XMan_ChuanBiChay,
+	eTT_XMan_TiepDat,
+	eTT_XMan_Truot,
+	eTT_XMan_Luot,
+	eTT_XMan_BatRa,
+	eTT_XMan_HiSinh,
+
+	eTT_DanNo1_BienMat,
+	eTT_DanNo1_TonTai
 };
 

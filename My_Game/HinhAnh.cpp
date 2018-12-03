@@ -1,7 +1,7 @@
 ﻿#include "HinhAnh.h"
 #include "ToanCauGame.h"
 
-HinhAnh::HinhAnh(const char * in_DuongDan, D3DCOLOR in_Color)
+HinhAnh::HinhAnh(const char * in_DuongDan, const D3DCOLOR &in_Color)
 {
 	mXuLyHinhAnh = ToanCauGame::get_XuLyHinhAnh();
 	D3DXGetImageInfoFromFileA(in_DuongDan, &mThongTinHinhAnh);
@@ -42,7 +42,7 @@ HinhAnh::~HinhAnh()
 	}
 }
 
-void HinhAnh::Ve(D3DCOLOR in_SubColor)
+void HinhAnh::Ve(const D3DCOLOR& in_SubColor)
 {
 	D3DXVECTOR2 lTrungTamTiLe = D3DXVECTOR2(float((int)mToaDo.x), float((int)mToaDo.y));
 	D3DXVECTOR2 lTrungTamXoayHinh = D3DXVECTOR2(float((int)mToaDo.x), float((int)mToaDo.y));
@@ -108,16 +108,6 @@ void HinhAnh::set_LatTheoChieuNgang(bool in_Co)
 		mLatTheoChieuNgang = in_Co;
 		mTiLe.x = -mTiLe.x;
 	}
-}
-
-D3DXIMAGE_INFO HinhAnh::get_ThongTinHinhAnh() const
-{
-	return mThongTinHinhAnh;
-}
-
-LPDIRECT3DTEXTURE9 HinhAnh::get_KetCauHinhAnh()
-{
-	return mKetCauHinhAnh;
 }
 
 Vec2 HinhAnh::get_ToaDo() const
