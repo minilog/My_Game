@@ -7,7 +7,7 @@ Sound* Sound::instance = nullptr;
 Sound* Sound::getInstance()
 {
 	if (instance == nullptr)
-		instance = new Sound(ToanCauGame::get_CuaSoXuLy());
+		instance = new Sound(ToanCauGame::mCuaSoXuLy);
 
 	return instance;
 }

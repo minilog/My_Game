@@ -15,7 +15,7 @@ public:
 
 // INFORMATION
 protected:
-	LPD3DXSPRITE            mXuLyHinhAnh;
+
 	D3DXIMAGE_INFO          mThongTinHinhAnh;
 	LPDIRECT3DTEXTURE9      mKetCauHinhAnh;		// tải hình ảnh vào đây
 	D3DXMATRIX              mMaTran;			// ma trận hỗ trợ cho các phép hình học

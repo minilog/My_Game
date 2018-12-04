@@ -808,7 +808,7 @@ void XMan::DinhSatThuong()
 		mVanToc.x = 20.0f;
 	}
 	mVanToc.y = -30.0f;
-	mHP -= 5;
+	mHP -= 1;
 	mTGDem_DinhST = 0.0f;
 	mTGDem_KoNhanST = 0.0f;
 }

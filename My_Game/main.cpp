@@ -24,15 +24,12 @@ int KhoiTaoCuaSo(int cmdShow);
 int KhoiTaoThietBi();
 LRESULT CALLBACK ThuTucCuaSo(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-LPD3DXSPRITE		mXuLyHinhAnh;
 PDIRECT3D9			mD3d;
-LPDIRECT3DDEVICE9	mThietBi;
-HINSTANCE			mTruongHopXuLy;
 
 // Ham Main bat dau
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int cmdShow)
 {
-	mTruongHopXuLy = hInstance;
+	ToanCauGame::mTruongHopXuLy = hInstance;
 	KhoiTaoCuaSo(cmdShow);
 	return 0;
 }
@@ -42,7 +39,7 @@ int	KhoiTaoCuaSo(int cmdShow)
 	WNDCLASSEX lopCuaSo;
 	lopCuaSo.cbSize = sizeof(WNDCLASSEX);
 	lopCuaSo.style = CS_HREDRAW | CS_VREDRAW;
-	lopCuaSo.hInstance = mTruongHopXuLy;
+	lopCuaSo.hInstance = ToanCauGame::mTruongHopXuLy;
 	lopCuaSo.lpfnWndProc = (WNDPROC)ThuTucCuaSo;
 	lopCuaSo.cbClsExtra = 0;
 	lopCuaSo.cbWndExtra = 0;
@@ -55,25 +52,23 @@ int	KhoiTaoCuaSo(int cmdShow)
 	RegisterClassEx(&lopCuaSo);
 
 	//WS_OVERLAPPEDWINDOW <=> WS_EX_TOPMOST | WS_POPUP | WS_VISIBLE
-	HWND cuaSoXuLy = CreateWindow(
+	ToanCauGame::mCuaSoXuLy = CreateWindow(
 		WIN_NAME,
 		WIN_TITLE,
 		WS_OVERLAPPEDWINDOW,
 		300,
 		50,
-		int(ToanCauGame::get_ChieuRong() * 3.3f),
-		int(ToanCauGame::get_ChieuCao() * 3.3f),
+		int(ToanCauGame::mChieuRong * 3.3f),
+		int(ToanCauGame::mChieuCao * 3.3f),
 		NULL,
 		NULL,
-		mTruongHopXuLy,
+		ToanCauGame::mTruongHopXuLy,
 		NULL);
 
 
-	ToanCauGame::set_TruongHopXuLy(mTruongHopXuLy);
-	ToanCauGame::set_CuaSoXuLy(cuaSoXuLy);
 
-	ShowWindow(cuaSoXuLy, cmdShow);
-	UpdateWindow(cuaSoXuLy);
+	ShowWindow(ToanCauGame::mCuaSoXuLy, cmdShow);
+	UpdateWindow(ToanCauGame::mCuaSoXuLy);
 
 	if (KhoiTaoThietBi())
 	{
@@ -94,21 +89,18 @@ int KhoiTaoThietBi()
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
 	d3dpp.BackBufferCount = 1;
-	d3dpp.BackBufferWidth = ToanCauGame::get_ChieuRong();
-	d3dpp.BackBufferHeight = ToanCauGame::get_ChieuCao();
+	d3dpp.BackBufferWidth = ToanCauGame::mChieuRong;
+	d3dpp.BackBufferHeight = ToanCauGame::mChieuCao;
 
 	HRESULT dvresult = mD3d->CreateDevice(D3DADAPTER_DEFAULT,
 		D3DDEVTYPE_HAL,
-		ToanCauGame::get_CuaSoXuLy(),
+		ToanCauGame::mCuaSoXuLy,
 		D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 		&d3dpp,
-		&mThietBi);
+		&ToanCauGame::mThietBi);
 
-	ToanCauGame::set_ThietBi(mThietBi);
 
-	D3DXCreateSprite(ToanCauGame::get_ThietBi(), &mXuLyHinhAnh);
-
-	ToanCauGame::set_XuLyHinhAnh(mXuLyHinhAnh);
+	D3DXCreateSprite(ToanCauGame::mThietBi, &ToanCauGame::mXuLyHinhAnh);
 
 	return 1;
 }

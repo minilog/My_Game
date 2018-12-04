@@ -15,22 +15,22 @@ public:
 
 	void LoadHinhAnhVao()
 	{
-		mBieuTuong = new HinhAnh("Resources_X3/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
+		mBieuTuong = new HinhAnh("Resources/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
 		mBieuTuong->set_ChieuRong(14);
 		mBieuTuong->set_ChieuCao(16);
 		mBieuTuong->set_HCN(HCN(2, 2 + 14, 45, 45 + 16));
 
-		mKhungGiua = new HinhAnh("Resources_X3/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
+		mKhungGiua = new HinhAnh("Resources/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
 		mKhungGiua->set_ChieuRong(14);
 		mKhungGiua->set_ChieuCao(16);
 		mKhungGiua->set_HCN(HCN(2, 2 + 14, 9, 9 + 16));
 
-		mKhungTren = new HinhAnh("Resources_X3/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
+		mKhungTren = new HinhAnh("Resources/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
 		mKhungTren->set_ChieuRong(14);
 		mKhungTren->set_ChieuCao(4);
 		mKhungTren->set_HCN(HCN(2, 2 + 14, 3, 3 + 4));
 
-		mMau = new HinhAnh("Resources_X3/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
+		mMau = new HinhAnh("Resources/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
 		mMau->set_ChieuRong(6);
 		mMau->set_ChieuCao(2);
 		mMau->set_HCN(HCN(6, 6 + 6, 41, 41 + 2));

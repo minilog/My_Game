@@ -3,7 +3,7 @@
 
 GameDebugDraw::GameDebugDraw()
 {
-	mSpriteHandler = ToanCauGame::get_XuLyHinhAnh();
+	mSpriteHandler = ToanCauGame::mXuLyHinhAnh;
 	mSpriteHandler->GetDevice(&mddv);
 	D3DXCreateLine(mddv, &LineDraw);
 
@@ -42,7 +42,7 @@ void GameDebugDraw::DrawRect(RECT rect)
 
 	D3DXVECTOR3 trans = D3DXVECTOR3(0, 0, 0);
 
-	trans = D3DXVECTOR3(ToanCauGame::get_ChieuRong() / 2.0f, ToanCauGame::get_ChieuCao() / 2.0f, 0) -D3DXVECTOR3(Camera::get_ToaDo().x, Camera::get_ToaDo().y, 0.0f);
+	trans = D3DXVECTOR3(ToanCauGame::mChieuRong / 2.0f, ToanCauGame::mChieuCao / 2.0f, 0) -D3DXVECTOR3(Camera::get_ToaDo().x, Camera::get_ToaDo().y, 0.0f);
 
 	D3DXVECTOR2 lines[] = { D3DXVECTOR2(rect.left + trans.x, rect.top + trans.y),
 							D3DXVECTOR2(rect.right + trans.x, rect.top + trans.y),

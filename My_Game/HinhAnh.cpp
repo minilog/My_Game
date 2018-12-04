@@ -3,7 +3,6 @@
 
 HinhAnh::HinhAnh(const char * in_DuongDan, const D3DCOLOR &in_Color)
 {
-	mXuLyHinhAnh = ToanCauGame::get_XuLyHinhAnh();
 	D3DXGetImageInfoFromFileA(in_DuongDan, &mThongTinHinhAnh);
 	mToaDo = Vec2(0.0f, 0.0f);
 	mChieuRong = mThongTinHinhAnh.Width;
@@ -15,10 +14,9 @@ HinhAnh::HinhAnh(const char * in_DuongDan, const D3DCOLOR &in_Color)
 	mGocXoayHinh = 0.0f;
 	mDoDoi = Vec2(0.0f, 0.0f);
 
-	LPDIRECT3DDEVICE9 lThietBi;
-	mXuLyHinhAnh->GetDevice(&lThietBi);
+	//mXuLyHinhAnh->GetDevice(&lThietBi);
 	D3DXCreateTextureFromFileExA(
-		lThietBi,
+		ToanCauGame::mThietBi,
 		in_DuongDan,
 		mThongTinHinhAnh.Width,
 		mThongTinHinhAnh.Height,
@@ -59,8 +57,8 @@ void HinhAnh::Ve(const D3DCOLOR& in_SubColor)
 		&lDoDoi);
 	D3DXMATRIX lMaTranCu;
 
-	mXuLyHinhAnh->GetTransform(&lMaTranCu);
-	mXuLyHinhAnh->SetTransform(&mMaTran);
+	ToanCauGame::mXuLyHinhAnh->GetTransform(&lMaTranCu);
+	ToanCauGame::mXuLyHinhAnh->SetTransform(&mMaTran);
 
 	RECT lHCN;
 	lHCN.left = long(mHCN.Trai);
@@ -70,7 +68,7 @@ void HinhAnh::Ve(const D3DCOLOR& in_SubColor)
 	D3DXVECTOR3 lTrungTam = D3DXVECTOR3(float(mChieuRong) / 2.0f, float(mChieuCao) / 2.0f, float(0));
 	D3DXVECTOR3 lToaDo = D3DXVECTOR3(float((int)mToaDo.x), float((int)mToaDo.y), 0.0f);
 
-	mXuLyHinhAnh->Draw(
+	ToanCauGame::mXuLyHinhAnh->Draw(
 		mKetCauHinhAnh,
 		&lHCN,
 		&lTrungTam,
@@ -78,7 +76,7 @@ void HinhAnh::Ve(const D3DCOLOR& in_SubColor)
 		in_SubColor); // những pixel nào có màu trắng		
 											// thì sẽ tô màu này lên
 
-	mXuLyHinhAnh->SetTransform(&lMaTranCu); // thiết lập lại Ma Trận Cũ để Xử Lý Hình Ảnh chỉ áp dụng Transform với class này
+	ToanCauGame::mXuLyHinhAnh->SetTransform(&lMaTranCu); // thiết lập lại Ma Trận Cũ để Xử Lý Hình Ảnh chỉ áp dụng Transform với class này
 }
 
 

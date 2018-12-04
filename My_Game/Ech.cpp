@@ -145,7 +145,7 @@ void Ech::Ve(const Vec2 & in_DoDoi)
 {
 	if (mTGDem_HieuUngNoTung <= mTG_HieuUngNoTung)
 	{
-		mHH_HieuUngNoTung->Ve(DS_HinhAnh::get_TH()->DanNo1_png, false, mToaDo_HieuUngNoTung, in_DoDoi);
+		mHH_HieuUngNoTung->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, mToaDo_HieuUngNoTung, in_DoDoi);
 	}
 
 	// nếu Ếch đã bị phá hủy thì bỏ qua

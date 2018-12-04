@@ -42,10 +42,13 @@ private:
 	XacUop *mXacUop;
 	DanNo1 *mDanNo1;
 	XMan *mXMan;
-	std::vector<DoiTuong*> mDS_DoiTuongDuocXetTrongQuadTree;
+	std::vector<DanLv*> mDS_DanLv; // ĐẠN được lấy từ XMAN
+
+	std::vector<DoiTuong*> mDS_DoiTuong;
+	// chia nhỏ các đối tượng, đưa vào 2 DS bên dưới
 	std::vector<DoiTuong*> mDS_DoiTuongTinh;
-	std::vector<DanLv*> mDS_DanLv;
-	//std::vector<DoiTuong*> mDS_Ech;
+	std::vector<DoiTuong*> mDS_Ech;
+	// con ếch có các viên đạn ko nằm trong QuadTree, nên để vào Static
 
 	ThanhMau *mThanhMauXMan;
 	//HinhAnh *mTest;
@@ -58,37 +61,34 @@ private:
 	RECT fRectangle;
 	std::string message;
 
+	
 	//HoatHinh *mHoatHinhTest;
 
 public:
 	void DrawTextDebug()
 	{
-		int x = int(mXMan->get_ToaDo().x);
-		int y = int(mXMan->get_ToaDo().y);
-		message = "XMan.X = ";
-		message.append(std::to_string(x));
-		message.append("\n");
-		message.append("XMan.Y = ");
-		message.append(std::to_string(y));
-		message.append("\nLEFT = ");
-		message.append(std::to_string((int)Camera::get_ToaDo().x - (int)Camera::get_ChieuRong() / 2));
-		message.append("\nTOP = ");
-		message.append(std::to_string((int)Camera::get_ToaDo().y - (int)Camera::get_ChieuCao() / 2));
+		//int x = int(mXMan->get_ToaDo().x);
+		//int y = int(mXMan->get_ToaDo().y);
+		//message = "XMan.X = ";
+		//message.append(std::to_string(x));
+		//message.append("\n");
+		//message.append("XMan.Y = ");
+		//message.append(std::to_string(y));
+		//message.append("\nLEFT = ");
+		//message.append(std::to_string((int)Camera::get_ToaDo().x - (int)Camera::get_ChieuRong() / 2));
+		//message.append("\nTOP = ");
+		//message.append(std::to_string((int)Camera::get_ToaDo().y - (int)Camera::get_ChieuCao() / 2));
 
-		if (font)
-		{
-			font->DrawTextA(NULL, message.c_str(), -1, &fRectangle, DT_LEFT, D3DCOLOR_XRGB(255, 25, 25));
-		}
+		//if (font)
+		//{
+		//	font->DrawTextA(NULL, message.c_str(), -1, &fRectangle, DT_LEFT, D3DCOLOR_XRGB(255, 25, 25));
+		//}
 	}
 
 // SUB-FUNCTION
 private:
 	void TaoBanDoVaCamera();
 	void TaoDanhSachDoiTuongVaQuai();
-	void CapNhatDanhSachDoiTuong(float in_tg);
-	void VeDanhSachDoiTuong(const Vec2& in_DoDoi);
-	void DieuChinhCamera();
-	void XuLyVaChamChung();
 
 };
 

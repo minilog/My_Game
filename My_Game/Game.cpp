@@ -58,15 +58,14 @@ void Game::CapNhat(float in_tg)
 
 void Game::Ve()
 {
-	auto lThietBi = ToanCauGame::get_ThietBi();
 	auto lManGame = QuanLyManGame::get_ManGame();
-	lThietBi->Clear(0, NULL, D3DCLEAR_TARGET, QuanLyManGame::get_ManGame()->get_MauNen(), 0.0f, 0);
+	ToanCauGame::mThietBi->Clear(0, NULL, D3DCLEAR_TARGET, QuanLyManGame::get_ManGame()->get_MauNen(), 0.0f, 0);
 
 	{
-		lThietBi->BeginScene();
+		ToanCauGame::mThietBi->BeginScene();
 
 		// bắt đầu vẽ
-		ToanCauGame::get_XuLyHinhAnh()->Begin(D3DXSPRITE_ALPHABLEND);
+		ToanCauGame::mXuLyHinhAnh->Begin(D3DXSPRITE_ALPHABLEND);
 
 		// vẽ ở đây
 
@@ -74,14 +73,14 @@ void Game::Ve()
 
 
 		// kết thúc vẽ
-		ToanCauGame::get_XuLyHinhAnh()->End();
+		ToanCauGame::mXuLyHinhAnh->End();
 
 		((Man1*)lManGame)->DrawQuadTree(((Man1*)lManGame)->mQuadTree);
 		((Man1*)lManGame)->DrawCollidable();
 		((Man1*)lManGame)->DrawTextDebug();
 
-		lThietBi->EndScene();
+		ToanCauGame::mThietBi->EndScene();
 	}
 
-	lThietBi->Present(0, 0, 0, 0);
+	ToanCauGame::mThietBi->Present(0, 0, 0, 0);
 }
