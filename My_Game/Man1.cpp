@@ -65,6 +65,23 @@ void Man1::TaiDuLieu()
 
 void Man1::CapNhat(float in_tg)
 {
+	mDS_DoiTuongTinh.clear();
+	// lấy đối tượng tĩnh trong các QuadTree - so với với Camera
+	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuongTinh, Camera::get_HCNGioiHan());
+	
+	//mDS_Ech.clear();
+	//for (int i = 0; i < mDS_DoiTuongDuocXetTrongQuadTree.size(); i++)
+	//{
+	//	if (mDS_DoiTuongDuocXetTrongQuadTree[i]->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
+	//	{
+	//		mDS_DoiTuongTinh.push_back(mDS_DoiTuongDuocXetTrongQuadTree[i]);
+	//	}
+	//	//else
+	//	//{
+	//	//	mDS_Ech.push_back(mDS_DoiTuongDuocXetTrongQuadTree[i]);
+	//	//}
+	//}
+
 	mXacUop->CapNhat(in_tg, mXMan);
 	mDanNo1->CapNhat(in_tg);
 
@@ -162,12 +179,14 @@ void Man1::TaoDanhSachDoiTuongVaQuai()
 				mQuadTree->ThemDoiTuong(lDoiTuongTinh);
 			}
 
-			if (lNhomObject->GetName() == "Ech")
-			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+			//if (lNhomObject->GetName() == "Ech")
+			//{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
-				mDS_Ech.push_back(new Ech(lToaDoDoiTuong, Vec2(),
-					lObject->GetWidth(), lObject->GetHeight()));
-			}
+			//	Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(),
+			//		lObject->GetWidth(), lObject->GetHeight());
+
+			//	mQuadTree->ThemDoiTuong(lEch);
+			//}
 
 			if (lNhomObject->GetName() == "XacUop")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
@@ -187,10 +206,10 @@ void Man1::CapNhatDanhSachDoiTuong(float in_tg)
 		mDS_DanLv[i]->CapNhat(in_tg);
 	}
 
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		mDS_Ech[i]->CapNhat(in_tg, mXMan);
-	}
+	//for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	//{
+	//	mDS_Ech[i]->CapNhat(in_tg, mXMan);
+	//}
 }
 
 void Man1::VeDanhSachDoiTuong(const Vec2 & in_DoDoi)
@@ -200,10 +219,10 @@ void Man1::VeDanhSachDoiTuong(const Vec2 & in_DoDoi)
 		mDS_DanLv[i]->Ve(in_DoDoi);
 	}
 
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		mDS_Ech[i]->Ve(in_DoDoi);
-	}
+	//for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	//{
+	//	mDS_Ech[i]->Ve(in_DoDoi);
+	//}
 }
 
 void Man1::DieuChinhCamera()
@@ -231,35 +250,30 @@ void Man1::XuLyVaChamChung()
 {
 	// chỉ kiểm tra ĐK ở ĐỐI TƯỢNG CONST THAM SỐ
 
-	mDS_DoiTuongTinhXetVaCham.clear();
-
-	// lấy đối tượng tĩnh trong các QuadTree - so với với Camera
-	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuongTinhXetVaCham, Camera::get_HCNGioiHan());
-
 	// các đối tượng va chạm ĐỐI TƯỢNG TĨNH
-	for (int i = 0; i < (int)mDS_DoiTuongTinhXetVaCham.size(); i++)
+	for (int i = 0; i < (int)mDS_DoiTuongTinh.size(); i++)
 	{
 		// nếu đối tượng tĩnh ko có trong Camera thì bỏ qua
-		if (!VaChamGame::get_DaVaCham(mDS_DoiTuongTinhXetVaCham[i]->get_HCNGioiHan(), Camera::get_HCNGioiHan()))
+		if (!VaChamGame::get_DaVaCham(mDS_DoiTuongTinh[i]->get_HCNGioiHan(), Camera::get_HCNGioiHan()))
 		{
 			continue;
 		}
 
 		// xử lý va chạm XMAN-ĐỐI TƯỢNG TĨNH 
-		mXMan->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
+		mXMan->XuLyVaCham(mDS_DoiTuongTinh[i]);
 
 		// va chạm với đạn XMAN
 		for (int j = 0; j < (int)mDS_DanLv.size(); j++)
 		{
-			mDS_DanLv[j]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
+			mDS_DanLv[j]->XuLyVaCham(mDS_DoiTuongTinh[i]);
 		}
 
-		for (int j = 0; j < (int)mDS_Ech.size(); j++)
-		{
-			mDS_Ech[j]->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
-		}
+		//for (int j = 0; j < (int)mDS_Ech.size(); j++)
+		//{
+		//	mDS_Ech[j]->XuLyVaCham(mDS_DoiTuongTinh[i]);
+		//}
 
-		mDanNo1->XuLyVaCham(mDS_DoiTuongTinhXetVaCham[i]);
+		mDanNo1->XuLyVaCham(mDS_DoiTuongTinh[i]);
 	}
 
 
@@ -272,27 +286,27 @@ void Man1::XuLyVaChamChung()
 		{
 			continue;
 		}
-		for (int j = 0; j < (int)mDS_Ech.size(); j++)
-		{
-			mDS_Ech[j]->XuLyVaCham(mDS_DanLv[i]);
-		}
+		//for (int j = 0; j < (int)mDS_Ech.size(); j++)
+		//{
+		//	mDS_Ech[j]->XuLyVaCham(mDS_DanLv[i]);
+		//}
 	}
 
 	// các đối tượng va chạm với Ếch
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		// nếu Ếch đã bị phá hoặc đang tan biến thì bỏ qua
-		if (mDS_Ech[i]->get_TrangThai() == eTT_Ech_BienMat ||
-			mDS_Ech[i]->get_TrangThai() == eTT_Ech_DangTanBien)
-		{
-			continue;
-		}
-		for (int j = 0; j < (int)mDS_DanLv.size(); j++)
-		{
-			mDS_DanLv[j]->XuLyVaCham(mDS_Ech[i]);
-		}
-		mXMan->XuLyVaCham(mDS_Ech[i]);
-	}
+	//for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	//{
+	//	// nếu Ếch đã bị phá hoặc đang tan biến thì bỏ qua
+	//	if (mDS_Ech[i]->get_TrangThai() == eTT_Ech_BienMat ||
+	//		mDS_Ech[i]->get_TrangThai() == eTT_Ech_DangTanBien)
+	//	{
+	//		continue;
+	//	}
+	//	for (int j = 0; j < (int)mDS_DanLv.size(); j++)
+	//	{
+	//		mDS_DanLv[j]->XuLyVaCham(mDS_Ech[i]);
+	//	}
+	//	mXMan->XuLyVaCham(mDS_Ech[i]);
+	//}
 }
 
 
@@ -321,16 +335,16 @@ void Man1::DrawQuadTree(QuadTree * in_QuadTree)
 
 void Man1::DrawCollidable()
 {
-	for (auto child : mDS_DoiTuongTinhXetVaCham)
+	for (auto child : mDS_DoiTuongTinh)
 	{
 		mGameDebugDraw->DrawRect(child->get_RECT());
 	}
 	mGameDebugDraw->DrawRect(mXMan->get_RECT());
 
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		mGameDebugDraw->DrawRect(mDS_Ech[i]->get_RECT());
-	}
+	//for (int i = 0; i < (int)mDS_Ech.size(); i++)
+	//{
+	//	mGameDebugDraw->DrawRect(mDS_Ech[i]->get_RECT());
+	//}
 
 	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
 	{

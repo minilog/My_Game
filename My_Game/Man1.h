@@ -42,9 +42,10 @@ private:
 	XacUop *mXacUop;
 	DanNo1 *mDanNo1;
 	XMan *mXMan;
-	std::vector<DoiTuong*> mDS_DoiTuongTinhXetVaCham;
+	std::vector<DoiTuong*> mDS_DoiTuongDuocXetTrongQuadTree;
+	std::vector<DoiTuong*> mDS_DoiTuongTinh;
 	std::vector<DanLv*> mDS_DanLv;
-	std::vector<Ech*> mDS_Ech;
+	//std::vector<DoiTuong*> mDS_Ech;
 
 	ThanhMau *mThanhMauXMan;
 	//HinhAnh *mTest;
