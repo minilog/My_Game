@@ -1,11 +1,8 @@
 ﻿#pragma once
+
 #include "DoiTuong.h"
-#include <d3d9.h>
-#include <d3dx9.h>
-#include "DoiTuong.h"
-#include "KieuDuLieu.h"
 #include "HoatHinh.h"
-#include <map>
+#include "DS_HinhAnh.h"
 
 class HieuUngBatRa :
 	public DoiTuong
@@ -42,9 +39,11 @@ public:
 private:
 	HoatHinh *mHoatHinh;
 
-	float mTG_TonTai;
+	const float mTG_TonTai = 0.12f;
 	float mTG_DemTonTai = 0.0f;
 	bool mBienMat = true;
 	bool mLatHinh = false;
+
+
 };
 

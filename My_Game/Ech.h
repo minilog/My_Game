@@ -5,6 +5,7 @@
 #include "VaChamGame.h"
 #include "Camera.h"
 #include "Bui.h"
+#include "DS_HinhAnh.h"
 
 class Ech : public DoiTuong
 {
@@ -26,6 +27,7 @@ public:
 private:
 	//DanNo1 *mDanNo1; // thêm vào 1 viên đạn nổ
 
+	Vec2 mToaDo_HieuUngNoTung;
 	Vec2 mToaDoXuatHien;
 
 	const int mMaxHP = 4;
@@ -47,7 +49,6 @@ private:
 		*mHH_HaNhamBan2,
 		*mHH_DangTanBien;
 	HoatHinh *mHH_HienTai;	
-	HoatHinh *mHH_Shining;
 	HoatHinh *mHH_HieuUngNoTung;
 
 	const float mTG_HieuUngNoTung = 0.08f * 6;
@@ -99,7 +100,6 @@ private:
 
 	bool mLatHinh = false;
 
-	eTrangThai mTrangThai;
 
 // SUB-FUNCTION
 private:

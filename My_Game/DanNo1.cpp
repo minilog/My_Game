@@ -1,7 +1,6 @@
 #include "DanNo1.h"
 
-HinhAnh *DanNo1::HieuUngPhatNo_png = new HinhAnh("Resources/Enemies/HieuUngPhatNo.png");
-HinhAnh *DanNo1::DanNo1_png = new HinhAnh("Resources/Enemies/DanNo1.png", D3DCOLOR_XRGB(255, 0, 255));
+
 
 void DanNo1::LoadThongTinHoatHinh()
 {

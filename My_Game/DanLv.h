@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "DoiTuong.h"
+#include "DS_HinhAnh.h"
 
 class DanLv :
 	public DoiTuong

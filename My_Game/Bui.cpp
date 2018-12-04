@@ -1,7 +1,6 @@
 ﻿#include "Bui.h"
 
-// NƠI CHỨA HÌNH ẢNH
-HinhAnh* Bui::Bui_png = new HinhAnh("Resources/HieuUng/Bui.png", D3DCOLOR_XRGB(0, 128, 128));
+
 
 Bui::Bui(const Vec2 & in_ToaDo, const Vec2& in_VanToc)
 	:
@@ -46,7 +45,7 @@ void Bui::Ve(const Vec2 & in_DoDoi)
 		return;
 	}
 
-	mHoatHinh->Ve(Bui::Bui_png, false, mToaDo, in_DoDoi);
+	mHoatHinh->Ve(DS_HinhAnh::get_TH()->Bui_png, false, mToaDo, in_DoDoi);
 }
 
 void Bui::Remake()

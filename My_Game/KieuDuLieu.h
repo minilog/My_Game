@@ -119,10 +119,34 @@ enum eTrangThai
 	eTT_XMan_Luot,
 	eTT_XMan_BatRa,
 	eTT_XMan_HiSinh,
+	eTT_XMan_DinhSatThuong,
 
 	eTT_DanNo1_BienMat,
 	eTT_DanNo1_TonTai,
 
-	eTT_Ech_BienMat
+	eTT_Ech_BienMat,
+	eTT_Ech_DangTanBien,
+	eTT_Ech_ChuanBiNhay,
+	eTT_Ech_Nhay,
+	eTT_Ech_Roi,
+	eTT_Ech_TiepDat,
+	eTT_Ech_NhamBan1,
+	eTT_Ech_HaNhamBan1,
+	eTT_Ech_BanDan1,
+	eTT_Ech_NhamBan2,
+	eTT_Ech_HaNhamBan2,
+	eTT_Ech_BanDan2,
+	eTT_Ech_NhamBan3,
+	eTT_Ech_HaNhamBan3,
+	eTT_Ech_BanDan3,
+
+	eTT_XacUop_DungIm,
+	eTT_XacUop_TanCong,
+	eTT_XacUop_DiChuyen,
+
+	eTT_Dan_BienMat,
+	eTT_Dan_TonTai,
+	eTT_Dan_DangTanBien,
+	eTT_Dan_BanRa
 };
 

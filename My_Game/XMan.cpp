@@ -4,6 +4,8 @@
 #include "GameLog.h"
 #include "Camera.h"
 
+
+
 XMan::XMan(const Vec2& in_ToaDo)
 	:DoiTuong(in_ToaDo, Vec2(), 18, 32)
 {
@@ -11,7 +13,7 @@ XMan::XMan(const Vec2& in_ToaDo)
 
 	for (int i = 0; i < mSoLuongBui; i++)
 	{
-		mDS_BuiKhiLuot[i] = new BuiKhiLuot(Vec2());
+		mDS_BuiKhiLuot[i] = new Bui(Vec2());
 	}
 
 	mHieuUngLuot = new HieuUngLuot();
@@ -25,11 +27,10 @@ XMan::XMan(const Vec2& in_ToaDo)
 	mDanLv2 = new DanLv2();
 	mDanLv3 = new DanLv3();
 
-	LoadHinhAnhVao();
+	LoadThongTinHoatHinh();
 
 	Roi();
 }
-
 
 XMan::~XMan()
 {
@@ -198,43 +199,43 @@ void XMan::CapNhat(float in_tg)
 
 	switch (mTrangThai)
 	{
-	case eTT_DungIm:
+	case eTT_XMan_DungIm:
 		CapNhat_DungIm();
 		break;
 
-	case eTT_ChuanBiChay:
+	case eTT_XMan_ChuanBiChay:
 		CapNhat_ChuanBiChay(in_tg);
 		break;
 
-	case eTT_Chay:
+	case eTT_XMan_Chay:
 		CapNhat_Chay();
 		break;
 
-	case eTT_TiepDat:
+	case eTT_XMan_TiepDat:
 		CapNhat_TiepDat(in_tg);
 		break;
 
-	case eTT_Nhay:
+	case eTT_XMan_Nhay:
 		CapNhat_Nhay(in_tg);
 		break;
 
-	case eTT_Roi:
+	case eTT_XMan_Roi:
 		CapNhat_Roi(in_tg);
 		break;
 
-	case eTT_Luot:
+	case eTT_XMan_Luot:
 		CapNhat_Luot(in_tg);
 		break;
 
-	case eTT_BatRa:
+	case eTT_XMan_BatRa:
 		CapNhat_BatRa(in_tg);
 		break;
 
-	case eTT_Truot:
+	case eTT_XMan_Truot:
 		CapNhat_Truot(in_tg);
 		break;
 
-	case eTT_DinhSatThuong:
+	case eTT_XMan_DinhSatThuong:
 		CapNhat_DinhSatThuong(in_tg);
 		break;
 
@@ -252,7 +253,7 @@ void XMan::CapNhat(float in_tg)
 	}
 	mHieuUngLuot->CapNhat(in_tg);
 
-	if (mTrangThai != eTT_Luot)
+	if (mTrangThai != eTT_XMan_Luot)
 	{
 		mHieuUngLuot->BienMat();
 	}
@@ -262,23 +263,21 @@ void XMan::CapNhat(float in_tg)
 
 void XMan::Ve(const Vec2 & in_DoDoi)
 {
-	mHH_HienTai->set_LatTheoChieuNgang(mLatHinh);
-	mHH_HienTai->set_ToaDo(mToaDo);
-	mHH_HienTai->set_DoDoi(in_DoDoi);
+	mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XMan_png, mLatHinh, mToaDo, in_DoDoi);
 	if (mTGDem_KoNhanST < mTG_KoNhanST)
 	{
 		if ((mTGDem_NhapNhay < 0.025f))
 		{
-			mHH_HienTai->Ve(D3DCOLOR_ARGB(125, 255, 255, 255));
+			mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XMan_png, mLatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(125, 255, 255, 255));
 		}
 		else
 		{
-			mHH_HienTai->Ve(D3DCOLOR_ARGB(160, 255, 255, 255));
+			mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XMan_png, mLatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(160, 255, 255, 255));
 		}
 	}
 	else
 	{
-		mHH_HienTai->Ve();
+		mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XMan_png, mLatHinh, mToaDo, in_DoDoi);
 	}
 
 	if (mIsShining)
@@ -296,15 +295,11 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 
 	if (mTG_DemTichDan > mTG_TichDanLv2 * 2.5f)
 	{
-		mHH_HieuUngNapDanLv3->set_ToaDo(mToaDo);
-		mHH_HieuUngNapDanLv3->set_DoDoi(in_DoDoi);
-		mHH_HieuUngNapDanLv3->Ve();
+		mHH_HieuUngNapDanLv3->Ve(DS_HinhAnh::get_TH()->HieuUngNapDanLv3_png, false, mToaDo, in_DoDoi);
 	}
 	else if (mTG_DemTichDan > mTG_TichDanLv2)
 	{
-		mHH_HieuUngNapDanLv2->set_ToaDo(mToaDo);
-		mHH_HieuUngNapDanLv2->set_DoDoi(in_DoDoi);
-		mHH_HieuUngNapDanLv2->Ve();
+		mHH_HieuUngNapDanLv2->Ve(DS_HinhAnh::get_TH()->HieuUngNapDanLv2_png, false, mToaDo, in_DoDoi);
 	}
 
 }
@@ -322,18 +317,18 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			{
 			case ePVC_Duoi:
 				mToaDo.y -= lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
-				if (mTrangThai == eTT_Roi)
+				if (mTrangThai == eTT_XMan_Roi)
 				{
 					TiepDat();
 				}
-				if (mTrangThai == eTT_Truot)
+				if (mTrangThai == eTT_XMan_Truot)
 				{
 					TiepDat();
 				}
 				break;
 			case ePVC_Tren:
 				mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
-				if (mTrangThai == eTT_Nhay || mTrangThai == eTT_BatRa)
+				if (mTrangThai == eTT_XMan_Nhay || mTrangThai == eTT_XMan_BatRa)
 				{
 					Roi();
 				}
@@ -347,7 +342,7 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 				mCoChuongNgaiVatTrai = true;
 
 				if (mLatHinh &&
-					(mTrangThai == eTT_Chay || mTrangThai == eTT_ChuanBiChay ) )
+					(mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay ) )
 				{
 					DungIm();
 				}
@@ -360,7 +355,7 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 				mCoChuongNgaiVatPhai = true;
 
 				if (!mLatHinh &&
-					(mTrangThai == eTT_Chay || mTrangThai == eTT_ChuanBiChay))
+					(mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay))
 				{
 					DungIm();
 				}
@@ -375,7 +370,7 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
 	{
-		if (mTrangThai == eTT_DinhSatThuong)
+		if (mTrangThai == eTT_XMan_DinhSatThuong)
 		{
 			return;
 		}
@@ -427,35 +422,35 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 
 	switch (mTrangThai)
 	{
-	case eTT_DungIm:
+	case eTT_XMan_DungIm:
 		XuLyBanPhim_DungIm(in_Keys);
 		break;
 
-	case eTT_Chay:
+	case eTT_XMan_Chay:
 		XuLyBanPhim_Chay(in_Keys);
 		break;
 
-	case eTT_Roi:
+	case eTT_XMan_Roi:
 		XuLyBanPhim_Roi(in_Keys);
 		break;
 
-	case eTT_TiepDat:
+	case eTT_XMan_TiepDat:
 		XuLyBanPhim_TiepDat(in_Keys);
 		break;
 
-	case eTT_ChuanBiChay:
+	case eTT_XMan_ChuanBiChay:
 		XuLyBanPhim_ChuanBiChay(in_Keys);
 		break;
 
-	case eTT_Nhay:
+	case eTT_XMan_Nhay:
 		XuLyBanPhim_Nhay(in_Keys);
 		break;
 
-	case eTT_Luot:
+	case eTT_XMan_Luot:
 		XuLyBanPhim_Luot(in_Keys);
 		break;
 
-	case eTT_Truot:
+	case eTT_XMan_Truot:
 		XuLyBanPhim_Truot(in_Keys);
 		break;
 
@@ -466,184 +461,180 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 	XuLyBanPhim_BanDan(in_Keys);
 }
 
-void XMan::LoadHinhAnhVao()
+void XMan::LoadThongTinHoatHinh()
 {
 	std::vector<ThongTinFrame> lDSTTFrame;
 
 #pragma region DUNG_IM
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(323.0f, 17.0f), 30, 34, 3.5f));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(357.0f, 17.0f), 30, 34, 0.25f));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(391.0f, 17.0f), 30, 34, 0.25f));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(357.0f, 17.0f), 30, 34, 0.25f));
-	mHH_DungIm = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(323, 323 + 30, 17, 17 + 34), 3.5f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(357, 357 + 30, 17, 17 + 34), 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(391, 391 + 30, 17, 17 + 34), 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(357, 357 + 30, 17, 17 + 34), 0.25f));
+	mHH_DungIm = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 34, 0.15f, HCN(133, 163, 66, 100)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 34, 0.15f, HCN(168, 197, 66, 100)));
-	mHH_DungIm_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(133, 163, 66, 100), 0.15f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(168, 197, 66, 100), 0.15f));
+	mHH_DungIm_Ban = new HoatHinh(lDSTTFrame);
 #pragma endregion
 
 #pragma region CHUAN_BI_CHAY
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(106.0f, 106.0f), 30, 36, 999.9f));
-	mHH_ChuanBiChay = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(30, 36, HCN(106, 106 + 30, 106, 106 + 36)));
+	mHH_ChuanBiChay = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(61.0f, 192.0f), 30, 34, 999.9f, HCN(61, 96, 192, 226)));
-	mHH_ChuanBiChay_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(30, 34,HCN(61, 96, 192, 226)));
+	mHH_ChuanBiChay_Ban = new HoatHinh(lDSTTFrame);
 #pragma endregion
 
 #pragma region CHAY
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 18, 38, 0.05f, HCN(137, 157, 105, 141))); //1 
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 26, 38, 0.05f, HCN(157, 181, 105, 141))); //2
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 38, 0.05f, HCN(181, 212, 105, 141))); //3 
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 36, 38, 0.05f, HCN(213, 247, 105, 141))); //4
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 38, 0.05f, HCN(247, 275, 105, 143))); //5
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 22, 38, 0.05f, HCN(276, 298, 105, 141))); //6
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 26, 38, 0.05f, HCN(298, 326, 105, 141))); //7
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 26, 38, 0.05f, HCN(327, 357, 105, 141))); //8
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 34, 38, 0.05f, HCN(357, 391, 105, 141))); //9
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 38, 0.05f, HCN(391, 421, 105, 141))); //10
-	mHH_Chay = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame( 18, 38, HCN(137, 157, 105, 141), 0.05f)); //1 
+	lDSTTFrame.push_back(ThongTinFrame(26, 38, HCN(157, 181, 105, 141), 0.05f)); //2
+	lDSTTFrame.push_back(ThongTinFrame(32, 38, HCN(181, 212, 105, 141), 0.05f)); //3 
+	lDSTTFrame.push_back(ThongTinFrame(36, 38, HCN(213, 247, 105, 141), 0.05f)); //4
+	lDSTTFrame.push_back(ThongTinFrame(28, 38, HCN(247, 275, 105, 143), 0.05f)); //5
+	lDSTTFrame.push_back(ThongTinFrame(22, 38, HCN(276, 298, 105, 141), 0.05f)); //6
+	lDSTTFrame.push_back(ThongTinFrame(26, 38, HCN(298, 326, 105, 141), 0.05f)); //7
+	lDSTTFrame.push_back(ThongTinFrame(26, 38, HCN(327, 357, 105, 141), 0.05f)); //8
+	lDSTTFrame.push_back(ThongTinFrame(34, 38, HCN(357, 391, 105, 141), 0.05f)); //9
+	lDSTTFrame.push_back(ThongTinFrame(30, 38, HCN(391, 421, 105, 141), 0.05f)); //10
+	mHH_Chay = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 18, 34, 0.05f, HCN(97, 126, 193, 227))); //1 
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 24, 34, 0.05f, HCN(126, 158, 192, 227))); //2
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 34, 0.05f, HCN(158, 193, 193, 227))); //3 
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 36, 32, 0.05f, HCN(194, 232, 194, 227))); //4
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 32, 0.05f, HCN(233, 267, 194, 227))); //5
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 22, 34, 0.05f, HCN(267, 298, 193, 227))); //6
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 26, 34, 0.05f, HCN(298, 331, 192, 227))); //7
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 34, 0.05f, HCN(331, 366, 193, 227))); //8
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 34, 32, 0.05f, HCN(367, 404, 194, 227))); //9
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 32, 0.05f, HCN(404, 439, 194, 227))); //10
-	mHH_Chay_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(18, 34, HCN(97, 126, 193, 227), 0.05f)); //1 
+	lDSTTFrame.push_back(ThongTinFrame(24, 34, HCN(126, 158, 192, 227), 0.05f)); //2
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(158, 193, 193, 227), 0.05f)); //3 
+	lDSTTFrame.push_back(ThongTinFrame(36, 32, HCN(194, 232, 194, 227), 0.05f)); //4
+	lDSTTFrame.push_back(ThongTinFrame(28, 32, HCN(233, 267, 194, 227), 0.05f)); //5
+	lDSTTFrame.push_back(ThongTinFrame(22, 34, HCN(267, 298, 193, 227), 0.05f)); //6
+	lDSTTFrame.push_back(ThongTinFrame(26, 34, HCN(298, 331, 192, 227), 0.05f)); //7
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(331, 366, 193, 227), 0.05f)); //8
+	lDSTTFrame.push_back(ThongTinFrame(34, 32, HCN(367, 404, 194, 227), 0.05f)); //9
+	lDSTTFrame.push_back(ThongTinFrame(30, 32, HCN(404, 439, 194, 227), 0.05f)); //10
+	mHH_Chay_Ban = new HoatHinh(lDSTTFrame);
 #pragma endregion
 
 #pragma region NHAY
 	lDSTTFrame.clear();
 	//lDSTTFrame.push_back(ThongTinFrame(Vec2(202.0f, 63.0f), 24, 36, 0.04f, HCN(202, 226, 63, 101)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(230.0f, 59.0f), 12, 38, 0.08f /*0.9f*/, HCN(230, 246, 59, 101)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(252.0f, 52.0f), 16, 48, 999.9f, HCN(252, 272, 52, 100)));
-	mHH_Nhay = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(12, 38, HCN(230, 246, 59, 101), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(16, 48, HCN(252, 272, 52, 100), 99.9f));
+	mHH_Nhay = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 10, 38, 0.08f/*0.9f*/, HCN(97, 121, 148, 189)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 16, 44, 999.9f, HCN(121, 148, 143, 189)));
-	mHH_Nhay_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(10, 38, HCN(97, 121, 148, 189), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(16, 44, HCN(121, 148, 143, 189), 99.9f));
+	mHH_Nhay_Ban = new HoatHinh(lDSTTFrame);
 #pragma endregion
 
 #pragma region ROI
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 26, 36, 0.08f, HCN(274, 298, 59, 101)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 36, 999.9f, HCN(299, 327, 58, 100)));
-	mHH_Roi = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(26, 36, HCN(274, 298, 59, 101), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 36, HCN(299, 327, 58, 100), 99.9f));
+	mHH_Roi = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 26, 36, 0.08f, HCN(149, 180, 148, 189)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 24, 36, 999.0f, HCN(181, 212, 147, 189)));
-	mHH_Roi_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(26, 36, HCN(149, 180, 148, 189), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(24, 36, HCN(181, 212, 147, 189), 99.9f));
+	mHH_Roi_Ban = new HoatHinh(lDSTTFrame);
 #pragma endregion
 
 #pragma region TIEP_DAT
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(331.0f, 62.0f), 20, 32, 0.06f, HCN(331, 355, 62, 100)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(356.0f, 68.0f), 30, 30, 999.9f, HCN(356, 386, 68, 100)));
-	mHH_TiepDat = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(20, 32, HCN(331, 355, 62, 100), 0.06f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 30, HCN(356, 386, 68, 100), 99.9f));
+	mHH_TiepDat = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 20, 32, 0.06f, HCN(213, 243, 151, 189)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 30, 999.9f, HCN(243, 279, 157, 189)));
-	mHH_TiepDat_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(20, 32, HCN(213, 243, 151, 189), 0.06f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 30, HCN(243, 279, 157, 189), 99.9f));
+	mHH_TiepDat_Ban = new HoatHinh(lDSTTFrame);
 #pragma endregion
 
 #pragma region LUOT
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 36, 0.05f, HCN(285, 313, 154, 190)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 38, 999.9f, HCN(317, 361, 153, 189)));
-	mHH_Luot = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(28, 36, HCN(285, 313, 154, 190), 0.05f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 38, HCN(317, 361, 153, 189), 99.9f));
+	mHH_Luot = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 28, 0.05f, HCN(361, 399, 158, 189)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 18, 999.9f, HCN(404, 453, 163, 189)));
-	mHH_Luot_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(28, 28, HCN(361, 399, 158, 189), 0.05f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 18, HCN(404, 453, 163, 189), 99.9f));
+	mHH_Luot_Ban = new HoatHinh(lDSTTFrame);
 #pragma endregion
 
 #pragma region TRUOT
 	lDSTTFrame.clear();
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(115.0f, 526.0f), 28, 44, 0.11f));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(144.0f, 527.0f), 28, 48, 999.9f));
-	mHH_Truot = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(28, 48, HCN(144, 144 + 28, 527, 527 + 48)));
+	mHH_Truot = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	//lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 44, 0.11f, HCN(272, 304, 527, 570)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 36, 48, 999.9f, HCN(310, 342, 526, 568)));
-	mHH_Truot_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(36, 48, HCN(310, 342, 526, 568)));
+	mHH_Truot_Ban = new HoatHinh(lDSTTFrame);
 #pragma endregion
 
 #pragma region BAT_RA
 	lDSTTFrame.clear();
 	//lDSTTFrame.push_back(ThongTinFrame(Vec2(88.0f, 527.0f), 26, 42, 0.03f));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(177.0f, 530.0f), 30, 42, 0.05f));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(207.0f, 525.0f), 28, 50, 999.9f));
-	mHH_BatRa = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(30, 42, HCN(177, 177 + 30, 530, 530 + 42), 0.05f));
+	lDSTTFrame.push_back(ThongTinFrame(28, 50, HCN(207, 207 + 28, 525, 525 + 50), 99.9f));
+	mHH_BatRa = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 40, 0.06f, HCN(237, 268, 531, 569)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 40, 999.9f, HCN(379, 412, 529, 568)));
-	mHH_BatRa_Ban = new HoatHinh("Resources_X3/XMan/XMan.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(30, 40, HCN(237, 268, 531, 569), 0.05f));
+	lDSTTFrame.push_back(ThongTinFrame(28, 40, HCN(379, 412, 529, 568), 99.9f));
+	mHH_BatRa_Ban = new HoatHinh(lDSTTFrame);
 #pragma endregion
 
-	mAnimationShining = new HoatHinh("Resources_X3/XMan/XMan_1.png", lDSTTFrame, D3DCOLOR_XRGB(255, 255, 255));
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(115, 115 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(174, 174 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(227, 227 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(280, 280 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(330, 330 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(375, 375 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(431, 431 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(482, 482 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(533, 533 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(585, 585 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(647, 647 + 45, 0, 72), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 76, HCN(700, 700 + 45, 0, 72), 0.04f));
+	mHH_HieuUngNapDanLv2 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(115, 115 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(174, 174 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(227, 227 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(280, 280 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(330, 330 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(375, 375 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(431, 431 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(482, 482 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(533, 533 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(585, 585 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(647, 647 + 45, 0, 72)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 76, 0.04f, HCN(700, 700 + 45, 0, 72)));
-	mHH_HieuUngNapDanLv2 = new HoatHinh("Resources_X3/XMan/HieuUngNapDan.png", lDSTTFrame, D3DCOLOR_XRGB(0, 128, 128));
+	lDSTTFrame.push_back(ThongTinFrame(4,  50, HCN(23, 23 + 6, 12, 12 + 50), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(46, 46, HCN(60, 60 + 48, 15, 15 + 46), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 42, HCN(119, 119 + 44, 16, 16 + 42), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(38, 38, HCN(176, 176 + 40, 15, 15 + 38), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(36, 38, HCN(230, 230 + 38, 12, 12 + 46), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(34, 46, HCN(282, 282 + 36, 10, 10 + 46), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(34, 42, HCN(331, 331 + 34, 12, 12 + 44), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 40, HCN(376, 376 + 46, 12, 12 + 40), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(40, 38, HCN(433, 433 + 44, 15, 15 + 38), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(40, 46, HCN(484, 484 + 42, 15, 15 + 46), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(38, 44, HCN(536, 536 + 40, 17, 17 + 44), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 40, HCN(588, 588 + 46, 20, 20 + 40), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(42, 38, HCN(650, 650 + 44, 19, 19 + 38), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(36, 34, HCN(703, 703 + 38, 25, 25 + 34), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(34, 30, HCN(748, 748 + 36, 26, 26 + 30), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(32, 28, HCN(797, 797 + 34, 22, 22 + 28), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 12, HCN(846, 846 + 32, 32, 32 + 12), 0.04f));
+	lDSTTFrame.push_back(ThongTinFrame(40, 20, HCN(890, 890 + 30, 32, 32 + 20), 0.04f));
+	mHH_HieuUngNapDanLv3 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 4,  50, 0.04f, HCN(23, 23 + 6, 12, 12 + 50)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 46, 46, 0.04f, HCN(60, 60 + 48, 15, 15 + 46)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 42, 0.04f, HCN(119, 119 + 44, 16, 16 + 42)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 38, 0.04f, HCN(176, 176 + 40, 15, 15 + 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 36, 38, 0.04f, HCN(230, 230 + 38, 12, 12 + 46)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 34, 46, 0.04f, HCN(282, 282 + 36, 10, 10 + 46)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 34, 42, 0.04f, HCN(331, 331 + 34, 12, 12 + 44)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 40, 0.04f, HCN(376, 376 + 46, 12, 12 + 40)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 40, 38, 0.04f, HCN(433, 433 + 44, 15, 15 + 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 40, 46, 0.04f, HCN(484, 484 + 42, 15, 15 + 46)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 44, 0.04f, HCN(536, 536 + 40, 17, 17 + 44)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 40, 0.04f, HCN(588, 588 + 46, 20, 20 + 40)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 42, 38, 0.04f, HCN(650, 650 + 44, 19, 19 + 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 36, 34, 0.04f, HCN(703, 703 + 38, 25, 25 + 34)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 34, 30, 0.04f, HCN(748, 748 + 36, 26, 26 + 30)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 28, 0.04f, HCN(797, 797 + 34, 22, 22 + 28)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 12, 0.04f, HCN(846, 846 + 32, 32, 32 + 12)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 40, 20, 0.04f, HCN(890, 890 + 30, 32, 32 + 20)));
-	mHH_HieuUngNapDanLv3 = new HoatHinh("Resources_X3/XMan/_HieuUngNapDan.png", lDSTTFrame, D3DCOLOR_XRGB(0, 128, 128));
-
-	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 20, 36, 0.08f, HCN(15, 15 + 22, 13, 13 + 36)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 20, 36, 0.08f, HCN(40, 40 + 26, 13, 13 + 36)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 25, 52, 0.08f, HCN(68, 68 + 32, 4, 4 + 48)));
-	mHH_DinhSatThuong = new HoatHinh("Resources_X3/XMan/DinhSatThuong.png", lDSTTFrame, D3DCOLOR_XRGB(255, 255, 255));
+	lDSTTFrame.push_back(ThongTinFrame(20, 36, HCN(15 + 25, 15 + 22 + 25, 13 + 689, 13 + 36 + 689), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(20, 36, HCN(40 + 25, 40 + 26 + 25, 13 + 689, 13 + 36 + 689), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(25, 52, HCN(68 + 25, 68 + 32 + 25, 4 + 689, 4 + 48 + 689), 0.08f));
+	mHH_DinhSatThuong = new HoatHinh(lDSTTFrame);
 }
 
 void XMan::DungIm()
 {
-	mTrangThai = eTT_DungIm;
+	mTrangThai = eTT_XMan_DungIm;
 	if (!mBanDan)
 	{
 		mHH_HienTai = mHH_DungIm;
@@ -659,7 +650,7 @@ void XMan::DungIm()
 
 void XMan::ChuanBiChay()
 {
-	mTrangThai = eTT_ChuanBiChay;
+	mTrangThai = eTT_XMan_ChuanBiChay;
 	if (mBanDan)
 	{
 		mHH_HienTai = mHH_ChuanBiChay_Ban;
@@ -674,7 +665,7 @@ void XMan::ChuanBiChay()
 
 void XMan::Chay()
 {
-	mTrangThai = eTT_Chay;
+	mTrangThai = eTT_XMan_Chay;
 	if (!mBanDan)
 	{
 		mHH_HienTai = mHH_Chay;
@@ -689,7 +680,7 @@ void XMan::Chay()
 void XMan::Nhay()
 {
 	mVanToc.y = -mVanTocRoiToiDa;
-	mTrangThai = eTT_Nhay;
+	mTrangThai = eTT_XMan_Nhay;
 	if (!mBanDan)
 	{
 		mHH_HienTai = mHH_Nhay;
@@ -705,7 +696,7 @@ void XMan::Nhay()
 void XMan::Roi()
 {
 	mVanToc.y = 0;
-	mTrangThai = eTT_Roi;
+	mTrangThai = eTT_XMan_Roi;
 	if (!mBanDan)
 	{
 		mHH_HienTai = mHH_Roi;
@@ -720,7 +711,7 @@ void XMan::Roi()
 
 void XMan::TiepDat()
 {
-	mTrangThai = eTT_TiepDat;
+	mTrangThai = eTT_XMan_TiepDat;
 	if (!mBanDan)
 	{
 		mHH_HienTai = mHH_TiepDat;
@@ -736,7 +727,7 @@ void XMan::TiepDat()
 
 void XMan::Luot()
 {
-	mTrangThai = eTT_Luot;
+	mTrangThai = eTT_XMan_Luot;
 	if (!mBanDan)
 	{
 		mHH_HienTai = mHH_Luot;
@@ -768,7 +759,7 @@ void XMan::Luot()
 void XMan::Truot()
 {
 	mVanToc = Vec2(0.0f, 0.0f);
-	mTrangThai = eTT_Truot;
+	mTrangThai = eTT_XMan_Truot;
 	if (!mBanDan)
 	{
 		mHH_HienTai = mHH_Truot;
@@ -786,7 +777,7 @@ void XMan::Truot()
 void XMan::BatRa()
 {
 	mVanToc.y = -mVanTocRoiToiDa;
-	mTrangThai = eTT_BatRa;
+	mTrangThai = eTT_XMan_BatRa;
 	if (!mBanDan)
 	{
 		mHH_HienTai = mHH_BatRa;
@@ -805,7 +796,7 @@ void XMan::BatRa()
 
 void XMan::DinhSatThuong()
 {
-	mTrangThai = eTT_DinhSatThuong;
+	mTrangThai = eTT_XMan_DinhSatThuong;
 	mHH_HienTai = mHH_DinhSatThuong;
 	mHH_HienTai->Remake();
 	if (!mLatHinh)
@@ -824,52 +815,52 @@ void XMan::DinhSatThuong()
 
 void XMan::ChuyenHH_BanDan()
 {
-	int lViTri_Tam = mHH_HienTai->get_ViTri();
-	float lThoiGian_Tam = mHH_HienTai->get_ThoiGian();
+	int lViTri_Tam = mHH_HienTai->get_ViTriFrame();
+	float lThoiGian_Tam = mHH_HienTai->get_ThoiGianDem();
 
 	switch (mTrangThai)
 	{
-	case eTT_ChuanBiChay:
+	case eTT_XMan_ChuanBiChay:
 		mHH_HienTai = mHH_ChuanBiChay_Ban;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_Chay:
+	case eTT_XMan_Chay:
 		mHH_HienTai = mHH_Chay_Ban;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_Nhay:
+	case eTT_XMan_Nhay:
 		mHH_HienTai = mHH_Nhay_Ban;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_Roi:
+	case eTT_XMan_Roi:
 		mHH_HienTai = mHH_Roi_Ban;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_TiepDat:
+	case eTT_XMan_TiepDat:
 		mHH_HienTai = mHH_TiepDat_Ban;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_DungIm:
+	case eTT_XMan_DungIm:
 		mHH_HienTai = mHH_DungIm_Ban;
 		mHH_HienTai->Remake();
 		break;
 
-	case eTT_Luot:
+	case eTT_XMan_Luot:
 		mHH_HienTai = mHH_Luot_Ban;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_Truot:
+	case eTT_XMan_Truot:
 		mHH_HienTai = mHH_Truot_Ban;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_BatRa:
+	case eTT_XMan_BatRa:
 		mHH_HienTai = mHH_BatRa_Ban;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
@@ -881,52 +872,52 @@ void XMan::ChuyenHH_BanDan()
 
 void XMan::ChuyenHH_KoBanDan()
 {
-	int lViTri_Tam = mHH_HienTai->get_ViTri();
-	float lThoiGian_Tam = mHH_HienTai->get_ThoiGian();
+	int lViTri_Tam = mHH_HienTai->get_ViTriFrame();
+	float lThoiGian_Tam = mHH_HienTai->get_ThoiGianDem();
 
 	switch (mTrangThai)
 	{
-	case eTT_ChuanBiChay:
+	case eTT_XMan_ChuanBiChay:
 		mHH_HienTai = mHH_ChuanBiChay;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_Chay:
+	case eTT_XMan_Chay:
 		mHH_HienTai = mHH_Chay;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_Nhay:
+	case eTT_XMan_Nhay:
 		mHH_HienTai = mHH_Nhay;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_Roi:
+	case eTT_XMan_Roi:
 		mHH_HienTai = mHH_Roi;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_TiepDat:
+	case eTT_XMan_TiepDat:
 		mHH_HienTai = mHH_TiepDat;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_DungIm:
+	case eTT_XMan_DungIm:
 		mHH_HienTai = mHH_DungIm;
 		mHH_HienTai->Remake();
 		break;
 
-	case eTT_Luot:
+	case eTT_XMan_Luot:
 		mHH_HienTai = mHH_Luot;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_Truot:
+	case eTT_XMan_Truot:
 		mHH_HienTai = mHH_Truot;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
 
-	case eTT_BatRa:
+	case eTT_XMan_BatRa:
 		mHH_HienTai = mHH_BatRa;
 		mHH_HienTai->Remake(lViTri_Tam, lThoiGian_Tam);
 		break;
@@ -1468,7 +1459,7 @@ void XMan::BanDanLv1()
 {
 	for (int i = 0; i < mSoLuongDanLv1; i++)
 	{
-		if (mDS_DanLv1[i]->get_TrangThai() == eTTDan_DaBiPhaHuy)
+		if (mDS_DanLv1[i]->get_TrangThai() == eTT_Dan_BienMat)
 		{
 			Vec2 lDoDoiDan = DoDoiDanLv1();
 
@@ -1483,7 +1474,7 @@ void XMan::BanDanLv1()
 				mDS_DanLv1[i]->set_VanToc(Vec2(-DanLv1::mVanTocDan, 0.0f));
 			}
 
-			if (mTrangThai == eTT_Truot)
+			if (mTrangThai == eTT_XMan_Truot)
 			{
 				if (mLatHinh)
 				{
@@ -1505,7 +1496,7 @@ Vec2 XMan::DoDoiDanLv1() const
 {
 	Vec2 lDoDoi;
 
-	if (mTrangThai == eTT_DungIm)
+	if (mTrangThai == eTT_XMan_DungIm)
 	{
 		if (!mLatHinh)
 		{
@@ -1517,7 +1508,7 @@ Vec2 XMan::DoDoiDanLv1() const
 		}
 	}
 	else
-	if (mTrangThai == eTT_Chay || mTrangThai == eTT_ChuanBiChay || mTrangThai ==  eTT_TiepDat)
+	if (mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay || mTrangThai ==  eTT_XMan_TiepDat)
 	{
 		if (!mLatHinh)
 			lDoDoi = Vec2(21.0f, -3.0f);
@@ -1525,7 +1516,7 @@ Vec2 XMan::DoDoiDanLv1() const
 			lDoDoi = Vec2(-21.0f, -3.0f);
 	}
 	else
-	if (mTrangThai == eTT_Luot)
+	if (mTrangThai == eTT_XMan_Luot)
 	{
 		if (!mLatHinh)
 			lDoDoi = Vec2(28.0f, 2.0f);
@@ -1533,7 +1524,7 @@ Vec2 XMan::DoDoiDanLv1() const
 			lDoDoi = Vec2(-28.0f, 2.0f);
 	}
 	else
-	if (mTrangThai == eTT_Nhay || mTrangThai == eTT_Roi)
+	if (mTrangThai == eTT_XMan_Nhay || mTrangThai == eTT_XMan_Roi)
 	{
 		if (!mLatHinh)
 			lDoDoi = Vec2(20.0f, -6.0f);
@@ -1541,7 +1532,7 @@ Vec2 XMan::DoDoiDanLv1() const
 			lDoDoi = Vec2(-20.0f, -6.0f);
 	}
 	else
-	if (mTrangThai == eTT_Truot)
+	if (mTrangThai == eTT_XMan_Truot)
 	{
 		if (mLatHinh)
 		{
@@ -1553,7 +1544,7 @@ Vec2 XMan::DoDoiDanLv1() const
 		}
 	}
 	else
-	if (mTrangThai == eTT_BatRa)
+	if (mTrangThai == eTT_XMan_BatRa)
 	{
 		if (!mLatHinh)
 			lDoDoi = Vec2(21.0f, -8.0f);
@@ -1566,7 +1557,7 @@ Vec2 XMan::DoDoiDanLv1() const
 
 void XMan::BanDanLv2()
 {
-	if (mDanLv2->get_TrangThai() == eTTDan_DaBiPhaHuy)
+	if (mDanLv2->get_TrangThai() == eTT_Dan_BienMat)
 	{
 		Vec2 lDoDoiDan = DoDoiDanLv2();
 
@@ -1582,7 +1573,7 @@ void XMan::BanDanLv2()
 		}
 		mDanLv2->set_LatHinh(mLatHinh);
 
-		if (mTrangThai == eTT_Truot)
+		if (mTrangThai == eTT_XMan_Truot)
 		{
 			if (mLatHinh)
 			{
@@ -1603,7 +1594,7 @@ Vec2 XMan::DoDoiDanLv2() const
 {
 	Vec2 lDoDoi;
 
-	if (mTrangThai == eTT_DungIm)
+	if (mTrangThai == eTT_XMan_DungIm)
 	{
 		if (!mLatHinh)
 		{
@@ -1615,7 +1606,7 @@ Vec2 XMan::DoDoiDanLv2() const
 		}
 	}
 	else
-	if (mTrangThai == eTT_Chay || mTrangThai == eTT_ChuanBiChay || mTrangThai == eTT_TiepDat)
+	if (mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay || mTrangThai == eTT_XMan_TiepDat)
 	{
 		if (!mLatHinh)
 			lDoDoi = Vec2(29.0f, -3.0f);
@@ -1623,7 +1614,7 @@ Vec2 XMan::DoDoiDanLv2() const
 			lDoDoi = Vec2(-29.0f, -3.0f);
 	}
 	else
-	if (mTrangThai == eTT_Luot)
+	if (mTrangThai == eTT_XMan_Luot)
 	{
 		if (!mLatHinh)
 			lDoDoi = Vec2(37.0f, 2.0f);
@@ -1631,7 +1622,7 @@ Vec2 XMan::DoDoiDanLv2() const
 			lDoDoi = Vec2(-37.0f, 2.0f);
 	}
 	else
-	if (mTrangThai == eTT_Nhay || mTrangThai == eTT_Roi)
+	if (mTrangThai == eTT_XMan_Nhay || mTrangThai == eTT_XMan_Roi)
 	{
 		if (!mLatHinh)
 			lDoDoi = Vec2(28.0f, -6.0f);
@@ -1639,7 +1630,7 @@ Vec2 XMan::DoDoiDanLv2() const
 			lDoDoi = Vec2(-28.0f, -6.0f);
 	}
 	else
-	if (mTrangThai == eTT_Truot)
+	if (mTrangThai == eTT_XMan_Truot)
 	{
 		if (mLatHinh)
 		{
@@ -1651,7 +1642,7 @@ Vec2 XMan::DoDoiDanLv2() const
 		}
 	}
 	else
-	if (mTrangThai == eTT_BatRa)
+	if (mTrangThai == eTT_XMan_BatRa)
 	{
 		if (!mLatHinh)
 			lDoDoi = Vec2(29.0f, -8.0f);
@@ -1664,7 +1655,7 @@ Vec2 XMan::DoDoiDanLv2() const
 
 void XMan::BanDanLv3()
 {
-	if (mDanLv3->get_TrangThai() == eTTDan_DaBiPhaHuy)
+	if (mDanLv3->get_TrangThai() == eTT_Dan_BienMat)
 	{
 		Vec2 lDoDoiDan = DoDoiDanLv2();
 
@@ -1680,7 +1671,7 @@ void XMan::BanDanLv3()
 		}
 		mDanLv3->set_LatHinh(mLatHinh);
 
-		if (mTrangThai == eTT_Truot)
+		if (mTrangThai == eTT_XMan_Truot)
 		{
 			if (mLatHinh)
 			{
@@ -1699,10 +1690,7 @@ void XMan::BanDanLv3()
 
 void XMan::DrawAnimationShining(const Vec2 & in_DoDoi)
 {
-	mAnimationShining->set_LatTheoChieuNgang(mLatHinh);
-	mAnimationShining->set_ToaDo(mToaDo);
-	mAnimationShining->set_DoDoi(in_DoDoi);
-	mAnimationShining->Ve(mHH_HienTai->get_ThongTinFrameHienTai(), D3DCOLOR_ARGB(210, 255, 255, 255));
+	mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XMan_Shining_png, mLatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(210, 255, 255, 255));
 }
 
 void XMan::get_DS_Dan(std::vector<DanLv*>& out)

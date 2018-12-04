@@ -1,15 +1,9 @@
 ﻿#pragma once
-#include "DoiTuong.h"
 
-#include <d3d9.h>
-#include <d3dx9.h>
 #include "DoiTuong.h"
-#include "KieuDuLieu.h"
 #include "HoatHinh.h"
-#include <map>
 #include "VaChamGame.h"
-#include "Camera.h"
-#include "XMan.h"
+#include "DS_HinhAnh.h"
 
 class XacUop :
 	public DoiTuong
@@ -20,13 +14,13 @@ public:
 		DoiTuong(in_ToaDo, in_VanToc, 22, 38)
 	{
 		mLoaiDoiTuong = eLDT_XacUop;
-		LoadHinhAnh();
+		LoadThongTinHoatHinh();
 		DungIm();
 	}
 
 	void CapNhat(float in_tg) {} // ko dùng 
 
-	void CapNhat(float in_tg, const XMan *in_XMan)
+	void CapNhat(float in_tg, const DoiTuong *in_XMan)
 	{
 		mToaDo.x += mVanToc.x * in_tg;
 		mToaDo.y += mVanToc.y * in_tg;
@@ -37,7 +31,7 @@ public:
 
 		switch (mTrangThai)
 		{
-		case eTTXacUop_DungIm:
+		case eTT_XacUop_DungIm:
 			mTGDem_DungIm += in_tg;
 			if (mTGDem_DungIm > TG_DungIm)
 			{
@@ -60,7 +54,7 @@ public:
 
 			break;
 
-		case eTTXacUop_DiChuyen:
+		case eTT_XacUop_DiChuyen:
 			// xác định hướng quay mặt
 
 			if (mLatHinh)
@@ -89,7 +83,7 @@ public:
 
 			break;
 
-		case eTTXacUop_TanCong:
+		case eTT_XacUop_TanCong:
 			mTGDem_TanCong += in_tg;
 			if (mLatHinh)
 			{
@@ -113,26 +107,19 @@ public:
 	}
 	void Ve(const Vec2& in_DoDoi) // Độ dời phụ thuộc Camera hiện tại
 	{
-		mHH_HienTai->set_LatTheoChieuNgang(mLatHinh);
-		mHH_HienTai->set_ToaDo(mToaDo);
-		mHH_HienTai->set_DoDoi(in_DoDoi);
-		mHH_HienTai->Ve();
+		mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XacUop_png, mLatHinh, mToaDo, in_DoDoi);
 	}
 	void XuLyVaCham(const DoiTuong* in_DoiTuong)
 	{
 
 	}
 
-	eTrangThai get_TrangThai() const
-	{
-		return mTrangThai;
-	}
 
 
 private:
 	void DungIm()
 	{
-		mTrangThai = eTTXacUop_DungIm; // Thông tin Trạng Thái = DungIm
+		mTrangThai = eTT_XacUop_DungIm; // Thông tin Trạng Thái = DungIm
 		mHH_HienTai = mHH_DungIm; // Hoạt Hình trỏ đến HH_DungIm
 		mHH_HienTai->Remake(); // Hoạt Hình được reset lại
 		mTGDem_DungIm = 0.0f;
@@ -141,7 +128,7 @@ private:
 
 	void DiChuyen()
 	{
-		mTrangThai = eTTXacUop_DiChuyen;
+		mTrangThai = eTT_XacUop_DiChuyen;
 		mHH_HienTai = mHH_DiChuyen;
 		mHH_HienTai->Remake();
 		//mTGDem_DiChuyen = 0.0f;
@@ -149,35 +136,35 @@ private:
 
 	void TanCong()
 	{
-		mTrangThai = eTTXacUop_TanCong;
+		mTrangThai = eTT_XacUop_TanCong;
 		mHH_HienTai = mHH_TanCong;
 		mHH_HienTai->Remake();
 		mTGDem_TanCong = 0.0f;
 	}
 
-	void LoadHinhAnh()
+	void LoadThongTinHoatHinh()
 	{
 		std::vector<ThongTinFrame> lDSTTFrame;
 
 		lDSTTFrame.clear();
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 20, 38, 99.9f /* ko care*/, HCN(85, 85 + 22, 4, 4 + 40)));
-		mHH_DungIm = new HoatHinh("Resources_X3/Enemies/XacUop.png", lDSTTFrame, D3DCOLOR_XRGB(84, 109, 142));
+		lDSTTFrame.push_back(ThongTinFrame(20, 38, HCN(85, 85 + 22, 4, 4 + 40)));
+		mHH_DungIm = new HoatHinh(lDSTTFrame);
 
 		lDSTTFrame.clear();
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 36, 36, 0.1f, HCN(50, 50 + 30, 60, 60 + 38)));
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 34, 38, 0.1f, HCN(80, 80 + 30, 58, 58 + 40)));
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 38, 0.1f, HCN(110,110+30 ,60,60+40 )));
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 34, 38, 0.1f, HCN(80, 80 + 30, 58, 58 + 40)));
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 36, 36, 0.1f, HCN(50, 50 + 30, 60, 60 + 38)));
-		mHH_DiChuyen = new HoatHinh("Resources_X3/Enemies/XacUop.png", lDSTTFrame, D3DCOLOR_XRGB(84, 109, 142));
+		lDSTTFrame.push_back(ThongTinFrame(36, 36, HCN(50, 50 + 30, 60, 60 + 38), 0.1f));
+		lDSTTFrame.push_back(ThongTinFrame(34, 38, HCN(80, 80 + 30, 58, 58 + 40), 0.1f));
+		lDSTTFrame.push_back(ThongTinFrame(32, 38, HCN(110,110+30 ,60,60+40 ), 0.1f));
+		lDSTTFrame.push_back(ThongTinFrame(34, 38, HCN(80, 80 + 30, 58, 58 + 40), 0.1f));
+		lDSTTFrame.push_back(ThongTinFrame(36, 36, HCN(50, 50 + 30, 60, 60 + 38), 0.1f));
+		mHH_DiChuyen = new HoatHinh(lDSTTFrame);
 
 		lDSTTFrame.clear();
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 26, 38,  0.12f, HCN(3, 3 + 26, 107, 107 + 38)));
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 26 ,36 , 0.12f, HCN(30,30+34,108,108+36)));
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32 ,38 , 0.12f, HCN(63, 63+32, 107, 107+36)));
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 52 ,38 , 0.12f, HCN(95, 95+44, 107, 107+36)));
-		lDSTTFrame.push_back(ThongTinFrame(Vec2(), 74 ,38 , 0.12f, HCN(139, 139+54, 107, 107+36)));
-		mHH_TanCong = new HoatHinh("Resources_X3/Enemies/XacUop.png", lDSTTFrame, D3DCOLOR_XRGB(84, 109, 142));
+		lDSTTFrame.push_back(ThongTinFrame(26, 38,  HCN(3, 3 + 26, 107, 107 + 38), 0.12f));
+		lDSTTFrame.push_back(ThongTinFrame(26 ,36 , HCN(30,30+34,108,108+36), 0.12f));
+		lDSTTFrame.push_back(ThongTinFrame(32 ,38 , HCN(63, 63+32, 107, 107+36), 0.12f));
+		lDSTTFrame.push_back(ThongTinFrame(52 ,38 , HCN(95, 95+44, 107, 107+36), 0.12f));
+		lDSTTFrame.push_back(ThongTinFrame(74 ,38 , HCN(139, 139+54, 107, 107+36), 0.12f));
+		mHH_TanCong = new HoatHinh(lDSTTFrame);
 	}
 
 	HoatHinh *mHH_DungIm,
@@ -216,5 +203,7 @@ public:
 		if (mHH_TanCong)
 			delete mHH_TanCong;
 	}
+
+
 };
 

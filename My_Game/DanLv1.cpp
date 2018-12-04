@@ -1,5 +1,6 @@
 ﻿#include "DanLv1.h"
 
+
 DanLv1::DanLv1(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	:
 	DanLv(in_ToaDo, in_VanToc, 6, 4)
@@ -10,7 +11,8 @@ DanLv1::DanLv1(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	LoadHinhAnhVao();
 
 	mHH_HienTai = mHH_DangTonTai;
-	mTrangThai = eTTDan_DaBiPhaHuy;
+	mTrangThai = eTT_Dan_BienMat;
+
 }
 
 DanLv1::~DanLv1()
@@ -23,41 +25,39 @@ DanLv1::~DanLv1()
 
 void DanLv1::CapNhat(float in_tg)
 {
-	if (mTrangThai == eTTDan_DaBiPhaHuy)
+	if (mTrangThai == eTT_Dan_BienMat)
 	{
 		return;
 	}
 
-	if (mTrangThai == eTTDan_DangTonTai)
+	if (mTrangThai == eTT_Dan_TonTai)
 	{
 		mToaDo.x += mVanToc.x * in_tg;
 		mToaDo.y += mVanToc.y * in_tg;
 	}
 
-	if (mTrangThai == eTTDan_DangTanBien)
+	if (mTrangThai == eTT_Dan_DangTanBien)
 	{
 		mHH_HienTai->CapNhat(in_tg);
 		mTG_DemPhaHuy += in_tg;
 
 		if (mTG_DemPhaHuy > mTG_PhaHuy)
 		{
-			mTrangThai = eTTDan_DaBiPhaHuy;
+			mTrangThai = eTT_Dan_BienMat;
 		}
 	}
 
 	if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
 	{
-		mTrangThai = eTTDan_DaBiPhaHuy;
+		mTrangThai = eTT_Dan_BienMat;
 	}
 }
 
 void DanLv1::Ve(const Vec2 & in_DoDoi)
 {
-	if (mTrangThai != eTTDan_DaBiPhaHuy)
+	if (mTrangThai != eTT_Dan_BienMat)
 	{
-		mHH_HienTai->set_ToaDo(mToaDo);
-		mHH_HienTai->set_DoDoi(in_DoDoi);
-		mHH_HienTai->Ve();
+		mHH_HienTai->Ve(DS_HinhAnh::get_TH()->DanLv1_png, false, mToaDo, in_DoDoi);
 	}
 }
 
@@ -65,7 +65,7 @@ void DanLv1::Ve(const Vec2 & in_DoDoi)
 
 void DanLv1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
-	if (mTrangThai == eTTDan_DangTonTai)
+	if (mTrangThai == eTT_Dan_TonTai)
 	{
 		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
 		{
@@ -92,33 +92,27 @@ void DanLv1::LoadHinhAnhVao()
 	std::vector<ThongTinFrame> lDSTTFrame;
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 8, 6, 999.9f, HCN(113, 121, 535, 541)));
-	mHH_DangTonTai = new HoatHinh("Resources_X3/XMan/Weapons and Items.png", lDSTTFrame, D3DCOLOR_XRGB(50, 96, 166));
+	lDSTTFrame.push_back(ThongTinFrame(8, 6, HCN(113 - 108, 121 - 108, 535 - 521, 541 - 521)));
+	mHH_DangTonTai = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 12, 12, 0.07f, HCN(127, 139, 532, 544)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 14, 14, 0.07f, HCN(144, 157, 531, 544)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 16, 16, 0.07f, HCN(162, 178, 530, 545)));
-	mHH_DangTanBien = new HoatHinh("Resources_X3/XMan/Weapons and Items.png", lDSTTFrame, D3DCOLOR_XRGB(50, 96, 166));
-
-	mTG_PhaHuy = 0.0f;
-	for (int i = 0; i < (int)lDSTTFrame.size(); i++)
-	{
-		mTG_PhaHuy += lDSTTFrame[i].ThoiGian;
-	}
+	lDSTTFrame.push_back(ThongTinFrame(12, 12, HCN(127 - 108, 139 - 108, 532 - 521, 544 - 521), 0.07f));
+	lDSTTFrame.push_back(ThongTinFrame(14, 14, HCN(144 - 108, 157 - 108, 531 - 521, 544 - 521), 0.07f));
+	lDSTTFrame.push_back(ThongTinFrame(16, 16, HCN(162 - 108, 178 - 108, 530 - 521, 545 - 521), 0.07f));
+	mHH_DangTanBien = new HoatHinh(lDSTTFrame);
 }
 
 void DanLv1::DangTanBien()
 {
 	mTG_DemPhaHuy = 0.0f;
-	mTrangThai = eTTDan_DangTanBien;
+	mTrangThai = eTT_Dan_DangTanBien;
 	mHH_HienTai = mHH_DangTanBien;
 	mHH_HienTai->Remake();
 }
 
 void DanLv1::DangTonTai()
 {
-	mTrangThai = eTTDan_DangTonTai;
+	mTrangThai = eTT_Dan_TonTai;
 	mHH_HienTai = mHH_DangTonTai;
 	mHH_HienTai->Remake();
 }

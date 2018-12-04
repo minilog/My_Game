@@ -1,4 +1,6 @@
-#include "HieuUngBatRa.h"
+﻿#include "HieuUngBatRa.h"
+
+
 
 HieuUngBatRa::HieuUngBatRa()
 	:
@@ -7,14 +9,9 @@ HieuUngBatRa::HieuUngBatRa()
 	std::vector<ThongTinFrame> lDSTTFrame;
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), -6, -2, 0.1f, HCN(126, 138, 607, 619)));
-	mHoatHinh = new HoatHinh("Resources_X3/XMan/Z.png", lDSTTFrame, D3DCOLOR_XRGB(0, 128, 128));
+	lDSTTFrame.push_back(ThongTinFrame(-6, -2, HCN(126 - 124, 138 - 124, 607 - 604, 619 - 604)));
+	mHoatHinh = new HoatHinh(lDSTTFrame);
 
-	mTG_TonTai = 0.0f;
-	for (int i = 0; i < (int)lDSTTFrame.size(); i++)
-	{
-		mTG_TonTai += lDSTTFrame[i].ThoiGian;
-	}
 
 	mBienMat = true;
 	mTG_DemTonTai = 999.9f;
@@ -46,10 +43,7 @@ void HieuUngBatRa::Ve(const Vec2 & in_DoDoi)
 {
 	if (!mBienMat)
 	{
-		mHoatHinh->set_LatTheoChieuNgang(mLatHinh);
-		mHoatHinh->set_ToaDo(mToaDo);
-		mHoatHinh->set_DoDoi(in_DoDoi);
-		mHoatHinh->Ve();
+		mHoatHinh->Ve(DS_HinhAnh::get_TH()->HieuUngBatRa_png, mLatHinh, mToaDo, in_DoDoi);
 	}
 }
 

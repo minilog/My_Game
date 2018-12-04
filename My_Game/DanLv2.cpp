@@ -1,4 +1,6 @@
-#include "DanLv2.h"
+﻿#include "DanLv2.h"
+
+
 
 DanLv2::DanLv2(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	:DanLv(in_ToaDo, in_VanToc, 15, 12)
@@ -9,7 +11,7 @@ DanLv2::DanLv2(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	LoadHinhAnhVao();
 
 	mHH_HienTai = mHH_DangTanBien;
-	mTrangThai = eTTDan_DaBiPhaHuy;
+	mTrangThai = eTT_Dan_BienMat;
 }
 
 DanLv2::~DanLv2()
@@ -22,12 +24,12 @@ DanLv2::~DanLv2()
 
 void DanLv2::CapNhat(float in_tg)
 {
-	if (mTrangThai == eTTDan_DaBiPhaHuy)
+	if (mTrangThai == eTT_Dan_BienMat)
 		return;
 
 	mHH_HienTai->CapNhat(in_tg);
 
-	if (mTrangThai == eTTDan_BanRa)
+	if (mTrangThai == eTT_Dan_BanRa)
 	{
 		mTG_DemPhaHuy += in_tg;
 
@@ -35,40 +37,37 @@ void DanLv2::CapNhat(float in_tg)
 			DangTonTai();
 	}
 
-	if (mTrangThai == eTTDan_DangTonTai)
+	if (mTrangThai == eTT_Dan_TonTai)
 	{
 		mToaDo.x += mVanToc.x * in_tg;
 		mToaDo.y += mVanToc.y * in_tg;
 	}
 
-	if (mTrangThai == eTTDan_DangTanBien)
+	if (mTrangThai == eTT_Dan_DangTanBien)
 	{
 		mTG_DemPhaHuy += in_tg;
 
 		if (mTG_DemPhaHuy > mTG_PhaHuy)
-			mTrangThai = eTTDan_DaBiPhaHuy;
+			mTrangThai = eTT_Dan_BienMat;
 	}
 
 	if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
 	{
-		mTrangThai = eTTDan_DaBiPhaHuy;
+		mTrangThai = eTT_Dan_BienMat;
 	}
 }
 
 void DanLv2::Ve(const Vec2 & in_DoDoi)
 {
-	if (mTrangThai == eTTDan_DaBiPhaHuy)
+	if (mTrangThai == eTT_Dan_BienMat)
 		return;
 
-	mHH_HienTai->set_LatTheoChieuNgang(mLatHinh);
-	mHH_HienTai->set_ToaDo(mToaDo);
-	mHH_HienTai->set_DoDoi(in_DoDoi);
-	mHH_HienTai->Ve();
+	mHH_HienTai->Ve(DS_HinhAnh::get_TH()->DanLv2_png, mLatHinh, mToaDo, in_DoDoi);
 }
 
 void DanLv2::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
-	if (mTrangThai == eTTDan_DaBiPhaHuy || mTrangThai == eTTDan_DangTanBien)
+	if (mTrangThai == eTT_Dan_BienMat || mTrangThai == eTT_Dan_DangTanBien)
 		return;
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
@@ -104,31 +103,26 @@ void DanLv2::LoadHinhAnhVao()
 	std::vector<ThongTinFrame> lDSTTFrame;
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 16, 14, 0.03f, HCN(26, 42, 7, 21)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 24, 24, 0.03f, HCN(46, 70, 2, 26)));
-	mHH_DangTanBien = new HoatHinh("Resources_X3/XMan/DanLv2.png", lDSTTFrame, D3DCOLOR_XRGB(50, 96, 166));
+	lDSTTFrame.push_back(ThongTinFrame(16, 14, HCN(26, 42, 7, 21), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(24, 24, HCN(46, 70, 2, 26), 0.03f));
+	mHH_DangTanBien = new HoatHinh(lDSTTFrame);
 
-	mTG_PhaHuy = 0.0f;
-	for (int i = 0; i < (int)lDSTTFrame.size(); i++)
-	{
-		mTG_PhaHuy += lDSTTFrame[i].ThoiGian;
-	}
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 36, 12, 0.08f, HCN(75, 103, 8, 20)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 40, 8,  0.08f, HCN(109, 141, 10, 18)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 46, 12, 0.08f, HCN(148, 186, 8, 20)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 22, 0.08f, HCN(191, 227, 3, 25)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 46, 12, 0.08f, HCN(232, 270, 8, 20)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 22, 0.08f, HCN(276, 316, 3, 25)));
-	mHH_DangTonTai = new HoatHinh("Resources_X3/XMan/DanLv2.png", lDSTTFrame, D3DCOLOR_XRGB(50, 96, 166));
+	lDSTTFrame.push_back(ThongTinFrame(36, 12, HCN(75, 103, 8, 20), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(40, 8,  HCN(109, 141, 10, 18), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(46, 12, HCN(148, 186, 8, 20), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 22, HCN(191, 227, 3, 25), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(46, 12, HCN(232, 270, 8, 20), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(48, 22, HCN(276, 316, 3, 25), 0.08f));
+	mHH_DangTonTai = new HoatHinh(lDSTTFrame);
 }
 
 void DanLv2::DangTanBien()
 {
 	mHH_HienTai = mHH_DangTanBien;
 	mHH_HienTai->Remake();
-	mTrangThai = eTTDan_DangTanBien;
+	mTrangThai = eTT_Dan_DangTanBien;
 	mTG_DemPhaHuy = 0.0f;
 }
 
@@ -136,13 +130,13 @@ void DanLv2::DangTonTai()
 {
 	mHH_HienTai = mHH_DangTonTai;
 	mHH_HienTai->Remake();
-	mTrangThai = eTTDan_DangTonTai;
+	mTrangThai = eTT_Dan_TonTai;
 }
 
 void DanLv2::Ban()
 {
 	mHH_HienTai = mHH_DangTanBien;
 	mHH_HienTai->Remake();
-	mTrangThai = eTTDan_BanRa;
+	mTrangThai = eTT_Dan_BanRa;
 	mTG_DemPhaHuy = 0.0f;
 }

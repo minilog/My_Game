@@ -6,7 +6,7 @@
 #include "KieuDuLieu.h"
 #include "HoatHinh.h"
 #include <map>
-#include "BuiKhiLuot.h"
+#include "Bui.h"
 
 #include "HieuUngLuot.h"
 #include "HieuUngBatRa.h"
@@ -14,6 +14,7 @@
 #include "DanLv2.h"
 #include "DanLv3.h"
 #include "DanLv.h"
+#include "DS_HinhAnh.h"
 
 class XMan : public DoiTuong
 {
@@ -52,7 +53,7 @@ private:
 	DanLv1 *mDS_DanLv1[mSoLuongDanLv1];
 
 	static constexpr int mSoLuongBui = 7;
-	BuiKhiLuot *mDS_BuiKhiLuot[mSoLuongBui];
+	Bui *mDS_BuiKhiLuot[mSoLuongBui];
 	float mTG_Bui = 0.085f;
 	float mTG_DemBui = 0.0f;
 
@@ -79,7 +80,6 @@ private:
 		*mHH_BatRa_Ban,
 		*mHH_DinhSatThuong;
 	HoatHinh *mHH_HienTai;
-	HoatHinh *mAnimationShining;
 
 	HinhAnh *mHinhAnh1; // nơi chứa hình ảnh để hoạt hình trỏ đến
 
@@ -132,7 +132,7 @@ private:
 
 
 
-	void LoadHinhAnhVao();
+	void LoadThongTinHoatHinh();
 
 	void DungIm();
 	void ChuanBiChay();
@@ -186,6 +186,7 @@ private:
 
 public:
 	void get_DS_Dan(std::vector<DanLv*>& out);
+
 };
 
 

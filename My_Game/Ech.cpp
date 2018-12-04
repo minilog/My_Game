@@ -1,4 +1,7 @@
 ﻿#include "Ech.h"
+#include "DanNo1.h"
+#include "DanLv.h"
+
 
 
 Ech::Ech(const Vec2 & in_ToaDo, const Vec2 & in_VanToc, int in_Rong, int in_Cao)
@@ -14,9 +17,6 @@ Ech::Ech(const Vec2 & in_ToaDo, const Vec2 & in_VanToc, int in_Rong, int in_Cao)
 
 	mBui = new Bui(Vec2(), Vec2());
 	mHH_HienTai = mHH_DangTanBien;
-
-
-
 }
 
 void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
@@ -31,7 +31,7 @@ void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 	if (mNamTrongCamera &&
 		!VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
 	{
-		mTrangThai = eTTEch_DaBiPhaHuy;
+		mTrangThai = eTT_Ech_BienMat;
 		// xét tiếp Tọa độ ban đầu có Nằm trong Camera hay ko?
 		mToaDo = mToaDoXuatHien;
 		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
@@ -49,12 +49,12 @@ void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 	}
 
 	// nếu Ếch đã bị phá hủy thì bỏ qua
-	if (mTrangThai == eTTEch_DaBiPhaHuy)
+	if (mTrangThai == eTT_Ech_BienMat)
 	{
 		return;
 	}
 
-	if (mHP <= 0 && mTrangThai != eTTEch_DangTanBien)
+	if (mHP <= 0 && mTrangThai != eTT_Ech_DangTanBien)
 	{
 		DangTanBien();
 	}
@@ -80,59 +80,59 @@ void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 
 	switch (mTrangThai)
 	{
-	case eTTEch_ChuanBiNhay:
+	case eTT_Ech_ChuanBiNhay:
 		CapNhat_ChuanBiNhay(in_tg);
 		break;
 
-	case eTTEch_Nhay:
+	case eTT_Ech_Nhay:
 		CapNhat_Nhay(in_tg);
 		break;
 
-	case eTTEch_Roi:
+	case eTT_Ech_Roi:
 		CapNhat_Roi(in_tg);
 		break;
 
-	case eTTEch_TiepDat:
+	case eTT_Ech_TiepDat:
 		CapNhat_TiepDat(in_tg);
 		break;
 
-	case eTTEch_NhamBan1:
+	case eTT_Ech_NhamBan1:
 		CapNhat_NhamBan1(in_tg);
 		break;
 
-	case eTTEch_HaNhamBan1:
+	case eTT_Ech_HaNhamBan1:
 		CapNhat_HaNhamBan1(in_tg);
 		break;
 
-	case eTTEch_BanDan1:
+	case eTT_Ech_BanDan1:
 		CapNhat_BanDan1(in_tg);
 		break;
 
-	case eTTEch_NhamBan3:
+	case eTT_Ech_NhamBan3:
 		CapNhat_NhamBan3(in_tg);
 		break;
 
-	case eTTEch_BanDan3:
+	case eTT_Ech_BanDan3:
 		CapNhat_BanDan3(in_tg);
 		break;
 
-	case eTTEch_HaNhamBan3:
+	case eTT_Ech_HaNhamBan3:
 		CapNhat_HaNhamBan3(in_tg);
 		break;
 
-	case eTTEch_NhamBan2:
+	case eTT_Ech_NhamBan2:
 		CapNhat_NhamBan2(in_tg);
 		break;
 
-	case eTTEch_BanDan2:
+	case eTT_Ech_BanDan2:
 		CapNhat_BanDan2(in_tg);
 		break;
 
-	case eTTEch_HaNhamBan2:
+	case eTT_Ech_HaNhamBan2:
 		CapNhat_HaNhamBan2(in_tg);
 		break;
 
-	case eTTEch_DangTanBien:
+	case eTT_Ech_DangTanBien:
 		CapNhat_DangTanBien(in_tg);
 		break;
 
@@ -145,42 +145,33 @@ void Ech::Ve(const Vec2 & in_DoDoi)
 {
 	if (mTGDem_HieuUngNoTung <= mTG_HieuUngNoTung)
 	{
-		mHH_HieuUngNoTung->set_DoDoi(in_DoDoi);
-		mHH_HieuUngNoTung->Ve();
+		mHH_HieuUngNoTung->Ve(DS_HinhAnh::get_TH()->DanNo1_png, false, mToaDo_HieuUngNoTung, in_DoDoi);
 	}
 
 	// nếu Ếch đã bị phá hủy thì bỏ qua
-	if (mTrangThai == eTTEch_DaBiPhaHuy)
+	if (mTrangThai == eTT_Ech_BienMat)
 	{
 		return;
 	}
 
-	//mHH_HienTai->set_TiLe(Vec2(0.8f, 0.8f));
-	mHH_HienTai->set_LatTheoChieuNgang(mLatHinh);
-	mHH_HienTai->set_ToaDo(mToaDo);
-	mHH_HienTai->set_DoDoi(in_DoDoi);
-
-	if (mTrangThai == eTTEch_DangTanBien)
+	if (mIsShining)
 	{
-		mHH_HienTai->Ve(D3DCOLOR_ARGB(120, 255, 255, 225));
+		if (mTrangThai != eTT_Ech_DangTanBien)
+		{
+			mHH_HienTai->Ve(DS_HinhAnh::get_TH()->Ech_Shining_png, mLatHinh, mToaDo, in_DoDoi);
+		}
 	}
 	else
 	{
-		mHH_HienTai->Ve();
-	}
-
-	if (mIsShining)
-	{
-		if (mTrangThai != eTTEch_DangTanBien)
+		if (mTrangThai == eTT_Ech_DangTanBien)
 		{
-			mHH_Shining->set_LatTheoChieuNgang(mLatHinh);
-			mHH_Shining->set_ToaDo(mToaDo);
-			mHH_Shining->set_DoDoi(in_DoDoi);
-			mHH_Shining->Ve(mHH_HienTai->get_ThongTinFrameHienTai());
+			mHH_HienTai->Ve(DS_HinhAnh::get_TH()->Ech_png, mLatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(120, 255, 255, 225));
+		}
+		else
+		{
+			mHH_HienTai->Ve(DS_HinhAnh::get_TH()->Ech_png, mLatHinh, mToaDo, in_DoDoi);
 		}
 	}
-
-
 
 	mBui->Ve(in_DoDoi);
 }
@@ -188,7 +179,7 @@ void Ech::Ve(const Vec2 & in_DoDoi)
 void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
 	// nếu Ếch đã bị phá hủy thì bỏ qua
-	if (mTrangThai == eTTEch_DaBiPhaHuy || mTrangThai == eTTEch_DangTanBien)
+	if (mTrangThai == eTT_Ech_BienMat || mTrangThai == eTT_Ech_DangTanBien)
 	{
 		return;
 	}
@@ -208,8 +199,8 @@ void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	// xét va chạm với đối tượng tĩnh khi Ếch đang Nhảy hoặc Rơi
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
 	{
-		if (mTrangThai != eTTEch_Nhay &&
-			mTrangThai != eTTEch_Roi)
+		if (mTrangThai != eTT_Ech_Nhay &&
+			mTrangThai != eTT_Ech_Roi)
 		{
 			return;
 		}
@@ -223,7 +214,7 @@ void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			{
 			case ePVC_Duoi:
 				mToaDo.y -= lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
-				if (mTrangThai == eTTEch_Roi)
+				if (mTrangThai == eTT_Ech_Roi)
 				{
 					mVanToc.y = 0.0f;
 					TiepDat();
@@ -232,7 +223,7 @@ void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 			case ePVC_Tren:
 				mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
-				if (mTrangThai == eTTEch_Nhay)
+				if (mTrangThai == eTT_Ech_Nhay)
 				{
 					mVanToc.y = 0.0f;
 					Roi();
@@ -260,7 +251,7 @@ void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 void Ech::NhamBan2()
 {
-	mTrangThai = eTTEch_NhamBan2;
+	mTrangThai = eTT_Ech_NhamBan2;
 	mHH_HienTai = mHH_NhamBan2;
 	mHH_HienTai->Remake();
 	mTGDem_NhamBan2 = 0.0f;
@@ -268,7 +259,7 @@ void Ech::NhamBan2()
 
 void Ech::BanDan2()
 {
-	mTrangThai = eTTEch_BanDan2;
+	mTrangThai = eTT_Ech_BanDan2;
 	mHH_HienTai = mHH_BanDan2;
 	mHH_HienTai->Remake();
 	mTGDem_BanDan = 0.0f;
@@ -277,7 +268,7 @@ void Ech::BanDan2()
 
 void Ech::HaNhamBan2()
 {
-	mTrangThai = eTTEch_HaNhamBan2;
+	mTrangThai = eTT_Ech_HaNhamBan2;
 	mHH_HienTai = mHH_HaNhamBan2;
 	mHH_HienTai->Remake();
 	mTGDem_HaNhamBan2 = 0.0f;
@@ -285,7 +276,7 @@ void Ech::HaNhamBan2()
 
 void Ech::NhamBan3()
 {
-	mTrangThai = eTTEch_NhamBan3;
+	mTrangThai = eTT_Ech_NhamBan3;
 	mHH_HienTai = mHH_NhamBan3;
 	mHH_HienTai->Remake();
 	mTGDem_NhamBan3 = 0.0f;
@@ -293,7 +284,7 @@ void Ech::NhamBan3()
 
 void Ech::BanDan3()
 {
-	mTrangThai = eTTEch_BanDan3;
+	mTrangThai = eTT_Ech_BanDan3;
 	mHH_HienTai = mHH_BanDan3;
 	mHH_HienTai->Remake();
 	mTGDem_BanDan = 0.0f;
@@ -302,7 +293,7 @@ void Ech::BanDan3()
 
 void Ech::HaNhamBan3()
 {
-	mTrangThai = eTTEch_HaNhamBan3;
+	mTrangThai = eTT_Ech_HaNhamBan3;
 	mHH_HienTai = mHH_HaNhamBan3;
 	mHH_HienTai->Remake();
 	mTGDem_HaNhamBan3 = 0.0f;
@@ -310,7 +301,7 @@ void Ech::HaNhamBan3()
 
 void Ech::BanDan1()
 {
-	mTrangThai = eTTEch_BanDan1;
+	mTrangThai = eTT_Ech_BanDan1;
 	mHH_HienTai = mHH_BanDan1;
 	mHH_HienTai->Remake();
 	mTGDem_BanDan = 0.0f;
@@ -319,7 +310,7 @@ void Ech::BanDan1()
 
 void Ech::NhamBan1()
 {
-	mTrangThai = eTTEch_NhamBan1;
+	mTrangThai = eTT_Ech_NhamBan1;
 	mHH_HienTai = mHH_NhamBan1;
 	mHH_HienTai->Remake();
 	mTGDem_NhamBan1 = 0.0f;
@@ -327,7 +318,7 @@ void Ech::NhamBan1()
 
 void Ech::HaNhamBan1()
 {
-	mTrangThai = eTTEch_HaNhamBan1;
+	mTrangThai = eTT_Ech_HaNhamBan1;
 	mHH_HienTai = mHH_HaNhamBan1;
 	mHH_HienTai->Remake();
 	mTGDem_HaNhamBan1 = 0.0f;
@@ -335,7 +326,7 @@ void Ech::HaNhamBan1()
 
 void Ech::ChuanBiNhay()
 {
-	mTrangThai = eTTEch_ChuanBiNhay;
+	mTrangThai = eTT_Ech_ChuanBiNhay;
 	mHH_HienTai = mHH_ChuanBiNhay;
 	mHH_HienTai->Remake();
 	mTGDem_ChuanBiNhay = 0.0f;
@@ -345,20 +336,20 @@ void Ech::ChuanBiNhay()
 
 void Ech::Nhay()
 {
-	mTrangThai = eTTEch_Nhay;
+	mTrangThai = eTT_Ech_Nhay;
 	mHH_HienTai = mHH_Nhay;
 	mVanToc.y = -mVanTocRoiToiDa;
 }
 
 void Ech::Roi()
 {
-	mTrangThai = eTTEch_Roi;
+	mTrangThai = eTT_Ech_Roi;
 	mHH_HienTai = mHH_Nhay;
 }
 
 void Ech::TiepDat()
 {
-	mTrangThai = eTTEch_TiepDat;
+	mTrangThai = eTT_Ech_TiepDat;
 	mHH_HienTai = mHH_ChuanBiNhay;
 	mHH_HienTai->Remake();
 	mTGDem_TiepDat = 0.0f;
@@ -369,7 +360,7 @@ void Ech::DangTanBien()
 {
 	mTGDem_TanBien = 0.0f;
 	mHH_HienTai = mHH_DangTanBien;
-	mTrangThai = eTTEch_DangTanBien;
+	mTrangThai = eTT_Ech_DangTanBien;
 	mVanToc.y = -mVanTocRoiToiDa / 1.1f;
 	if (mKhoangCach_XMan < 0.0f)
 	{
@@ -382,7 +373,7 @@ void Ech::DangTanBien()
 
 	// khi chuyển sang trạng thái Đang Tan Biến thì Hiệu Ứng Nổ Tung xuất hiện
 	mTGDem_HieuUngNoTung = 0.0f;
-	mHH_HieuUngNoTung->set_ToaDo(mToaDo + Vec2(0.0f, -1.0f));
+	mToaDo_HieuUngNoTung = mToaDo + Vec2(0.0f, -1.0f);
 	mHH_HieuUngNoTung->Remake();
 }
 
@@ -392,97 +383,93 @@ void Ech::LoadThongTinHoatHinh()
 	std::vector<ThongTinFrame> lDSTTFrame;
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 58, 26, 99.9f, HCN(31, 31 + 58, 154, 154 + 26)));
-	mHH_DangTanBien = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(58, 26, HCN(31, 31 + 58, 154, 154 + 26)));
+	mHH_DangTanBien = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.14f, HCN(5, 5 + 40, 6, 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 46, 0.14f, HCN(7, 7 + 38, 61, 64 + 40)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 56, 0.14f, HCN(48, 48 + 34, 56, 56 + 44)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 62, 0.14f, HCN(92, 92 + 30, 53, 53 + 48)));
-	mHH_NhamBan2 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(5, 5 + 40, 6, 38), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 46, HCN(7, 7 + 38, 61, 64 + 40), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(38, 56, HCN(48, 48 + 34, 56, 56 + 44), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(28, 62, HCN(92, 92 + 30, 53, 53 + 48), 0.14f));
+	mHH_NhamBan2 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.14f, HCN(5, 5 + 40, 6, 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 46, 0.14f, HCN(7, 7 + 38, 61, 64 + 40)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 56, 0.14f, HCN(48, 48 + 34, 56, 56 + 44)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 62, 0.14f, HCN(92, 92 + 30, 53, 53 + 48)));
-	mHH_NhamBan2 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(5, 5 + 40, 6, 38), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 46, HCN(7, 7 + 38, 61, 64 + 40), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(38, 56, HCN(48, 48 + 34, 56, 56 + 44), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(28, 62, HCN(92, 92 + 30, 53, 53 + 48), 0.14f));
+	mHH_NhamBan2 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 62, 0.25f, HCN(92, 92 + 30, 53, 53 + 48)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 60, 0.25f, HCN(139, 139 + 30, 106, 106 + 46)));
-	mHH_BanDan2 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(28, 62, HCN(92, 92 + 30, 53, 53 + 48), 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(28, 60, HCN(139, 139 + 30, 106, 106 + 46), 0.25f));
+	mHH_BanDan2 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 62, 0.14f, HCN(92, 92 + 30, 53, 53 + 48)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 56, 0.14f, HCN(48, 48 + 34, 56, 56 + 44)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 46, 0.14f, HCN(7, 7 + 38, 61, 64 + 40)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.14f, HCN(5, 5 + 40, 6, 38)));
-	mHH_HaNhamBan2 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(28, 62, HCN(92, 92 + 30, 53, 53 + 48), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(38, 56, HCN(48, 48 + 34, 56, 56 + 44), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 46, HCN(7, 7 + 38, 61, 64 + 40), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(5, 5 + 40, 6, 38), 0.14f));
+	mHH_HaNhamBan2 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.12f, HCN(5, 5 + 40, 6, 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.12f, HCN(49, 49 + 40, 6, 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.12f, HCN(100, 100 + 42, 6, 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.12f, HCN(49, 49 + 40, 6, 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.12f, HCN(5, 5 + 40, 6, 38)));
-	mHH_ChuanBiNhay = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(5, 5 + 40, 6, 38), 0.12f));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(49, 49 + 40, 6, 38), 0.12f));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(100, 100 + 42, 6, 38), 0.12f));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(49, 49 + 40, 6, 38), 0.12f));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(5, 5 + 40, 6, 38), 0.12f));
+	mHH_ChuanBiNhay = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 99.9f, HCN(146, 146 + 48, 2, 2 + 42)));
-	mHH_Nhay = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(146, 146 + 48, 2, 2 + 42)));
+	mHH_Nhay = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.14f, HCN(5, 5 + 40, 6, 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 46, 0.14f, HCN(7, 7 + 38, 61, 64 + 40)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 56, 0.14f, HCN(48, 48 + 34, 56, 56 + 44)));
-	mHH_NhamBan1 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(5, 5 + 40, 6, 38), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 46, HCN(7, 7 + 38, 61, 64 + 40), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(38, 56, HCN(48, 48 + 34, 56, 56 + 44), 0.14f));
+	mHH_NhamBan1 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 56, 0.14f, HCN(48, 48 + 34, 56, 56 + 44)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 46, 0.14f, HCN(7, 7 + 38, 61, 64 + 40)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.14f, HCN(5, 5 + 40, 6, 38)));
-	mHH_HaNhamBan1 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(38, 56, HCN(48, 48 + 34, 56, 56 + 44), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 46, HCN(7, 7 + 38, 61, 64 + 40), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(5, 5 + 40, 6, 38), 0.14f));
+	mHH_HaNhamBan1 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 56, 0.25f, HCN(48, 48 + 34, 56, 56 + 44)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 54, 0.25f, HCN(95, 95 + 36, 110, 110 + 44)));
-	mHH_BanDan1 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(38, 56, HCN(48, 48 + 34, 56, 56 + 44), 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(38, 54, HCN(95, 95 + 36, 110, 110 + 44), 0.25f));
+	mHH_BanDan1 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.14f, HCN(5, 5 + 40, 6, 38)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 46, 0.14f, HCN(7, 7 + 38, 61, 64 + 40)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 56, 0.14f, HCN(48, 48 + 34, 56, 56 + 44)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 62, 0.14f, HCN(92, 92 + 30, 53, 53 + 48)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 24, 64, 0.14f, HCN(131, 131 + 28, 52, 52 + 48)));
-	mHH_NhamBan3 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame( 48, 32, HCN(5, 5 + 40, 6, 38), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame( 44, 46, HCN(7, 7 + 38, 61, 64 + 40), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame( 38, 56, HCN(48, 48 + 34, 56, 56 + 44), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame( 28, 62, HCN(92, 92 + 30, 53, 53 + 48), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame( 24, 64, HCN(131, 131 + 28, 52, 52 + 48), 0.14f));
+	mHH_NhamBan3 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 24, 64, 0.25f, HCN(131, 131 + 28, 52, 52 + 48)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 24, 62, 0.25f, HCN(178, 178 + 28, 105, 105 + 48)));
-	mHH_BanDan3 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(24, 64, HCN(131, 131 + 28, 52, 52 + 48), 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(24, 62, HCN(178, 178 + 28, 105, 105 + 48), 0.25f));
+	mHH_BanDan3 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 24, 64, 0.14f, HCN(131, 131 + 28, 52, 52 + 48)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 62, 0.14f, HCN(92, 92 + 30, 53, 53 + 48)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 38, 56, 0.14f, HCN(48, 48 + 34, 56, 56 + 44)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 44, 46, 0.14f, HCN(7, 7 + 38, 61, 64 + 40)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.14f, HCN(5, 5 + 40, 6, 38)));
-	mHH_HaNhamBan3 = new HoatHinh("Resources_X3/Enemies/Ech.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
-	
-	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 48, 32, 0.14f, HCN(5, 5 + 40, 6, 38)));
-	mHH_Shining = new HoatHinh("Resources_X3/Enemies/Ech_Shining.png", lDSTTFrame, D3DCOLOR_XRGB(255, 0, 255));
+	lDSTTFrame.push_back(ThongTinFrame(24, 64, HCN(131, 131 + 28, 52, 52 + 48), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(28, 62, HCN(92, 92 + 30, 53, 53 + 48), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(38, 56, HCN(48, 48 + 34, 56, 56 + 44), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(44, 46, HCN(7, 7 + 38, 61, 64 + 40), 0.14f));
+	lDSTTFrame.push_back(ThongTinFrame(48, 32, HCN(5, 5 + 40, 6, 38), 0.14f));
+	mHH_HaNhamBan3 = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 16, 24, 0.08f, HCN(1 - 1, 1 + 16 - 1, 56 - 43, 56 + 16 - 43)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 40, 0.08f, HCN(26 - 1, 26 + 32 - 1, 48 - 43, 48 + 32 -43)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 28, 36, 0.08f, HCN(66 - 1, 66 + 28 - 1, 51 - 43, 51 + 24 - 43)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 30, 40, 0.08f, HCN(103 - 1, 103 + 30 - 1, 47 - 43, 47 + 28 - 43)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 36, 0.08f, HCN(143 - 1, 143 + 32 - 1, 43 - 43, 43 + 28 - 43)));
-	lDSTTFrame.push_back(ThongTinFrame(Vec2(), 32, 38, 0.08f, HCN(187 - 1, 187 + 32 - 1, 53 - 43, 53 + 30 - 43)));
-	mHH_HieuUngNoTung = new HoatHinh("Resources_X3/Enemies/NoTung.png", lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(16, 24, HCN(1 - 1, 1 + 16 - 1, 56 - 43, 56 + 16 - 43), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(32, 40, HCN(26 - 1, 26 + 32 - 1, 48 - 43, 48 + 32 -43), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(28, 36, HCN(66 - 1, 66 + 28 - 1, 51 - 43, 51 + 24 - 43), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 40, HCN(103 - 1, 103 + 30 - 1, 47 - 43, 47 + 28 - 43), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(32, 36, HCN(143 - 1, 143 + 32 - 1, 43 - 43, 43 + 28 - 43), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(32, 38, HCN(187 - 1, 187 + 32 - 1, 53 - 43, 53 + 30 - 43), 0.08f));
+	mHH_HieuUngNoTung = new HoatHinh(lDSTTFrame);
 }
 
 void Ech::CapNhat_NhamBan2(float in_tg)
@@ -700,7 +687,7 @@ void Ech::CapNhat_DangTanBien(float in_tg)
 	mTGDem_TanBien += in_tg;
 	if (mTGDem_TanBien > mTG_TanBien)
 	{
-		mTrangThai = eTTEch_DaBiPhaHuy;
+		mTrangThai = eTT_Ech_BienMat;
 		mToaDo = mToaDoXuatHien;
 	}
 }
@@ -748,9 +735,6 @@ Ech::~Ech()
 
 	if (mHH_HieuUngNoTung)
 		delete mHH_HieuUngNoTung;
-
-	if (mHH_Shining)
-		delete mHH_Shining;
 
 }
 

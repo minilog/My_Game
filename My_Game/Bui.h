@@ -2,6 +2,7 @@
 
 #include "DoiTuong.h"
 #include "HoatHinh.h"
+#include "DS_HinhAnh.h"
 
 class Bui : public DoiTuong
 {
@@ -22,11 +23,10 @@ private:
 	const float mTG_TonTai = 0.08f * 6;
 	float mTGDem_TonTai = mTG_TonTai + 0.1f;
 
-// NƠI CHỨA HÌNH ẢNH
-public:
-	static HinhAnh *Bui_png;
+
 
 // DESTRUCTURE
 public:
 	~Bui();
+	bool get_BienMat() const { return (mTGDem_TonTai > mTG_TonTai); }
 };

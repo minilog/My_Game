@@ -172,6 +172,9 @@
     <ClCompile Include="Bui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DS_HinhAnh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -330,6 +333,7 @@
     <ClInclude Include="Bui.h">
       <Filter>4.DoiTuong\XMan%27s</Filter>
     </ClInclude>
+    <ClInclude Include="DS_HinhAnh.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

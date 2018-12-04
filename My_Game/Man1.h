@@ -34,10 +34,10 @@ public:
 	void DrawCollidable();
 
 
-
+	QuadTree *mQuadTree;
 // INFORMATION
 private:
-	QuadTree *mQuadTree;
+
 	//XacUop *mXacUop;
 	//DanNo1 *mDanNo1;
 	XMan *mXMan;
@@ -87,5 +87,6 @@ private:
 	void VeDanhSachDoiTuong(const Vec2& in_DoDoi);
 	void DieuChinhCamera();
 	void XuLyVaChamChung();
+
 };
 

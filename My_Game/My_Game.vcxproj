@@ -145,6 +145,7 @@
     <ClCompile Include="DanLv3.cpp" />
     <ClCompile Include="DanNo1.cpp" />
     <ClCompile Include="DoiTuong.cpp" />
+    <ClCompile Include="DS_HinhAnh.cpp" />
     <ClCompile Include="Ech.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameDebugDraw.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="DanNo1.h" />
     <ClInclude Include="DoiTuong.h" />
     <ClInclude Include="DoiTuongTinh.h" />
+    <ClInclude Include="DS_HinhAnh.h" />
     <ClInclude Include="Ech.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDebugDraw.h" />

@@ -2,7 +2,6 @@
 
 DoiTuong::DoiTuong(const Vec2& in_ToaDo, const Vec2& in_VanToc, int in_ChieuRong, int in_ChieuCao)
 {
-	mLoaiDoiTuong = eLoaiDoiTuong::eLDT_KhongCo;
 	mToaDo = in_ToaDo;
 	mVanToc = in_VanToc;
 	mChieuRong = in_ChieuRong;

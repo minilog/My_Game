@@ -3,6 +3,7 @@
 #include "DoiTuong.h"
 #include "HoatHinh.h"
 #include "VaChamGame.h"
+#include "DS_HinhAnh.h"
 
 class DanNo1 : public DoiTuong
 {
@@ -14,6 +15,7 @@ public:
 		mTrangThai = eTT_DanNo1_BienMat;
 
 		LoadThongTinHoatHinh();
+
 	}
 
 // FUNCTION
@@ -39,7 +41,7 @@ public:
 	{
 		if (mTGDem_NoTung <= mTG_NoTung)
 		{
-			mHH_HieuUngPhatNo->Ve(DanNo1::HieuUngPhatNo_png, false, mToaDo_HieuUngNoTung, in_DoDoi);
+			mHH_HieuUngPhatNo->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, mToaDo_HieuUngNoTung, in_DoDoi);
 		}
 
 		// nếu đã bị phá hủy -> ko cần phải Vẽ ra
@@ -48,7 +50,7 @@ public:
 			return;
 		}
 
-		mHH_Dan->Ve(DanNo1::DanNo1_png, false, mToaDo, in_DoDoi);
+		mHH_Dan->Ve(DS_HinhAnh::get_TH()->DanNo1_png, false, mToaDo, in_DoDoi);
 	}
 	void XuLyVaCham(const DoiTuong* in_DoiTuong)
 	{
@@ -102,9 +104,5 @@ public:
 	}
 
 
-// NƠI CHỨA HÌNH ẢNH
-public:
-	static HinhAnh *HieuUngPhatNo_png;
-	static HinhAnh *DanNo1_png;
 };
 

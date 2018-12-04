@@ -1,12 +1,7 @@
 ﻿#pragma once
-#include "DoiTuong.h"
 
-#include <d3d9.h>
-#include <d3dx9.h>
 #include "DoiTuong.h"
-#include "KieuDuLieu.h"
 #include "HoatHinh.h"
-#include <map>
 #include "VaChamGame.h"
 #include "Camera.h"
 #include "DanLv.h"
@@ -42,7 +37,7 @@ private:
 	HoatHinh *mHH_DangTanBien;
 	HoatHinh *mHH_HienTai;
 
-	float mTG_PhaHuy; // giá trị phụ thuộc vào HH_BiPhaHuy
+	const float mTG_PhaHuy = 0.07f * 3; // giá trị phụ thuộc vào HH_BiPhaHuy
 	float mTG_DemPhaHuy = 0.0f;
 
 	eTrangThai mTrangThai;
@@ -55,5 +50,6 @@ private:
 
 public :
 	static constexpr float mVanTocDan = 380.0f;
+
 };
 

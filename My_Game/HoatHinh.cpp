@@ -60,3 +60,16 @@ void HoatHinh::Remake(int in_ViTri, float in_Time)
 	mThoiGianDem = in_Time;
 	mViTriFrame = in_ViTri;
 }
+
+//void HoatHinh::Ve(HinhAnh * in_HinhAnh, bool in_LatHinh, const Vec2 & in_ToaDo, const Vec2 & in_DoDoi, const ThongTinFrame & in_TTFrame, const D3DCOLOR & in_SubColor)
+//{
+//	in_HinhAnh->set_ChieuRong(in_TTFrame.ChieuRong);
+//	in_HinhAnh->set_ChieuCao(in_TTFrame.ChieuCao);
+//	in_HinhAnh->set_HCN(in_TTFrame.Hcn);
+//
+//	in_HinhAnh->set_LatTheoChieuNgang(in_LatHinh);
+//	in_HinhAnh->set_ToaDo(in_ToaDo);
+//	in_HinhAnh->set_DoDoi(in_DoDoi);
+//
+//	in_HinhAnh->Ve(in_SubColor);
+//}
