@@ -12,6 +12,7 @@
 #include "ThanhMau.h"
 #include "HoatHinh.h"
 #include "XacUop.h"
+#include "DanNo1.h"
 
 
 
@@ -38,14 +39,14 @@ public:
 // INFORMATION
 private:
 
-	//XacUop *mXacUop;
-	//DanNo1 *mDanNo1;
+	XacUop *mXacUop;
+	DanNo1 *mDanNo1;
 	XMan *mXMan;
 	std::vector<DoiTuong*> mDS_DoiTuongTinhXetVaCham;
-	//std::vector<DanLv*> mDS_DanLv;
-	//std::vector<Ech*> mDS_Ech;
+	std::vector<DanLv*> mDS_DanLv;
+	std::vector<Ech*> mDS_Ech;
 
-	//ThanhMau *mThanhMauXMan;
+	ThanhMau *mThanhMauXMan;
 	//HinhAnh *mTest;
 	HinhAnh *mBanDoMap1;
 	std::map<int, bool> mKeys;
