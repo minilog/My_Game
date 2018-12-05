@@ -151,6 +151,7 @@ enum eTrangThai
 	eTT_Dan_BanRa,
 
 	eTT_LoCot_BienMat,
-	eTT_LoCot_TonTai
+	eTT_LoCot_BanTenLua,
+	eTT_LoCot_BanDanNo
 };
 

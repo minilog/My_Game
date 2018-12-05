@@ -1,32 +1,40 @@
 ﻿#include "LoCot.h"
 #include "Camera.h"
 #include "VaChamGame.h"
+#include "DanLv.h"
 
-LoCot::LoCot(const Vec2 & in_ToaDo)
+LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1)
 	:
 	DoiTuong(in_ToaDo, Vec2(), 38, 46)
 {
 	mLoaiDoiTuong = eLDT_LoCot;
-	mToaDoXuatHien = in_ToaDo;
 
 	LoadThongTinHoatHinh();
+
+	for (int i = 0; i < (int)in_DS_DanNo1.size(); i++)
+	{
+		mDS_DanNo1.push_back(in_DS_DanNo1[i]);
+	}
+
+	mTrangThai = eTT_LoCot_BienMat;
+	mNamTrongCamera = false;
 }
 
 void LoCot::CapNhat(float in_tg, const DoiTuong * in_XMan)
 {
-	if (mTGDem_HieuUngNoTung <= mTG_HieuUngNoTung)
+	if (mTGDem_HieuUngPhatNo < TG_HieuUngPhatNo)
 	{
-		mTGDem_HieuUngNoTung += in_tg;
+		mTGDem_HieuUngPhatNo += in_tg;
 		mHH_HieuUngPhatNo->CapNhat(in_tg);
 	}
 
+#pragma region XET CAMERA
 	// nếu đang nằm trong Camera mà vẫn đang va chạm Camera thì ko có gì xảy ra
 	if (mNamTrongCamera &&
 		!VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
 	{
-		mTrangThai = eTT_Ech_BienMat;
+		mTrangThai = eTT_LoCot_BienMat;
 		// xét tiếp Tọa độ ban đầu có Nằm trong Camera hay ko?
-		mToaDo = mToaDoXuatHien;
 		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
 		{
 			mNamTrongCamera = false;
@@ -36,75 +44,119 @@ void LoCot::CapNhat(float in_tg, const DoiTuong * in_XMan)
 	else if (!mNamTrongCamera &&
 		VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
 	{
-		mHP = mMaxHP;
 		mNamTrongCamera = true;
+		HP = MaxHP;
+		BanTL();
 	}
+#pragma endregion
 
-	// nếu Ếch đã bị phá hủy thì bỏ qua
-	if (mTrangThai == eTT_Ech_BienMat)
-	{
+	if (mTrangThai == eTT_LoCot_BienMat)
 		return;
-	}
-
-	if (mHP <= 0 && mTrangThai != eTT_Ech_DangTanBien)
-	{
-	/*	DangTanBien();*/
-	}
-
-	if (mIsShining)
-	{
-		mTGDem_Shining += in_tg;
-		if (mTGDem_Shining > mTG_Shining)
-		{
-			mTGDem_Shining = 0.0f;
-			mIsShining = false;
-		}
-	}
 
 	mHH_DuyNhat->CapNhat(in_tg);
 
 	switch (mTrangThai)
 	{
+	case eTT_LoCot_BanDanNo:
+		mTGDem_DanDuocBanRa += in_tg;
+		if (mTGDem_DanDuocBanRa > TG_BanDan / 2.0f)
+		{
+			for (int i = 0; i < (int)mDS_DanNo1.size(); i++)
+			{
+				if (mDS_DanNo1[i]->get_TrangThai() == eTT_DanNo1_BienMat)
+				{
+					if (!mLatHinh)
+					{
+						mDS_DanNo1[i]->BanRa(mToaDo, Vec2(-220.0f, -250.0f));
+					}
+					else
+					{
+						mDS_DanNo1[i]->BanRa(mToaDo, Vec2(220.0f, -200.0f));
+					}
 
+					break; // chỉ dùng 1 viên mỗi lần
+				}
+			}
+			mTGDem_DanDuocBanRa = 0.0f;
+		}
+
+		mTG_Dem += in_tg;
+		if (mTG_Dem > TG_BanDan)
+			BanTL();
+
+		break;
+
+	case eTT_LoCot_BanTenLua:
+		mTG_Dem += in_tg;
+		if (mTG_Dem > TG_BanTL)
+			BanDan();
+
+		break;
+
+	default:
+		break;
+	}
+
+	if (mToaDo.x - in_XMan->get_ToaDo().x < 0.0f)
+	{
+		mLatHinh = true;
+	}
+	else
+	{
+		mLatHinh = false;
+	}
+
+	if (IsShining)
+	{
+		TGDem_IsShining += in_tg;
+		if (TGDem_IsShining > 0.1f)
+		{
+			IsShining = false;
+		}
+	}
+
+	if (HP <= 0)
+	{
+		BienMat();
 	}
 }
 
 void LoCot::Ve(const Vec2 & in_DoDoi)
 {
-	mHH_DuyNhat->Ve(DS_HinhAnh::get_TH()->LoCot_png, false, mToaDo, in_DoDoi);
-	//if (mTGDem_HieuUngNoTung <= mTG_HieuUngNoTung)
-	//{
-	//	mHH_HieuUngPhatNo->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, mToaDo/*mToaDo_HieuUngNoTung*/, in_DoDoi);
-	//}
+	if (mTGDem_HieuUngPhatNo < TG_HieuUngPhatNo)
+	{
+		mHH_HieuUngPhatNo->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDoPhatNo, in_DoDoi);
+	}
 
-	//// nếu Ếch đã bị phá hủy thì bỏ qua
-	//if (mTrangThai == eTT_Ech_BienMat)
-	//{
-	//	return;
-	//}
+	if (mTrangThai == eTT_LoCot_BienMat)
+	{
+		return;
+	}
 
-	//if (mIsShining)
-	//{
-	//	if (mTrangThai != eTT_Ech_DangTanBien)
-	//	{
-	//		mHH_DuyNhat->Ve(DS_HinhAnh::get_TH()->Ech_Shining_png, mLatHinh, mToaDo, in_DoDoi);
-	//	}
-	//}
-	//else
-	//{
-	//	if (mTrangThai == eTT_Ech_DangTanBien)
-	//	{
-	//		mHH_DuyNhat->Ve(DS_HinhAnh::get_TH()->Ech_png, mLatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(120, 255, 255, 225));
-	//	}
-	//	else
-	//	{
-	//		mHH_DuyNhat->Ve(DS_HinhAnh::get_TH()->Ech_png, mLatHinh, mToaDo, in_DoDoi);
-	//	}
-	//}
+	if (!IsShining)
+	{
+		mHH_DuyNhat->Ve(DS_HinhAnh::get_TH()->LoCot_png, mLatHinh, mToaDo, in_DoDoi);
+	}
+	else
+	{
+		mHH_DuyNhat->Ve(DS_HinhAnh::get_TH()->LoCot_Shining_png, mLatHinh, mToaDo, in_DoDoi);
+	}
 }
 
 void LoCot::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
+	if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+	{
+		switch (in_DoiTuong->get_LoaiDoiTuong())
+		{
+		case eLDT_DanLv1:
+		case eLDT_DanLv2:
+		case eLDT_DanLv3:
+			HP -= ((DanLv*)in_DoiTuong)->get_Damage();
+			IsShining = true;
+			break;
+		}
+	}
 }
 
 void LoCot::LoadThongTinHoatHinh()
@@ -123,6 +175,26 @@ void LoCot::LoadThongTinHoatHinh()
 	lDSTTFrame.push_back(ThongTinFrame(32, 36, HCN(143 - 1, 143 + 32 - 1, 43 - 43, 43 + 28 - 43), 0.08f));
 	lDSTTFrame.push_back(ThongTinFrame(32, 38, HCN(187 - 1, 187 + 32 - 1, 53 - 43, 53 + 30 - 43), 0.08f));
 	mHH_HieuUngPhatNo = new HoatHinh(lDSTTFrame);
+}
+
+void LoCot::BanDan()
+{
+	mTrangThai = eTT_LoCot_BanDanNo;
+	mTG_Dem = 0.0f;
+	mTGDem_DanDuocBanRa = 0.0f;
+}
+
+void LoCot::BanTL()
+{
+	mTrangThai = eTT_LoCot_BanTenLua;
+	mTG_Dem = 0.0f;
+}
+
+void LoCot::BienMat()
+{
+	mTrangThai = eTT_LoCot_BienMat;
+	mTGDem_HieuUngPhatNo = 0.0f;
+	ToaDoPhatNo = mToaDo;
 }
 
 LoCot::~LoCot()

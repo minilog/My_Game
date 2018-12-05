@@ -40,6 +40,7 @@ private:
 		HieuUngNapDanLv3_png = new HinhAnh("Resources/XMan/HieuUngNapDanLv3.png", D3DCOLOR_XRGB(0, 128, 128));
 
 		LoCot_png = new HinhAnh("Resources/Enemies/LoCot.png", D3DCOLOR_XRGB(255, 0, 255));
+		LoCot_Shining_png = new HinhAnh("Resources/Enemies/LoCot_Shining.png", D3DCOLOR_XRGB(255, 0, 255));
 	}
 	~DS_HinhAnh()
 	{
@@ -71,5 +72,6 @@ public:
 	HinhAnh* HieuUngNapDanLv3_png;
 
 	HinhAnh* LoCot_png;
+	HinhAnh* LoCot_Shining_png;
 };
 

@@ -118,7 +118,7 @@ void Man1::TaiDuLieu()
 			if (lNhomObject->GetName() == "LoCot")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
-				LoCot *lLoCot = new LoCot(lToaDoDoiTuong);
+				LoCot *lLoCot = new LoCot(lToaDoDoiTuong, mDS_DanNo1_Quai);
 
 				mQuadTree->ThemDoiTuong(lLoCot);
 			}
@@ -145,6 +145,7 @@ void Man1::CapNhat(float in_tg)
 	
 	mDS_DoiTuongTinh.clear();
 	mDS_Ech.clear();
+	mDS_LoCot.clear();
 	// đưa từ từ các đối tượng vào các DS 
 	for (int i = 0; i < (int)mDS_DoiTuong.size(); i++)
 	{
