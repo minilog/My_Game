@@ -72,26 +72,19 @@
  <objectgroup name="Ech">
   <object id="74" x="444" y="867" width="26" height="30"/>
   <object id="130" x="702" y="915" width="26" height="30"/>
-  <object id="131" x="1810" y="657" width="26" height="30"/>
-  <object id="132" x="1586" y="658" width="26" height="30"/>
-  <object id="133" x="1599" y="784" width="26" height="31"/>
   <object id="134" x="1957" y="782.5" width="26" height="31"/>
   <object id="135" x="1951" y="911.5" width="26" height="31"/>
-  <object id="136" x="1594" y="912.5" width="26" height="31"/>
-  <object id="137" x="1841" y="1119.5" width="26" height="31"/>
-  <object id="138" x="3201" y="895.5" width="26" height="31"/>
-  <object id="140" x="4098" y="896.5" width="26" height="31"/>
   <object id="141" x="6049" y="1343.5" width="26" height="31"/>
   <object id="142" x="5997" y="1438.5" width="26" height="31"/>
   <object id="143" x="5955" y="1631.5" width="26" height="31"/>
   <object id="144" x="6028" y="1535.5" width="26" height="31"/>
  </objectgroup>
- <objectgroup name="LoCot">
+ <objectgroup name="LoCot" visible="0">
   <object id="146" x="950" y="898" width="38" height="46"/>
   <object id="147" x="951" y="642" width="38" height="46"/>
   <object id="148" x="802" y="642" width="38" height="46"/>
  </objectgroup>
- <objectgroup name="DoiTuongTinh">
+ <objectgroup name="DoiTuongTinh" visible="0">
   <object id="3" x="0" y="946" width="352" height="17"/>
   <object id="39" x="353" y="897.5" width="159" height="48"/>
   <object id="40" x="256.5" y="782.75" width="127.5" height="32"/>

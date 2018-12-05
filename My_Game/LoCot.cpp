@@ -22,7 +22,7 @@ LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1)
 
 void LoCot::CapNhat(float in_tg, const DoiTuong * in_XMan)
 {
-	if (mTGDem_HieuUngPhatNo < TG_HieuUngPhatNo)
+	if (mTGDem_HieuUngPhatNo <= TG_HieuUngPhatNo)
 	{
 		mTGDem_HieuUngPhatNo += in_tg;
 		mHH_HieuUngPhatNo->CapNhat(in_tg);
@@ -123,7 +123,7 @@ void LoCot::CapNhat(float in_tg, const DoiTuong * in_XMan)
 
 void LoCot::Ve(const Vec2 & in_DoDoi)
 {
-	if (mTGDem_HieuUngPhatNo < TG_HieuUngPhatNo)
+	if (mTGDem_HieuUngPhatNo <= TG_HieuUngPhatNo)
 	{
 		mHH_HieuUngPhatNo->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDoPhatNo, in_DoDoi);
 	}
@@ -145,6 +145,11 @@ void LoCot::Ve(const Vec2 & in_DoDoi)
 
 void LoCot::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
+	if (mTrangThai == eTT_LoCot_BienMat)
+	{
+		return;
+	}
+
 	if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
 	{
 		switch (in_DoiTuong->get_LoaiDoiTuong())
@@ -154,6 +159,9 @@ void LoCot::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		case eLDT_DanLv3:
 			HP -= ((DanLv*)in_DoiTuong)->get_Damage();
 			IsShining = true;
+			break;
+
+		default:
 			break;
 		}
 	}
