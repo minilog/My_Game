@@ -193,11 +193,20 @@ void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv2 ||
 		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv3)
 	{
-		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+
+		if (((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_BienMat ||
+			((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_DangTanBien)
 		{
-			mIsShining = true;
-			mHP -= ((DanLv*) in_DoiTuong)->get_Damage();
+			return;
 		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		mIsShining = true;
+		mHP -= ((DanLv*)in_DoiTuong)->get_Damage();
 	}
 
 	// xét va chạm với đối tượng tĩnh khi Ếch đang Nhảy hoặc Rơi
@@ -211,44 +220,46 @@ void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 		eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
 
-		if (lKQVC.eKQVC_DaVaCham)
+		if (!lKQVC.eKQVC_DaVaCham)
 		{
-			ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
-			switch (lPVC)
+			return;
+		}
+
+		ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
+		switch (lPVC)
+		{
+		case ePVC_Duoi:
+			mToaDo.y -= lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+			if (mTrangThai == eTT_Ech_Roi)
 			{
-			case ePVC_Duoi:
-				mToaDo.y -= lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
-				if (mTrangThai == eTT_Ech_Roi)
-				{
-					mVanToc.y = 0.0f;
-					TiepDat();
-				}
-				break;
-
-			case ePVC_Tren:
-				mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
-				if (mTrangThai == eTT_Ech_Nhay)
-				{
-					mVanToc.y = 0.0f;
-					Roi();
-				}
-				break;
-
-			case ePVC_TraiTren:
-			case ePVC_Trai:
-			case ePVC_TraiDuoi:
-				mToaDo.x += lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
-				break;
-
-			case ePVC_Phai:
-			case ePVC_PhaiTren:
-			case ePVC_PhaiDuoi:
-				mToaDo.x -= lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
-				break;
-
-			default:
-				break;
+				mVanToc.y = 0.0f;
+				TiepDat();
 			}
+			break;
+
+		case ePVC_Tren:
+			mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+			if (mTrangThai == eTT_Ech_Nhay)
+			{
+				mVanToc.y = 0.0f;
+				Roi();
+			}
+			break;
+
+		case ePVC_TraiTren:
+		case ePVC_Trai:
+		case ePVC_TraiDuoi:
+			mToaDo.x += lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
+			break;
+
+		case ePVC_Phai:
+		case ePVC_PhaiTren:
+		case ePVC_PhaiDuoi:
+			mToaDo.x -= lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
+			break;
+
+		default:
+			break;
 		}
 	}
 }

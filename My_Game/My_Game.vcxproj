@@ -180,6 +180,7 @@
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="QuanLyManGame.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="TenLua.cpp" />
     <ClCompile Include="ThanhMau.cpp" />
     <ClCompile Include="ThoiGianGame.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
@@ -236,6 +237,7 @@
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="QuanLyManGame.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="TenLua.h" />
     <ClInclude Include="ThanhMau.h" />
     <ClInclude Include="ThoiGianGame.h" />
     <ClInclude Include="ToanCauGame.h" />

@@ -140,48 +140,22 @@ void Man1::TaiDuLieu()
 void Man1::CapNhat(float in_tg)
 {
 	mDS_DoiTuong.clear();
-	// lấy đối tượng tĩnh trong các QuadTree - so với với Camera
 	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuong, Camera::get_HCNGioiHan());
-	
-	mDS_DoiTuongTinh.clear();
-	mDS_Ech.clear();
-	mDS_LoCot.clear();
-	// đưa từ từ các đối tượng vào các DS 
-	for (int i = 0; i < (int)mDS_DoiTuong.size(); i++)
-	{
-		if (mDS_DoiTuong[i]->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
-		{
-			mDS_DoiTuongTinh.push_back(mDS_DoiTuong[i]);
-		}
-		else if (mDS_DoiTuong[i]->get_LoaiDoiTuong() == eLDT_LoCot)
-		{
-			mDS_LoCot.push_back(mDS_DoiTuong[i]);
-		}
-		else
-		{
-			mDS_Ech.push_back(mDS_DoiTuong[i]);
-		}
-	}
 
 #pragma region CAP NHAT
 
 	mXMan->CapNhat(in_tg);
 
-	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	for (auto DanLv : mDS_DanLv)
 	{
-		mDS_DanLv[i]->CapNhat(in_tg);
-	}
-
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		mDS_Ech[i]->CapNhat(in_tg, mXMan);
+		DanLv->CapNhat(in_tg);
 	}
 
 	mXacUop->CapNhat(in_tg, mXMan);
 
-	for (auto D : mDS_DanNo1_Quai)
+	for (auto DanNo : mDS_DanNo1_Quai)
 	{
-		D->CapNhat(in_tg);
+		DanNo->CapNhat(in_tg);
 	}
 
 	for (auto Bui : mDS_Bui_Quai)
@@ -189,84 +163,46 @@ void Man1::CapNhat(float in_tg)
 		Bui->CapNhat(in_tg);
 	}
 
-	for (int i = 0; i < (int)mDS_LoCot.size(); i++)
+	for (auto DT : mDS_DoiTuong)
 	{
-		mDS_LoCot[i]->CapNhat(in_tg);
+		DT->CapNhat(in_tg, mXMan);
 	}
 
 #pragma endregion
 
 #pragma region VA CHAM
-	// chỉ kiểm tra ĐK ở ĐỐI TƯỢNG CONST THAM SỐ
-
-	// các đối tượng va chạm ĐỐI TƯỢNG TĨNH
-	for (int i = 0; i < (int)mDS_DoiTuongTinh.size(); i++)
+	for (auto DanNo : mDS_DanNo1_Quai)
 	{
-		// xử lý va chạm XMAN-ĐỐI TƯỢNG TĨNH 
-		mXMan->XuLyVaCham(mDS_DoiTuongTinh[i]);
-
-		// va chạm với đạn XMAN
-		for (int j = 0; j < (int)mDS_DanLv.size(); j++)
+		if (DanNo->get_TrangThai() != eTT_DanNo1_BienMat)
 		{
-			mDS_DanLv[j]->XuLyVaCham(mDS_DoiTuongTinh[i]);
+			mXMan->XuLyVaCham(DanNo);
 		}
-
-		for (int j = 0; j < (int)mDS_Ech.size(); j++)
-		{
-			mDS_Ech[j]->XuLyVaCham(mDS_DoiTuongTinh[i]);
-		}
-
-		for (auto D : mDS_DanNo1_Quai)
-		{
-			D-> XuLyVaCham(mDS_DoiTuongTinh[i]);
-		}
+		DanNo->XuLyVaCham(mXMan);
 	}
 
-
-	//các đối tượng va chạm với ĐẠN XMan
-	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	for (auto DT : mDS_DoiTuong)
 	{
-		// nếu ĐẠN đã bị phá hủy hoặc đang tan biến thì bỏ qua
-		if (mDS_DanLv[i]->get_TrangThai() == eTT_Dan_BienMat ||
-			mDS_DanLv[i]->get_TrangThai() == eTT_Dan_DangTanBien)
+		mXMan->XuLyVaCham(DT);
+
+		for (auto DT2 : mDS_DoiTuong)
 		{
-			continue;
+			DT2->XuLyVaCham(DT);
 		}
-		for (int j = 0; j < (int)mDS_Ech.size(); j++)
+
+		for (auto DanLv : mDS_DanLv)
 		{
-			mDS_Ech[j]->XuLyVaCham(mDS_DanLv[i]);
+			DT->XuLyVaCham(DanLv);
+			DanLv->XuLyVaCham(DT);
+		}
+
+		for (auto DanNo : mDS_DanNo1_Quai)
+		{
+			DanNo->XuLyVaCham(DT);
 		}
 	}
-
-	// các đối tượng va chạm với Ếch
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		// nếu Ếch đã bị phá hoặc đang tan biến thì bỏ qua
-		if (mDS_Ech[i]->get_TrangThai() == eTT_Ech_BienMat ||
-			mDS_Ech[i]->get_TrangThai() == eTT_Ech_DangTanBien)
-		{
-			continue;
-		}
-		for (int j = 0; j < (int)mDS_DanLv.size(); j++)
-		{
-			mDS_DanLv[j]->XuLyVaCham(mDS_Ech[i]);
-		}
-		mXMan->XuLyVaCham(mDS_Ech[i]);
-	}
-
-	// các đối tượng va chạm với ĐẠN NỔ QUÁI
-	for (int i = 0; i < (int)mDS_DanNo1_Quai.size(); i++)
-	{
-		if (mDS_DanNo1_Quai[i]->get_TrangThai() != eTT_DanNo1_BienMat)
-		{
-			mXMan->XuLyVaCham(mDS_DanNo1_Quai[i]);
-		}
-		mDS_DanNo1_Quai[i]->XuLyVaCham(mXMan);
-	}
-
-
-
 #pragma endregion
+
+
 
 	// nơi xử lý bàn phím
 	mXMan->XuLyBanPhim(mKeys);
@@ -304,17 +240,12 @@ void Man1::Ve()
 
 	mXMan->Ve(lDoDoi);
 
-	for (int i = 0; i < (int)mDS_DanLv.size(); i++)
+	for (auto DanLv : mDS_DanLv)
 	{
-		mDS_DanLv[i]->Ve(lDoDoi);
+		DanLv->Ve(lDoDoi);
 	}
 
 	mThanhMauXMan->Ve(mXMan->get_HP());
-
-	for (int i = 0; i < (int)mDS_Ech.size(); i++)
-	{
-		mDS_Ech[i]->Ve(lDoDoi);
-	}
 
 	mXacUop->Ve(lDoDoi);
 
@@ -328,9 +259,9 @@ void Man1::Ve()
 		Bui->Ve(lDoDoi);
 	}
 
-	for (int i = 0; i < (int)mDS_LoCot.size(); i++)
+	for (auto DT : mDS_DoiTuong)
 	{
-		mDS_LoCot[i]->Ve(lDoDoi);
+		DT->Ve(lDoDoi);
 	}
 }
 

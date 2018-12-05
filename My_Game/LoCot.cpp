@@ -150,20 +150,28 @@ void LoCot::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		return;
 	}
 
-	if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
-	{
-		switch (in_DoiTuong->get_LoaiDoiTuong())
-		{
-		case eLDT_DanLv1:
-		case eLDT_DanLv2:
-		case eLDT_DanLv3:
-			HP -= ((DanLv*)in_DoiTuong)->get_Damage();
-			IsShining = true;
-			break;
 
-		default:
-			break;
+	switch (in_DoiTuong->get_LoaiDoiTuong())
+	{
+	case eLDT_DanLv1:
+	case eLDT_DanLv2:
+	case eLDT_DanLv3:
+		if (((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_BienMat ||
+			((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_DangTanBien)
+		{
+			return;
 		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		HP -= ((DanLv*)in_DoiTuong)->get_Damage();
+		IsShining = true;
+		break;
+	default:
+		break;
 	}
 }
 

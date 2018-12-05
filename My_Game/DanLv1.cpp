@@ -1,4 +1,6 @@
 ﻿#include "DanLv1.h"
+#include "Ech.h"
+
 
 
 DanLv1::DanLv1(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
@@ -65,25 +67,26 @@ void DanLv1::Ve(const Vec2 & in_DoDoi)
 
 void DanLv1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
-	if (mTrangThai == eTT_Dan_TonTai)
+	if (mTrangThai != eTT_Dan_TonTai)
 	{
-		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
-		{
-			eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
+		return;
+	}
 
-			if (lKQVC.eKQVC_DaVaCham)
-			{
-				DangTanBien();
-			}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
+	{		
+		if (((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_BienMat ||
+			((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_DangTanBien)
+		{
+			return;
 		}
 
-		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
 		{
-			if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
-			{
-				DangTanBien();
-			}
+			return;
 		}
+
+		DangTanBien();
 	}
 }
 

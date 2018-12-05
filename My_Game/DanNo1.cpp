@@ -68,30 +68,22 @@ void DanNo1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		return;
 	}
 
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
-	{
-		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
-		{
-			mTrangThai = eTT_DanNo1_BienMat;
-			mTGDem_NoTung = 0.0f;
-			// set tọa độ hiệu ứng nổ tung 
-			mToaDo_HieuUngNoTung = mToaDo;
-			mHH_HieuUngPhatNo->Remake();
-		}
-	}
 
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_XMan)
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_XMan)
 	{
-		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
 		{
-			mTrangThai = eTT_DanNo1_BienMat;
-			mTGDem_NoTung = 0.0f;
-			// set tọa độ hiệu ứng nổ tung 
-			mToaDo_HieuUngNoTung = mToaDo;
-			mHH_HieuUngPhatNo->Remake();
+			return;
 		}
-	}
 
+		mTrangThai = eTT_DanNo1_BienMat;
+		mTGDem_NoTung = 0.0f;
+		// set tọa độ hiệu ứng nổ tung 
+		mToaDo_HieuUngNoTung = mToaDo;
+		mHH_HieuUngPhatNo->Remake();
+
+	}
 }
 
 void DanNo1::BanRa(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)

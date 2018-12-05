@@ -3,6 +3,8 @@
 #include "VaChamGame.h"
 #include "GameLog.h"
 #include "Camera.h"
+#include "Ech.h"
+#include "DanNo1.h"
 
 
 
@@ -342,7 +344,7 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 				mCoChuongNgaiVatTrai = true;
 
 				if (mLatHinh &&
-					(mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay ) )
+					(mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay))
 				{
 					DungIm();
 				}
@@ -368,21 +370,46 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		}
 	}
 
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech || in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanNo1)
+	if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
 	{
-		if (mTrangThai == eTT_XMan_DinhSatThuong)
+		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
 		{
-			return;
+			if (mTrangThai == eTT_XMan_DinhSatThuong)
+			{
+				return;
+			}
+			if (mTGDem_KoNhanST < mTG_KoNhanST)
+			{
+				return;
+			}
+			if (((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_BienMat ||
+				((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_DangTanBien)
+			{
+				return;
+			}
+
+			DinhSatThuong();
 		}
-		if (mTGDem_KoNhanST < mTG_KoNhanST)
+
+		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanNo1)
 		{
-			return;
-		}
-		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
-		{
+			if (mTrangThai == eTT_XMan_DinhSatThuong)
+			{
+				return;
+			}
+			if (mTGDem_KoNhanST < mTG_KoNhanST)
+			{
+				return;
+			}
+			if (((DanNo1*)in_DoiTuong)->get_TrangThai() == eTT_DanNo1_BienMat)
+			{
+				return;
+			}
+
 			DinhSatThuong();
 		}
 	}
+
 
 #pragma region XỬ LÝ BIẾN mDangDungTuNhienRoi
 	if (mDangDungTuNhienRoi == true)

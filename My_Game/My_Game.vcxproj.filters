@@ -178,6 +178,9 @@
     <ClCompile Include="LoCot.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TenLua.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -340,6 +343,7 @@
     <ClInclude Include="LoCot.h">
       <Filter>4.DoiTuong\Quai</Filter>
     </ClInclude>
+    <ClInclude Include="TenLua.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">
