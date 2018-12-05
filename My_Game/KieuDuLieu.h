@@ -99,7 +99,9 @@ enum eLoaiDoiTuong
 	eLDT_Ech,
 	eLDT_DanNo1,
 	eLDT_XacUop,
-	eLDT_LoCot
+	eLDT_LoCot,
+	eLDT_TenLua
+
 };
 
 enum eHuongDiChuyen
@@ -152,6 +154,10 @@ enum eTrangThai
 
 	eTT_LoCot_BienMat,
 	eTT_LoCot_BanTenLua,
-	eTT_LoCot_BanDanNo
+	eTT_LoCot_BanDanNo,
+
+	eTT_TenLua_TonTai,
+	eTT_TenLua_PhatNo,
+	eTT_TenLua_BienMat
 };
 

@@ -343,7 +343,9 @@
     <ClInclude Include="LoCot.h">
       <Filter>4.DoiTuong\Quai</Filter>
     </ClInclude>
-    <ClInclude Include="TenLua.h" />
+    <ClInclude Include="TenLua.h">
+      <Filter>4.DoiTuong\Quai</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">
