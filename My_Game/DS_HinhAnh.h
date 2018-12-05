@@ -32,12 +32,14 @@ private:
 
 		DanLv3_png = new HinhAnh("Resources/XMan/DanLv3.png", D3DCOLOR_XRGB(50, 96, 166));
 
-		HieuUngBatRa_png = new HinhAnh("Resources/HieuUng/HieuUngBatRa.png");
+		HieuUngBatRa_png = new HinhAnh("Resources/HieuUng/HieuUngBatRa.png", D3DCOLOR_XRGB(0, 128, 128));
 
 		XMan_png = new HinhAnh("Resources/XMan/XMan.png");
 		XMan_Shining_png = new HinhAnh("Resources/XMan/XMan_Shining.png", D3DCOLOR_XRGB(255, 255, 255));
 		HieuUngNapDanLv2_png = new HinhAnh("Resources/XMan/HieuUngNapDanLv2.png", D3DCOLOR_XRGB(0, 128, 128));
 		HieuUngNapDanLv3_png = new HinhAnh("Resources/XMan/HieuUngNapDanLv3.png", D3DCOLOR_XRGB(0, 128, 128));
+
+		LoCot_png = new HinhAnh("Resources/Enemies/LoCot.png", D3DCOLOR_XRGB(255, 0, 255));
 	}
 	~DS_HinhAnh()
 	{
@@ -67,5 +69,7 @@ public:
 	HinhAnh* XMan_Shining_png;
 	HinhAnh* HieuUngNapDanLv2_png;
 	HinhAnh* HieuUngNapDanLv3_png;
+
+	HinhAnh* LoCot_png;
 };
 

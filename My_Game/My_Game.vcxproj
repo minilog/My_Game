@@ -154,6 +154,7 @@
     <ClCompile Include="HieuUngLuot.cpp" />
     <ClCompile Include="HinhAnh.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
+    <ClCompile Include="LoCot.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Man1.cpp" />
     <ClCompile Include="MapReader\base64.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="HieuUngLuot.h" />
     <ClInclude Include="KieuDuLieu.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="LoCot.h" />
     <ClInclude Include="Man1.h" />
     <ClInclude Include="ManGame.h" />
     <ClInclude Include="HinhAnh.h" />

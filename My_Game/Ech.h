@@ -6,11 +6,14 @@
 #include "Camera.h"
 #include "Bui.h"
 #include "DS_HinhAnh.h"
+#include "DanNo1.h"
 
 class Ech : public DoiTuong
 {
 public:
-	Ech(const Vec2& in_ToaDo, const Vec2& in_VanToc, int in_Rong = 26, int in_Cao = 30);
+	Ech(const Vec2& in_ToaDo, const Vec2& in_VanToc,
+		std::vector<DanNo1*>& in_DS_DanNo1, std::vector<Bui*>& in_Bui,
+		int in_Rong = 26, int in_Cao = 30);
 
 	// ko xài cái này
 	void CapNhat(float in_tg) 
@@ -25,15 +28,15 @@ public:
 
 // INFORMATION
 private:
-	//DanNo1 *mDanNo1; // thêm vào 1 viên đạn nổ
+	// ĐẠN NỔ và BỤI này chỉ là con trỏ
+	std::vector<DanNo1*> mDS_DanNo1; // Khoảng 6 viên
+	std::vector<Bui*> mDS_Bui;
 
 	Vec2 mToaDo_HieuUngNoTung;
 	Vec2 mToaDoXuatHien;
 
 	const int mMaxHP = 4;
 	int mHP = mMaxHP;
-
-	Bui *mBui;
 
 	HoatHinh *mHH_ChuanBiNhay,
 		*mHH_Nhay,
@@ -51,52 +54,52 @@ private:
 	HoatHinh *mHH_HienTai;	
 	HoatHinh *mHH_HieuUngNoTung;
 
-	const float mTG_HieuUngNoTung = 0.08f * 6;
+	static constexpr float mTG_HieuUngNoTung = 0.08f * 6;
 	float mTGDem_HieuUngNoTung = mTG_HieuUngNoTung + 0.1f;
 	
 	float mKhoangCach_XMan;
 
 	bool mNamTrongCamera = false;
 
-	const float mTG_TanBien = 0.3f;
+	static constexpr float mTG_TanBien = 0.3f;
 	float mTGDem_TanBien = 0.0f;
 
 	bool mIsShining = false;
-	const float mTG_Shining = 0.15f;
+	static constexpr float mTG_Shining = 0.15f;
 	float mTGDem_Shining = 0.0f;
 
 	float mTGDem_BuiXuatHien = 0.35f;
 
-	const float mTG_ChuanBiNhay = 0.12f * 5 - 0.05f;
+	static constexpr float mTG_ChuanBiNhay = 0.12f * 5 - 0.05f;
 	float mTGDem_ChuanBiNhay = 0.0f;
 
-	const float mTG_TiepDat = 0.12f * 5;
+	static constexpr float mTG_TiepDat = 0.12f * 5;
 	float mTGDem_TiepDat = 0.0f;
 
-	const float mTG_NhamBan1 = 0.14f * 3;
+	static constexpr float mTG_NhamBan1 = 0.14f * 3;
 	float mTGDem_NhamBan1 = 0.0f;
 
-	const float mTG_HaNhamBan1 = 0.14f * 3;
+	static constexpr float mTG_HaNhamBan1 = 0.14f * 3;
 	float mTGDem_HaNhamBan1 = 0.0f;
 
-	const float mTG_BanDan = 0.25f * 2 * 3;
+	static constexpr float mTG_BanDan = 0.25f * 2 * 3;
 	float mTGDem_BanDan = 0.0f;
 
-	const float mTG_NhamBan2 = 0.14f * 4;
+	static constexpr float mTG_NhamBan2 = 0.14f * 4;
 	float mTGDem_NhamBan2 = 0.0f;
 
-	const float mTG_HaNhamBan2 = 0.14f * 4;
+	static constexpr float mTG_HaNhamBan2 = 0.14f * 4;
 	float mTGDem_HaNhamBan2 = 0.0f;
 
-	const float mTG_NhamBan3 = 0.14f * 5;
+	static constexpr float mTG_NhamBan3 = 0.14f * 5;
 	float mTGDem_NhamBan3 = 0.0f;
 
-	const float mTG_HaNhamBan3 = 0.14f * 5;
+	static constexpr float mTG_HaNhamBan3 = 0.14f * 5;
 	float mTGDem_HaNhamBan3 = 0.0f;
 
-	const float mGiaTocTrongTruong = 1000.0f;
-	const float mVanTocRoiToiDa = 300.0f;
-	const float mVanTocNhay = 120.0f;
+	static constexpr float mGiaTocTrongTruong = 1000.0f;
+	static constexpr float mVanTocRoiToiDa = 300.0f;
+	static constexpr float mVanTocNhay = 120.0f;
 
 	bool mLatHinh = false;
 

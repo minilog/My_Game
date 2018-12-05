@@ -4,18 +4,26 @@
 
 
 
-Ech::Ech(const Vec2 & in_ToaDo, const Vec2 & in_VanToc, int in_Rong, int in_Cao)
+Ech::Ech(const Vec2& in_ToaDo, const Vec2& in_VanToc,
+	std::vector<DanNo1*>& in_DS_DanNo1, std::vector<Bui*>& in_Bui,
+	int in_Rong, int in_Cao)
 	:
 	DoiTuong(in_ToaDo, in_VanToc, 22, 30)
 {
 	mLoaiDoiTuong = eLDT_Ech;
 	mTrangThai = eTT_Ech_BienMat;
-
+	for (int i = 0; i < (int)in_DS_DanNo1.size(); i++)
+	{
+		mDS_DanNo1.push_back(in_DS_DanNo1[i]); // Gắn địa chỉ vào
+	}
+	for (int i = 0; i < (int)in_Bui.size(); i++)
+	{
+		mDS_Bui.push_back(in_Bui[i]);
+	}// Gắn địa chỉ vào
 	mToaDoXuatHien = in_ToaDo;
 
 	LoadThongTinHoatHinh();
 
-	mBui = new Bui(Vec2(), Vec2());
 	mHH_HienTai = mHH_DangTanBien;
 }
 
@@ -68,8 +76,6 @@ void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 			mIsShining = false;
 		}
 	}
-
-	mBui->CapNhat(in_tg);
 
 	mKhoangCach_XMan = mToaDo.x - in_XMan->get_ToaDo().x;
 
@@ -172,8 +178,6 @@ void Ech::Ve(const Vec2 & in_DoDoi)
 			mHH_HienTai->Ve(DS_HinhAnh::get_TH()->Ech_png, mLatHinh, mToaDo, in_DoDoi);
 		}
 	}
-
-	mBui->Ve(in_DoDoi);
 }
 
 void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
@@ -499,15 +503,43 @@ void Ech::CapNhat_BanDan2(float in_tg)
 	mTGDem_BuiXuatHien += in_tg;
 	if (mTGDem_BuiXuatHien > mTG_BanDan / 3.0f)
 	{
-		if (mLatHinh)
+	
+		for (int i = 0; i < (int)mDS_Bui.size(); i++)
 		{
-			mBui->set_ToaDo(mToaDo + Vec2(11.0f, -29.0f));
+			// chỉ sử dụng BỤi đã biến mất
+			if (mDS_Bui[i]->get_BienMat())
+			{
+				if (mLatHinh)
+				{
+					mDS_Bui[i]->set_ToaDo(mToaDo + Vec2(11.0f, -29.0f));
+				}
+				else
+				{
+					mDS_Bui[i]->set_ToaDo(mToaDo + Vec2(-11.0f, -29.0f));
+				}
+
+				mDS_Bui[i]->Remake();
+				break;
+			}
 		}
-		else
+
+		for (int i = 0; i < (int)mDS_DanNo1.size(); i++)
 		{
-			mBui->set_ToaDo(mToaDo + Vec2(-11.0f, -29.0f));
+			// chỉ sử dụng các đạn nổ đã biến mất
+			if (mDS_DanNo1[i]->get_TrangThai() == eTT_DanNo1_BienMat)
+			{
+				if (mLatHinh)
+				{
+					mDS_DanNo1[i]->BanRa(mToaDo + Vec2(14.0f, -27.0f), Vec2(100.0f, -240.0f));
+				}
+				else
+				{
+					mDS_DanNo1[i]->BanRa(mToaDo + Vec2(-14.0f, -27.0f), Vec2(-100.0f, -240.0f));
+				}
+				break;
+			}
 		}
-		mBui->Remake();
+
 		mTGDem_BuiXuatHien = 0.0f;
 	}
 }
@@ -625,15 +657,41 @@ void Ech::CapNhat_BanDan1(float in_tg)
 	mTGDem_BuiXuatHien += in_tg;
 	if (mTGDem_BuiXuatHien > mTG_BanDan / 3.0f)
 	{
-		if (mLatHinh)
+		for (int i = 0; i < (int)mDS_Bui.size(); i++)
 		{
-			mBui->set_ToaDo(mToaDo + Vec2(17.0f, -26.0f));
+			// chỉ sử dụng BỤi đã biến mất
+			if (mDS_Bui[i]->get_BienMat())
+			{
+				if (mLatHinh)
+				{
+					mDS_Bui[i]->set_ToaDo(mToaDo + Vec2(15.0f, -25.0f));
+				}
+				else
+				{
+					mDS_Bui[i]->set_ToaDo(mToaDo + Vec2(-15.0f, -25.0f));
+				}
+
+				mDS_Bui[i]->Remake();
+				break;
+			}
 		}
-		else
+
+		for (int i = 0; i < (int)mDS_DanNo1.size(); i++)
 		{
-			mBui->set_ToaDo(mToaDo + Vec2(-17.0f, -26.0f));
+			// chỉ sử dụng các đạn nổ đã biến mất
+			if (mDS_DanNo1[i]->get_TrangThai() == eTT_DanNo1_BienMat)
+			{
+				if (mLatHinh)
+				{
+					mDS_DanNo1[i]->BanRa(mToaDo + Vec2(18.0f, -28.0f), Vec2(190.0f, -240.0f));
+				}
+				else
+				{
+					mDS_DanNo1[i]->BanRa(mToaDo + Vec2(-18.0f, -28.0f), Vec2(-190.0f, -240.0f));
+				}
+				break;
+			}
 		}
-		mBui->Remake();
 		mTGDem_BuiXuatHien = 0.0f;
 	}
 }
@@ -666,8 +724,34 @@ void Ech::CapNhat_BanDan3(float in_tg)
 	mTGDem_BuiXuatHien += in_tg;
 	if (mTGDem_BuiXuatHien > mTG_BanDan / 3.0f)
 	{
-		mBui->set_ToaDo(mToaDo + Vec2(0.0f, -31.0f));
-		mBui->Remake();
+		for (int i = 0; i < (int)mDS_Bui.size(); i++)
+		{
+			// chỉ sử dụng BỤi đã biến mất
+			if (mDS_Bui[i]->get_BienMat())
+			{
+				mDS_Bui[i]->set_ToaDo(mToaDo + Vec2(-0.0f, -30.0f));
+				mDS_Bui[i]->Remake();
+				break;
+			}
+		}
+
+		for (int i = 0; i < (int)mDS_DanNo1.size(); i++)
+		{
+			// chỉ sử dụng các đạn nổ đã biến mất
+			if (mDS_DanNo1[i]->get_TrangThai() == eTT_DanNo1_BienMat)
+			{
+				if (mLatHinh)
+				{
+					mDS_DanNo1[i]->BanRa(mToaDo + Vec2(3.0f, -33.0f), Vec2(30.0f, -330.0f));
+				}
+				else
+				{
+					mDS_DanNo1[i]->BanRa(mToaDo + Vec2(-3.0f, -33.0f), Vec2(-30.0f, -330.0f));
+				}
+				break;
+			}
+		}
+		
 		mTGDem_BuiXuatHien = 0.0f;
 	}
 }
@@ -726,9 +810,6 @@ Ech::~Ech()
 
 	if (mHH_HaNhamBan3)
 		delete mHH_HaNhamBan3;
-
-	if (mBui)
-		delete mBui;
 
 	if (mHH_DangTanBien)
 		delete mHH_DangTanBien;

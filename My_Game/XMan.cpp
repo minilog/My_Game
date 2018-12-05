@@ -263,7 +263,7 @@ void XMan::CapNhat(float in_tg)
 
 void XMan::Ve(const Vec2 & in_DoDoi)
 {
-	mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XMan_png, mLatHinh, mToaDo, in_DoDoi);
+
 	if (mTGDem_KoNhanST < mTG_KoNhanST)
 	{
 		if ((mTGDem_NhapNhay < 0.025f))
@@ -368,7 +368,7 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		}
 	}
 
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech || in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanNo1)
 	{
 		if (mTrangThai == eTT_XMan_DinhSatThuong)
 		{

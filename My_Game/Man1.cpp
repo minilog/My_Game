@@ -25,7 +25,6 @@ Man1::~Man1()
 
 void Man1::TaiDuLieu()
 {
-
 	mGameDebugDraw = new GameDebugDraw();
 	mGameDebugDraw->setLineSize(2.0f);
 
@@ -34,18 +33,14 @@ void Man1::TaiDuLieu()
 #pragma region TAO BAN DO VA CAMERA
 	ManGame::mBanDo = new Tmx::Map();
 	ManGame::mBanDo->ParseFile("Map1.tmx");
-
 	ManGame::mChieuRong = ManGame::mBanDo->GetWidth() * ManGame::mBanDo->GetTileWidth();
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
-
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
-
-	Camera::set_GioiHan(0, 773 - 4 + Camera::get_ChieuRong(), 770, 770 + ToanCauGame::mChieuCao);
+	//Camera::set_GioiHan(0, 773 - 4 + Camera::get_ChieuRong(), 770, 770 + ToanCauGame::mChieuCao);
 	Camera::set_ToaDo(Vec2(
 		ToanCauGame::mChieuRong / 2.0f,
 		896.0f));
-
 #pragma endregion
 
 
@@ -56,6 +51,29 @@ void Man1::TaiDuLieu()
 
 	// tạo cây quad tree
 	mQuadTree = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
+
+	// tạo 1 XMan
+	mXMan = new XMan(Vec2(50.0f, 880.0f));
+
+	// đưa đạn của XMan vào danh sách con trỏ
+	mXMan->get_DS_Dan(mDS_DanLv);
+
+	// tạo thanh máu XMan
+	mThanhMauXMan = new ThanhMau();
+
+	// tạo DS Đạn Nổ để đưa cho các Quái sử dụng
+	for (int i = 0; i < 6; i++)
+	{
+		DanNo1 *lD = new DanNo1();
+		mDS_DanNo1_Quai.push_back(lD);
+	}
+
+	// tạo DS Bụi cho quái xài
+	for (int i = 0; i < 2; i++)
+	{
+		Bui* lB = new Bui(Vec2(), Vec2());
+		mDS_Bui_Quai.push_back(lB);
+	}
 
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
@@ -85,7 +103,7 @@ void Man1::TaiDuLieu()
 			if (lNhomObject->GetName() == "Ech")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
-				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(),
+				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(), mDS_DanNo1_Quai, mDS_Bui_Quai,
 					lObject->GetWidth(), lObject->GetHeight());
 
 				mQuadTree->ThemDoiTuong(lEch);
@@ -96,21 +114,19 @@ void Man1::TaiDuLieu()
 
 				mXacUop = new XacUop(lToaDoDoiTuong, Vec2());
 			}
+
+			if (lNhomObject->GetName() == "LoCot")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+
+				LoCot *lLoCot = new LoCot(lToaDoDoiTuong);
+
+				mQuadTree->ThemDoiTuong(lLoCot);
+			}
 		}
 	}
 #pragma endregion
 
-	// tạo 1 XMan
-	mXMan = new XMan(Vec2(50.0f, 880.0f));
-	
-	// đưa đạn của XMan vào danh sách con trỏ
-	mXMan->get_DS_Dan(mDS_DanLv);
 
-	// tạo thanh máu XMan
-	mThanhMauXMan = new ThanhMau();
-
-	mDanNo1 = new DanNo1();
-	mDanNo1->BanRa(Vec2(50.0f, 880.0f), Vec2(0.0f, 80.0f));
 
 // TEST INFO
 	font = NULL;
@@ -136,6 +152,10 @@ void Man1::CapNhat(float in_tg)
 		{
 			mDS_DoiTuongTinh.push_back(mDS_DoiTuong[i]);
 		}
+		else if (mDS_DoiTuong[i]->get_LoaiDoiTuong() == eLDT_LoCot)
+		{
+			mDS_LoCot.push_back(mDS_DoiTuong[i]);
+		}
 		else
 		{
 			mDS_Ech.push_back(mDS_DoiTuong[i]);
@@ -158,7 +178,20 @@ void Man1::CapNhat(float in_tg)
 
 	mXacUop->CapNhat(in_tg, mXMan);
 
-	mDanNo1->CapNhat(in_tg);
+	for (auto D : mDS_DanNo1_Quai)
+	{
+		D->CapNhat(in_tg);
+	}
+
+	for (auto Bui : mDS_Bui_Quai)
+	{
+		Bui->CapNhat(in_tg);
+	}
+
+	for (int i = 0; i < (int)mDS_LoCot.size(); i++)
+	{
+		mDS_LoCot[i]->CapNhat(in_tg);
+	}
 
 #pragma endregion
 
@@ -182,7 +215,10 @@ void Man1::CapNhat(float in_tg)
 			mDS_Ech[j]->XuLyVaCham(mDS_DoiTuongTinh[i]);
 		}
 
-		mDanNo1->XuLyVaCham(mDS_DoiTuongTinh[i]);
+		for (auto D : mDS_DanNo1_Quai)
+		{
+			D-> XuLyVaCham(mDS_DoiTuongTinh[i]);
+		}
 	}
 
 
@@ -216,6 +252,19 @@ void Man1::CapNhat(float in_tg)
 		}
 		mXMan->XuLyVaCham(mDS_Ech[i]);
 	}
+
+	// các đối tượng va chạm với ĐẠN NỔ QUÁI
+	for (int i = 0; i < (int)mDS_DanNo1_Quai.size(); i++)
+	{
+		if (mDS_DanNo1_Quai[i]->get_TrangThai() != eTT_DanNo1_BienMat)
+		{
+			mXMan->XuLyVaCham(mDS_DanNo1_Quai[i]);
+		}
+		mDS_DanNo1_Quai[i]->XuLyVaCham(mXMan);
+	}
+
+
+
 #pragma endregion
 
 	// nơi xử lý bàn phím
@@ -268,7 +317,20 @@ void Man1::Ve()
 
 	mXacUop->Ve(lDoDoi);
 
-	mDanNo1->Ve(lDoDoi);
+	for (auto D : mDS_DanNo1_Quai)
+	{
+		D->Ve(lDoDoi);
+	}
+
+	for (auto Bui : mDS_Bui_Quai)
+	{
+		Bui->Ve(lDoDoi);
+	}
+
+	for (int i = 0; i < (int)mDS_LoCot.size(); i++)
+	{
+		mDS_LoCot[i]->Ve(lDoDoi);
+	}
 }
 
 void Man1::OnKeyDown(int in_KeyCode)

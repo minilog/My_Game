@@ -13,6 +13,7 @@
 #include "HoatHinh.h"
 #include "XacUop.h"
 #include "DanNo1.h"
+#include "LoCot.h"
 
 
 
@@ -39,16 +40,19 @@ public:
 // INFORMATION
 private:
 
-	XacUop *mXacUop;
-	DanNo1 *mDanNo1;
 	XMan *mXMan;
 	std::vector<DanLv*> mDS_DanLv; // ĐẠN được lấy từ XMAN
-
-	std::vector<DoiTuong*> mDS_DoiTuong;
 	// chia nhỏ các đối tượng, đưa vào 2 DS bên dưới
+	std::vector<DoiTuong*> mDS_DoiTuong;
+
 	std::vector<DoiTuong*> mDS_DoiTuongTinh;
+
 	std::vector<DoiTuong*> mDS_Ech;
-	// con ếch có các viên đạn ko nằm trong QuadTree, nên để vào Static
+	std::vector<DoiTuong*> mDS_LoCot;
+	XacUop *mXacUop;
+	//  DS DanNo1, Bui dành cho QUái
+	std::vector<DanNo1*> mDS_DanNo1_Quai;
+	std::vector<Bui*> mDS_Bui_Quai;
 
 	ThanhMau *mThanhMauXMan;
 	//HinhAnh *mTest;

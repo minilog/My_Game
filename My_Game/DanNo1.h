@@ -8,77 +8,13 @@
 class DanNo1 : public DoiTuong
 {
 public:
-	DanNo1() 
-		:DoiTuong(Vec2(), Vec2(), 8, 8)
-	{
-		mLoaiDoiTuong = eLDT_DanNo1;
-		mTrangThai = eTT_DanNo1_BienMat;
-
-		LoadThongTinHoatHinh();
-
-	}
+	DanNo1();
 
 // FUNCTION
-	void CapNhat(float in_tg)
-	{
-		// cập nhật hiệu ứng
-		if (mTGDem_NoTung <= mTG_NoTung)
-		{
-			mTGDem_NoTung += in_tg;
-			mHH_HieuUngPhatNo->CapNhat(in_tg);
-		}
-
-		// nếu đạn đã bị phá hủy -> ko cần Cập Nhật
-		if (mTrangThai == eTT_DanNo1_BienMat)
-		{
-			return;
-		}
-
-		mToaDo.x += mVanToc.x * in_tg;
-		mToaDo.y += mVanToc.y * in_tg;
-	}
-	void Ve(const Vec2& in_DoDoi)
-	{
-		if (mTGDem_NoTung <= mTG_NoTung)
-		{
-			mHH_HieuUngPhatNo->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, mToaDo_HieuUngNoTung, in_DoDoi);
-		}
-
-		// nếu đã bị phá hủy -> ko cần phải Vẽ ra
-		if (mTrangThai == eTT_DanNo1_BienMat)
-		{
-			return;
-		}
-
-		mHH_Dan->Ve(DS_HinhAnh::get_TH()->DanNo1_png, false, mToaDo, in_DoDoi);
-	}
-	void XuLyVaCham(const DoiTuong* in_DoiTuong)
-	{
-		// nếu đã bị phá hủy -> ko cần phải xét va chạm
-		if (mTrangThai == eTT_DanNo1_BienMat)
-		{
-			return;
-		}
-
-		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
-		{
-			if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
-			{
-				mTrangThai = eTT_DanNo1_BienMat;
-				mTGDem_NoTung = 0.0f;
-				// set tọa độ hiệu ứng nổ tung 
-				mToaDo_HieuUngNoTung = mToaDo;
-				mHH_HieuUngPhatNo->Remake();
-			}
-		}
-
-	}
-	void BanRa(const Vec2& in_ToaDo, const Vec2& in_VanToc)
-	{
-		mToaDo = in_ToaDo;
-		mVanToc = in_VanToc;
-		mTrangThai = eTT_DanNo1_TonTai;
-	}
+	void CapNhat(float in_tg);
+	void Ve(const Vec2& in_DoDoi);
+	void XuLyVaCham(const DoiTuong* in_DoiTuong);
+	void BanRa(const Vec2& in_ToaDo, const Vec2& in_VanToc);
 
 // INFORMATION
 private:
@@ -89,19 +25,20 @@ private:
 	float mTGDem_NoTung = mTG_NoTung + 0.1f;
 	Vec2 mToaDo_HieuUngNoTung;
 
+	// lỡ như ko va chạm thì Đạn có thể tự động biến mất để có thể dùng tiếp
+	static constexpr float mTG_TonTai = 1.0f;
+	float mTGDem_TonTai = 0.0f;
+
+	static constexpr float mGiaTocTrongTruong = 1000.0f;
+	float mVanTocRoiToiDa = 200.0f;
+
+
 // SUB-FUNCTION
 	void LoadThongTinHoatHinh();
 
 // DESTRUCTURE
 public:
-	~DanNo1()
-	{
-		if (mHH_Dan)
-			delete mHH_Dan;
-		
-		if (mHH_HieuUngPhatNo)
-			delete mHH_HieuUngPhatNo;
-	}
+	~DanNo1();
 
 
 };
