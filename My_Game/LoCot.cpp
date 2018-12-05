@@ -3,9 +3,9 @@
 #include "VaChamGame.h"
 #include "DanLv.h"
 
-LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1)
+LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1, std::vector<TenLua*>& in_DS_TenLua)
 	:
-	DoiTuong(in_ToaDo, Vec2(), 38, 46)
+	DoiTuong(in_ToaDo, Vec2(), 34, 46)
 {
 	mLoaiDoiTuong = eLDT_LoCot;
 
@@ -14,6 +14,11 @@ LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1)
 	for (int i = 0; i < (int)in_DS_DanNo1.size(); i++)
 	{
 		mDS_DanNo1.push_back(in_DS_DanNo1[i]);
+	}
+
+	for (auto TL : in_DS_TenLua)
+	{
+		mDS_TenLua.push_back(TL);
 	}
 
 	mTrangThai = eTT_LoCot_BienMat;
@@ -67,11 +72,11 @@ void LoCot::CapNhat(float in_tg, const DoiTuong * in_XMan)
 				{
 					if (!mLatHinh)
 					{
-						mDS_DanNo1[i]->BanRa(mToaDo, Vec2(-220.0f, -250.0f));
+						mDS_DanNo1[i]->BanRa(mToaDo + Vec2(-8.0f, -19.0f), Vec2(-200.0f, -285.0f));
 					}
 					else
 					{
-						mDS_DanNo1[i]->BanRa(mToaDo, Vec2(220.0f, -200.0f));
+						mDS_DanNo1[i]->BanRa(mToaDo + Vec2(8.0f, -19.0f), Vec2(200.0f, -285.0f));
 					}
 
 					break; // chỉ dùng 1 viên mỗi lần
@@ -87,6 +92,28 @@ void LoCot::CapNhat(float in_tg, const DoiTuong * in_XMan)
 		break;
 
 	case eTT_LoCot_BanTenLua:
+		mTGDem_DanDuocBanRa += in_tg;
+		if (mTGDem_DanDuocBanRa > TG_BanDan / 1.2f)
+		{
+			for (auto TL : mDS_TenLua)
+			{
+				if (TL->get_TrangThai() == eTT_TenLua_BienMat)
+				{
+					if (!mLatHinh)
+					{
+						TL->BanRa(mToaDo + Vec2(-15.0f, -4.0f), Vec2(-180.0f, 0.0f));
+					}
+					else
+					{
+						TL->BanRa(mToaDo + Vec2(15.0f, -4.0f), Vec2(180.0f, 0.0f));
+					}
+
+					break; // chỉ dùng 1 viên mỗi lần
+				}
+			}
+			mTGDem_DanDuocBanRa = 0.0f;
+		}
+
 		mTG_Dem += in_tg;
 		if (mTG_Dem > TG_BanTL)
 			BanDan();
@@ -204,6 +231,7 @@ void LoCot::BanTL()
 {
 	mTrangThai = eTT_LoCot_BanTenLua;
 	mTG_Dem = 0.0f;
+	mTGDem_DanDuocBanRa = 0.0f;
 }
 
 void LoCot::BienMat()

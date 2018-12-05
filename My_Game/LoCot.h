@@ -4,11 +4,12 @@
 #include "HoatHinh.h"
 #include "DS_HinhAnh.h"
 #include "DanNo1.h"
+#include "TenLua.h"
 
 class LoCot : public DoiTuong
 {
 public:
-	LoCot(const Vec2& in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1);
+	LoCot(const Vec2& in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1, std::vector<TenLua*>& in_DS_TenLua);
 
 	// ko xài cái này
 	void CapNhat(float in_tg)
@@ -24,6 +25,7 @@ public:
 private:
 	// các đối tượng khác
 	std::vector<DanNo1*> mDS_DanNo1; // chỉ chứa con trỏ chỉ đến 
+	std::vector<TenLua*> mDS_TenLua; // trỏ đến Tên Lửa Màn 1
 	
 	HoatHinh *mHH_DuyNhat;
 	HoatHinh *mHH_HieuUngPhatNo;

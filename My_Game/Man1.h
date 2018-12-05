@@ -14,6 +14,7 @@
 #include "XacUop.h"
 #include "DanNo1.h"
 #include "LoCot.h"
+#include "TenLua.h"
 
 
 
@@ -53,6 +54,7 @@ private:
 	//  DS DanNo1, Bui dành cho QUái
 	std::vector<DanNo1*> mDS_DanNo1_Quai;
 	std::vector<Bui*> mDS_Bui_Quai;
+	std::vector<TenLua*> mDS_TenLua_Quai;
 
 	ThanhMau *mThanhMauXMan;
 	//HinhAnh *mTest;

@@ -6,7 +6,7 @@
 
 Ech::Ech(const Vec2& in_ToaDo, const Vec2& in_VanToc,
 	std::vector<DanNo1*>& in_DS_DanNo1, std::vector<Bui*>& in_Bui,
-	int in_Rong, int in_Cao)
+	int in_Rong, int in_Cao, bool in_EchKhongNhay)
 	:
 	DoiTuong(in_ToaDo, in_VanToc, 22, 30)
 {
@@ -21,6 +21,8 @@ Ech::Ech(const Vec2& in_ToaDo, const Vec2& in_VanToc,
 		mDS_Bui.push_back(in_Bui[i]);
 	}// Gắn địa chỉ vào
 	mToaDoXuatHien = in_ToaDo;
+	
+	mEchKoNhay = in_EchKhongNhay;
 
 	LoadThongTinHoatHinh();
 
@@ -347,6 +349,10 @@ void Ech::ChuanBiNhay()
 	mTGDem_ChuanBiNhay = 0.0f;
 	mVanToc.x = mVanToc.y = 0.0f;
 	mTGDem_HieuUngNoTung = mTG_HieuUngNoTung + 0.1f;
+	if (mEchKoNhay)
+	{
+		TiepDat();
+	}
 }
 
 void Ech::Nhay()
@@ -614,6 +620,10 @@ void Ech::CapNhat_TiepDat(float in_tg)
 	if (lKC < 0)
 		lKC = -lKC;
 
+	if (mEchKoNhay)
+	{
+		mTGDem_TiepDat = mTG_TiepDat;
+	}
 	mTGDem_TiepDat += in_tg;
 	if (mTGDem_TiepDat > mTG_TiepDat)
 	{

@@ -1,5 +1,6 @@
 ﻿#include "DanLv2.h"
 #include "Ech.h"
+#include "LoCot.h"
 
 
 DanLv2::DanLv2(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
@@ -93,6 +94,28 @@ void DanLv2::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 		DangTanBien();
 	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_LoCot)
+	{
+		if (((LoCot*)in_DoiTuong)->get_TrangThai() == eTT_LoCot_BienMat)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		if (!mLatHinh)
+			mToaDo.x += 10.0f;
+		else
+			mToaDo.x -= 10.0f;
+
+		DangTanBien();
+	}
+
+
 }
 
 void DanLv2::LoadHinhAnhVao()

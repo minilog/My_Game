@@ -5,6 +5,8 @@
 #include "Camera.h"
 #include "Ech.h"
 #include "DanNo1.h"
+#include "TenLua.h"
+#include "LoCot.h"
 
 
 
@@ -370,45 +372,101 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		}
 	}
 
-	if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
 	{
-		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
+		if (mTrangThai == eTT_XMan_DinhSatThuong)
 		{
-			if (mTrangThai == eTT_XMan_DinhSatThuong)
-			{
-				return;
-			}
-			if (mTGDem_KoNhanST < mTG_KoNhanST)
-			{
-				return;
-			}
-			if (((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_BienMat ||
-				((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_DangTanBien)
-			{
-				return;
-			}
-
-			DinhSatThuong();
+			return;
+		}
+		if (mTGDem_KoNhanST < mTG_KoNhanST)
+		{
+			return;
+		}
+		if (((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_BienMat ||
+			((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_DangTanBien)
+		{
+			return;
 		}
 
-		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanNo1)
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
 		{
-			if (mTrangThai == eTT_XMan_DinhSatThuong)
-			{
-				return;
-			}
-			if (mTGDem_KoNhanST < mTG_KoNhanST)
-			{
-				return;
-			}
-			if (((DanNo1*)in_DoiTuong)->get_TrangThai() == eTT_DanNo1_BienMat)
-			{
-				return;
-			}
-
-			DinhSatThuong();
+			return;
 		}
+
+		DinhSatThuong();
 	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_LoCot)
+	{
+		if (mTrangThai == eTT_XMan_DinhSatThuong)
+		{
+			return;
+		}
+		if (mTGDem_KoNhanST < mTG_KoNhanST)
+		{
+			return;
+		}
+		if (((LoCot*)in_DoiTuong)->get_TrangThai() == eTT_LoCot_BienMat)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DinhSatThuong();
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanNo1)
+	{
+		if (mTrangThai == eTT_XMan_DinhSatThuong)
+		{
+			return;
+		}
+		if (mTGDem_KoNhanST < mTG_KoNhanST)
+		{
+			return;
+		}
+		if (((DanNo1*)in_DoiTuong)->get_TrangThai() == eTT_DanNo1_BienMat)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DinhSatThuong();
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_TenLua)
+	{
+		if (mTrangThai == eTT_XMan_DinhSatThuong)
+		{
+			return;
+		}
+		if (mTGDem_KoNhanST < mTG_KoNhanST)
+		{
+			return;
+		}
+		if (((TenLua*)in_DoiTuong)->get_TrangThai() == eTT_TenLua_BienMat ||
+			((TenLua*)in_DoiTuong)->get_TrangThai() == eTT_TenLua_PhatNo)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DinhSatThuong();
+	}
+	
 
 
 #pragma region XỬ LÝ BIẾN mDangDungTuNhienRoi

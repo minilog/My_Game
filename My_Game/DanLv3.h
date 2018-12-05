@@ -35,7 +35,7 @@ public:
 
 	int get_Damage() const
 	{
-		return 3;
+		return 4;
 	}
 
 private:

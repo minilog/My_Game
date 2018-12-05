@@ -75,6 +75,13 @@ void Man1::TaiDuLieu()
 		mDS_Bui_Quai.push_back(lB);
 	}
 
+	// tạo DS Tên Lửa cho quái xài
+	for (int i = 0; i < 2; i++)
+	{
+		TenLua* lTL = new TenLua();
+		mDS_TenLua_Quai.push_back(lTL);
+	}
+
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
 	{
@@ -109,6 +116,15 @@ void Man1::TaiDuLieu()
 				mQuadTree->ThemDoiTuong(lEch);
 			}
 
+			if (lNhomObject->GetName() == "EchKhongNhay")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+
+				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(), mDS_DanNo1_Quai, mDS_Bui_Quai,
+					lObject->GetWidth(), lObject->GetHeight(), true);
+
+				mQuadTree->ThemDoiTuong(lEch);
+			}
+
 			if (lNhomObject->GetName() == "XacUop")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
@@ -118,7 +134,7 @@ void Man1::TaiDuLieu()
 			if (lNhomObject->GetName() == "LoCot")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
-				LoCot *lLoCot = new LoCot(lToaDoDoiTuong, mDS_DanNo1_Quai);
+				LoCot *lLoCot = new LoCot(lToaDoDoiTuong, mDS_DanNo1_Quai, mDS_TenLua_Quai);
 
 				mQuadTree->ThemDoiTuong(lLoCot);
 			}
@@ -158,6 +174,11 @@ void Man1::CapNhat(float in_tg)
 		DanNo->CapNhat(in_tg);
 	}
 
+	for (auto TenLua : mDS_TenLua_Quai)
+	{
+		TenLua->CapNhat(in_tg, mXMan);
+	}
+
 	for (auto Bui : mDS_Bui_Quai)
 	{
 		Bui->CapNhat(in_tg);
@@ -180,6 +201,18 @@ void Man1::CapNhat(float in_tg)
 		DanNo->XuLyVaCham(mXMan);
 	}
 
+	for (auto TenLua : mDS_TenLua_Quai)
+	{
+		mXMan->XuLyVaCham(TenLua);
+		TenLua->XuLyVaCham(mXMan);
+
+		for (auto DanLv : mDS_DanLv)
+		{
+			TenLua->XuLyVaCham(DanLv);
+		}
+	}
+
+
 	for (auto DT : mDS_DoiTuong)
 	{
 		mXMan->XuLyVaCham(DT);
@@ -198,6 +231,11 @@ void Man1::CapNhat(float in_tg)
 		for (auto DanNo : mDS_DanNo1_Quai)
 		{
 			DanNo->XuLyVaCham(DT);
+		}
+
+		for (auto TenLua : mDS_TenLua_Quai)
+		{
+			TenLua->XuLyVaCham(DT);
 		}
 	}
 #pragma endregion
@@ -240,9 +278,19 @@ void Man1::Ve()
 
 	mXMan->Ve(lDoDoi);
 
+	for (auto DT : mDS_DoiTuong)
+	{
+		DT->Ve(lDoDoi);
+	}
+
 	for (auto DanLv : mDS_DanLv)
 	{
 		DanLv->Ve(lDoDoi);
+	}
+
+	for (auto TenLua : mDS_TenLua_Quai)
+	{
+		TenLua->Ve(lDoDoi);
 	}
 
 	mThanhMauXMan->Ve(mXMan->get_HP());
@@ -259,10 +307,7 @@ void Man1::Ve()
 		Bui->Ve(lDoDoi);
 	}
 
-	for (auto DT : mDS_DoiTuong)
-	{
-		DT->Ve(lDoDoi);
-	}
+
 }
 
 void Man1::OnKeyDown(int in_KeyCode)

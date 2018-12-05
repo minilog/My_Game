@@ -1,5 +1,6 @@
 ﻿#include "DanLv3.h"
 #include "Ech.h"
+#include "LoCot.h"
 
 
 
@@ -86,6 +87,26 @@ void DanLv3::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		{
 			return;
 
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		if (!mLatHinh)
+			mToaDo.x += 10.0f;
+		else
+			mToaDo.x -= 10.0f;
+
+		DangTanBien();
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_LoCot)
+	{
+		if (((LoCot*)in_DoiTuong)->get_TrangThai() == eTT_LoCot_BienMat)
+		{
+			return;
 		}
 
 		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))

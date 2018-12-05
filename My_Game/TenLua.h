@@ -14,6 +14,7 @@ public:
 
 // FUNCTION
 	void CapNhat(float in_tg);
+	void CapNhat(float in_tg, const DoiTuong *in_XMan);
 	void Ve(const Vec2& in_DoDoi);
 	void XuLyVaCham(const DoiTuong* in_DoiTuong);
 	void BanRa(const Vec2& in_ToaDo, const Vec2& in_VanToc);
@@ -28,8 +29,9 @@ private:
 	float TGDem_NoTung = TG_NoTung + 0.1f;
 
 	// lỡ như ko va chạm thì Đạn có thể tự động biến mất để có thể dùng tiếp
-	static constexpr float TG_TuDongBienMat = 1.1f;
+	static constexpr float TG_TuDongBienMat = 2.5f;
 	float TGDem_TuDongBienMat = 0.0f;
+
 
 
 

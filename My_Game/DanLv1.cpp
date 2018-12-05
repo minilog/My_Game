@@ -1,5 +1,7 @@
 ﻿#include "DanLv1.h"
 #include "Ech.h"
+#include "LoCot.h"
+#include "TenLua.h"
 
 
 
@@ -53,6 +55,7 @@ void DanLv1::CapNhat(float in_tg)
 	{
 		mTrangThai = eTT_Dan_BienMat;
 	}
+
 }
 
 void DanLv1::Ve(const Vec2 & in_DoDoi)
@@ -77,6 +80,21 @@ void DanLv1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	{		
 		if (((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_BienMat ||
 			((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_DangTanBien)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DangTanBien();
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_LoCot)
+	{
+		if (((LoCot*)in_DoiTuong)->get_TrangThai() == eTT_LoCot_BienMat)
 		{
 			return;
 		}

@@ -13,7 +13,7 @@ class Ech : public DoiTuong
 public:
 	Ech(const Vec2& in_ToaDo, const Vec2& in_VanToc,
 		std::vector<DanNo1*>& in_DS_DanNo1, std::vector<Bui*>& in_Bui,
-		int in_Rong = 26, int in_Cao = 30);
+		int in_Rong = 26, int in_Cao = 30, bool in_EchKoNhay = false);
 
 	// ko xài cái này
 	void CapNhat(float in_tg) 
@@ -28,6 +28,8 @@ public:
 
 // INFORMATION
 private:
+	bool mEchKoNhay = false;
+
 	// ĐẠN NỔ và BỤI này chỉ là con trỏ
 	std::vector<DanNo1*> mDS_DanNo1; // Khoảng 6 viên
 	std::vector<Bui*> mDS_Bui;

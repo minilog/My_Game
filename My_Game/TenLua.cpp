@@ -1,4 +1,5 @@
 ﻿#include "TenLua.h"
+#include "DanLv.h"
 
 
 
@@ -16,6 +17,11 @@ TenLua::TenLua()
 
 void TenLua::CapNhat(float in_tg)
 {
+
+}
+
+void TenLua::CapNhat(float in_tg, const DoiTuong * in_XMan)
+{
 	// nếu đạn đã bị phá hủy -> ko cần Cập Nhật
 	if (mTrangThai == eTT_TenLua_BienMat)
 	{
@@ -28,41 +34,57 @@ void TenLua::CapNhat(float in_tg)
 	TGDem_TuDongBienMat += in_tg;
 	if (TGDem_TuDongBienMat > TG_TuDongBienMat)
 	{
-		mTrangThai = eTT_DanNo1_BienMat;
+		mTrangThai = eTT_TenLua_BienMat;
 	}
 
 	if (mTrangThai == eTT_TenLua_PhatNo)
 	{
+		mHH_HieuUngPhatNo->CapNhat(in_tg);
+
 		TGDem_NoTung += in_tg;
 		if (TGDem_NoTung > TG_NoTung)
 		{
-			mTrangThai = eTT_DanNo1_BienMat;
+			mTrangThai = eTT_TenLua_BienMat;
 		}
+	}
+
+	if (mToaDo.y - in_XMan->get_ToaDo().y < 0.0f)
+	{
+		if (mVanToc.y < 0.0f)
+			mVanToc.y = 0.0f;
+		mVanToc.y += 250.0f * in_tg;
+	}
+	else
+	{
+		if (mVanToc.y >= 0.0f)
+			mVanToc.y = 0.0f;
+		mVanToc.y -= 250.0f * in_tg;
 	}
 }
 
 void TenLua::Ve(const Vec2 & in_DoDoi)
 {
 	// nếu đã bị phá hủy -> ko cần phải Vẽ ra
-	if (mTrangThai == eTT_DanNo1_BienMat)
+	if (mTrangThai == eTT_TenLua_BienMat)
 	{
 		return;
 	}
 
 	if (mTrangThai == eTT_TenLua_PhatNo)
 	{
-		mHH_HieuUngPhatNo->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, mToaDo, in_DoDoi);
+		mHH_HieuUngPhatNo->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false , mToaDo, in_DoDoi);
 	}
 	else
 	{
-		mHH_Dan->Ve(DS_HinhAnh::get_TH()->DanNo1_png, false, mToaDo, in_DoDoi);
+		mHH_Dan->Ve(DS_HinhAnh::get_TH()->LoCot_png, (mVanToc.x > 0.0f), mToaDo, in_DoDoi);
 	}
 }
 
 void TenLua::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
 	// nếu đã bị phá hủy -> ko cần phải xét va chạm
-	if (mTrangThai == eTT_DanNo1_BienMat)
+	if (mTrangThai == eTT_TenLua_BienMat ||
+		mTrangThai == eTT_TenLua_PhatNo)
 	{
 		return;
 	}
@@ -78,13 +100,31 @@ void TenLua::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 		PhatNo();
 	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv1 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv2 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv3)
+	{
+		if (((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_BienMat ||
+			((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_DangTanBien)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		PhatNo();
+	}
 }
 
 void TenLua::BanRa(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 {
 	mToaDo = in_ToaDo;
 	mVanToc = in_VanToc;
-	mTrangThai = eTT_DanNo1_TonTai;
+	mTrangThai = eTT_TenLua_TonTai;
 	TGDem_TuDongBienMat = 0.0f;
 }
 
