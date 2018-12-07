@@ -93,7 +93,7 @@ void LoCot::CapNhat(float in_tg, const DoiTuong * in_XMan)
 
 	case eTT_LoCot_BanTenLua:
 		mTGDem_DanDuocBanRa += in_tg;
-		if (mTGDem_DanDuocBanRa > TG_BanDan / 1.2f)
+		if (mTGDem_DanDuocBanRa > TG_BanDan / 2.0f)
 		{
 			for (auto TL : mDS_TenLua)
 			{

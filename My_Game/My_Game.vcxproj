@@ -181,9 +181,11 @@
     <ClCompile Include="QuanLyManGame.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="TenLua.cpp" />
+    <ClCompile Include="ThangMay.cpp" />
     <ClCompile Include="ThanhMau.cpp" />
     <ClCompile Include="ThoiGianGame.cpp" />
     <ClCompile Include="ToanCauGame.cpp" />
+    <ClCompile Include="TrucXoay.cpp" />
     <ClCompile Include="VaChamGame.cpp" />
     <ClCompile Include="XacUop.cpp" />
     <ClCompile Include="XMan.cpp" />
@@ -238,9 +240,11 @@
     <ClInclude Include="QuanLyManGame.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="TenLua.h" />
+    <ClInclude Include="ThangMay.h" />
     <ClInclude Include="ThanhMau.h" />
     <ClInclude Include="ThoiGianGame.h" />
     <ClInclude Include="ToanCauGame.h" />
+    <ClInclude Include="TrucXoay.h" />
     <ClInclude Include="VaChamGame.h" />
     <ClInclude Include="XacUop.h" />
     <ClInclude Include="XMan.h" />

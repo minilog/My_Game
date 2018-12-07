@@ -7,6 +7,7 @@
 #include "DanNo1.h"
 #include "TenLua.h"
 #include "LoCot.h"
+#include "ThangMay.h"
 
 
 
@@ -33,7 +34,7 @@ XMan::XMan(const Vec2& in_ToaDo)
 
 	LoadThongTinHoatHinh();
 
-	Roi();
+	XuatHien(in_ToaDo);
 }
 
 XMan::~XMan()
@@ -141,6 +142,11 @@ XMan::~XMan()
 
 void XMan::CapNhat(float in_tg)
 {
+	if (mHP <= 0)
+	{
+		PhatNo();
+	}
+
 	if (mTGDem_KoNhanST <= mTG_KoNhanST)
 	{
 		mTGDem_KoNhanST += in_tg;
@@ -203,6 +209,13 @@ void XMan::CapNhat(float in_tg)
 
 	switch (mTrangThai)
 	{
+	case eTT_XMan_PhatNo:
+		break;
+
+	case eTT_XMan_XuatHien:
+		CapNhat_XuatHien();
+		break;
+
 	case eTT_XMan_DungIm:
 		CapNhat_DungIm();
 		break;
@@ -310,8 +323,10 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 
 void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_ThangMay)
 	{
+
 		eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
 
 		if (lKQVC.eKQVC_DaVaCham)
@@ -472,7 +487,8 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 #pragma region XỬ LÝ BIẾN mDangDungTuNhienRoi
 	if (mDangDungTuNhienRoi == true)
 	{
-		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
+		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
+			in_DoiTuong->get_LoaiDoiTuong() == eLDT_ThangMay)
 		{
 			HCN lHCNGioiHanMoRongDay = get_HCNGioiHan();
 			lHCNGioiHanMoRongDay.Duoi += 2;
@@ -484,15 +500,10 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			{
 				ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
 
-				switch (in_DoiTuong->get_LoaiDoiTuong())
+				if (lPVC == ePVC_Duoi)
 				{
-				case eLDT_DoiTuongTinh:
-					if (lPVC == ePVC_Duoi)
-					{
-						mDangDungTuNhienRoi = false;
-						break;
-					}
-					break;
+					mDangDungTuNhienRoi = false;
+
 				}
 			}
 		}
@@ -503,6 +514,11 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 {
+	if (mTrangThai == eTT_XMan_PhatNo)
+	{
+		return;
+	}
+
 	mKeys = in_Keys;
 
 	switch (mTrangThai)
@@ -543,12 +559,28 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 		break;
 	}
 
+	if (mTrangThai == eTT_XMan_DinhSatThuong ||
+		mTrangThai == eTT_XMan_XuatHien || 
+		mTrangThai == eTT_XMan_PhatNo)
+	{
+		return;
+	}
 	XuLyBanPhim_BanDan(in_Keys);
 }
 
 void XMan::LoadThongTinHoatHinh()
 {
 	std::vector<ThongTinFrame> lDSTTFrame;
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(8, 62, HCN(115, 115 + 8, 3, 51), 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(22, 62, HCN(127, 127 + 22, 3, 51), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(153, 153 + 30, 3, 51), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(187, 187 + 30, 3, 51), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(221, 221 + 30, 3, 51), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(255, 255 + 30, 3, 51), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(289, 289 + 30, 3, 51), 0.03f));
+	mHH_XuatHien = new HoatHinh(lDSTTFrame);
 
 #pragma region DUNG_IM
 	lDSTTFrame.clear();
@@ -715,6 +747,18 @@ void XMan::LoadThongTinHoatHinh()
 	lDSTTFrame.push_back(ThongTinFrame(20, 36, HCN(40 + 25, 40 + 26 + 25, 13 + 689, 13 + 36 + 689), 0.08f));
 	lDSTTFrame.push_back(ThongTinFrame(25, 52, HCN(68 + 25, 68 + 32 + 25, 4 + 689, 4 + 48 + 689), 0.08f));
 	mHH_DinhSatThuong = new HoatHinh(lDSTTFrame);
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(8,  62, HCN(115, 115 + 8, 3, 51) , 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(22, 62, HCN(127, 127 + 22, 3, 51), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(153, 153 + 30, 3, 51), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(187, 187 + 30, 3, 51), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(221, 221 + 30, 3, 51), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(255, 255 + 30, 3, 51), 0.03f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(289, 289 + 30, 3, 51), 0.03f));
+	mHH_XuatHien = new HoatHinh(lDSTTFrame);
+
+
 }
 
 void XMan::DungIm()
@@ -893,7 +937,7 @@ void XMan::DinhSatThuong()
 		mVanToc.x = 20.0f;
 	}
 	mVanToc.y = -30.0f;
-	mHP -= 1;
+	mHP -= 5;
 	mTGDem_DinhST = 0.0f;
 	mTGDem_KoNhanST = 0.0f;
 }

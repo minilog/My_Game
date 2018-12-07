@@ -15,6 +15,17 @@ public:
 	static int mGioiHanTren;
 	static int mGioiHanDuoi;
 
+	static int CheckPoint;
+
+private:
+	static int mGioiHanTraiTiepTheo;
+	static int mGioiHanPhaiTiepTheo;
+	static int mGioiHanTrenTiepTheo;
+	static int mGioiHanDuoiTiepTheo;
+
+
+
+
 
 
 
@@ -34,5 +45,6 @@ public:
 	static int get_ChieuRong();
 	static int get_ChieuCao();
 	static HCN get_HCNGioiHan();
+	static HCN get_HCNGioiHan_MoRong();
 };
 

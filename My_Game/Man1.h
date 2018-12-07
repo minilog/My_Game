@@ -18,6 +18,7 @@
 
 
 
+
 class Man1 : public ManGame
 {
 public:
@@ -45,11 +46,6 @@ private:
 	std::vector<DanLv*> mDS_DanLv; // ĐẠN được lấy từ XMAN
 	// chia nhỏ các đối tượng, đưa vào 2 DS bên dưới
 	std::vector<DoiTuong*> mDS_DoiTuong;
-
-	std::vector<DoiTuong*> mDS_DoiTuongTinh;
-
-	std::vector<DoiTuong*> mDS_Ech;
-	std::vector<DoiTuong*> mDS_LoCot;
 	XacUop *mXacUop;
 	//  DS DanNo1, Bui dành cho QUái
 	std::vector<DanNo1*> mDS_DanNo1_Quai;

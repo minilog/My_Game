@@ -100,7 +100,8 @@ enum eLoaiDoiTuong
 	eLDT_DanNo1,
 	eLDT_XacUop,
 	eLDT_LoCot,
-	eLDT_TenLua
+	eLDT_TenLua,
+	eLDT_ThangMay
 
 };
 
@@ -121,8 +122,9 @@ enum eTrangThai
 	eTT_XMan_Truot,
 	eTT_XMan_Luot,
 	eTT_XMan_BatRa,
-	eTT_XMan_HiSinh,
 	eTT_XMan_DinhSatThuong,
+	eTT_XMan_PhatNo,
+	eTT_XMan_XuatHien,
 
 	eTT_DanNo1_BienMat,
 	eTT_DanNo1_TonTai,
@@ -158,6 +160,10 @@ enum eTrangThai
 
 	eTT_TenLua_TonTai,
 	eTT_TenLua_PhatNo,
-	eTT_TenLua_BienMat
+	eTT_TenLua_BienMat,
+
+	eTT_ThangMay_DungIm,
+	eTT_ThangMay_DiChuyen,
+	eTT_ThangMay_BienMat
 };
 

@@ -20,7 +20,7 @@ public:
 	void Remake()
 	{
 		DangTonTai();
-	}
+	}	
 
 	eTrangThai get_TrangThai() const
 	{

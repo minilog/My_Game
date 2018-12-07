@@ -4,6 +4,7 @@
 #include "VaChamGame.h"
 #include "ToanCauGame.h"
 #include "GameLog.h"
+#include "ThangMay.h"
 
 #include "Sound.h"
 #include <vector>
@@ -12,8 +13,8 @@ Man1::Man1()
 {
 	TaiDuLieu();
 
-	Sound::getInstance()->loadSound("Resources/man1.wav", "man1");
-	Sound::getInstance()->play("man1", true, 0);
+	//Sound::getInstance()->loadSound("Resources/man1.wav", "man1");
+	//Sound::getInstance()->play("man1", true, 0);
 }
 
 
@@ -28,7 +29,7 @@ void Man1::TaiDuLieu()
 	mGameDebugDraw = new GameDebugDraw();
 	mGameDebugDraw->setLineSize(2.0f);
 
-	ManGame::mMauNen = 0x54acd2;
+	ManGame::mMauNen = D3DCOLOR_XRGB(0, 0, 0);
 
 #pragma region TAO BAN DO VA CAMERA
 	ManGame::mBanDo = new Tmx::Map();
@@ -37,7 +38,7 @@ void Man1::TaiDuLieu()
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
-	//Camera::set_GioiHan(0, 773 - 4 + Camera::get_ChieuRong(), 770, 770 + ToanCauGame::mChieuCao);
+
 	Camera::set_ToaDo(Vec2(
 		ToanCauGame::mChieuRong / 2.0f,
 		896.0f));
@@ -53,7 +54,15 @@ void Man1::TaiDuLieu()
 	mQuadTree = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(Vec2(50.0f, 880.0f));
+	mXMan = new XMan(Vec2(50.0f, 800.0f));
+
+	//float k[3][2] = { (800.0f, 850.0f), (900.0f, 400.0f), (0.0f, 0.0f) };
+	//for (int i = 0; i < 2; i++)
+	//{
+	//	Camera::set_ToaDo(Vec2(k[i][0], k[i][1]));
+	//}
+	//mXMan->XuatHien(Vec2(1655.0f, 220.0f));
+	//Camera::CheckPoint = 2;
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -76,7 +85,7 @@ void Man1::TaiDuLieu()
 	}
 
 	// tạo DS Tên Lửa cho quái xài
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		TenLua* lTL = new TenLua();
 		mDS_TenLua_Quai.push_back(lTL);
@@ -106,8 +115,8 @@ void Man1::TaiDuLieu()
 
 				mQuadTree->ThemDoiTuong(lDoiTuongTinh);
 			}
-
-			if (lNhomObject->GetName() == "Ech")
+		
+			else if (lNhomObject->GetName() == "Ech")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
 				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(), mDS_DanNo1_Quai, mDS_Bui_Quai,
@@ -115,8 +124,8 @@ void Man1::TaiDuLieu()
 
 				mQuadTree->ThemDoiTuong(lEch);
 			}
-
-			if (lNhomObject->GetName() == "EchKhongNhay")
+		
+			else if (lNhomObject->GetName() == "EchKhongNhay")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
 				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(), mDS_DanNo1_Quai, mDS_Bui_Quai,
@@ -124,19 +133,25 @@ void Man1::TaiDuLieu()
 
 				mQuadTree->ThemDoiTuong(lEch);
 			}
-
-			if (lNhomObject->GetName() == "XacUop")
+			
+			else if (lNhomObject->GetName() == "XacUop")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
 				mXacUop = new XacUop(lToaDoDoiTuong, Vec2());
 			}
-
-			if (lNhomObject->GetName() == "LoCot")
+			
+			else if (lNhomObject->GetName() == "LoCot")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
 				LoCot *lLoCot = new LoCot(lToaDoDoiTuong, mDS_DanNo1_Quai, mDS_TenLua_Quai);
 
 				mQuadTree->ThemDoiTuong(lLoCot);
+			}
+			else if (lNhomObject->GetName() == "ThangMay")
+			{
+				ThangMay *lThangMay = new ThangMay(lToaDoDoiTuong);
+
+				mQuadTree->ThemDoiTuong(lThangMay);
 			}
 		}
 	}
@@ -155,10 +170,13 @@ void Man1::TaiDuLieu()
 
 void Man1::CapNhat(float in_tg)
 {
+
+
 	mDS_DoiTuong.clear();
-	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuong, Camera::get_HCNGioiHan());
+	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuong, Camera::get_HCNGioiHan_MoRong());
 
 #pragma region CAP NHAT
+
 
 	mXMan->CapNhat(in_tg);
 
@@ -189,9 +207,13 @@ void Man1::CapNhat(float in_tg)
 		DT->CapNhat(in_tg, mXMan);
 	}
 
+
+
 #pragma endregion
 
 #pragma region VA CHAM
+
+
 	for (auto DanNo : mDS_DanNo1_Quai)
 	{
 		if (DanNo->get_TrangThai() != eTT_DanNo1_BienMat)
@@ -199,6 +221,11 @@ void Man1::CapNhat(float in_tg)
 			mXMan->XuLyVaCham(DanNo);
 		}
 		DanNo->XuLyVaCham(mXMan);
+
+		for (auto DanLv : mDS_DanLv)
+		{
+			DanNo->XuLyVaCham(DanLv);
+		}
 	}
 
 	for (auto TenLua : mDS_TenLua_Quai)
@@ -211,7 +238,6 @@ void Man1::CapNhat(float in_tg)
 			TenLua->XuLyVaCham(DanLv);
 		}
 	}
-
 
 	for (auto DT : mDS_DoiTuong)
 	{
@@ -240,30 +266,11 @@ void Man1::CapNhat(float in_tg)
 	}
 #pragma endregion
 
-
+	Camera::set_ToaDo(mXMan->get_ToaDo());
 
 	// nơi xử lý bàn phím
 	mXMan->XuLyBanPhim(mKeys);
 
-#pragma region CAMERA
-	Camera::set_ToaDo(mXMan->get_ToaDo());
-
-	//if (mXMan->get_ToaDo().x >= 850.0f && Camera::mGioiHanTren == 770)
-	//{
-	//	Camera::mGioiHanTren = 255;
-	//}
-	//if (mXMan->get_ToaDo().x >= 900.0f && Camera::mGioiHanTrai == 0)
-	//{
-	//	Camera::mGioiHanTrai = 773 - 4;
-	//}
-	//if (mXMan->get_ToaDo().x >= 800.0f &&
-	//	mXMan->get_ToaDo().y <= 400.f &&
-	//	Camera::mGioiHanPhai >= 773 - 4 + Camera::get_ChieuRong() &&
-	//	Camera::mGioiHanPhai < 1500 + Camera::get_ChieuRong())
-	//{
-	//	Camera::mGioiHanPhai++;
-	//}
-#pragma endregion
 }
 
 void Man1::Ve()
@@ -377,4 +384,8 @@ void Man1::DrawCollidable()
 	//mGameDebugDraw->DrawRect(mDanNo1->get_RECT());
 
 	//mGameDebugDraw->DrawRect(mXacUop->get_RECT());
+	//for (auto DoiTuong : mDS_DoiTuong)
+	//{
+	//	mGameDebugDraw->DrawRect(DoiTuong->get_RECT());
+	//}
 }

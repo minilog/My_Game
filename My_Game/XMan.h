@@ -39,6 +39,37 @@ public:
 
 	
 private:
+	HoatHinh *mHH_PhatNo;
+	HoatHinh *mHH_HatPhatNo;
+
+	void PhatNo()
+	{
+		mTrangThai = eTT_XMan_PhatNo;
+		mVanToc.x = mVanToc.y = 0.0f;
+		for (int i = 0; i < 8; i++)
+		{
+			HatPhatNo[i][0] = mToaDo;
+		}
+	}
+	void CapNhat_PhatNo()
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			HatPhatNo[i][0] += HatPhatNo[i][1];
+		}
+	}
+
+	Vec2 HatPhatNo[8][2] = { 
+		(Vec2(), Vec2(100.0f, 0.0f)),
+		(Vec2(), Vec2(100.0f * 0.707f, -100.0f * 0.707f)),
+		(Vec2(), Vec2(0.0f, -100.f)),
+		(Vec2(), Vec2(-100.0f * 0.707f, -100.0f * 0.707f)),
+		(Vec2(), Vec2(-100.0f, 0.0f)),
+		(Vec2(), Vec2(-100.0f * 0.707f, 100.0f * 0.707f)),
+		(Vec2(), Vec2(0.0f, 100.0f)),
+		(Vec2(), Vec2(100.0f * 0.707f, 100.0f * 0.707f))};
+
+
 	int mHP = 100;
 
 	HoatHinh *mHH_HieuUngNapDanLv2;
@@ -68,7 +99,8 @@ private:
 		*mHH_TiepDat,
 		*mHH_Luot,
 		*mHH_Truot,
-		*mHH_BatRa;
+		*mHH_BatRa,
+		*mHH_XuatHien;
 	HoatHinh *mHH_DungIm_Ban,
 		*mHH_Chay_Ban,
 		*mHH_ChuanBiChay_Ban,
@@ -131,6 +163,27 @@ private:
 	bool mDangDungTuNhienRoi = false;
 
 
+	static constexpr float TG_XuatHien = 0.43f;
+	float TGDem = 0.0f;
+public:
+	void XuatHien(const Vec2& in_ToaDo)
+	{
+		mToaDo = in_ToaDo;
+		mTrangThai = eTT_XMan_XuatHien;
+		mHH_HienTai = mHH_XuatHien;
+		mHH_HienTai->Remake();
+		TGDem = 0.0f;
+		mVanToc.y = 580.0f;
+	}
+private:
+	void CapNhat_XuatHien()
+	{
+		TGDem += mTimes;
+		if (TGDem > TG_XuatHien)
+		{
+			DungIm();
+		}
+	}
 
 	void LoadThongTinHoatHinh();
 
@@ -147,7 +200,8 @@ private:
 
 	void ChuyenHH_BanDan();
 	void ChuyenHH_KoBanDan();
-			
+		
+
 	void CapNhat_DungIm();
 	void CapNhat_ChuanBiChay(float in_tg);
 	void CapNhat_Chay();

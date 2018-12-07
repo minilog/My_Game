@@ -52,13 +52,13 @@ void TenLua::CapNhat(float in_tg, const DoiTuong * in_XMan)
 	{
 		if (mVanToc.y < 0.0f)
 			mVanToc.y = 0.0f;
-		mVanToc.y += 250.0f * in_tg;
+		mVanToc.y += 300.0f * in_tg;
 	}
 	else
 	{
 		if (mVanToc.y >= 0.0f)
 			mVanToc.y = 0.0f;
-		mVanToc.y -= 250.0f * in_tg;
+		mVanToc.y -= 300.0f * in_tg;
 	}
 }
 

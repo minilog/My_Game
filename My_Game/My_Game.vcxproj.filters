@@ -181,6 +181,12 @@
     <ClCompile Include="TenLua.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ThangMay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TrucXoay.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -285,9 +291,6 @@
     <ClInclude Include="Camera.h">
       <Filter>3.DieuKhien</Filter>
     </ClInclude>
-    <ClInclude Include="KieuDuLieu.h">
-      <Filter>1.NenTang</Filter>
-    </ClInclude>
     <ClInclude Include="QuadTree.h">
       <Filter>1.NenTang</Filter>
     </ClInclude>
@@ -346,6 +349,11 @@
     <ClInclude Include="TenLua.h">
       <Filter>4.DoiTuong\Quai</Filter>
     </ClInclude>
+    <ClInclude Include="ThangMay.h">
+      <Filter>4.DoiTuong</Filter>
+    </ClInclude>
+    <ClInclude Include="KieuDuLieu.h" />
+    <ClInclude Include="TrucXoay.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

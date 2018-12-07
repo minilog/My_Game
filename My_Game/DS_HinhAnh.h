@@ -41,6 +41,13 @@ private:
 
 		LoCot_png = new HinhAnh("Resources/Enemies/LoCot.png", D3DCOLOR_XRGB(255, 0, 255));
 		LoCot_Shining_png = new HinhAnh("Resources/Enemies/LoCot_Shining.png", D3DCOLOR_XRGB(255, 0, 255));
+
+		ThangMay_png = new HinhAnh("Resources/ThangMay.png", D3DCOLOR_XRGB(255, 255, 255));
+		
+		TrucXoay1_png = new HinhAnh("Resources/TrucXoay1.png", D3DCOLOR_XRGB(255, 255, 255));
+		TrucXoay2_png = new HinhAnh("Resources/TrucXoay2.png", D3DCOLOR_XRGB(255, 255, 255));
+
+		XManPhatNo_png = new HinhAnh("Resources/XManPhatNo.png", D3DCOLOR_XRGB(50, 96, 166));
 	}
 	~DS_HinhAnh()
 	{
@@ -73,5 +80,12 @@ public:
 
 	HinhAnh* LoCot_png;
 	HinhAnh* LoCot_Shining_png;
+
+	HinhAnh* ThangMay_png;
+
+	HinhAnh* TrucXoay1_png;
+	HinhAnh* TrucXoay2_png;
+
+	HinhAnh* XManPhatNo_png;
 };
 

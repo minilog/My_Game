@@ -1,5 +1,5 @@
 ﻿#include "DanNo1.h"
-
+#include "DanLv.h"
 
 
 
@@ -83,6 +83,28 @@ void DanNo1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		mToaDo_HieuUngNoTung = mToaDo;
 		mHH_HieuUngPhatNo->Remake();
 
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv1 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv2 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv3)
+	{
+		if (((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_BienMat ||
+			((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_DangTanBien)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		mTrangThai = eTT_DanNo1_BienMat;
+		mTGDem_NoTung = 0.0f;
+		// set tọa độ hiệu ứng nổ tung 
+		mToaDo_HieuUngNoTung = mToaDo;
+		mHH_HieuUngPhatNo->Remake();
 	}
 }
 
