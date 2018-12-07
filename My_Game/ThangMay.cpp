@@ -27,10 +27,6 @@ void ThangMay::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 void ThangMay::CapNhat(float in_tg, const DoiTuong * in_XMan)
 {
-	if (mTrangThai == eTT_ThangMay_BienMat)
-	{
-		return;
-	}
 
 	mToaDo.y += mVanToc.y * in_tg;
 
@@ -53,11 +49,6 @@ void ThangMay::CapNhat(float in_tg, const DoiTuong * in_XMan)
 		mToaDo.y = ToaDoXuatHien.y + 100.0f;
 		DenViTriXuatHien = false;
 		DiChuyen();
-	}
-
-	if (mToaDo.x - in_XMan->get_ToaDo().x < -300.0f)
-	{
-		BienMat();
 	}
 }
 

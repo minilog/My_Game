@@ -54,7 +54,7 @@ void Man1::TaiDuLieu()
 	mQuadTree = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(Vec2(50.0f, 800.0f));
+	mXMan = new XMan(Vec2(100.0f, 730.0f));
 
 	//float k[3][2] = { (800.0f, 850.0f), (900.0f, 400.0f), (0.0f, 0.0f) };
 	//for (int i = 0; i < 2; i++)
@@ -170,7 +170,15 @@ void Man1::TaiDuLieu()
 
 void Man1::CapNhat(float in_tg)
 {
+	// khi trắng màn hình thì reset lại XMan
+	if (Color == 255)
+	{
+		//set Camera trước khi set XMan
+		Camera::CheckPoint = -1;
+		Camera::set_ToaDo(Vec2(100.0f, 730.0f));
+		mXMan->XuatHien(Vec2(100.0f, 730.0f));
 
+	}
 
 	mDS_DoiTuong.clear();
 	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuong, Camera::get_HCNGioiHan_MoRong());
@@ -315,13 +323,27 @@ void Man1::Ve()
 		Bui->Ve(lDoDoi);
 	}
 
+	// tô màu trắng trước khi Reset game
 	if (mXMan->get_TrangThai() == eTT_XMan_PhatNo)
 	{
-		GAMELOG("K");
-		DS_HinhAnh::get_TH()->Rong_png->set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 
-			ToanCauGame::mChieuCao / 2.0f));
-		DS_HinhAnh::get_TH()->Rong_png->Ve(D3DCOLOR_ARGB(50, 255, 255, 255));
+		Color += 3;
+		if (Color > 255)
+		{
+			Color = 255;
+		}
+
 	}
+	else if (Color != 0)
+	{
+		Color -= 15;
+		if (Color < 0)
+		{
+			Color = 0;
+		}
+	}
+	DS_HinhAnh::get_TH()->Rong_png->set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f,
+		ToanCauGame::mChieuCao / 2.0f));
+	DS_HinhAnh::get_TH()->Rong_png->Ve(D3DCOLOR_ARGB(Color, 255, 255, 255));
 }
 
 void Man1::OnKeyDown(int in_KeyCode)

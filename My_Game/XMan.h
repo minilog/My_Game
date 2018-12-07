@@ -145,8 +145,8 @@ private:
 	float mTG_BatRa = 0.12f;
 	float mTG_DemBatRa = 0.0f;
 
-	float mGiaTocTrongTruong = 970.0f/*40.0f*/;
-	float mVanTocRoiToiDa = 380.0f/*100.0f*/;
+	float mGiaTocTrongTruong = 1000.0f/*40.0f*/;
+	float mVanTocRoiToiDa = 370.0f/*100.0f*/;
 
 	float mVanTocChayToiDa = 130.0f/*0.0f*/;
 
@@ -169,7 +169,7 @@ private:
 	bool mDangDungTuNhienRoi = false;
 
 
-	static constexpr float TG_XuatHien = 0.43f;
+	static constexpr float TG_XuatHien = 0.4f + 0.03f * 6;
 	float TGDem = 0.0f;
 public:
 	void XuatHien(const Vec2& in_ToaDo)
@@ -181,6 +181,7 @@ public:
 		TGDem = 0.0f;
 		mVanToc.y = 580.0f;
 		mHP = 100;
+		mLatHinh = false;
 	}
 private:
 	void CapNhat_XuatHien()

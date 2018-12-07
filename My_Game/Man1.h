@@ -43,6 +43,7 @@ public:
 private:
 	bool XMan_PhatNo = false;
 	float TGDem_Remake_ManGame;
+	int Color = 0;
 
 	XMan *mXMan;
 	std::vector<DanLv*> mDS_DanLv; // ĐẠN được lấy từ XMAN

@@ -142,9 +142,9 @@ XMan::~XMan()
 
 void XMan::CapNhat(float in_tg)
 {
-	if (mHP <= 0 && mTrangThai != eTT_XMan_PhatNo)
+	if ((mHP <= 0 && mTrangThai != eTT_XMan_PhatNo) ||
+		(mToaDo.y > Camera::mGioiHanDuoi && mTrangThai != eTT_XMan_PhatNo))
 	{
-
 		PhatNo();
 	}
 
@@ -782,7 +782,7 @@ void XMan::LoadThongTinHoatHinh()
 	mHH_DinhSatThuong = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(8,  62, HCN(115, 115 + 8, 3, 51) , 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(8,  62, HCN(115, 115 + 8, 3, 51) , 0.4f));
 	lDSTTFrame.push_back(ThongTinFrame(22, 62, HCN(127, 127 + 22, 3, 51), 0.03f));
 	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(153, 153 + 30, 3, 51), 0.03f));
 	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(187, 187 + 30, 3, 51), 0.03f));
@@ -977,7 +977,7 @@ void XMan::DinhSatThuong()
 		mVanToc.x = 20.0f;
 	}
 	mVanToc.y = -30.0f;
-	mHP -= 50;
+	mHP -= 5;
 	mTGDem_DinhST = 0.0f;
 	mTGDem_KoNhanST = 0.0f;
 }

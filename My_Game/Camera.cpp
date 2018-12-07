@@ -14,13 +14,26 @@ int Camera::mGioiHanTraiTiepTheo = 0;
 int Camera::mGioiHanPhaiTiepTheo = 769 + 254;
 int Camera::mGioiHanTrenTiepTheo = 770;
 int Camera::mGioiHanDuoiTiepTheo = 770 + 220;
-int Camera::CheckPoint = 0;
+int Camera::CheckPoint = -1;
 
 
 void Camera::set_ToaDo(const Vec2& in_ToaDo) 
 {
 	switch (CheckPoint)
 	{
+	case -1:
+		mGioiHanTrai = 0;
+		mGioiHanPhai = 769 + 254;
+		mGioiHanTren = 770;
+		mGioiHanDuoi = 770 + 220;
+
+		mGioiHanTraiTiepTheo = 0;
+		mGioiHanPhaiTiepTheo = 769 + 254;
+		mGioiHanTrenTiepTheo = 770;
+		mGioiHanDuoiTiepTheo = 770 + 220;
+
+		CheckPoint++;
+		break;
 	case 0:
 		if (in_ToaDo.x >= 790.0f && in_ToaDo.x <= 950.0f &&
 			in_ToaDo.y >= 800.0f && in_ToaDo.y <= 950.0f)
