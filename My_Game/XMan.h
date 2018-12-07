@@ -45,6 +45,8 @@ private:
 	void PhatNo()
 	{
 		mTrangThai = eTT_XMan_PhatNo;
+		mHH_HienTai = mHH_PhatNo;
+		mHH_HienTai->Remake();
 		mVanToc.x = mVanToc.y = 0.0f;
 		for (int i = 0; i < 8; i++)
 		{

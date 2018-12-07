@@ -47,7 +47,7 @@ private:
 		TrucXoay1_png = new HinhAnh("Resources/TrucXoay1.png", D3DCOLOR_XRGB(255, 255, 255));
 		TrucXoay2_png = new HinhAnh("Resources/TrucXoay2.png", D3DCOLOR_XRGB(255, 255, 255));
 
-		XManPhatNo_png = new HinhAnh("Resources/XManPhatNo.png", D3DCOLOR_XRGB(50, 96, 166));
+		XManPhatNo_png = new HinhAnh("Resources/XMan/XManPhatNo.png", D3DCOLOR_XRGB(50, 96, 166));
 	}
 	~DS_HinhAnh()
 	{
