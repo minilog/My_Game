@@ -151,7 +151,7 @@ void XMan::CapNhat(float in_tg)
 	{
 		mTGDem_KoNhanST += in_tg;
 		mTGDem_NhapNhay += in_tg;
-		if (mTGDem_NhapNhay > 0.05f)
+		if (mTGDem_NhapNhay > 0.08f)
 		{
 			mTGDem_NhapNhay = 0.0f;
 		}
@@ -283,13 +283,13 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 
 	if (mTGDem_KoNhanST < mTG_KoNhanST)
 	{
-		if ((mTGDem_NhapNhay < 0.025f))
+		if ((mTGDem_NhapNhay < 0.04f))
 		{
-			mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XMan_png, mLatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(125, 255, 255, 255));
+			mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XMan_png, mLatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(160, 255, 255, 255));
 		}
 		else
 		{
-			mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XMan_png, mLatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(160, 255, 255, 255));
+			mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XMan_png, mLatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(210, 255, 255, 255));
 		}
 	}
 	else
@@ -572,15 +572,18 @@ void XMan::LoadThongTinHoatHinh()
 {
 	std::vector<ThongTinFrame> lDSTTFrame;
 
+	//lDSTTFrame.clear();
+	//lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(289, 289 + 30, 3, 51), 0.03f));
+	//mHH_XuatHien = new HoatHinh(lDSTTFrame);
+
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(8, 62, HCN(115, 115 + 8, 3, 51), 0.25f));
-	lDSTTFrame.push_back(ThongTinFrame(22, 62, HCN(127, 127 + 22, 3, 51), 0.03f));
-	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(153, 153 + 30, 3, 51), 0.03f));
-	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(187, 187 + 30, 3, 51), 0.03f));
-	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(221, 221 + 30, 3, 51), 0.03f));
-	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(255, 255 + 30, 3, 51), 0.03f));
-	lDSTTFrame.push_back(ThongTinFrame(30, 62, HCN(289, 289 + 30, 3, 51), 0.03f));
-	mHH_XuatHien = new HoatHinh(lDSTTFrame);
+	lDSTTFrame.push_back(ThongTinFrame(30, 36, HCN(77, 77 + 30, 848, 848 + 36), 0.2f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(110, 110 + 30, 849, 849 + 34), 0.2f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(143, 143 + 30, 849, 849 + 34), 0.2f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(110, 110 + 30, 849, 849 + 34), 0.2f));
+	mHH_DungIm2 = new HoatHinh(lDSTTFrame);
+
+
 
 #pragma region DUNG_IM
 	lDSTTFrame.clear();
@@ -766,7 +769,14 @@ void XMan::DungIm()
 	mTrangThai = eTT_XMan_DungIm;
 	if (!mBanDan)
 	{
-		mHH_HienTai = mHH_DungIm;
+		if (mHP <= 20)
+		{
+			mHH_HienTai = mHH_DungIm2;
+		}
+		else
+		{
+			mHH_HienTai = mHH_DungIm;
+		}
 	}
 	else
 	{

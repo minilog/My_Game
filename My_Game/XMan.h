@@ -92,6 +92,7 @@ private:
 	HieuUngBatRa *mHieuUngBatRa;
 
 	HoatHinh *mHH_DungIm,
+		*mHH_DungIm2,
 		*mHH_Chay,
 		*mHH_ChuanBiChay,
 		*mHH_Nhay,
