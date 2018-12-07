@@ -210,6 +210,7 @@ void XMan::CapNhat(float in_tg)
 	switch (mTrangThai)
 	{
 	case eTT_XMan_PhatNo:
+		CapNhat_PhatNo();
 		break;
 
 	case eTT_XMan_XuatHien:
@@ -283,6 +284,11 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 	if (mTrangThai == eTT_XMan_PhatNo)
 	{
 		mHH_HienTai->Ve(DS_HinhAnh::get_TH()->XManPhatNo_png, mLatHinh, mToaDo, in_DoDoi);
+
+		for (int i = 0; i < 8; i++)
+		{
+			mHH_HatPhatNo->Ve(DS_HinhAnh::get_TH()->XManPhatNo_png, false, ToaDo_HatPhatNo[i], in_DoDoi);
+		}
 	}
 	else if (mTGDem_KoNhanST < mTG_KoNhanST)
 	{
@@ -312,6 +318,11 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 
 	mHieuUngLuot->Ve(in_DoDoi);
 	mHieuUngBatRa->Ve(in_DoDoi);
+
+	if (mTrangThai == eTT_XMan_PhatNo)
+	{
+		return;
+	}
 
 	if (mTG_DemTichDan > mTG_TichDanLv2 * 2.5f)
 	{
@@ -581,7 +592,15 @@ void XMan::LoadThongTinHoatHinh()
 	std::vector<ThongTinFrame> lDSTTFrame;
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(26, 36, HCN(0, 26, 0, 36), 0.4f));
+	lDSTTFrame.push_back(ThongTinFrame(6, 6, HCN(69, 69 + 6, 14, 14 + 6), 0.15f));
+	lDSTTFrame.push_back(ThongTinFrame(8, 8, HCN(79, 79 + 8, 13, 13 + 8), 0.15f));
+	lDSTTFrame.push_back(ThongTinFrame(10, 10, HCN(90, 90 + 10, 12, 12 + 10), 0.15f));
+	lDSTTFrame.push_back(ThongTinFrame(12, 12, HCN(102, 102 + 12, 11, 11 + 12), 0.15f));
+	lDSTTFrame.push_back(ThongTinFrame(16, 16, HCN(115, 115 + 16, 8, 8 + 16), 99.9f));
+	mHH_HatPhatNo = new HoatHinh(lDSTTFrame);
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(26, 36, HCN(0, 26, 0, 36), 0.1f));
 	lDSTTFrame.push_back(ThongTinFrame(26, 36, HCN(30, 30 + 26, 0, 36), 0.4f));
 	lDSTTFrame.push_back(ThongTinFrame(2, 2, HCN(0, 2, 0, 2), 99.9f));
 	mHH_PhatNo = new HoatHinh(lDSTTFrame);
@@ -957,7 +976,7 @@ void XMan::DinhSatThuong()
 		mVanToc.x = 20.0f;
 	}
 	mVanToc.y = -30.0f;
-	mHP -= 5;
+	mHP -= 50;
 	mTGDem_DinhST = 0.0f;
 	mTGDem_KoNhanST = 0.0f;
 }

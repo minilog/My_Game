@@ -50,26 +50,29 @@ private:
 		mVanToc.x = mVanToc.y = 0.0f;
 		for (int i = 0; i < 8; i++)
 		{
-			HatPhatNo[i][0] = mToaDo;
+			ToaDo_HatPhatNo[i] = mToaDo;
 		}
 	}
 	void CapNhat_PhatNo()
 	{
 		for (int i = 0; i < 8; i++)
 		{
-			HatPhatNo[i][0] += HatPhatNo[i][1];
+			ToaDo_HatPhatNo[i].x += VanToc_HatPhatNo[i].x * mTimes;
+			ToaDo_HatPhatNo[i].y += VanToc_HatPhatNo[i].y * mTimes;
 		}
+		mHH_HatPhatNo->CapNhat(mTimes);
 	}
 
-	Vec2 HatPhatNo[8][2] = { 
-		(Vec2(), Vec2(100.0f, 0.0f)),
-		(Vec2(), Vec2(100.0f * 0.707f, -100.0f * 0.707f)),
-		(Vec2(), Vec2(0.0f, -100.f)),
-		(Vec2(), Vec2(-100.0f * 0.707f, -100.0f * 0.707f)),
-		(Vec2(), Vec2(-100.0f, 0.0f)),
-		(Vec2(), Vec2(-100.0f * 0.707f, 100.0f * 0.707f)),
-		(Vec2(), Vec2(0.0f, 100.0f)),
-		(Vec2(), Vec2(100.0f * 0.707f, 100.0f * 0.707f))};
+	Vec2 ToaDo_HatPhatNo[8];
+	Vec2 VanToc_HatPhatNo[8] = {
+		Vec2(100.0f, 0.0f),
+		Vec2(100.0f * 0.707f, -100.0f * 0.707f),
+		Vec2(0.0f, -100.f),
+		Vec2(-100.0f * 0.707f, -100.0f * 0.707f),
+		Vec2(-100.0f, 0.0f),
+		Vec2(-100.0f * 0.707f, 100.0f * 0.707f),
+		Vec2(0.0f, 100.0f),
+		Vec2(100.0f * 0.707f, 100.0f * 0.707f) };
 
 
 	int mHP = 100;
