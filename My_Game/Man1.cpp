@@ -275,6 +275,7 @@ void Man1::CapNhat(float in_tg)
 
 void Man1::Ve()
 {
+
 	// lấy độ dời từ Camera
 	Vec2 lDoDoi(ToanCauGame::mChieuRong / 2 - Camera::get_ToaDo().x,
 		ToanCauGame::mChieuCao / 2 - Camera::get_ToaDo().y);
@@ -314,7 +315,13 @@ void Man1::Ve()
 		Bui->Ve(lDoDoi);
 	}
 
-
+	if (mXMan->get_TrangThai() == eTT_XMan_PhatNo)
+	{
+		GAMELOG("K");
+		DS_HinhAnh::get_TH()->Rong_png->set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 
+			ToanCauGame::mChieuCao / 2.0f));
+		DS_HinhAnh::get_TH()->Rong_png->Ve(D3DCOLOR_ARGB(50, 255, 255, 255));
+	}
 }
 
 void Man1::OnKeyDown(int in_KeyCode)

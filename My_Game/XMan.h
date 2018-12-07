@@ -15,6 +15,7 @@
 #include "DanLv3.h"
 #include "DanLv.h"
 #include "DS_HinhAnh.h"
+#include "GameLog.h"
 
 class XMan : public DoiTuong
 {
@@ -154,7 +155,6 @@ private:
 	bool mCoChuongNgaiVatTrai = false;
 	bool mCoChuongNgaiVatPhai = false;
 
-	eTrangThai mTrangThai;
 
 	bool		mLatHinh = false;
 
@@ -180,6 +180,7 @@ public:
 		mHH_HienTai->Remake();
 		TGDem = 0.0f;
 		mVanToc.y = 580.0f;
+		mHP = 100;
 	}
 private:
 	void CapNhat_XuatHien()

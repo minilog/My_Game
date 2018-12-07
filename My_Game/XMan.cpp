@@ -144,6 +144,7 @@ void XMan::CapNhat(float in_tg)
 {
 	if (mHP <= 0 && mTrangThai != eTT_XMan_PhatNo)
 	{
+
 		PhatNo();
 	}
 

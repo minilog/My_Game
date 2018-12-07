@@ -41,6 +41,8 @@ public:
 	QuadTree *mQuadTree;
 // INFORMATION
 private:
+	bool XMan_PhatNo = false;
+	float TGDem_Remake_ManGame;
 
 	XMan *mXMan;
 	std::vector<DanLv*> mDS_DanLv; // ĐẠN được lấy từ XMAN
