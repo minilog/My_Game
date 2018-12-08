@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="Bui.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CuaDanhBoss.cpp" />
     <ClCompile Include="DanLv.cpp" />
     <ClCompile Include="DanLv1.cpp" />
     <ClCompile Include="DanLv2.cpp" />
@@ -192,6 +193,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bui.h" />
+    <ClInclude Include="CuaDanhBoss.h" />
     <ClInclude Include="DanLv.h" />
     <ClInclude Include="DanLv1.h" />
     <ClInclude Include="DanLv2.h" />

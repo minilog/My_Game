@@ -50,6 +50,8 @@ private:
 		XManPhatNo_png = new HinhAnh("Resources/XMan/XManPhatNo.png", D3DCOLOR_XRGB(50, 96, 166));
 
 		Rong_png = new HinhAnh("Resources/Rong.png");
+
+		CuaDanhBoss_png = new HinhAnh("Resources/CuaDanhBoss.png", D3DCOLOR_XRGB(29, 112, 189));
 	}
 	~DS_HinhAnh()
 	{
@@ -57,6 +59,8 @@ private:
 	}
 
 public:
+	HinhAnh* CuaDanhBoss_png;
+
 	HinhAnh *HieuUngPhatNo_png;
 	HinhAnh *DanNo1_png;
 

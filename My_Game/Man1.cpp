@@ -84,6 +84,8 @@ void Man1::TaiDuLieu()
 		mDS_TenLua_Quai.push_back(lTL);
 	}
 
+	for (int i = 0; i < 3; i++)
+
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
 	{

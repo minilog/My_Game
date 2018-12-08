@@ -73,7 +73,7 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 		if (in_ToaDo.x >= 1750.0f && in_ToaDo.x <= 1850.0f &&
 			in_ToaDo.y >= 1000.0f && in_ToaDo.y <= 1200.0f)
 		{
-			mGioiHanPhaiTiepTheo = 2290;
+			mGioiHanPhaiTiepTheo = 2319;
 
 			CheckPoint++;
 		}

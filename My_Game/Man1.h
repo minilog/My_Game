@@ -16,6 +16,7 @@
 #include "LoCot.h"
 #include "TenLua.h"
 #include "ThangMay.h"
+#include "CuaDanhBoss.h"
 
 
 
@@ -43,6 +44,7 @@ public:
 	QuadTree *mQuadTree_Dong;
 // INFORMATION
 private:
+	CuaDanhBoss *Ba_CuaDanhBoss[3];
 	bool XMan_PhatNo = false;
 	float TGDem_Remake_ManGame;
 	int Color = 0;
