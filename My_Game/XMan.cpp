@@ -538,8 +538,16 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		{
 			return;
 		}
+		eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
 
-		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		if (!lKQVC.eKQVC_DaVaCham)
+		{
+			return;
+		}
+
+		ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
+
+		if (lPVC != ePVC_Duoi)
 		{
 			return;
 		}

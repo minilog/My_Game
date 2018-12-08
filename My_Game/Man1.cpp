@@ -84,7 +84,8 @@ void Man1::TaiDuLieu()
 		mDS_TenLua_Quai.push_back(lTL);
 	}
 
-	for (int i = 0; i < 3; i++)
+	// tạo 3 Cửa đánh boss
+	
 
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)

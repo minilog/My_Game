@@ -83,7 +83,7 @@
   <object id="147" x="951" y="642" width="38" height="46"/>
   <object id="148" x="802" y="642" width="38" height="46"/>
  </objectgroup>
- <objectgroup name="DoiTuongTinh">
+ <objectgroup name="DoiTuongTinh" visible="0">
   <object id="3" x="0" y="946" width="352" height="17"/>
   <object id="39" x="353" y="897.5" width="159" height="48"/>
   <object id="40" x="256.5" y="782.75" width="127.5" height="32"/>
@@ -210,12 +210,12 @@
   <object id="480" x="1586" y="816" width="32" height="32"/>
   <object id="481" x="1650" y="816" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="TrucXoay_2" visible="0">
-  <object id="482" x="1869" y="816" width="18" height="32"/>
+ <objectgroup name="TrucXoay_2">
+  <object id="482" x="1870" y="816" width="18" height="32"/>
  </objectgroup>
- <objectgroup name="TrucXoay2" visible="0">
-  <object id="462" x="1713" y="688" width="18" height="32"/>
-  <object id="494" x="1713" y="944" width="18" height="32"/>
+ <objectgroup name="TrucXoay2">
+  <object id="462" x="1712" y="688" width="18" height="32"/>
+  <object id="494" x="1712" y="944" width="18" height="32"/>
  </objectgroup>
  <objectgroup name="DoiTuongTinhTron" visible="0">
   <object id="386" x="3083.5" y="935.333" width="150" height="150"/>

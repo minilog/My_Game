@@ -35,10 +35,10 @@ public:
 		HH_1 = new HoatHinh(lDSTTFrame);
 
 		lDSTTFrame.clear();
-		lDSTTFrame.push_back(ThongTinFrame(16, 32, HCN(60, 60 + 18, 0, 32), 0.25f));
-		lDSTTFrame.push_back(ThongTinFrame(16, 32, HCN(40, 40 + 18, 0, 32), 0.25f));
-		lDSTTFrame.push_back(ThongTinFrame(16, 32, HCN(20, 20 + 18, 0, 32), 0.25f));
-		lDSTTFrame.push_back(ThongTinFrame(16, 32, HCN(0, 18, 0, 32), 0.25f));
+		lDSTTFrame.push_back(ThongTinFrame(18, 32, HCN(60, 60 + 18, 0, 32), 0.25f));
+		lDSTTFrame.push_back(ThongTinFrame(18, 32, HCN(40, 40 + 18, 0, 32), 0.25f));
+		lDSTTFrame.push_back(ThongTinFrame(18, 32, HCN(20, 20 + 18, 0, 32), 0.25f));
+		lDSTTFrame.push_back(ThongTinFrame(18, 32, HCN(0, 18, 0, 32), 0.25f));
 		HH_2 = new HoatHinh(lDSTTFrame);
 
 	}
