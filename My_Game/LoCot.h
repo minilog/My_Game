@@ -40,8 +40,8 @@ private:
 	float mTG_Dem = 0.0f;
 	float mTGDem_DanDuocBanRa = 0.0f;
 	float mTGDem_HieuUngPhatNo = TG_HieuUngPhatNo + 0.1f;
-	static constexpr int MaxHP = 7;
-	int HP = 7;
+	static constexpr int MaxHP = 5;
+	int HP = 5;
 	bool IsShining = false;
 	float TGDem_IsShining = 0.0f;
 

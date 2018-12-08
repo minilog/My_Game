@@ -75,7 +75,7 @@ void Game::Ve()
 		// kết thúc vẽ
 		ToanCauGame::mXuLyHinhAnh->End();
 
-		((Man1*)lManGame)->DrawQuadTree(((Man1*)lManGame)->mQuadTree);
+		((Man1*)lManGame)->DrawQuadTree(((Man1*)lManGame)->mQuadTree_Tinh);
 		((Man1*)lManGame)->DrawCollidable();
 		((Man1*)lManGame)->DrawTextDebug();
 

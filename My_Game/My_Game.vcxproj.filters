@@ -353,7 +353,9 @@
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="KieuDuLieu.h" />
-    <ClInclude Include="TrucXoay.h" />
+    <ClInclude Include="TrucXoay.h">
+      <Filter>4.DoiTuong</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

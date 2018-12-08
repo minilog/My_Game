@@ -101,8 +101,10 @@ enum eLoaiDoiTuong
 	eLDT_XacUop,
 	eLDT_LoCot,
 	eLDT_TenLua,
-	eLDT_ThangMay
-
+	eLDT_ThangMay,
+	eLDT_TrucXoay,
+	eLDT_Gai,
+	eLDT_DoiTuongTinh2
 };
 
 enum eHuongDiChuyen

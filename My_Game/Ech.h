@@ -28,6 +28,7 @@ public:
 
 // INFORMATION
 private:
+	Vec2 VanTocKhachQuan;
 	bool mEchKoNhay = false;
 
 	// ĐẠN NỔ và BỤI này chỉ là con trỏ

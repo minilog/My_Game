@@ -8,6 +8,7 @@
 #include "TenLua.h"
 #include "LoCot.h"
 #include "ThangMay.h"
+#include "TrucXoay.h"
 
 
 
@@ -205,8 +206,11 @@ void XMan::CapNhat(float in_tg)
 
 	mTimes = in_tg;
 	mHH_HienTai->CapNhat(in_tg);
-	mToaDo.x += mVanToc.x * in_tg;
-	mToaDo.y += mVanToc.y * in_tg;
+	mToaDo.x += (mVanToc.x + VanTocKhachQuan.x)* in_tg;
+	mToaDo.y += (mVanToc.y + VanTocKhachQuan.y)* in_tg;
+
+	VanTocKhachQuan.x = 0.0f;
+	VanTocKhachQuan.y = 0.0f;
 
 	switch (mTrangThai)
 	{
@@ -320,6 +324,7 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 	mHieuUngLuot->Ve(in_DoDoi);
 	mHieuUngBatRa->Ve(in_DoDoi);
 
+
 	if (mTrangThai == eTT_XMan_PhatNo)
 	{
 		return;
@@ -334,6 +339,8 @@ void XMan::Ve(const Vec2 & in_DoDoi)
 		mHH_HieuUngNapDanLv2->Ve(DS_HinhAnh::get_TH()->HieuUngNapDanLv2_png, false, mToaDo, in_DoDoi);
 	}
 
+
+
 }
 
 void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
@@ -342,6 +349,8 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	{
 		return;
 	}
+
+
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
 		in_DoiTuong->get_LoaiDoiTuong() == eLDT_ThangMay)
@@ -478,6 +487,25 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		DinhSatThuong();
 	}
 
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Gai)
+	{
+		if (mTrangThai == eTT_XMan_DinhSatThuong)
+		{
+			return;
+		}
+		if (mTGDem_KoNhanST < mTG_KoNhanST)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		PhatNo();
+	}
+
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_TenLua)
 	{
 		if (mTrangThai == eTT_XMan_DinhSatThuong)
@@ -500,6 +528,32 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		}
 
 		DinhSatThuong();
+	}
+
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_TrucXoay)
+	{
+		if (VanTocKhachQuan.x != 0.0f ||
+			VanTocKhachQuan.y != 0.0f)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		if (((TrucXoay*)in_DoiTuong)->K == 1 ||
+			((TrucXoay*)in_DoiTuong)->K == 2)
+		{
+			VanTocKhachQuan.x = -50.0f;
+		}
+		else if (((TrucXoay*)in_DoiTuong)->K == -1 ||
+			((TrucXoay*)in_DoiTuong)->K == -2)
+		{
+			VanTocKhachQuan.x = 50.0f;
+		}
 	}
 	
 

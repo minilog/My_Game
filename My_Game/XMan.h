@@ -40,6 +40,8 @@ public:
 
 	
 private:
+	Vec2 VanTocKhachQuan;
+
 	HoatHinh *mHH_PhatNo;
 	HoatHinh *mHH_HatPhatNo;
 
@@ -146,7 +148,7 @@ private:
 	float mTG_DemBatRa = 0.0f;
 
 	float mGiaTocTrongTruong = 1000.0f/*40.0f*/;
-	float mVanTocRoiToiDa = 370.0f/*100.0f*/;
+	float mVanTocRoiToiDa = 360.0f/*100.0f*/;
 
 	float mVanTocChayToiDa = 130.0f/*0.0f*/;
 

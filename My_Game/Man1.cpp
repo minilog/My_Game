@@ -4,7 +4,8 @@
 #include "VaChamGame.h"
 #include "ToanCauGame.h"
 #include "GameLog.h"
-#include "ThangMay.h"
+
+#include "TrucXoay.h"
 
 #include "Sound.h"
 #include <vector>
@@ -44,25 +45,17 @@ void Man1::TaiDuLieu()
 		896.0f));
 #pragma endregion
 
-
 	// lấy hình ảnh bản đồ map
 	// Chiếm 61.3MB RAM
 	mBanDoMap1 = new HinhAnh("Map1.png");
 	mBanDoMap1->set_ToaDo(Vec2(3968.0f, 1024.0f));
 
 	// tạo cây quad tree
-	mQuadTree = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
+	mQuadTree_Tinh = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
+	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
 	mXMan = new XMan(Vec2(100.0f, 730.0f));
-
-	//float k[3][2] = { (800.0f, 850.0f), (900.0f, 400.0f), (0.0f, 0.0f) };
-	//for (int i = 0; i < 2; i++)
-	//{
-	//	Camera::set_ToaDo(Vec2(k[i][0], k[i][1]));
-	//}
-	//mXMan->XuatHien(Vec2(1655.0f, 220.0f));
-	//Camera::CheckPoint = 2;
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -113,7 +106,16 @@ void Man1::TaiDuLieu()
 				DoiTuongTinh *lDoiTuongTinh = new DoiTuongTinh(lToaDoDoiTuong,
 					lObject->GetWidth(), lObject->GetHeight());
 
-				mQuadTree->ThemDoiTuong(lDoiTuongTinh);
+				mQuadTree_Tinh->ThemDoiTuong(lDoiTuongTinh);
+			}
+			else if (lNhomObject->GetName() == "Gai")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+
+
+				DoiTuongTinh *lDoiTuongTinh = new DoiTuongTinh(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), -1);
+
+				mQuadTree_Tinh->ThemDoiTuong(lDoiTuongTinh);
 			}
 		
 			else if (lNhomObject->GetName() == "Ech")
@@ -122,7 +124,7 @@ void Man1::TaiDuLieu()
 				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(), mDS_DanNo1_Quai, mDS_Bui_Quai,
 					lObject->GetWidth(), lObject->GetHeight());
 
-				mQuadTree->ThemDoiTuong(lEch);
+				mQuadTree_Dong->ThemDoiTuong(lEch);
 			}
 		
 			else if (lNhomObject->GetName() == "EchKhongNhay")
@@ -131,7 +133,7 @@ void Man1::TaiDuLieu()
 				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(), mDS_DanNo1_Quai, mDS_Bui_Quai,
 					lObject->GetWidth(), lObject->GetHeight(), true);
 
-				mQuadTree->ThemDoiTuong(lEch);
+				mQuadTree_Dong->ThemDoiTuong(lEch);
 			}
 			
 			else if (lNhomObject->GetName() == "XacUop")
@@ -145,13 +147,41 @@ void Man1::TaiDuLieu()
 
 				LoCot *lLoCot = new LoCot(lToaDoDoiTuong, mDS_DanNo1_Quai, mDS_TenLua_Quai);
 
-				mQuadTree->ThemDoiTuong(lLoCot);
+				mQuadTree_Tinh->ThemDoiTuong(lLoCot);
 			}
 			else if (lNhomObject->GetName() == "ThangMay")
 			{
-				ThangMay *lThangMay = new ThangMay(lToaDoDoiTuong);
+				ThangMay *lThangMay =  new ThangMay(lToaDoDoiTuong);
 
-				mQuadTree->ThemDoiTuong(lThangMay);
+				mQuadTree_Dong->ThemDoiTuong(lThangMay);
+			}
+			else if (lNhomObject->GetName() == "TrucXoay1")
+			{
+				TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), 1);
+
+				mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
+			}
+			else if (lNhomObject->GetName() == "TrucXoay2")
+			{
+				TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), 2);
+
+				mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
+			}
+			else if (lNhomObject->GetName() == "TrucXoay_1")
+			{
+				TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), -1);
+
+				mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
+			}
+			else if (lNhomObject->GetName() == "TrucXoay_2")
+			{
+				TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), -2);
+
+				mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
 			}
 		}
 	}
@@ -180,8 +210,11 @@ void Man1::CapNhat(float in_tg)
 
 	}
 
-	mDS_DoiTuong.clear();
-	mQuadTree->get_CacDoiTuongCoTheVaCham(mDS_DoiTuong, Camera::get_HCNGioiHan_MoRong());
+	mDS_DoiTuong_Tinh.clear();
+	mQuadTree_Tinh->get_CacDoiTuongCoTheVaCham(mDS_DoiTuong_Tinh, Camera::get_HCNGioiHan());
+
+	mDS_DoiTuong_Dong.clear();
+	mQuadTree_Dong->get_CacDoiTuongCoTheVaCham(mDS_DoiTuong_Dong, Camera::get_HCNGioiHan_MoRong());
 
 #pragma region CAP NHAT
 
@@ -210,9 +243,14 @@ void Man1::CapNhat(float in_tg)
 		Bui->CapNhat(in_tg);
 	}
 
-	for (auto DT : mDS_DoiTuong)
+	for (auto DT1 : mDS_DoiTuong_Tinh)
 	{
-		DT->CapNhat(in_tg, mXMan);
+		DT1->CapNhat(in_tg, mXMan);
+	}
+
+	for (auto DT2 : mDS_DoiTuong_Dong)
+	{
+		DT2->CapNhat(in_tg, mXMan);
 	}
 
 
@@ -247,11 +285,11 @@ void Man1::CapNhat(float in_tg)
 		}
 	}
 
-	for (auto DT : mDS_DoiTuong)
+	for (auto DT : mDS_DoiTuong_Tinh)
 	{
 		mXMan->XuLyVaCham(DT);
 
-		for (auto DT2 : mDS_DoiTuong)
+		for (auto DT2 : mDS_DoiTuong_Dong)
 		{
 			DT2->XuLyVaCham(DT);
 		}
@@ -270,6 +308,17 @@ void Man1::CapNhat(float in_tg)
 		for (auto TenLua : mDS_TenLua_Quai)
 		{
 			TenLua->XuLyVaCham(DT);
+		}
+	}
+
+	for (auto DT : mDS_DoiTuong_Dong)
+	{
+		mXMan->XuLyVaCham(DT);
+
+		for (auto DanLv : mDS_DanLv)
+		{
+			DT->XuLyVaCham(DanLv);
+			DanLv->XuLyVaCham(DT);
 		}
 	}
 #pragma endregion
@@ -294,7 +343,13 @@ void Man1::Ve()
 
 	mXMan->Ve(lDoDoi);
 
-	for (auto DT : mDS_DoiTuong)
+	for (auto DT : mDS_DoiTuong_Tinh)
+	{
+		DT->Ve(lDoDoi);
+	}
+
+
+	for (auto DT : mDS_DoiTuong_Dong)
 	{
 		DT->Ve(lDoDoi);
 	}

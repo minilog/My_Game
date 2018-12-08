@@ -80,27 +80,27 @@ void DanLv3::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	}
 
 
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
-	{
-		if (((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_BienMat ||
-			((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_DangTanBien)
-		{
-			return;
+	//if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
+	//{
+	//	if (((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_BienMat ||
+	//		((Ech*)in_DoiTuong)->get_TrangThai() == eTT_Ech_DangTanBien)
+	//	{
+	//		return;
 
-		}
+	//	}
 
-		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
-		{
-			return;
-		}
+	//	if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+	//	{
+	//		return;
+	//	}
 
-		if (!mLatHinh)
-			mToaDo.x += 10.0f;
-		else
-			mToaDo.x -= 10.0f;
+	//	if (!mLatHinh)
+	//		mToaDo.x += 10.0f;
+	//	else
+	//		mToaDo.x -= 10.0f;
 
-		DangTanBien();
-	}
+	//	DangTanBien();
+	//}
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_LoCot)
 	{

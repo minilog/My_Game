@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="248" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="456">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="248" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="499">
  <tileset firstgid="1" source="Map1.tsx"/>
  <layer name="Tile Layer 1" width="248" height="64">
   <data encoding="csv">
@@ -83,7 +83,7 @@
   <object id="147" x="951" y="642" width="38" height="46"/>
   <object id="148" x="802" y="642" width="38" height="46"/>
  </objectgroup>
- <objectgroup name="DoiTuongTinh" visible="0">
+ <objectgroup name="DoiTuongTinh">
   <object id="3" x="0" y="946" width="352" height="17"/>
   <object id="39" x="353" y="897.5" width="159" height="48"/>
   <object id="40" x="256.5" y="782.75" width="127.5" height="32"/>
@@ -103,12 +103,12 @@
   <object id="60" x="1248" y="450.5" width="319" height="21"/>
   <object id="61" x="1392" y="284" width="222.5" height="66.5"/>
   <object id="62" x="1567" y="450.5" width="128.5" height="94.5"/>
-  <object id="64" x="2000.5" y="288" width="17.5" height="657.5"/>
+  <object id="64" x="2000.5" y="511.333" width="17.5" height="367.5"/>
   <object id="65" x="1567" y="689" width="64" height="31"/>
   <object id="66" x="1936.5" y="817.5" width="62.5" height="30"/>
-  <object id="103" x="1712" y="689" width="288" height="31"/>
-  <object id="104" x="1565" y="816" width="322" height="31"/>
-  <object id="105" x="1713.67" y="944.333" width="335" height="31"/>
+  <object id="103" x="1712" y="689" width="288" height="29.9167"/>
+  <object id="104" x="1565" y="817" width="323" height="30"/>
+  <object id="105" x="1712" y="945" width="335" height="29.5"/>
   <object id="109" x="1565.33" y="945" width="65.1667" height="30"/>
   <object id="110" x="1566" y="1201.5" width="66" height="79"/>
   <object id="111" x="1713" y="1122" width="110" height="157.545"/>
@@ -133,7 +133,7 @@
   <object id="158" x="2862.5" y="768" width="16" height="368.5"/>
   <object id="159" x="2862.5" y="752.5" width="209" height="16.5"/>
   <object id="206" x="3794" y="992" width="11.5" height="205.5"/>
-  <object id="207" x="1888" y="1200" width="4095.67" height="16"/>
+  <object id="207" x="1888" y="1201" width="4095.67" height="16"/>
   <object id="208" x="3971" y="992.5" width="25.5" height="125"/>
   <object id="210" x="5329" y="1055.5" width="65" height="15.5"/>
   <object id="211" x="5393.5" y="1025.5" width="252.5" height="124.5"/>
@@ -169,7 +169,11 @@
   <object id="372" x="3086.75" y="976.5" width="273.455" height="17.75"/>
   <object id="390" x="944.583" y="688.833" width="47.5" height="27"/>
  </objectgroup>
- <objectgroup name="TrucXoay1">
+ <objectgroup name="Gai" visible="0">
+  <object id="495" x="2000.67" y="430" width="17.3333" height="78"/>
+  <object id="497" x="2001.33" y="880.667" width="15.3333" height="64.6667"/>
+ </objectgroup>
+ <objectgroup name="TrucXoay1" visible="0">
   <object id="392" x="1789" y="688" width="32" height="32"/>
   <object id="448" x="1821" y="688" width="32" height="32"/>
   <object id="449" x="1853" y="688" width="32" height="32"/>
@@ -178,6 +182,35 @@
   <object id="452" x="1949" y="688" width="32" height="32"/>
   <object id="454" x="1725" y="688" width="32" height="32"/>
   <object id="455" x="1757" y="688" width="32" height="32"/>
+  <object id="461" x="1968" y="688" width="32" height="32"/>
+  <object id="485" x="1789.17" y="944" width="32" height="32"/>
+  <object id="486" x="1821.17" y="944" width="32" height="32"/>
+  <object id="487" x="1853.17" y="944" width="32" height="32"/>
+  <object id="488" x="1885.17" y="944" width="32" height="32"/>
+  <object id="489" x="1917.17" y="944" width="32" height="32"/>
+  <object id="490" x="1949.17" y="944" width="32" height="32"/>
+  <object id="491" x="1725.17" y="944" width="32" height="32"/>
+  <object id="492" x="1757.17" y="944" width="32" height="32"/>
+  <object id="493" x="1968" y="944" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="TrucXoay_1" visible="0">
+  <object id="464" x="1842" y="816" width="32" height="32"/>
+  <object id="466" x="1810" y="816" width="32" height="32"/>
+  <object id="467" x="1714" y="816" width="32" height="32"/>
+  <object id="469" x="1682" y="816" width="32" height="32"/>
+  <object id="470" x="1568" y="816" width="32" height="32"/>
+  <object id="472" x="1778" y="816" width="32" height="32"/>
+  <object id="477" x="1746" y="816" width="32" height="32"/>
+  <object id="479" x="1618" y="816" width="32" height="32"/>
+  <object id="480" x="1586" y="816" width="32" height="32"/>
+  <object id="481" x="1650" y="816" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="TrucXoay_2" visible="0">
+  <object id="482" x="1869" y="816" width="18" height="32"/>
+ </objectgroup>
+ <objectgroup name="TrucXoay2" visible="0">
+  <object id="462" x="1713" y="688" width="18" height="32"/>
+  <object id="494" x="1713" y="944" width="18" height="32"/>
  </objectgroup>
  <objectgroup name="DoiTuongTinhTron" visible="0">
   <object id="386" x="3083.5" y="935.333" width="150" height="150"/>
@@ -185,13 +218,13 @@
  <objectgroup name="ThangMay" visible="0">
   <object id="387" x="848" y="945" width="96" height="34"/>
  </objectgroup>
- <objectgroup name="EchKhongNhay" visible="0">
-  <object id="374" x="1844.33" y="657.5" width="26" height="31"/>
+ <objectgroup name="EchKhongNhay">
+  <object id="374" x="1844.33" y="658" width="26" height="31"/>
   <object id="377" x="1952" y="786.167" width="26" height="31"/>
-  <object id="378" x="1922.33" y="914.167" width="26" height="31"/>
+  <object id="378" x="1922.33" y="914" width="26" height="31"/>
   <object id="379" x="1843.33" y="1121.5" width="26" height="31"/>
   <object id="381" x="1578.67" y="657.5" width="26" height="31"/>
-  <object id="382" x="1749.33" y="785.5" width="26" height="31"/>
+  <object id="382" x="1749.33" y="786.5" width="26" height="31"/>
   <object id="384" x="1580.67" y="913.833" width="26" height="31"/>
  </objectgroup>
  <objectgroup name="XacUop" visible="0">

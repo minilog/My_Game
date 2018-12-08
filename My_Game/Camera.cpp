@@ -63,7 +63,7 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 		{
 			mGioiHanTrai = 1450;
 			mGioiHanTraiTiepTheo = 1536;
-			mGioiHanDuoiTiepTheo = 1280;
+			mGioiHanDuoiTiepTheo = 1248;
 
 			CheckPoint++;
 		}
@@ -153,10 +153,19 @@ HCN Camera::get_HCNGioiHan()
 HCN Camera::get_HCNGioiHan_MoRong()
 {
 	return HCN(
-		int(mToaDo.x - mChieuRong),
-		int(mToaDo.x + mChieuRong),
-		int(mToaDo.y - mChieuCao),
-		int(mToaDo.y + mChieuCao));
+		int(mToaDo.x - mChieuRong / 1.2f),
+		int(mToaDo.x + mChieuRong / 1.2f),
+		int(mToaDo.y - mChieuCao / 1.2f),
+		int(mToaDo.y + mChieuCao / 1.2f));
+}
+
+HCN Camera::get_HCNGioiHan_MoRong_1()
+{
+	return HCN(
+		int(mToaDo.x - mChieuRong / 1.8f),
+		int(mToaDo.x + mChieuRong / 1.8f),
+		int(mToaDo.y - mChieuCao / 1.8f),
+		int(mToaDo.y + mChieuCao / 1.8f));
 }
 
 int Camera::get_ChieuRong()

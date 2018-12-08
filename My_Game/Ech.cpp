@@ -1,6 +1,7 @@
 ﻿#include "Ech.h"
 #include "DanNo1.h"
 #include "DanLv.h"
+#include "TrucXoay.h"
 
 
 
@@ -53,7 +54,8 @@ void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 	else if (!mNamTrongCamera &&
 		VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
 	{
-		ChuanBiNhay();
+		TiepDat();
+		mTGDem_TiepDat = mTG_TiepDat;
 		mHP = mMaxHP;
 		mNamTrongCamera = true;
 	}
@@ -81,8 +83,9 @@ void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 
 	mKhoangCach_XMan = mToaDo.x - in_XMan->get_ToaDo().x;
 
-	mToaDo.x += mVanToc.x * in_tg;
-	mToaDo.y += mVanToc.y * in_tg;
+	mToaDo.x += (mVanToc.x + VanTocKhachQuan.x) * in_tg;
+	mToaDo.y += (mVanToc.y + VanTocKhachQuan.y) * in_tg;
+	VanTocKhachQuan.x = VanTocKhachQuan.y = 0.0f;
 
 	mHH_HienTai->CapNhat(in_tg);
 
@@ -188,6 +191,29 @@ void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	if (mTrangThai == eTT_Ech_BienMat || mTrangThai == eTT_Ech_DangTanBien)
 	{
 		return;
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_TrucXoay)
+	{
+		if (VanTocKhachQuan.x != 0.0f ||
+			VanTocKhachQuan.y != 0.0f)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		if (((TrucXoay*)in_DoiTuong)->K == 1)
+		{
+			VanTocKhachQuan.x = -50.0f;
+		}
+		else if (((TrucXoay*)in_DoiTuong)->K == -1)
+		{
+			VanTocKhachQuan.x = 50.0f;
+		}
 	}
 
 	// xét va chạm với đạn Lv đang tồn tại

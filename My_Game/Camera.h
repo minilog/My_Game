@@ -46,5 +46,6 @@ public:
 	static int get_ChieuCao();
 	static HCN get_HCNGioiHan();
 	static HCN get_HCNGioiHan_MoRong();
+	static HCN get_HCNGioiHan_MoRong_1();
 };
 

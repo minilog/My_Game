@@ -15,6 +15,7 @@
 #include "DanNo1.h"
 #include "LoCot.h"
 #include "TenLua.h"
+#include "ThangMay.h"
 
 
 
@@ -38,7 +39,8 @@ public:
 	void DrawCollidable();
 
 
-	QuadTree *mQuadTree;
+	QuadTree *mQuadTree_Tinh;
+	QuadTree *mQuadTree_Dong;
 // INFORMATION
 private:
 	bool XMan_PhatNo = false;
@@ -48,7 +50,8 @@ private:
 	XMan *mXMan;
 	std::vector<DanLv*> mDS_DanLv; // ĐẠN được lấy từ XMAN
 	// chia nhỏ các đối tượng, đưa vào 2 DS bên dưới
-	std::vector<DoiTuong*> mDS_DoiTuong;
+	std::vector<DoiTuong*> mDS_DoiTuong_Tinh;
+	std::vector<DoiTuong*> mDS_DoiTuong_Dong;
 	XacUop *mXacUop;
 	//  DS DanNo1, Bui dành cho QUái
 	std::vector<DanNo1*> mDS_DanNo1_Quai;

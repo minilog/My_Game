@@ -55,7 +55,7 @@ void ThangMay::CapNhat(float in_tg, const DoiTuong * in_XMan)
 void ThangMay::DiChuyen()
 {
 	mTrangThai = eTT_ThangMay_DiChuyen;
-	mVanToc.y = -50.0f;
+	mVanToc.y = -65.0f;
 }
 
 void ThangMay::DungIm()
