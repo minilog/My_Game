@@ -40,6 +40,9 @@ public:
 
 	
 private:
+	static constexpr float TG_ChayTuDo = 5.0f;
+	float TGDem_ChayTuDo = TG_ChayTuDo + 0.1f;
+
 	Vec2 VanTocKhachQuan;
 
 	HoatHinh *mHH_PhatNo;

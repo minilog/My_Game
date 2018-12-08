@@ -143,8 +143,14 @@ XMan::~XMan()
 
 void XMan::CapNhat(float in_tg)
 {
-	if ((mHP <= 0 && mTrangThai != eTT_XMan_PhatNo) ||
-		(mToaDo.y > Camera::mGioiHanDuoi && mTrangThai != eTT_XMan_PhatNo))
+
+	if (TGDem_ChayTuDo < TG_ChayTuDo)
+	{
+		TGDem_ChayTuDo += in_tg;
+	}
+
+	if ((mHP <= 0 && mTrangThai != eTT_XMan_PhatNo)/* ||
+		(mToaDo.y > Camera::mGioiHanDuoi && mTrangThai != eTT_XMan_PhatNo)*/)
 	{
 		PhatNo();
 	}
@@ -198,11 +204,11 @@ void XMan::CapNhat(float in_tg)
 		mIsShining = false;
 	}
 
-	if (mToaDo.x < Camera::mGioiHanTrai + float(mChieuRong / 2))
-		mToaDo.x = Camera::mGioiHanTrai + float(mChieuRong / 2);
+	//if (mToaDo.x < Camera::mGioiHanTrai + float(mChieuRong / 2))
+	//	mToaDo.x = Camera::mGioiHanTrai + float(mChieuRong / 2);
 
-	if (mToaDo.x > Camera::mGioiHanPhai - float(mChieuRong / 2))
-		mToaDo.x = Camera::mGioiHanPhai - float(mChieuRong / 2);
+	//if (mToaDo.x > Camera::mGioiHanPhai - float(mChieuRong / 2))
+	//	mToaDo.x = Camera::mGioiHanPhai - float(mChieuRong / 2);
 
 	mTimes = in_tg;
 	mHH_HienTai->CapNhat(in_tg);
@@ -349,7 +355,6 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	{
 		return;
 	}
-
 
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
@@ -563,6 +568,19 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			VanTocKhachQuan.x = 50.0f;
 		}
 	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_CuaDanhBoss)
+	{
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		if (TGDem_ChayTuDo > TG_ChayTuDo)
+		{
+			TGDem_ChayTuDo = 0.0f;
+		}
+	}
 	
 
 
@@ -599,6 +617,23 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 	if (mTrangThai == eTT_XMan_PhatNo)
 	{
 		return;
+	}
+
+	if (TGDem_ChayTuDo <= TG_ChayTuDo)
+	{
+		if (TGDem_ChayTuDo >= 2.7f &&
+			TGDem_ChayTuDo <= 3.05f)
+		{
+			in_Keys[VK_RIGHT] = true;
+		}
+		else
+		{
+			in_Keys[VK_RIGHT] = false;
+		}
+		in_Keys[VK_LEFT] = false;
+		in_Keys[JUMP_BUTTON] = false;
+		in_Keys[FIRE_BUTTON] = false;
+		in_Keys[PUSH_BUTTON] = false;
 	}
 
 	mKeys = in_Keys;

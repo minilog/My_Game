@@ -55,7 +55,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(Vec2(100.0f, 730.0f));
+	mXMan = new XMan(Vec2(2250.0f, 1150.0f));
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -85,7 +85,9 @@ void Man1::TaiDuLieu()
 	}
 
 	// tạo 3 Cửa đánh boss
-	
+	DS_CuaDanhBoss[0] = new CuaDanhBoss(Vec2(2312.0f, 1176.0f));
+	DS_CuaDanhBoss[1] = new CuaDanhBoss(Vec2(2553.0f, 1176.0f));
+	DS_CuaDanhBoss[1]->ChoPhepMoCua = false;
 
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
@@ -207,8 +209,8 @@ void Man1::CapNhat(float in_tg)
 	if (Color == 255)
 	{
 		//set Camera trước khi set XMan
-		Camera::CheckPoint = -1;
-		Camera::set_ToaDo(Vec2(100.0f, 730.0f));
+		//Camera::CheckPoint = -1;
+		//Camera::set_ToaDo(Vec2(100.0f, 730.0f));
 		mXMan->XuatHien(Vec2(100.0f, 730.0f));
 
 	}
@@ -220,7 +222,8 @@ void Man1::CapNhat(float in_tg)
 	mQuadTree_Dong->get_CacDoiTuongCoTheVaCham(mDS_DoiTuong_Dong, Camera::get_HCNGioiHan_MoRong());
 
 #pragma region CAP NHAT
-
+	DS_CuaDanhBoss[0]->CapNhat(in_tg, mXMan);
+	DS_CuaDanhBoss[1]->CapNhat(in_tg, mXMan);
 
 	mXMan->CapNhat(in_tg);
 
@@ -261,7 +264,10 @@ void Man1::CapNhat(float in_tg)
 #pragma endregion
 
 #pragma region VA CHAM
-
+	DS_CuaDanhBoss[0]->XuLyVaCham(mXMan);
+	DS_CuaDanhBoss[1]->XuLyVaCham(mXMan);
+	mXMan->XuLyVaCham(DS_CuaDanhBoss[0]);
+	mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
 
 	for (auto DanNo : mDS_DanNo1_Quai)
 	{
@@ -343,6 +349,9 @@ void Man1::Ve()
 	// vẽ hình ảnh bản đồ
 	mBanDoMap1->set_DoDoi(lDoDoi);
 	mBanDoMap1->Ve();
+	
+	DS_CuaDanhBoss[0]->Ve(lDoDoi);
+	DS_CuaDanhBoss[1]->Ve(lDoDoi);
 
 	mXMan->Ve(lDoDoi);
 

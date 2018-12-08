@@ -21,13 +21,13 @@ public:
 	void Ve(const Vec2& in_DoDoi);
 
 	void set_ChoPhepMoCua(bool in) { ChoPhepMoCua = in; }
-
+	bool ChoPhepMoCua = true;
 
 // INFORMATION
 private:
-	bool ChoPhepMoCua = true;
-	static constexpr float TG_MoCua = 0.25f * 17; 
-	static constexpr float TG_DongCua = 0.25f * 17;
+
+	static constexpr float TG_MoCua = 0.13f * 17; 
+	static constexpr float TG_DongCua = 0.13f * 16 + 1.1f;
 	float TGDem = 0.0f;
 	HoatHinh *HH_DongCua;
 	HoatHinh *HH_MoCua;
