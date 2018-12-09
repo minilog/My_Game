@@ -55,7 +55,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(Vec2(2250.0f, 1150.0f)/*Vec2(100.0f, 730.0f)*/);
+	mXMan = new XMan(Vec2(2240.0f, 1120.0f)/*Vec2(100.0f, 730.0f)*/);
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -88,7 +88,7 @@ void Man1::TaiDuLieu()
 	DS_CuaDanhBoss[0] = new CuaDanhBoss(Vec2(2312.0f, 1176.0f));
 	DS_CuaDanhBoss[1] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
 	DS_CuaDanhBoss[1]->ChoPhepMoCua = false;
-	mBOSS1 = new BOSS1(Vec2(2455.0f + 23.0f, 1155.0f + 23.0f));
+	mBOSS1 = new BOSS1(Vec2(2517.0f, 1155.0f + 23.0f));
 
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
@@ -213,6 +213,7 @@ void Man1::CapNhat(float in_tg)
 		//Camera::CheckPoint = -1;
 		//Camera::set_ToaDo(Vec2(100.0f, 730.0f));
 		mXMan->XuatHien(Vec2(100.0f, 730.0f));
+		mBOSS1->BienMat();
 
 	}
 

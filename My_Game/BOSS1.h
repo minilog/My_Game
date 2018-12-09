@@ -19,9 +19,35 @@ public:
 
 // INFORMATION
 private:
+	static constexpr int MAX_HP = 40;
+	int HP = MAX_HP;
+	float TG_Dem;
+	int Color_AnhSang = 0;
+
+	static constexpr float GiaTocTrongTruong = 1000.0f;
+	static constexpr float VanTocRoiToiDa = 360.0f;
+
+	Vec2 ToaDo_Pet;
+	Vec2 ToaDo_BanDau;
+
 	HoatHinh* HH_ConPet;
 	HoatHinh* HH_AnhSang;
+
 	HoatHinh* HH_XuatHien;
+	HoatHinh* HH_TanCong;
+	HoatHinh* HH_TanCong3;
+	HoatHinh* HH_HienTai;
+
+	HoatHinh *mHH_HieuUngNoTung[4];
+
+// SUB-FUNCTION
+	void XuatHien();
+	void TanCong1();
+	void TanCong2();
+	void TanCong3();
+public:
+	void BienMat();
+private:
 
 	void LoadThongTinHoatHinh();
 

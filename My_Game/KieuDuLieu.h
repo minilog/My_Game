@@ -175,6 +175,9 @@ enum eTrangThai
 	eTT_CuaDanhBoss_KhoaCua,
 
 	eTT_BOSS1_XuatHien,
-	eTT_BOSS1_BienMat
+	eTT_BOSS1_BienMat,
+	eTT_BOSS1_TanCong1,
+	eTT_BOSS1_TanCong2,
+	eTT_BOSS1_TanCong3
 };
 

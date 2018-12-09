@@ -627,6 +627,15 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 		return;
 	}
 
+	if (in_Keys['O'])
+	{
+		PhatNo();
+	}
+	if (in_Keys['P'])
+	{
+		mHP = 100;
+	}
+
 	if (TGDem_ChayTuDo <= TG_ChayTuDo)
 	{
 		if (TGDem_ChayTuDo >= 2.7f &&

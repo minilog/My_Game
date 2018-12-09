@@ -53,7 +53,7 @@ private:
 
 		CuaDanhBoss_png = new HinhAnh("Resources/CuaDanhBoss.png", D3DCOLOR_XRGB(29, 112, 189));
 
-		BOSS1_png = new HinhAnh("Resources/BOSS1_png", D3DCOLOR_XRGB(64, 48, 72));
+		BOSS1_png = new HinhAnh("Resources/BOSS1.png", D3DCOLOR_XRGB(64, 48, 72));
 	}
 	~DS_HinhAnh()
 	{
