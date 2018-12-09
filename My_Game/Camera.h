@@ -22,6 +22,7 @@ private:
 	static int mGioiHanPhaiTiepTheo;
 	static int mGioiHanTrenTiepTheo;
 	static int mGioiHanDuoiTiepTheo;
+	static int speed;
 
 
 

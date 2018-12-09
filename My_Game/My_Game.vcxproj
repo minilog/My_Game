@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BOSS1.cpp" />
     <ClCompile Include="Bui.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CuaDanhBoss.cpp" />
@@ -192,6 +193,7 @@
     <ClCompile Include="XMan.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BOSS1.h" />
     <ClInclude Include="Bui.h" />
     <ClInclude Include="CuaDanhBoss.h" />
     <ClInclude Include="DanLv.h" />

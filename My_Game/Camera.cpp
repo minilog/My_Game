@@ -15,13 +15,14 @@ int Camera::mGioiHanPhaiTiepTheo = 769 + 254;
 int Camera::mGioiHanTrenTiepTheo = 770;
 int Camera::mGioiHanDuoiTiepTheo = 770 + 220;
 int Camera::CheckPoint = -1;
-
+int Camera::speed = 4;
 
 void Camera::set_ToaDo(const Vec2& in_ToaDo) 
 {
 	//switch (CheckPoint)
 	//{
 	//case -1:
+	//	speed = 4;
 	//	mGioiHanTrai = 0;
 	//	mGioiHanPhai = 769 + 254;
 	//	mGioiHanTren = 770;
@@ -88,6 +89,7 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 	//		mGioiHanPhaiTiepTheo = mGioiHanTraiTiepTheo + mChieuRong;
 	//		mGioiHanTrenTiepTheo = mGioiHanTren = 1248 - mChieuCao;
 	//		CheckPoint++;
+	//		speed = 2;
 	//	}
 	//	break;
 
@@ -114,7 +116,7 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 	//	mToaDo.y = mGioiHanDuoi - mChieuCao / 2.0f;
 	//}
 
-	//for (int k = 0; k < 4; k++)
+	//for (int k = 0; k < speed; k++)
 	//{
 	//	if (mGioiHanTrai < mGioiHanTraiTiepTheo)
 	//		mGioiHanTrai++;

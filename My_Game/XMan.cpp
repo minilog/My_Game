@@ -211,7 +211,15 @@ void XMan::CapNhat(float in_tg)
 	//	mToaDo.x = Camera::mGioiHanPhai - float(mChieuRong / 2);
 
 	mTimes = in_tg;
-	mHH_HienTai->CapNhat(in_tg);
+	if (TGDem_ChayTuDo < TG_ChayTuDo)
+	{
+		mHH_HienTai->CapNhat(in_tg / 1.25f);
+	}
+	else
+	{
+		mHH_HienTai->CapNhat(in_tg);
+	}
+
 	mToaDo.x += (mVanToc.x + VanTocKhachQuan.x)* in_tg;
 	mToaDo.y += (mVanToc.y + VanTocKhachQuan.y)* in_tg;
 
@@ -622,9 +630,10 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 	if (TGDem_ChayTuDo <= TG_ChayTuDo)
 	{
 		if (TGDem_ChayTuDo >= 2.7f &&
-			TGDem_ChayTuDo <= 3.05f)
+			TGDem_ChayTuDo <= 4.4f)
 		{
 			in_Keys[VK_RIGHT] = true;
+			mVanToc.x = 20.0f;
 		}
 		else
 		{

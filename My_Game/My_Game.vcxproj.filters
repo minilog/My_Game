@@ -190,6 +190,9 @@
     <ClCompile Include="CuaDanhBoss.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BOSS1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -359,7 +362,10 @@
     <ClInclude Include="TrucXoay.h">
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
-    <ClInclude Include="CuaDanhBoss.h" />
+    <ClInclude Include="CuaDanhBoss.h">
+      <Filter>4.DoiTuong</Filter>
+    </ClInclude>
+    <ClInclude Include="BOSS1.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

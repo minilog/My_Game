@@ -55,7 +55,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(Vec2(2250.0f, 1150.0f));
+	mXMan = new XMan(Vec2(2250.0f, 1150.0f)/*Vec2(100.0f, 730.0f)*/);
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -86,7 +86,7 @@ void Man1::TaiDuLieu()
 
 	// tạo 3 Cửa đánh boss
 	DS_CuaDanhBoss[0] = new CuaDanhBoss(Vec2(2312.0f, 1176.0f));
-	DS_CuaDanhBoss[1] = new CuaDanhBoss(Vec2(2553.0f, 1176.0f));
+	DS_CuaDanhBoss[1] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
 	DS_CuaDanhBoss[1]->ChoPhepMoCua = false;
 
 #pragma region TAO DS QUAI

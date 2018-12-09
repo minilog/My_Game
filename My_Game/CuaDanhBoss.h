@@ -26,7 +26,7 @@ public:
 // INFORMATION
 private:
 
-	static constexpr float TG_MoCua = 0.13f * 17; 
+	static constexpr float TG_MoCua = 0.13f * 17 + 1.5f; 
 	static constexpr float TG_DongCua = 0.13f * 16 + 1.1f;
 	float TGDem = 0.0f;
 	HoatHinh *HH_DongCua;
