@@ -17,6 +17,7 @@
 #include "TenLua.h"
 #include "ThangMay.h"
 #include "CuaDanhBoss.h"
+#include "BOSS1.h"
 
 
 
@@ -45,7 +46,7 @@ public:
 // INFORMATION
 private:
 
-
+	BOSS1* mBOSS1;
 	CuaDanhBoss *DS_CuaDanhBoss[3];
 	bool XMan_PhatNo = false;
 	float TGDem_Remake_ManGame;

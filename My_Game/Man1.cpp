@@ -88,6 +88,7 @@ void Man1::TaiDuLieu()
 	DS_CuaDanhBoss[0] = new CuaDanhBoss(Vec2(2312.0f, 1176.0f));
 	DS_CuaDanhBoss[1] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
 	DS_CuaDanhBoss[1]->ChoPhepMoCua = false;
+	mBOSS1 = new BOSS1(Vec2(2455.0f + 23.0f, 1155.0f + 23.0f));
 
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
@@ -224,6 +225,7 @@ void Man1::CapNhat(float in_tg)
 #pragma region CAP NHAT
 	DS_CuaDanhBoss[0]->CapNhat(in_tg, mXMan);
 	DS_CuaDanhBoss[1]->CapNhat(in_tg, mXMan);
+	mBOSS1->CapNhat(in_tg, mXMan);
 
 	mXMan->CapNhat(in_tg);
 
@@ -268,6 +270,7 @@ void Man1::CapNhat(float in_tg)
 	DS_CuaDanhBoss[1]->XuLyVaCham(mXMan);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[0]);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
+	mXMan->XuLyVaCham(mBOSS1);
 
 	for (auto DanNo : mDS_DanNo1_Quai)
 	{
@@ -352,6 +355,7 @@ void Man1::Ve()
 	
 	DS_CuaDanhBoss[0]->Ve(lDoDoi);
 	DS_CuaDanhBoss[1]->Ve(lDoDoi);
+	mBOSS1->Ve(lDoDoi);
 
 	mXMan->Ve(lDoDoi);
 

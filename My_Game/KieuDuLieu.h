@@ -105,7 +105,8 @@ enum eLoaiDoiTuong
 	eLDT_TrucXoay,
 	eLDT_Gai,
 	eLDT_DoiTuongTinh2,
-	eLDT_CuaDanhBoss
+	eLDT_CuaDanhBoss,
+	eLDT_BOSS1
 };
 
 enum eHuongDiChuyen
@@ -171,6 +172,9 @@ enum eTrangThai
 
 	eTT_CuaDanhBoss_MoCua,
 	eTT_CuaDanhBoss_DongCua,
-	eTT_CuaDanhBoss_KhoaCua
+	eTT_CuaDanhBoss_KhoaCua,
+
+	eTT_BOSS1_XuatHien,
+	eTT_BOSS1_BienMat
 };
 
