@@ -22,6 +22,7 @@ void TenLua::CapNhat(float in_tg)
 
 void TenLua::CapNhat(float in_tg, const DoiTuong * in_XMan)
 {
+
 	// nếu đạn đã bị phá hủy -> ko cần Cập Nhật
 	if (mTrangThai == eTT_TenLua_BienMat)
 	{
@@ -30,6 +31,11 @@ void TenLua::CapNhat(float in_tg, const DoiTuong * in_XMan)
 
 	mToaDo.x += mVanToc.x * in_tg;
 	mToaDo.y += mVanToc.y * in_tg;
+
+	if (HP <= 0)
+	{
+		PhatNo();
+	}
 
 	TGDem_TuDongBienMat += in_tg;
 	if (TGDem_TuDongBienMat > TG_TuDongBienMat)
@@ -115,8 +121,8 @@ void TenLua::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		{
 			return;
 		}
-
-		PhatNo();
+		
+		HP -= ((DanLv*)in_DoiTuong)->get_Damage();
 	}
 }
 
@@ -135,6 +141,7 @@ void TenLua::PhatNo()
 	mTrangThai = eTT_TenLua_PhatNo;
 	TGDem_NoTung = 0.0f;
 	mHH_HieuUngPhatNo->Remake();
+	HP = MAXHP;
 }
 
 void TenLua::LoadThongTinHoatHinh()

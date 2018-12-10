@@ -6,6 +6,7 @@
 #include "GameLog.h"
 
 #include "TrucXoay.h"
+#include "MayBay.h"
 
 #include "Sound.h"
 #include <vector>
@@ -55,7 +56,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(Vec2(2100.0f, 1000.0f)/*Vec2(100.0f, 730.0f)*/);
+	mXMan = new XMan(Vec2(3000.0f, 1000.0f)/*Vec2(100.0f, 730.0f)*/);
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -215,6 +216,12 @@ void Man1::TaiDuLieu()
 
 				mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
 			}
+			else if (lNhomObject->GetName() == "MayBay")
+			{
+				MayBay* lMayBay = new MayBay(lToaDoDoiTuong, mDS_TenLua_Quai, mDS_Bui_Quai);
+
+				mQuadTree_Dong->ThemDoiTuong(lMayBay);
+			}
 		}
 	}
 #pragma endregion
@@ -326,6 +333,7 @@ void Man1::CapNhat(float in_tg)
 		for (auto DanLv : mDS_DanLv)
 		{
 			TenLua->XuLyVaCham(DanLv);
+			DanLv->XuLyVaCham(TenLua);
 		}
 	}
 
@@ -497,10 +505,15 @@ void Man1::DrawQuadTree(QuadTree * in_QuadTree)
 
 void Man1::DrawCollidable()
 {
-	//for (auto child : mDS_DoiTuongTinh)
+	//for (auto child : mDS_DoiTuong_Tinh)
 	//{
 	//	mGameDebugDraw->DrawRect(child->get_RECT());
 	//}
+
+	for (auto child : mDS_DoiTuong_Dong)
+	{
+		mGameDebugDraw->DrawRect(child->get_RECT());
+	}
 	//mGameDebugDraw->DrawRect(mXMan->get_RECT());
 
 	//for (int i = 0; i < (int)mDS_Ech.size(); i++)

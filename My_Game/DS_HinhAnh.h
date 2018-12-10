@@ -55,6 +55,9 @@ private:
 
 		BOSS1_png = new HinhAnh("Resources/BOSS1.png", D3DCOLOR_XRGB(64, 48, 72));
 		BOSS1_Shining_png = new HinhAnh("Resources/BOSS1_Shining.png", D3DCOLOR_XRGB(255, 49, 74));
+
+		MayBay_png = new HinhAnh("Resources/Enemies/MayBay.png", D3DCOLOR_XRGB(255, 255, 255));
+		MayBay_Shining_png = new HinhAnh("Resources/Enemies/MayBay_Shining.png", D3DCOLOR_XRGB(255, 255, 255));
 	}
 	~DS_HinhAnh()
 	{
@@ -62,6 +65,9 @@ private:
 	}
 
 public:
+	HinhAnh* MayBay_png;
+	HinhAnh* MayBay_Shining_png;
+
 	HinhAnh* BOSS1_Shining_png;
 	HinhAnh* BOSS1_png;
 	HinhAnh* CuaDanhBoss_png;

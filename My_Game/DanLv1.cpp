@@ -76,6 +76,20 @@ void DanLv1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		return;
 	}
 
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_MayBay)
+	{
+		if (in_DoiTuong->get_TrangThai() == eTT_MayBay_PhatNo)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DangTanBien();
+	}
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
 	{		
@@ -113,6 +127,22 @@ void DanLv1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		if (in_DoiTuong->get_TrangThai() == eTT_BOSS1_BienMat ||
 			in_DoiTuong->get_TrangThai() == eTT_BOSS1_XuatHien ||
 			in_DoiTuong->get_TrangThai() == eTT_BOSS1_PhatNo)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DangTanBien();
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_TenLua)
+	{
+		if (in_DoiTuong->get_TrangThai() == eTT_TenLua_PhatNo ||
+			in_DoiTuong->get_TrangThai() == eTT_TenLua_BienMat)
 		{
 			return;
 		}

@@ -108,7 +108,8 @@ enum eLoaiDoiTuong
 	eLDT_CuaDanhBoss,
 	eLDT_BOSS1,
 	eLDT_DoiTuongTinh3,
-	eLDT_DoiTuongTinh4
+	eLDT_DoiTuongTinh4,
+	eLDT_MayBay
 };
 
 enum eHuongDiChuyen
@@ -181,6 +182,11 @@ enum eTrangThai
 	eTT_BOSS1_TanCong1,
 	eTT_BOSS1_TanCong2,
 	eTT_BOSS1_TanCong3,
-	eTT_BOSS1_PhatNo
+	eTT_BOSS1_PhatNo,
+
+	eTT_MayBay_DiChuyen,
+	eTT_MayBay_BanDan,
+	eTT_MayBay_PhatNo,
+	eTT_MayBay_BoChay
 };
 

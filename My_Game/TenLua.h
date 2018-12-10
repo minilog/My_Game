@@ -22,6 +22,8 @@ public:
 
 // INFORMATION
 private:
+	static constexpr int MAXHP = 2;
+	int HP = MAXHP;
 	HoatHinh *mHH_Dan;
 	HoatHinh *mHH_HieuUngPhatNo;
 
