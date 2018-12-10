@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="248" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="698">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="248" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="701">
  <tileset firstgid="1" source="Map1.tsx"/>
  <layer name="Tile Layer 1" width="248" height="64">
   <data encoding="csv">
@@ -78,12 +78,15 @@
   <object id="144" x="6028" y="1537.5" width="26" height="31"/>
   <object id="385" x="6015" y="1729.83" width="26" height="31"/>
  </objectgroup>
- <objectgroup name="LoCot" visible="0">
+ <objectgroup name="LoCot">
   <object id="146" x="950" y="898" width="38" height="46"/>
   <object id="147" x="951" y="642" width="38" height="46"/>
   <object id="148" x="802" y="642" width="38" height="46"/>
+  <object id="698" x="6073.5" y="1922.5" width="38" height="46"/>
+  <object id="699" x="7208.5" y="1922" width="38" height="46"/>
+  <object id="700" x="6374.5" y="1924" width="38" height="46"/>
  </objectgroup>
- <objectgroup name="DoiTuongTinh">
+ <objectgroup name="DoiTuongTinh" visible="0">
   <object id="3" x="0" y="946" width="352" height="17"/>
   <object id="39" x="353" y="897.5" width="159" height="48"/>
   <object id="40" x="256.5" y="782.75" width="127.5" height="32"/>
