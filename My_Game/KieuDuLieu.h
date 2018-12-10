@@ -178,6 +178,7 @@ enum eTrangThai
 	eTT_BOSS1_BienMat,
 	eTT_BOSS1_TanCong1,
 	eTT_BOSS1_TanCong2,
-	eTT_BOSS1_TanCong3
+	eTT_BOSS1_TanCong3,
+	eTT_BOSS1_PhatNo
 };
 

@@ -87,8 +87,7 @@ void Man1::TaiDuLieu()
 	// tạo 3 Cửa đánh boss
 	DS_CuaDanhBoss[0] = new CuaDanhBoss(Vec2(2312.0f, 1176.0f));
 	DS_CuaDanhBoss[1] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
-	DS_CuaDanhBoss[1]->ChoPhepMoCua = false;
-	mBOSS1 = new BOSS1(Vec2(2517.0f, 1155.0f + 23.0f));
+	mBOSS1 = new BOSS1(Vec2(2517.0f, 1155.0f + 23.0f), DS_CuaDanhBoss[1]);
 
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)

@@ -590,7 +590,31 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		}
 	}
 	
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_BOSS1)
+	{
+		if (mTrangThai == eTT_XMan_DinhSatThuong)
+		{
+			return;
+		}
+		if (mTGDem_KoNhanST < mTG_KoNhanST)
+		{
+			return;
+		}
+		if (in_DoiTuong->get_TrangThai() == eTT_BOSS1_XuatHien ||
+			in_DoiTuong->get_TrangThai() == eTT_BOSS1_PhatNo || 
+			in_DoiTuong->get_TrangThai() == eTT_BOSS1_BienMat )
+		{
+			return;
+		}
 
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+		
+		mHP -= 5;
+		DinhSatThuong();
+	}
 
 #pragma region XỬ LÝ BIẾN mDangDungTuNhienRoi
 	if (mDangDungTuNhienRoi == true)

@@ -3,7 +3,7 @@
 #include "DanLv.h"
 #include "VaChamGame.h"
 
-BOSS1::BOSS1(const Vec2& in_ToaDo)
+BOSS1::BOSS1(const Vec2& in_ToaDo, CuaDanhBoss* in_CuaDanhBoss)
 	:
 	DoiTuong(in_ToaDo, Vec2(), 46, 46)
 {
@@ -11,6 +11,7 @@ BOSS1::BOSS1(const Vec2& in_ToaDo)
 	ToaDo_Pet = in_ToaDo - Vec2(0.0f, 170.0f);
 	ToaDo_BanDau = in_ToaDo;
 	srand((int)time(NULL));
+	mCuaDanhBoss = in_CuaDanhBoss;
 
 	LoadThongTinHoatHinh();
 
@@ -31,6 +32,45 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		return;
 	}
 
+	if (mTrangThai == eTT_BOSS1_PhatNo)
+	{
+		TG_Dem += in_tg;
+
+		if (TG_Dem > TG_PhatNo)
+		{
+			BienMat();
+		}
+
+		if (TGDem2 >= 0.0f && TGDem2 < 0.32f ||
+			TGDem2 >= 1.28f + 0.32f * 0 && TGDem2 < 1.28 + 0.32f * 1)
+		{
+			mHH_HieuUngPhatNo[0]->CapNhat(in_tg);
+		}
+		else if (TGDem2 >= 0.32f && TGDem2 < 0.64f ||
+			TGDem2 >= 1.28 + 0.32f * 1 && TGDem2 < 1.28 + 0.32f * 2)
+		{
+			mHH_HieuUngPhatNo[1]->CapNhat(in_tg);
+		}
+		else if (TGDem2 >= 0.64f && TGDem2 < 0.96f ||
+			TGDem2 >= 1.28f + 0.32f * 2 && TGDem2 < 1.28 + 0.32f * 3)
+		{
+			mHH_HieuUngPhatNo[2]->CapNhat(in_tg);
+		}
+		else if (TGDem2 >= 0.96f && TGDem2 < 1.28f ||
+			TGDem2 >= 1.28f + 0.32f * 3 && TGDem2 < 1.28 + 0.32f * 4)
+		{
+			mHH_HieuUngPhatNo[3]->CapNhat(in_tg);
+		}
+		TGDem2 += in_tg;
+		TGDem3 += in_tg;
+		if (TGDem3 > 0.1f)
+		{
+			TGDem3 = 0.0f;
+		}
+
+		return;
+	}
+
 	if (TGDem_Shining <= TG_Shining)
 	{
 		TGDem_Shining += in_tg;
@@ -38,7 +78,7 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 
 	if (HP <= 0)
 	{
-		BienMat();
+		PhatNo();
 	}
 
 	if (mTrangThai == eTT_BOSS1_XuatHien)
@@ -110,10 +150,10 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			
 			if (TG_Dem > 5.2f && mVanToc.y == 0.0f)
 			{
-				int l = rand() % 100 + 1;
+				int l = rand() % 75 + 1;
 				if (l <= 3)
 				{
-					mVanToc.y = -VanTocRoiToiDa *  1.2f;
+					mVanToc.y = -VanTocRoiToiDa *  1.4f;
 				}
 			}
 		}
@@ -248,7 +288,8 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 void BOSS1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
 	if (mTrangThai == eTT_BOSS1_BienMat ||
-		mTrangThai == eTT_BOSS1_XuatHien)
+		mTrangThai == eTT_BOSS1_XuatHien ||
+		mTrangThai == eTT_BOSS1_PhatNo)
 	{
 		return;
 	}
@@ -280,16 +321,54 @@ void BOSS1::Ve(const Vec2 & in_DoDoi)
 		return;
 	}
 
+	if (mTrangThai == eTT_BOSS1_PhatNo)
+	{
+		if (TGDem3 < 0.05f)
+		{
+			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_png, false, mToaDo, in_DoDoi, D3DCOLOR_ARGB(160, 255, 255, 255));
+		}
+		else
+		{
+			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_png, false, mToaDo, in_DoDoi, D3DCOLOR_ARGB(140, 255, 255, 255));
+		}
+		if (TGDem2 >= 0.0f && TGDem2 < 0.32f ||
+			TGDem2 >= 1.28f + 0.32f * 0 && TGDem2 < 1.28 + 0.32f * 1)
+		{
+			mHH_HieuUngPhatNo[0]->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDo_HieuUngPhatNo[0], in_DoDoi);
+		}
+		else if (TGDem2 >= 0.32f && TGDem2 < 0.64f ||
+			TGDem2 >= 1.28f + 0.32f * 1 && TGDem2 < 1.28 + 0.32f * 2)
+		{
+			mHH_HieuUngPhatNo[1]->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDo_HieuUngPhatNo[1], in_DoDoi);
+		}
+		else if (TGDem2 >= 0.64f && TGDem2 < 0.96f ||
+			TGDem2 >= 1.28f + 0.32f * 2 && TGDem2 < 1.28 + 0.32f * 3)
+		{
+			mHH_HieuUngPhatNo[2]->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDo_HieuUngPhatNo[2], in_DoDoi);
+		}
+		else if (TGDem2 >= 0.96f && TGDem2 < 1.28f ||
+			TGDem2 >= 1.28f + 0.32f * 3 && TGDem2 < 1.28 + 0.32f * 4)
+		{
+			mHH_HieuUngPhatNo[3]->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDo_HieuUngPhatNo[3], in_DoDoi);
+		}
+
+		return;
+	}
+
 	if (mTrangThai == eTT_BOSS1_XuatHien)
 	{
 		HH_ConPet->Ve(DS_HinhAnh::get_TH()->BOSS1_png, false, ToaDo_Pet, in_DoDoi);
 		HH_AnhSang->Ve(DS_HinhAnh::get_TH()->BOSS1_png, false, mToaDo - Vec2(0.0f, 2.0f), in_DoDoi, D3DCOLOR_ARGB(Color_AnhSang, 255, 255, 255));
 	}
-	HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_png, false, mToaDo, in_DoDoi);
+
 
 	if (TGDem_Shining <= TG_Shining)
 	{
-		HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_Shining_png, false, mToaDo, in_DoDoi, D3DCOLOR_ARGB(200, 255, 0, 0));
+		HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_Shining_png, false, mToaDo, in_DoDoi, D3DCOLOR_ARGB(200, 255, 200, 200));
+	}
+	else
+	{
+		HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_png, false, mToaDo, in_DoDoi, D3DCOLOR_ARGB(255, 255, 255, 255));
 	}
 }
 
@@ -303,6 +382,7 @@ void BOSS1::XuatHien()
 	Color_AnhSang = 0;
 	TG_Dem = 0.0f;
 	HP = MAX_HP;
+	mCuaDanhBoss->ChoPhepMoCua = false;
 }
 
 void BOSS1::TanCong1()
@@ -332,10 +412,26 @@ void BOSS1::TanCong3()
 	mVanToc.y = -VanTocRoiToiDa;
 }
 
+void BOSS1::PhatNo()
+{
+	mTrangThai = eTT_BOSS1_PhatNo;
+	mVanToc.x = mVanToc.y = 0.0f;
+	TG_Dem = 0.0f;
+	TGDem2 = 0.0f;
+	ToaDo_HieuUngPhatNo[0] = mToaDo + Vec2(-7.0f, -8.0f);
+	ToaDo_HieuUngPhatNo[1] = mToaDo + Vec2(10.0f, -9.0f);
+	ToaDo_HieuUngPhatNo[2] = mToaDo + Vec2(-11.0f, 14.0f);
+	ToaDo_HieuUngPhatNo[3] = mToaDo + Vec2(13.0f, 11.0f);
+	for (int i = 0; i < 4; i++)
+	{
+		mHH_HieuUngPhatNo[i]->Remake();
+	}
+}
+
 void BOSS1::BienMat()
 {
 	mTrangThai = eTT_BOSS1_BienMat;
-	TG_Dem = 0;
+	mCuaDanhBoss->ChoPhepMoCua = true;
 }
 
 void BOSS1::LoadThongTinHoatHinh()
@@ -459,6 +555,18 @@ void BOSS1::LoadThongTinHoatHinh()
 	lDSTTFrame.push_back(ThongTinFrame(44, 50, HCN(103, 103 + 44, 412, 412 + 50), 0.12f)); // 3
 	lDSTTFrame.push_back(ThongTinFrame(46, 50, HCN(54, 54 + 46, 412, 412 + 50), 0.12f)); // 2
 	HH_TanCong3 = new HoatHinh(lDSTTFrame);
+	
+	for (int i = 0; i < 4; i++)
+	{
+		lDSTTFrame.clear();
+		lDSTTFrame.push_back(ThongTinFrame(16, 24, HCN(1 - 1, 1 + 16 - 1, 56 - 43, 56 + 16 - 43), 0.08f));
+		lDSTTFrame.push_back(ThongTinFrame(32, 40, HCN(26 - 1, 26 + 32 - 1, 48 - 43, 48 + 32 - 43), 0.08f));
+		lDSTTFrame.push_back(ThongTinFrame(28, 36, HCN(66 - 1, 66 + 28 - 1, 51 - 43, 51 + 24 - 43), 0.08f));
+		lDSTTFrame.push_back(ThongTinFrame(30, 40, HCN(103 - 1, 103 + 30 - 1, 47 - 43, 47 + 28 - 43), 0.08f));
+		lDSTTFrame.push_back(ThongTinFrame(32, 36, HCN(143 - 1, 143 + 32 - 1, 43 - 43, 43 + 28 - 43), 0.08f));
+		lDSTTFrame.push_back(ThongTinFrame(32, 38, HCN(187 - 1, 187 + 32 - 1, 53 - 43, 53 + 30 - 43), 0.08f));
+		mHH_HieuUngPhatNo[i] = new HoatHinh(lDSTTFrame);
+	}
 }
 
 BOSS1::~BOSS1()

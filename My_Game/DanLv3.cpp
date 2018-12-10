@@ -125,7 +125,8 @@ void DanLv3::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_BOSS1)
 	{
 		if (in_DoiTuong->get_TrangThai() == eTT_BOSS1_BienMat ||
-			in_DoiTuong->get_TrangThai() == eTT_BOSS1_XuatHien)
+			in_DoiTuong->get_TrangThai() == eTT_BOSS1_XuatHien ||
+			in_DoiTuong->get_TrangThai() == eTT_BOSS1_PhatNo)
 		{
 			return;
 		}
