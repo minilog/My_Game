@@ -272,6 +272,11 @@ void Man1::CapNhat(float in_tg)
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[0]);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
 	mXMan->XuLyVaCham(mBOSS1);
+	for (auto DanLv : mDS_DanLv)
+	{
+		mBOSS1->XuLyVaCham(DanLv);
+		DanLv->XuLyVaCham(mBOSS1);
+	}
 
 	for (auto DanNo : mDS_DanNo1_Quai)
 	{

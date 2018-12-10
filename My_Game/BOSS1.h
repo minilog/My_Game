@@ -19,10 +19,13 @@ public:
 
 // INFORMATION
 private:
-	static constexpr int MAX_HP = 40;
+	static constexpr int MAX_HP = 100;
 	int HP = MAX_HP;
 	float TG_Dem;
 	int Color_AnhSang = 0;
+	
+	static constexpr float TG_Shining = 0.07f;
+	float TGDem_Shining = TG_Shining + 0.1f;
 
 	static constexpr float GiaTocTrongTruong = 1000.0f;
 	static constexpr float VanTocRoiToiDa = 360.0f;
@@ -37,8 +40,9 @@ private:
 	HoatHinh* HH_TanCong;
 	HoatHinh* HH_TanCong3;
 	HoatHinh* HH_HienTai;
+	HoatHinh* HH_Shining;
 
-	HoatHinh *mHH_HieuUngNoTung[4];
+	HoatHinh *mHH_HieuUngPhatNo[4];
 
 // SUB-FUNCTION
 	void XuatHien();

@@ -1,5 +1,7 @@
 ﻿#include "BOSS1.h"
 #include <time.h>    
+#include "DanLv.h"
+#include "VaChamGame.h"
 
 BOSS1::BOSS1(const Vec2& in_ToaDo)
 	:
@@ -27,6 +29,16 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	if (mTrangThai == eTT_BOSS1_BienMat)
 	{
 		return;
+	}
+
+	if (TGDem_Shining <= TG_Shining)
+	{
+		TGDem_Shining += in_tg;
+	}
+
+	if (HP <= 0)
+	{
+		BienMat();
 	}
 
 	if (mTrangThai == eTT_BOSS1_XuatHien)
@@ -85,11 +97,11 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 
 		if (TG_Dem <= 4.5f)
 		{
-			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f));
+			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f) * 1.5f);
 		}
 		else
 		{
-			HH_HienTai->CapNhat(in_tg * 6.0f);
+			HH_HienTai->CapNhat(in_tg * 6.0f* 1.5f);
 		}
 
 		if (TG_Dem > 4.5f && TG_Dem <= 6.0f)
@@ -134,11 +146,11 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 
 		if (TG_Dem <= 4.5f)
 		{
-			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f));
+			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f)* 1.5f);
 		}
 		else
 		{
-			HH_HienTai->CapNhat(in_tg * 6.0f);
+			HH_HienTai->CapNhat(in_tg * 6.0f * 1.5f);
 		}
 
 		if (TG_Dem > 4.5f && TG_Dem <= 6.0f)
@@ -174,7 +186,7 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 
 		if (TG_Dem <= 4.5f)
 		{
-			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f) *  1.5f);
+			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f) *  1.5f	);
 		}
 		else
 		{
@@ -235,7 +247,30 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 
 void BOSS1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
+	if (mTrangThai == eTT_BOSS1_BienMat ||
+		mTrangThai == eTT_BOSS1_XuatHien)
+	{
+		return;
+	}
 
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv1 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv2 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv3)
+	{
+		if (((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_BienMat ||
+			((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_DangTanBien)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		HP -= ((DanLv*)in_DoiTuong)->get_Damage();
+		TGDem_Shining = 0.0f;
+	}
 }
 
 void BOSS1::Ve(const Vec2 & in_DoDoi)
@@ -244,12 +279,18 @@ void BOSS1::Ve(const Vec2 & in_DoDoi)
 	{
 		return;
 	}
+
 	if (mTrangThai == eTT_BOSS1_XuatHien)
 	{
 		HH_ConPet->Ve(DS_HinhAnh::get_TH()->BOSS1_png, false, ToaDo_Pet, in_DoDoi);
 		HH_AnhSang->Ve(DS_HinhAnh::get_TH()->BOSS1_png, false, mToaDo - Vec2(0.0f, 2.0f), in_DoDoi, D3DCOLOR_ARGB(Color_AnhSang, 255, 255, 255));
 	}
 	HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_png, false, mToaDo, in_DoDoi);
+
+	if (TGDem_Shining <= TG_Shining)
+	{
+		HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_Shining_png, false, mToaDo, in_DoDoi, D3DCOLOR_ARGB(200, 255, 0, 0));
+	}
 }
 
 void BOSS1::XuatHien()
@@ -417,7 +458,6 @@ void BOSS1::LoadThongTinHoatHinh()
 	lDSTTFrame.push_back(ThongTinFrame(42, 50, HCN(150, 150 + 42, 412, 412 + 50), 0.12f)); // 4
 	lDSTTFrame.push_back(ThongTinFrame(44, 50, HCN(103, 103 + 44, 412, 412 + 50), 0.12f)); // 3
 	lDSTTFrame.push_back(ThongTinFrame(46, 50, HCN(54, 54 + 46, 412, 412 + 50), 0.12f)); // 2
-
 	HH_TanCong3 = new HoatHinh(lDSTTFrame);
 }
 

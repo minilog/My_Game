@@ -5,6 +5,7 @@
 
 
 
+
 DanLv1::DanLv1(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
 	:
 	DanLv(in_ToaDo, in_VanToc, 6, 4)
@@ -95,6 +96,22 @@ void DanLv1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_LoCot)
 	{
 		if (((LoCot*)in_DoiTuong)->get_TrangThai() == eTT_LoCot_BienMat)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DangTanBien();
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_BOSS1)
+	{
+		if (in_DoiTuong->get_TrangThai() == eTT_BOSS1_BienMat ||
+			in_DoiTuong->get_TrangThai() == eTT_BOSS1_XuatHien)
 		{
 			return;
 		}
