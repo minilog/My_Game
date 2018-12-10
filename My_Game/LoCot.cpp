@@ -3,7 +3,8 @@
 #include "VaChamGame.h"
 #include "DanLv.h"
 
-LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1, std::vector<TenLua*>& in_DS_TenLua)
+LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1, 
+	std::vector<TenLua*>& in_DS_TenLua, std::vector<Bui*>& in_Bui)
 	:
 	DoiTuong(in_ToaDo, Vec2(), 34, 46)
 {
@@ -15,12 +16,17 @@ LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1, std::vec
 	{
 		mDS_DanNo1.push_back(in_DS_DanNo1[i]);
 	}
+	for (int i = 0; i < (int)in_Bui.size(); i++)
+	{
+		mDS_Bui.push_back(in_Bui[i]);
+	}// Gắn địa chỉ vào
 
 	for (auto TL : in_DS_TenLua)
 	{
 		mDS_TenLua.push_back(TL);
 	}
 
+	mBui = new Bui(Vec2());
 	mTrangThai = eTT_LoCot_BienMat;
 	mNamTrongCamera = false;
 }
@@ -82,6 +88,25 @@ void LoCot::CapNhat(float in_tg, const DoiTuong * in_XMan)
 					break; // chỉ dùng 1 viên mỗi lần
 				}
 			}
+			for (int i = 0; i < (int)mDS_Bui.size(); i++)
+			{
+				// chỉ sử dụng BỤi đã biến mất
+				if (mDS_Bui[i]->get_BienMat())
+				{
+					if (mLatHinh)
+					{
+						mDS_Bui[i]->set_ToaDo(mToaDo + Vec2(8.0f, -19.0f));
+					}
+					else
+					{
+						mDS_Bui[i]->set_ToaDo(mToaDo + Vec2(-8.0f, -19.0f));
+					}
+
+					mDS_Bui[i]->Remake();
+					break;
+				}
+			}
+
 			mTGDem_DanDuocBanRa = 0.0f;
 		}
 
@@ -109,6 +134,24 @@ void LoCot::CapNhat(float in_tg, const DoiTuong * in_XMan)
 					}
 
 					break; // chỉ dùng 1 viên mỗi lần
+				}
+			}
+			for (int i = 0; i < (int)mDS_Bui.size(); i++)
+			{
+				// chỉ sử dụng BỤi đã biến mất
+				if (mDS_Bui[i]->get_BienMat())
+				{
+					if (mLatHinh)
+					{
+						mDS_Bui[i]->set_ToaDo(mToaDo + Vec2(8.0f, -4.0f));
+					}
+					else
+					{
+						mDS_Bui[i]->set_ToaDo(mToaDo + Vec2(-8.0f, -4.0f));
+					}
+
+					mDS_Bui[i]->Remake();
+					break;
 				}
 			}
 			mTGDem_DanDuocBanRa = 0.0f;

@@ -150,7 +150,7 @@ void Man1::TaiDuLieu()
 			else if (lNhomObject->GetName() == "LoCot")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
-				LoCot *lLoCot = new LoCot(lToaDoDoiTuong, mDS_DanNo1_Quai, mDS_TenLua_Quai);
+				LoCot *lLoCot = new LoCot(lToaDoDoiTuong, mDS_DanNo1_Quai, mDS_TenLua_Quai, mDS_Bui_Quai);
 
 				mQuadTree_Tinh->ThemDoiTuong(lLoCot);
 			}
