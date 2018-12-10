@@ -36,31 +36,33 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	{
 		TG_Dem += in_tg;
 
+
 		if (TG_Dem > TG_PhatNo)
 		{
 			BienMat();
 		}
 
-		if (TGDem2 >= 0.0f && TGDem2 < 0.32f ||
-			TGDem2 >= 1.28f + 0.32f * 0 && TGDem2 < 1.28 + 0.32f * 1)
+		if (TGDem2 >= 0.0f && TGDem2 < 0.48f * 1 ||
+			TGDem2 >= 0.48f * 4 && TGDem2 < 0.48f * 5)
 		{
 			mHH_HieuUngPhatNo[0]->CapNhat(in_tg);
 		}
-		else if (TGDem2 >= 0.32f && TGDem2 < 0.64f ||
-			TGDem2 >= 1.28 + 0.32f * 1 && TGDem2 < 1.28 + 0.32f * 2)
+		else if (TGDem2 >= 0.48f * 1 && TGDem2 < 0.48f * 2||
+			TGDem2 >= 0.48f * 5 && TGDem2 < 0.48f * 6)
 		{
 			mHH_HieuUngPhatNo[1]->CapNhat(in_tg);
 		}
-		else if (TGDem2 >= 0.64f && TGDem2 < 0.96f ||
-			TGDem2 >= 1.28f + 0.32f * 2 && TGDem2 < 1.28 + 0.32f * 3)
+		else if (TGDem2 >= 0.48f * 2 && TGDem2 < 0.48f * 3||
+			TGDem2 >= 0.48f * 6 && TGDem2 < 0.48f * 7)
 		{
 			mHH_HieuUngPhatNo[2]->CapNhat(in_tg);
 		}
-		else if (TGDem2 >= 0.96f && TGDem2 < 1.28f ||
-			TGDem2 >= 1.28f + 0.32f * 3 && TGDem2 < 1.28 + 0.32f * 4)
+		else if (TGDem2 >= 0.48f * 3 && TGDem2 < 0.48f * 4 ||
+			TGDem2 >= 0.48f * 7 && TGDem2 < 0.48f * 8)
 		{
 			mHH_HieuUngPhatNo[3]->CapNhat(in_tg);
 		}
+
 		TGDem2 += in_tg;
 		TGDem3 += in_tg;
 		if (TGDem3 > 0.1f)
@@ -331,23 +333,23 @@ void BOSS1::Ve(const Vec2 & in_DoDoi)
 		{
 			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_png, false, mToaDo, in_DoDoi, D3DCOLOR_ARGB(140, 255, 255, 255));
 		}
-		if (TGDem2 >= 0.0f && TGDem2 < 0.32f ||
-			TGDem2 >= 1.28f + 0.32f * 0 && TGDem2 < 1.28 + 0.32f * 1)
+		if (TGDem2 >= 0.0f && TGDem2 < 0.48f * 1 ||
+			TGDem2 >= 0.48f * 4 && TGDem2 < 0.48f * 5)
 		{
 			mHH_HieuUngPhatNo[0]->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDo_HieuUngPhatNo[0], in_DoDoi);
 		}
-		else if (TGDem2 >= 0.32f && TGDem2 < 0.64f ||
-			TGDem2 >= 1.28f + 0.32f * 1 && TGDem2 < 1.28 + 0.32f * 2)
+		else if (TGDem2 >= 0.48f * 1 && TGDem2 < 0.48f * 2 ||
+			TGDem2 >= 0.48f * 5 && TGDem2 < 0.48f * 6)
 		{
 			mHH_HieuUngPhatNo[1]->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDo_HieuUngPhatNo[1], in_DoDoi);
 		}
-		else if (TGDem2 >= 0.64f && TGDem2 < 0.96f ||
-			TGDem2 >= 1.28f + 0.32f * 2 && TGDem2 < 1.28 + 0.32f * 3)
+		else if (TGDem2 >= 0.48f * 2 && TGDem2 < 0.48f * 3 ||
+			TGDem2 >= 0.48f * 6 && TGDem2 < 0.48f * 7)
 		{
 			mHH_HieuUngPhatNo[2]->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDo_HieuUngPhatNo[2], in_DoDoi);
 		}
-		else if (TGDem2 >= 0.96f && TGDem2 < 1.28f ||
-			TGDem2 >= 1.28f + 0.32f * 3 && TGDem2 < 1.28 + 0.32f * 4)
+		else if (TGDem2 >= 0.48f * 3 && TGDem2 < 0.48f * 4 ||
+			TGDem2 >= 0.48f * 7 && TGDem2 < 0.48f * 8)
 		{
 			mHH_HieuUngPhatNo[3]->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDo_HieuUngPhatNo[3], in_DoDoi);
 		}

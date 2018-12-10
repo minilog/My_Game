@@ -46,8 +46,7 @@ private:
 
 	HoatHinh *mHH_HieuUngPhatNo[4];
 	Vec2 ToaDo_HieuUngPhatNo[4];
-	static constexpr float TG_PhatNo = 1.28f * 2;
-	static constexpr float TG_MoiHieuUngPhatNo = 0.32f;
+	static constexpr float TG_PhatNo = 0.48f * 4 * 2;
 	float TGDem2 = 0.0f;
 	float TGDem3 = 0.0f;
 
