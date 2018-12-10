@@ -144,6 +144,12 @@ XMan::~XMan()
 void XMan::CapNhat(float in_tg)
 {
 
+	mToaDo.x += (mVanToc.x + VanTocKhachQuan.x)* in_tg;
+	mToaDo.y += (mVanToc.y + VanTocKhachQuan.y)* in_tg;
+
+	VanTocKhachQuan.x = 0.0f;
+	VanTocKhachQuan.y = 0.0f;
+
 	if (TGDem_ChayTuDo < TG_ChayTuDo)
 	{
 		TGDem_ChayTuDo += in_tg;
@@ -220,11 +226,6 @@ void XMan::CapNhat(float in_tg)
 		mHH_HienTai->CapNhat(in_tg);
 	}
 
-	mToaDo.x += (mVanToc.x + VanTocKhachQuan.x)* in_tg;
-	mToaDo.y += (mVanToc.y + VanTocKhachQuan.y)* in_tg;
-
-	VanTocKhachQuan.x = 0.0f;
-	VanTocKhachQuan.y = 0.0f;
 
 	switch (mTrangThai)
 	{
@@ -366,65 +367,120 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
-		in_DoiTuong->get_LoaiDoiTuong() == eLDT_ThangMay)
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_ThangMay ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh2 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh3)
 	{
-
-		eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
-
-		if (lKQVC.eKQVC_DaVaCham)
+		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh2 ||
+			in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh3)
 		{
-			ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
-			switch (lPVC)
+			if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh3)
 			{
-			case ePVC_Duoi:
-				mToaDo.y -= lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
-				if (mTrangThai == eTT_XMan_Roi)
+				if (mTrangThai == eTT_XMan_Nhay ||
+					mTrangThai == eTT_XMan_Roi)
 				{
-					TiepDat();
-				}
-				if (mTrangThai == eTT_XMan_Truot)
-				{
-					TiepDat();
-				}
-				break;
-			case ePVC_Tren:
-				mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
-				if (mTrangThai == eTT_XMan_Nhay || mTrangThai == eTT_XMan_BatRa)
-				{
-					Roi();
-				}
-				break;
-
-
-			case ePVC_TraiTren:
-			case ePVC_Trai:
-			case ePVC_TraiDuoi:
-				mToaDo.x += lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
-				mCoChuongNgaiVatTrai = true;
-
-				if (mLatHinh &&
-					(mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay))
-				{
-					DungIm();
-				}
-				break;
-
-			case ePVC_Phai:
-			case ePVC_PhaiTren:
-			case ePVC_PhaiDuoi:
-				mToaDo.x -= lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
-				mCoChuongNgaiVatPhai = true;
-
-				if (!mLatHinh &&
-					(mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay))
-				{
-					DungIm();
+					return;
 				}
 
-				break;
+				eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
 
-			default:
-				break;
+				if (lKQVC.eKQVC_DaVaCham)
+				{
+					mToaDo.y ++;
+
+				}
+			}
+
+			else if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh2)
+			{
+				eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
+
+				if (lKQVC.eKQVC_DaVaCham)
+				{
+					mToaDo.y--;
+
+					ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
+
+					switch (lPVC)
+					{
+					case ePVC_Duoi:
+
+						if (mTrangThai == eTT_XMan_Roi)
+						{
+							DungIm();
+						}
+						//if (mTrangThai == eTT_XMan_Truot)
+						//{
+						//	TiepDat();
+						//}
+						break;
+					default:
+						break;
+					}
+				}
+			}
+		}
+
+		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
+			in_DoiTuong->get_LoaiDoiTuong() == eLDT_ThangMay)
+		{
+			eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
+
+			if (lKQVC.eKQVC_DaVaCham)
+			{
+				ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
+				switch (lPVC)
+				{
+				case ePVC_Duoi:
+					mToaDo.y -= lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+					if (mTrangThai == eTT_XMan_Roi)
+					{
+						TiepDat();
+					}
+					if (mTrangThai == eTT_XMan_Truot)
+					{
+						TiepDat();
+					}
+					break;
+				case ePVC_Tren:
+					mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+					if (mTrangThai == eTT_XMan_Nhay || mTrangThai == eTT_XMan_BatRa)
+					{
+						Roi();
+					}
+					break;
+
+
+				case ePVC_TraiTren:
+				case ePVC_Trai:
+				case ePVC_TraiDuoi:
+					mToaDo.x += lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
+					mCoChuongNgaiVatTrai = true;
+
+					if (mLatHinh &&
+						(mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay))
+					{
+						DungIm();
+					}
+					break;
+
+				case ePVC_Phai:
+				case ePVC_PhaiTren:
+				case ePVC_PhaiDuoi:
+					mToaDo.x -= lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
+					mCoChuongNgaiVatPhai = true;
+
+					if (!mLatHinh &&
+						(mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay))
+					{
+						DungIm();
+					}
+
+					break;
+
+				default:
+					break;
+				}
 			}
 		}
 	}
@@ -616,11 +672,67 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		DinhSatThuong();
 	}
 
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh2 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh3)
+	{
+		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh3)
+		{
+			if (mTrangThai == eTT_XMan_Nhay ||
+				mTrangThai == eTT_XMan_Roi)
+			{
+				return;
+			}
+
+			eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
+
+			if (lKQVC.eKQVC_DaVaCham)
+			{
+				mToaDo.y +=2;
+
+			}
+		}
+
+		else if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh2)
+		{
+			eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
+
+			if (lKQVC.eKQVC_DaVaCham)
+			{
+				mToaDo.y--;
+
+				ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
+
+				switch (lPVC)
+				{
+				case ePVC_Duoi:
+
+					if (mTrangThai == eTT_XMan_Roi)
+					{
+						DungIm();
+					}
+					//if (mTrangThai == eTT_XMan_Truot)
+					//{
+					//	TiepDat();
+					//}
+					break;
+				default:
+					break;
+				}
+			}
+		}
+	}
+
+
+
+
+
 #pragma region XỬ LÝ BIẾN mDangDungTuNhienRoi
 	if (mDangDungTuNhienRoi == true)
 	{
 		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
-			in_DoiTuong->get_LoaiDoiTuong() == eLDT_ThangMay)
+			in_DoiTuong->get_LoaiDoiTuong() == eLDT_ThangMay ||
+			in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh2 ||
+			in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh4)
 		{
 			HCN lHCNGioiHanMoRongDay = get_HCNGioiHan();
 			lHCNGioiHanMoRongDay.Duoi += 2;

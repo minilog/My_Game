@@ -106,7 +106,9 @@ enum eLoaiDoiTuong
 	eLDT_Gai,
 	eLDT_DoiTuongTinh2,
 	eLDT_CuaDanhBoss,
-	eLDT_BOSS1
+	eLDT_BOSS1,
+	eLDT_DoiTuongTinh3,
+	eLDT_DoiTuongTinh4
 };
 
 enum eHuongDiChuyen

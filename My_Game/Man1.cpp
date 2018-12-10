@@ -55,7 +55,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(Vec2(2240.0f, 1120.0f)/*Vec2(100.0f, 730.0f)*/);
+	mXMan = new XMan(Vec2(5750.0f, 1050.0f)/*Vec2(100.0f, 730.0f)*/);
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -112,6 +112,33 @@ void Man1::TaiDuLieu()
 					lObject->GetWidth(), lObject->GetHeight());
 
 				mQuadTree_Tinh->ThemDoiTuong(lDoiTuongTinh);
+			}
+			else if (lNhomObject->GetName() == "DoiTuongTinh2")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+
+
+				DoiTuongTinh *lDoiTuongTinh2 = new DoiTuongTinh(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), 2);
+
+				mQuadTree_Tinh->ThemDoiTuong(lDoiTuongTinh2);
+			}
+			else if (lNhomObject->GetName() == "DoiTuongTinh3")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+
+
+				DoiTuongTinh *lDoiTuongTinh3 = new DoiTuongTinh(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), 3);
+
+				mQuadTree_Tinh->ThemDoiTuong(lDoiTuongTinh3);
+			}
+			else if (lNhomObject->GetName() == "DoiTuongTinh4")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+
+
+				DoiTuongTinh *lDoiTuongTinh4 = new DoiTuongTinh(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), 4);
+
+				mQuadTree_Tinh->ThemDoiTuong(lDoiTuongTinh4);
 			}
 			else if (lNhomObject->GetName() == "Gai")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy

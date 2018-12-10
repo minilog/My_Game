@@ -364,7 +364,7 @@ void BOSS1::Ve(const Vec2 & in_DoDoi)
 
 	if (TGDem_Shining <= TG_Shining)
 	{
-		HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_Shining_png, false, mToaDo, in_DoDoi, D3DCOLOR_ARGB(200, 255, 200, 200));
+		HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS1_Shining_png, false, mToaDo, in_DoDoi, D3DCOLOR_ARGB(200, 255, 50, 50));
 	}
 	else
 	{

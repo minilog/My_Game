@@ -21,7 +21,7 @@ public:
 // INFORMATION
 private:
 	CuaDanhBoss *mCuaDanhBoss; // trỏ đến CuaDanhBoss
-	static constexpr int MAX_HP = 100;
+	static constexpr int MAX_HP = 10;
 	int HP = MAX_HP;
 	float TG_Dem;
 	int Color_AnhSang = 0;

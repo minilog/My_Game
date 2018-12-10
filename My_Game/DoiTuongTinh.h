@@ -13,9 +13,21 @@ public:
 		{
 			DoiTuong::mLoaiDoiTuong = eLDT_DoiTuongTinh;
 		}
-		if (K == -1)
+		else if (K == -1)
 		{
 			mLoaiDoiTuong = eLDT_Gai;
+		}
+		else if (K == 2)
+		{
+			mLoaiDoiTuong = eLDT_DoiTuongTinh2;
+		}
+		else if (K == 3)
+		{
+			mLoaiDoiTuong = eLDT_DoiTuongTinh3;
+		}
+		else if (K == 4)
+		{
+			mLoaiDoiTuong = eLDT_DoiTuongTinh4;
 		}
 	}
 
