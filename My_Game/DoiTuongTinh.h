@@ -25,10 +25,6 @@ public:
 		{
 			mLoaiDoiTuong = eLDT_DoiTuongTinh3;
 		}
-		else if (K == 4)
-		{
-			mLoaiDoiTuong = eLDT_DoiTuongTinh4;
-		}
 	}
 
 	virtual void CapNhat(float in_tg) {}

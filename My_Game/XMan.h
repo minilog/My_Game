@@ -172,6 +172,7 @@ private:
 	// vì hàm xử lý va chạm: thực hiện với một DS đối tượng trước khi Cập Nhật
 	// phải xét hết tất cả đối tượng, nếu không có đối tượng nào bên dưới thì mới rơi
 	bool mDangDungTuNhienRoi = false;
+	bool mVaChamDoiTuongTinh3 = false;
 
 
 	static constexpr float TG_XuatHien = 0.4f + 0.03f * 6;

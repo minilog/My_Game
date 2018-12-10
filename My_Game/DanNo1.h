@@ -26,7 +26,7 @@ private:
 	Vec2 mToaDo_HieuUngNoTung;
 
 	// lỡ như ko va chạm thì Đạn có thể tự động biến mất để có thể dùng tiếp
-	static constexpr float mTG_TonTai = 1.1f;
+	static constexpr float mTG_TonTai = 1.3f;
 	float mTGDem_TonTai = 0.0f;
 
 	static constexpr float mGiaTocTrongTruong = 1000.0f;

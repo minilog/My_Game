@@ -40,7 +40,8 @@ void Man1::TaiDuLieu()
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
-
+	//Camera::CheckPoint = -1;
+	Camera::CheckPoint = 6;
 	Camera::set_ToaDo(Vec2(
 		ToanCauGame::mChieuRong / 2.0f,
 		896.0f));
@@ -56,7 +57,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(Vec2(3000.0f, 1000.0f)/*Vec2(100.0f, 730.0f)*/);
+	mXMan = new XMan(Vec2(100.0f, 780.0f)/*Vec2(100.0f, 730.0f)*/);
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -131,15 +132,6 @@ void Man1::TaiDuLieu()
 					lObject->GetWidth(), lObject->GetHeight(), 3);
 
 				mQuadTree_Tinh->ThemDoiTuong(lDoiTuongTinh3);
-			}
-			else if (lNhomObject->GetName() == "DoiTuongTinh4")
-			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
-
-
-				DoiTuongTinh *lDoiTuongTinh4 = new DoiTuongTinh(lToaDoDoiTuong,
-					lObject->GetWidth(), lObject->GetHeight(), 4);
-
-				mQuadTree_Tinh->ThemDoiTuong(lDoiTuongTinh4);
 			}
 			else if (lNhomObject->GetName() == "Gai")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
@@ -242,12 +234,25 @@ void Man1::CapNhat(float in_tg)
 	// khi trắng màn hình thì reset lại XMan
 	if (Color == 255)
 	{
-		//set Camera trước khi set XMan
-		//Camera::CheckPoint = -1;
-		//Camera::set_ToaDo(Vec2(100.0f, 730.0f));
-		mXMan->XuatHien(Vec2(100.0f, 730.0f));
-		mBOSS1->BienMat();
+		if (Camera::CheckPoint < 6)
+		{
+			// CHECK_1
+		//	//set Camera trước khi set XMan
+			Camera::CheckPoint = -1;
+			Camera::set_ToaDo(Vec2(100.0f, 730.0f));
+			mXMan->XuatHien(Vec2(100.0f, 730.0f));
+			mBOSS1->BienMat();
 
+		}
+	// CHECK_2
+		if (Camera::CheckPoint >= 6)
+		{
+			//set Camera trước khi set XMan
+			Camera::CheckPoint = 6;
+			Camera::set_ToaDo(Vec2(2960.0f, 1000.0f));
+			mXMan->XuatHien(Vec2(2960.0f, 1000.0f));
+			mBOSS1->BienMat();
+		}
 	}
 
 	mDS_DoiTuong_Tinh.clear();
