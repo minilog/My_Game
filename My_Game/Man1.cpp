@@ -510,10 +510,10 @@ void Man1::DrawCollidable()
 	//	mGameDebugDraw->DrawRect(child->get_RECT());
 	//}
 
-	for (auto child : mDS_DoiTuong_Dong)
-	{
-		mGameDebugDraw->DrawRect(child->get_RECT());
-	}
+	//for (auto child : mDS_DoiTuong_Dong)
+	//{
+	//	mGameDebugDraw->DrawRect(child->get_RECT());
+	//}
 	//mGameDebugDraw->DrawRect(mXMan->get_RECT());
 
 	//for (int i = 0; i < (int)mDS_Ech.size(); i++)

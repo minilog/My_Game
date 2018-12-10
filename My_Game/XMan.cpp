@@ -377,7 +377,10 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh3)
 			{
 				if (mTrangThai == eTT_XMan_Nhay ||
-					mTrangThai == eTT_XMan_Roi)
+					mTrangThai == eTT_XMan_Roi ||
+					mTrangThai == eTT_XMan_BatRa ||
+					mTrangThai == eTT_XMan_Truot ||
+					mTrangThai == eTT_XMan_DinhSatThuong)
 				{
 					return;
 				}
@@ -386,7 +389,7 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 				if (lKQVC.eKQVC_DaVaCham)
 				{
-					mToaDo.y ++;
+					mToaDo.y += 2;
 
 				}
 			}

@@ -54,17 +54,20 @@ void TenLua::CapNhat(float in_tg, const DoiTuong * in_XMan)
 		}
 	}
 
-	if (mToaDo.y - in_XMan->get_ToaDo().y < 0.0f)
+	if (!ChuyenDang)
 	{
-		if (mVanToc.y < 0.0f)
-			mVanToc.y = 0.0f;
-		mVanToc.y += 300.0f * in_tg;
-	}
-	else
-	{
-		if (mVanToc.y >= 0.0f)
-			mVanToc.y = 0.0f;
-		mVanToc.y -= 300.0f * in_tg;
+		if (mToaDo.y - in_XMan->get_ToaDo().y < 0.0f)
+		{
+			if (mVanToc.y < 0.0f)
+				mVanToc.y = 0.0f;
+			mVanToc.y += 300.0f * in_tg;
+		}
+		else
+		{
+			if (mVanToc.y >= 0.0f)
+				mVanToc.y = 0.0f;
+			mVanToc.y -= 300.0f * in_tg;
+		}
 	}
 }
 
@@ -82,7 +85,14 @@ void TenLua::Ve(const Vec2 & in_DoDoi)
 	}
 	else
 	{
-		mHH_Dan->Ve(DS_HinhAnh::get_TH()->LoCot_png, (mVanToc.x > 0.0f), mToaDo, in_DoDoi);
+		if (!ChuyenDang)
+		{
+			mHH_Dan->Ve(DS_HinhAnh::get_TH()->LoCot_png, (mVanToc.x > 0.0f), mToaDo, in_DoDoi);
+		}
+		else
+		{
+			HH_ChuyenDang->Ve(DS_HinhAnh::get_TH()->MayBay_png, (mVanToc.x > 0.0f), mToaDo, in_DoDoi);
+		}
 	}
 }
 
@@ -126,8 +136,9 @@ void TenLua::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	}
 }
 
-void TenLua::BanRa(const Vec2 & in_ToaDo, const Vec2 & in_VanToc)
+void TenLua::BanRa(const Vec2 & in_ToaDo, const Vec2 & in_VanToc, bool in_ChuyenDang)
 {
+	ChuyenDang = in_ChuyenDang;
 	mToaDo = in_ToaDo;
 	mVanToc = in_VanToc;
 	mTrangThai = eTT_TenLua_TonTai;
@@ -148,8 +159,13 @@ void TenLua::LoadThongTinHoatHinh()
 {
 	std::vector<ThongTinFrame> lDSTTFrame;
 
+
 	lDSTTFrame.push_back(ThongTinFrame(24, 8, HCN(200, 224, 11, 19)));
 	mHH_Dan = new HoatHinh(lDSTTFrame);
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(16, 10, HCN(138, 138 + 16, 68, 68 + 10)));
+	HH_ChuyenDang = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
 	lDSTTFrame.push_back(ThongTinFrame(16, 24, HCN(1 - 1, 1 + 16 - 1, 56 - 43, 56 + 16 - 43), 0.08f));

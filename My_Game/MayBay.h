@@ -25,6 +25,7 @@ private:
 	std::vector<Bui*> mDS_Bui;
 
 	HoatHinh *HH_DiChuyen;
+	HoatHinh *HH_PhatNo;
 
 // SUB-FUNCTION
 private:
@@ -33,12 +34,15 @@ private:
 	bool mLatHinh = false;
 
 	float TGDem = 0.0f;
+	static constexpr float TG_PhatNo = 0.48f;
 	static constexpr float TG_BanTenLua = 2.0f;
 	float TGDem_BanTenLua = 0.0f;
 	static constexpr float VanTocBay = 45.0f;
 	bool NamTrongCamera = false;
 	Vec2 ToaDo_XuatHien;
-	bool IsShining = false;
+	Vec2 ToaDo_PhatNo;
+	float TGDem_Shining = TG_Shining + 0.1f;
+	static constexpr float TG_Shining = 0.1f;
 
 	void DiChuyen();
 	void BanDan();

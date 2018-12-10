@@ -17,7 +17,7 @@ public:
 	void CapNhat(float in_tg, const DoiTuong *in_XMan);
 	void Ve(const Vec2& in_DoDoi);
 	void XuLyVaCham(const DoiTuong* in_DoiTuong);
-	void BanRa(const Vec2& in_ToaDo, const Vec2& in_VanToc);
+	void BanRa(const Vec2& in_ToaDo, const Vec2& in_VanToc, bool in_ChuyenDang = false);
 	void PhatNo();
 
 // INFORMATION
@@ -26,6 +26,9 @@ private:
 	int HP = MAXHP;
 	HoatHinh *mHH_Dan;
 	HoatHinh *mHH_HieuUngPhatNo;
+	HoatHinh *HH_ChuyenDang;
+
+	bool ChuyenDang = false;
 
 	static constexpr float TG_NoTung = 0.08f * 6;
 	float TGDem_NoTung = TG_NoTung + 0.1f;

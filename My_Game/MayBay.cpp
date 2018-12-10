@@ -24,6 +24,7 @@ MayBay::MayBay(const Vec2& in_ToaDo, std::vector<TenLua*>& in_DS_TenLua,
 	LoadThongTinHoatHinh();
 
 	DiChuyen();
+	mTrangThai = eTT_MayBay_PhatNo;
 }
 
 void MayBay::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
@@ -47,10 +48,27 @@ void MayBay::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		NamTrongCamera = true;
 	}
 
+
 	if (mTrangThai == eTT_MayBay_PhatNo)
 	{
+		if (TGDem < TG_PhatNo)
+		{
+			TGDem += in_tg;
+			HH_PhatNo->CapNhat(in_tg);
+		}
 		return;
 	}
+
+	if (in_DoiTuong->get_ToaDo().x > mToaDo.x)
+	{
+		mLatHinh = true;
+	}
+	else
+	{
+		mLatHinh = false;
+	}
+
+	TGDem += in_tg;
 
 	mToaDo.x += mVanToc.x * in_tg;
 	mToaDo.y += mVanToc.y * in_tg;
@@ -58,6 +76,11 @@ void MayBay::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	if (HP <= 0)
 	{
 		PhatNo();
+	}
+
+	if (TGDem_Shining <= TG_Shining)
+	{
+		TGDem_Shining += in_tg;
 	}
 
 	HH_DiChuyen->CapNhat(in_tg);
@@ -77,14 +100,11 @@ void MayBay::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			mVanToc.y = -VanTocBay;
 		}
 
-		if (!mLatHinh)
+		if (
+			(mToaDo.y >= in_DoiTuong->get_ToaDo().y - 10.0f &&
+				mToaDo.y <= in_DoiTuong->get_ToaDo().y + 10.0f))
 		{
-			if (in_DoiTuong->get_ToaDo().x < mToaDo.x &&
-				(mToaDo.y >= in_DoiTuong->get_ToaDo().y - 10.0f &&
-					mToaDo.y <= in_DoiTuong->get_ToaDo().y + 10.0f))
-			{
-				BanDan();
-			}
+			BanDan();
 		}
 	}
 
@@ -97,7 +117,7 @@ void MayBay::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 
 		TGDem_BanTenLua += in_tg;
 
-		if (TGDem_BanTenLua > TG_BanTenLua / 2.8f)
+		if (TGDem_BanTenLua > TG_BanTenLua / 2.0f)
 		{
 			for (auto TL : mDS_TenLua)
 			{
@@ -105,11 +125,11 @@ void MayBay::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 				{
 					if (!mLatHinh)
 					{
-						TL->BanRa(mToaDo + Vec2(-10.0f, 14.0f), Vec2(-150.0f, 0.0f));
+						TL->BanRa(mToaDo + Vec2(-10.0f, 14.0f), Vec2(-180.0f, 0.0f), true);
 					}
 					else
 					{
-						TL->BanRa(mToaDo + Vec2(10.0f, 14.0f), Vec2(150.0f, 0.0f));
+						TL->BanRa(mToaDo + Vec2(10.0f, 14.0f), Vec2(180.0f, 0.0f), true);
 					}
 
 					break; // chỉ dùng 1 viên mỗi lần
@@ -137,8 +157,7 @@ void MayBay::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		}
 
 	}
-	// thời gian đếm nên để sau cập nhật các thứ ở trên
-	TGDem += in_tg;
+
 }
 
 void MayBay::XuLyVaCham(const DoiTuong * in_DoiTuong)
@@ -165,7 +184,7 @@ void MayBay::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			return;
 		}
 
-		IsShining = true;
+		TGDem_Shining = 0.0f;
 		HP -= ((DanLv*)in_DoiTuong)->get_Damage();
 	}
 }
@@ -174,10 +193,20 @@ void MayBay::Ve(const Vec2 & in_DoDoi)
 {
 	if (mTrangThai == eTT_MayBay_PhatNo)
 	{
+		if (TGDem < TG_PhatNo)
+		{
+			HH_PhatNo->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo_png, false, ToaDo_PhatNo, in_DoDoi);
+		}
 		return;
 	}
-
-	HH_DiChuyen->Ve(DS_HinhAnh::get_TH()->MayBay_png, mLatHinh, mToaDo, in_DoDoi);
+	if (TGDem_Shining <= TG_Shining)
+	{
+		HH_DiChuyen->Ve(DS_HinhAnh::get_TH()->MayBay_Shining_png, mLatHinh, mToaDo, in_DoDoi);
+	}
+	else
+	{
+		HH_DiChuyen->Ve(DS_HinhAnh::get_TH()->MayBay_png, mLatHinh, mToaDo, in_DoDoi);
+	}
 }
 
 
@@ -195,7 +224,7 @@ void MayBay::BanDan()
 	TGDem = 0.0f;
 	mVanToc.x = 0.0f;
 	mVanToc.y = 0.0f;
-	TGDem_BanTenLua = 0.0f;
+	TGDem_BanTenLua = TG_BanTenLua / 2.2f;
 }
 
 void MayBay::BoChay()
@@ -208,7 +237,10 @@ void MayBay::BoChay()
 void MayBay::PhatNo()
 {
 	mTrangThai = eTT_MayBay_PhatNo;
+	HH_PhatNo->Remake();
+	ToaDo_PhatNo = mToaDo;
 	mToaDo = ToaDo_XuatHien;
+	TGDem = 0.0f;
 }
 
 void MayBay::LoadThongTinHoatHinh()
@@ -222,6 +254,15 @@ void MayBay::LoadThongTinHoatHinh()
 	lDSTTFrame.push_back(ThongTinFrame(24, 38, HCN(108, 108 + 24, 6 , 6 +38), 0.1f));
 	lDSTTFrame.push_back(ThongTinFrame(26, 38, HCN(136, 136 + 28, 6 , 6 +38), 0.1f));
 	HH_DiChuyen = new HoatHinh(lDSTTFrame);
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(16, 24, HCN(1 - 1, 1 + 16 - 1, 56 - 43, 56 + 16 - 43), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(32, 40, HCN(26 - 1, 26 + 32 - 1, 48 - 43, 48 + 32 - 43), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(28, 36, HCN(66 - 1, 66 + 28 - 1, 51 - 43, 51 + 24 - 43), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 40, HCN(103 - 1, 103 + 30 - 1, 47 - 43, 47 + 28 - 43), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(32, 36, HCN(143 - 1, 143 + 32 - 1, 43 - 43, 43 + 28 - 43), 0.08f));
+	lDSTTFrame.push_back(ThongTinFrame(32, 38, HCN(187 - 1, 187 + 32 - 1, 53 - 43, 53 + 30 - 43), 0.08f));
+	HH_PhatNo = new HoatHinh(lDSTTFrame);
 }
 
 MayBay::~MayBay()
