@@ -487,25 +487,25 @@ void Man1::TaoDanhSachDoiTuongVaQuai()
 
 void Man1::DrawQuadTree(QuadTree * in_QuadTree)
 {
-	//mGameDebugDraw->DrawRect(in_QuadTree->get_RECT());
+	mGameDebugDraw->DrawRect(in_QuadTree->get_RECT());
 
-	//if (in_QuadTree->get_Nodes())
-	//{
-	//	for (size_t i = 0; i < 4; i++)
-	//	{
-	//		DrawQuadTree(in_QuadTree->get_Nodes()[i]);
-	//	}
-	//}
+	if (in_QuadTree->get_Nodes())
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			DrawQuadTree(in_QuadTree->get_Nodes()[i]);
+		}
+	}
 
 
 
-	//if (mQuadTree->get_Nodes())
-	//{
-	//	for (size_t i = 0; i < 4; i++)
-	//	{
-	//		mGameDebugDraw->DrawRect(mQuadTree->get_Nodes()[i]->get_RECT());
-	//	}
-	//}
+	if (in_QuadTree->get_Nodes())
+	{
+		for (size_t i = 0; i < 4; i++)
+		{
+			mGameDebugDraw->DrawRect(in_QuadTree->get_Nodes()[i]->get_RECT());
+		}
+	}
 }
 
 void Man1::DrawCollidable()
