@@ -196,6 +196,9 @@
     <ClCompile Include="MayBay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="BOSS2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -372,6 +375,7 @@
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
     <ClInclude Include="MayBay.h" />
+    <ClInclude Include="BOSS2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

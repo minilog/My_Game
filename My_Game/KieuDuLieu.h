@@ -109,7 +109,8 @@ enum eLoaiDoiTuong
 	eLDT_BOSS1,
 	eLDT_DoiTuongTinh3,
 	eLDT_DoiTuongTinh4,
-	eLDT_MayBay
+	eLDT_MayBay,
+	eLDT_BOSS2
 };
 
 enum eHuongDiChuyen

@@ -211,11 +211,11 @@ void XMan::CapNhat(float in_tg)
 		mIsShining = false;
 	}
 
-	if (mToaDo.x < Camera::mGioiHanTrai + float(mChieuRong / 2))
-		mToaDo.x = Camera::mGioiHanTrai + float(mChieuRong / 2);
+	//if (mToaDo.x < Camera::mGioiHanTrai + float(mChieuRong / 2))
+	//	mToaDo.x = Camera::mGioiHanTrai + float(mChieuRong / 2);
 
-	if (mToaDo.x > Camera::mGioiHanPhai - float(mChieuRong / 2))
-		mToaDo.x = Camera::mGioiHanPhai - float(mChieuRong / 2);
+	//if (mToaDo.x > Camera::mGioiHanPhai - float(mChieuRong / 2))
+	//	mToaDo.x = Camera::mGioiHanPhai - float(mChieuRong / 2);
 
 	mTimes = in_tg;
 	if (TGDem_ChayTuDo < TG_ChayTuDo)

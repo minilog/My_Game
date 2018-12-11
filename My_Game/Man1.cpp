@@ -40,7 +40,7 @@ void Man1::TaiDuLieu()
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
-	Camera::CheckPoint = -1;
+	//Camera::CheckPoint = -1;
 	//Camera::CheckPoint = 6;
 	Camera::set_ToaDo(Vec2(
 		ToanCauGame::mChieuRong / 2.0f,
@@ -57,7 +57,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(Vec2(100.0f, 780.0f)/*Vec2(100.0f, 730.0f)*/);
+	mXMan = new XMan(Vec2(4800.0f, 1000.0f)/*Vec2(100.0f, 730.0f)*/);
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -90,6 +90,7 @@ void Man1::TaiDuLieu()
 	DS_CuaDanhBoss[0] = new CuaDanhBoss(Vec2(2312.0f, 1176.0f));
 	DS_CuaDanhBoss[1] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
 	mBOSS1 = new BOSS1(Vec2(2517.0f, 1155.0f + 23.0f), DS_CuaDanhBoss[1]);
+	mBOSS2 = new BOSS2(Vec2(5028.0f, 1114.0f));
 
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
@@ -234,9 +235,9 @@ void Man1::CapNhat(float in_tg)
 	// khi trắng màn hình thì reset lại XMan
 	if (Color == 255)
 	{
+	// CHECK_1
 		if (Camera::CheckPoint < 6)
 		{
-			// CHECK_1
 		//	//set Camera trước khi set XMan
 			Camera::CheckPoint = -1;
 			Camera::set_ToaDo(Vec2(100.0f, 730.0f));
@@ -265,6 +266,7 @@ void Man1::CapNhat(float in_tg)
 	DS_CuaDanhBoss[0]->CapNhat(in_tg, mXMan);
 	DS_CuaDanhBoss[1]->CapNhat(in_tg, mXMan);
 	mBOSS1->CapNhat(in_tg, mXMan);
+	mBOSS2->CapNhat(in_tg, mXMan);
 
 	mXMan->CapNhat(in_tg);
 
@@ -310,6 +312,7 @@ void Man1::CapNhat(float in_tg)
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[0]);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
 	mXMan->XuLyVaCham(mBOSS1);
+
 	for (auto DanLv : mDS_DanLv)
 	{
 		mBOSS1->XuLyVaCham(DanLv);
@@ -401,6 +404,7 @@ void Man1::Ve()
 	DS_CuaDanhBoss[0]->Ve(lDoDoi);
 	DS_CuaDanhBoss[1]->Ve(lDoDoi);
 	mBOSS1->Ve(lDoDoi);
+	mBOSS2->Ve(lDoDoi);
 
 	mXMan->Ve(lDoDoi);
 
@@ -487,25 +491,25 @@ void Man1::TaoDanhSachDoiTuongVaQuai()
 
 void Man1::DrawQuadTree(QuadTree * in_QuadTree)
 {
-	mGameDebugDraw->DrawRect(in_QuadTree->get_RECT());
+	//mGameDebugDraw->DrawRect(in_QuadTree->get_RECT());
 
-	if (in_QuadTree->get_Nodes())
-	{
-		for (size_t i = 0; i < 4; i++)
-		{
-			DrawQuadTree(in_QuadTree->get_Nodes()[i]);
-		}
-	}
+	//if (in_QuadTree->get_Nodes())
+	//{
+	//	for (size_t i = 0; i < 4; i++)
+	//	{
+	//		DrawQuadTree(in_QuadTree->get_Nodes()[i]);
+	//	}
+	//}
 
 
 
-	if (in_QuadTree->get_Nodes())
-	{
-		for (size_t i = 0; i < 4; i++)
-		{
-			mGameDebugDraw->DrawRect(in_QuadTree->get_Nodes()[i]->get_RECT());
-		}
-	}
+	//if (in_QuadTree->get_Nodes())
+	//{
+	//	for (size_t i = 0; i < 4; i++)
+	//	{
+	//		mGameDebugDraw->DrawRect(in_QuadTree->get_Nodes()[i]->get_RECT());
+	//	}
+	//}
 }
 
 void Man1::DrawCollidable()

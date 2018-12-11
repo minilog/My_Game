@@ -34,7 +34,7 @@ private:
 
 		HieuUngBatRa_png = new HinhAnh("Resources/HieuUng/HieuUngBatRa.png", D3DCOLOR_XRGB(0, 128, 128));
 
-		XMan_png = new HinhAnh("Resources/XMan/XMan.png");
+		XMan_png = new HinhAnh("Resources/XMan/XMan.png", D3DCOLOR_XRGB(255, 0, 255));
 		XMan_Shining_png = new HinhAnh("Resources/XMan/XMan_Shining.png", D3DCOLOR_XRGB(255, 255, 255));
 		HieuUngNapDanLv2_png = new HinhAnh("Resources/XMan/HieuUngNapDanLv2.png", D3DCOLOR_XRGB(0, 128, 128));
 		HieuUngNapDanLv3_png = new HinhAnh("Resources/XMan/HieuUngNapDanLv3.png", D3DCOLOR_XRGB(0, 128, 128));
@@ -58,6 +58,10 @@ private:
 
 		MayBay_png = new HinhAnh("Resources/Enemies/MayBay.png", D3DCOLOR_XRGB(255, 255, 255));
 		MayBay_Shining_png = new HinhAnh("Resources/Enemies/MayBay_Shining.png", D3DCOLOR_XRGB(255, 216, 248));
+
+		BOSS2_png = new HinhAnh("Resources/BOSS2/BOSS2.png");
+		Pet1_BOSS2_png = new HinhAnh("Resources/BOSS2/Pet1_BOSS2.png", D3DCOLOR_XRGB(255, 0, 255));
+		Pet2_BOSS2_png = new HinhAnh("Resources/BOSS2/Pet2_BOSS2.png");
 	}
 	~DS_HinhAnh()
 	{
@@ -65,6 +69,9 @@ private:
 	}
 
 public:
+	HinhAnh* BOSS2_png;
+	HinhAnh* Pet1_BOSS2_png;
+	HinhAnh* Pet2_BOSS2_png;
 	HinhAnh* MayBay_png;
 	HinhAnh* MayBay_Shining_png;
 

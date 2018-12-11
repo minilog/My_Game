@@ -18,6 +18,7 @@
 #include "ThangMay.h"
 #include "CuaDanhBoss.h"
 #include "BOSS1.h"
+#include "BOSS2.h"
 
 
 
@@ -46,6 +47,7 @@ public:
 // INFORMATION
 private:
 
+	BOSS2* mBOSS2;
 	BOSS1* mBOSS1;
 	CuaDanhBoss *DS_CuaDanhBoss[3];
 	bool XMan_PhatNo = false;
