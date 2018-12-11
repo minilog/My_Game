@@ -146,20 +146,27 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			HH_HienTai->CapNhat(in_tg * 6.0f* 1.5f);
 		}
 
-		if (TG_Dem > 4.5f && TG_Dem <= 6.0f)
+		if (TG_Dem > 4.5f && TG_Dem <= 6.0f ||
+			TG_Dem > 7.5f && TG_Dem <= 9.0f ||
+			TG_Dem > 10.5f && TG_Dem <= 12.0f)
 		{
 			mToaDo.x -= 115.0f * in_tg;
 			
-			if (TG_Dem > 5.2f && mVanToc.y == 0.0f)
+			if ((TG_Dem > 5.2f && TG_Dem <= 5.7f ||
+				TG_Dem > 8.2f && TG_Dem <= 8.7f ||
+				TG_Dem > 11.2f && TG_Dem <= 11.7f) 
+				&& mVanToc.y == 0.0f)
 			{
-				int l = rand() % 75 + 1;
+				int l = rand() % 40 + 1;
 				if (l <= 3)
 				{
 					mVanToc.y = -VanTocRoiToiDa *  1.4f;
 				}
 			}
 		}
-		else if (TG_Dem > 6.0f && TG_Dem <= 7.5f)
+		else if (TG_Dem > 6.0f && TG_Dem <= 7.5f || 
+			TG_Dem > 9.0f && TG_Dem <= 10.5f ||
+			TG_Dem > 12.0f && TG_Dem <= 13.5f)
 		{
 			mToaDo.x += 115.0f * in_tg;
 		}
@@ -175,7 +182,7 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		}
 		mToaDo.y += mVanToc.y * in_tg;
 
-		if (TG_Dem > 8.0f)
+		if (TG_Dem > 13.6f)
 		{
 			TanCong2();
 		}

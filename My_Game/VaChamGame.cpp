@@ -48,6 +48,7 @@ ePhiaVaCham VaChamGame::get_PhiaVaCham(const DoiTuong * in_DoiTuong, eKetQuaVaCh
 	- neu vector chuan hoa co x < 0 => nam phia ben trai Entity
 	*/
 
+
 	if (lVec.y < 0)
 	{
 		// va chạm phía bên trên
