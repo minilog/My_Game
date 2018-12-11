@@ -40,8 +40,8 @@ void Man1::TaiDuLieu()
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
-	//Camera::CheckPoint = -1;
-	Camera::CheckPoint = 6;
+	Camera::CheckPoint = -1;
+	//Camera::CheckPoint = 6;
 	Camera::set_ToaDo(Vec2(
 		ToanCauGame::mChieuRong / 2.0f,
 		896.0f));
