@@ -102,7 +102,8 @@ void DanLv3::XuLyVaCham(const DoiTuong * in_DoiTuong)
 	//	DangTanBien();
 	//}
 
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_LoCot)
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_LoCot ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_Pet2)
 	{
 		if (((LoCot*)in_DoiTuong)->get_TrangThai() == eTT_LoCot_BienMat)
 		{

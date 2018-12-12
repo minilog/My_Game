@@ -332,6 +332,7 @@ void Man1::CapNhat(float in_tg)
 			mBOSS2->get_Box1()->XuLyVaCham(DanLv);
 			DanLv->XuLyVaCham(mBOSS2->get_Box0());
 			DanLv->XuLyVaCham(mBOSS2->get_Box1());
+			DanLv->XuLyVaCham(mBOSS2->get_Pet2());
 		}
 	}
 

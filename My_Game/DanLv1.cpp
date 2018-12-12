@@ -76,7 +76,8 @@ void DanLv1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		return;
 	}
 
-	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_MayBay)
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_MayBay ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_Pet2)
 	{
 		if (in_DoiTuong->get_TrangThai() == eTT_MayBay_PhatNo)
 		{

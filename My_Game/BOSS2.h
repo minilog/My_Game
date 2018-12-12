@@ -21,6 +21,7 @@ public:
 	Box* get_Box0() { return mBox[0] ; }
 	Box* get_Box1() { return mBox[1] ; }
 	DanSang* get_DanSang() { return mDanSang; }
+	Pet2* get_Pet2() { return mPet2; }
 // INFORMATION
 private:
 	DanSang *mDanSang;
