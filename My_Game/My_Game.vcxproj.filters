@@ -391,9 +391,15 @@
     <ClInclude Include="MayBay.h">
       <Filter>4.DoiTuong\Quai</Filter>
     </ClInclude>
-    <ClInclude Include="Pet1.h" />
-    <ClInclude Include="Pet2.h" />
-    <ClInclude Include="DanSang.h" />
+    <ClInclude Include="Pet1.h">
+      <Filter>4.DoiTuong\Quai</Filter>
+    </ClInclude>
+    <ClInclude Include="Pet2.h">
+      <Filter>4.DoiTuong\Quai</Filter>
+    </ClInclude>
+    <ClInclude Include="DanSang.h">
+      <Filter>4.DoiTuong\Quai</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

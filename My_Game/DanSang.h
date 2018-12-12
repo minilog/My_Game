@@ -41,13 +41,25 @@ public:
 		float DY = mToaDo.y - XMAN->get_ToaDo().y;
 		float Cotan = DX / DY;
 
-		if (DY < 0)
+		if (DY > -25.0f &&
+			DY <= 25.0f)
 		{
-			mVanToc.y = 150.0f;
+			if (DY < 0)
+			{
+				mVanToc.y = 70.0f;
+			}
+			else
+			{
+				mVanToc.y = -70.0f;
+			}
+		}
+		else if (DY < 0)
+		{
+			mVanToc.y = 200.0f;
 		}
 		else
 		{
-			mVanToc.y = -150.0f;
+			mVanToc.y = -200.0f;
 		}
 
 		mVanToc.x = Cotan * mVanToc.y;

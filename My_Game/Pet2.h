@@ -27,7 +27,7 @@ public:
 
 		if (mTrangThai == eTT_Pet2_DiXuong)
 		{
-			if (DEM > 2.4f)
+			if (DEM > 2.3f)
 			{
 				mVanToc.y = 0.0f;
 			}

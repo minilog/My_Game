@@ -111,7 +111,6 @@ void Box::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		{
 			return;
 		}
-		GAMELOG("VA CHAM");
 
 		DEM_Shining = 0.0f;
 		HP -= ((DanLv*)in_DoiTuong)->get_Damage();

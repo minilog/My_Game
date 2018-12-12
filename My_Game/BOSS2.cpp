@@ -28,13 +28,15 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		return;
 	}
 
-	DEM += in_tg;
+
 	mBox[0]->CapNhat(in_tg, this);
 	mBox[1]->CapNhat(in_tg, this);
 	mPet1[0]->CapNhat(in_tg, this);
 	mPet1[1]->CapNhat(in_tg, this);
 	mPet2->CapNhat(in_tg, this);
 	mDanSang->CapNhat(in_tg, in_DoiTuong);
+
+
 
 	if (DEM_Pet2 > TG_Pet2)
 	{
@@ -57,28 +59,50 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	switch (mTrangThai)
 	{
 	case eTT_BOSS2_XuatHien:
+		DEM += in_tg;
 		CapNhat_XuatHien(in_tg);
 		break;
 
 	case eTT_BOSS2_BocVac:
+		if (SoHop == 0 && 
+			mBox[0]->get_TrangThai() == eTT_Box_BienMat && 
+			mBox[1]->get_TrangThai() == eTT_Box_BienMat)
+		{
+			DEM += in_tg;
+			if (DEM > 1.0f)
+			{
+				BoChay();
+			}
+		}
 		if (mBox[0]->get_TrangThai() == eTT_Box_BienMat)
 		{
-			DEM_HoiChieuBox1 += in_tg;
-			if (DEM_HoiChieuBox1 > TG_HoiChieuBox)
+
+			if (SoHop > 0)
 			{
-				mBox[0]->DiChuyen(Vec2(4950.0f, 1002.0f), Vec2(22.0f, 70.0f), 2.29f);
-				mPet1[0]->DiChuyen(Vec2(4950.0f, 952.0f), Vec2(22.0f, 70.0f), 2.29f);
-				DEM_HoiChieuBox1 = 0.0f;
+				DEM_HoiChieuBox1 += in_tg;
+				if (DEM_HoiChieuBox1 > TG_HoiChieuBox)
+				{
+					mBox[0]->DiChuyen(Vec2(4950.0f, 1002.0f), Vec2(22.0f, 70.0f), 2.29f);
+					mPet1[0]->DiChuyen(Vec2(4950.0f, 952.0f), Vec2(22.0f, 70.0f), 2.29f);
+					DEM_HoiChieuBox1 = 0.0f;
+					SoHop--;
+				}
+
 			}
 		}
 		if (mBox[1]->get_TrangThai() == eTT_Box_BienMat)
 		{
-			DEM_HoiChieuBox2 += in_tg;
-			if (DEM_HoiChieuBox2 > TG_HoiChieuBox)
+			if (SoHop > 0)
 			{
-				mBox[1]->DiChuyen(Vec2(5035.0f, 1002.0f), Vec2(10.0f, 70.0f), 2.29f);
-				mPet1[1]->DiChuyen(Vec2(5035.0f, 952.0f), Vec2(10.0f, 70.0f), 2.29f);
-				DEM_HoiChieuBox2 = 0.0f;
+				DEM_HoiChieuBox2 += in_tg;
+				if (DEM_HoiChieuBox2 > TG_HoiChieuBox)
+				{
+					mBox[1]->DiChuyen(Vec2(5035.0f, 1002.0f), Vec2(10.0f, 70.0f), 2.29f);
+					mPet1[1]->DiChuyen(Vec2(5035.0f, 952.0f), Vec2(10.0f, 70.0f), 2.29f);
+					DEM_HoiChieuBox2 = 0.0f;
+					SoHop--;
+				}
+
 			}
 		}
 
@@ -95,6 +119,7 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		break;
 
 	case eTT_BOSS2_BoChay:
+		DEM += in_tg;
 		CapNhat_BoChay(in_tg);
 		break;
 
@@ -136,6 +161,7 @@ void BOSS2::XuatHien()
 	mVanToc.y = 40.0f;
 	ToaDo_HH1 = mToaDo;
 	ToaDo_HH2 = mToaDo + Vec2(56.0f, -10.0f);
+	SoHop = MAXBOX;
 }
 
 void BOSS2::BocVac()
@@ -183,7 +209,7 @@ void BOSS2::CapNhat_BoChay(float in_tg)
 	ToaDo_HH2.y += mVanToc.y * in_tg;
 	if (DEM > TG_BoChay)
 	{
-		XuatHien();
+		mTrangThai = eTT_BOSS2_BienMat;
 	}
 }
 

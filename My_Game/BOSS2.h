@@ -24,6 +24,8 @@ public:
 	Pet2* get_Pet2() { return mPet2; }
 // INFORMATION
 private:
+	static constexpr int MAXBOX = 8;
+	int SoHop = MAXBOX;
 	DanSang *mDanSang;
 	Pet2 *mPet2;
 	static constexpr float TG_Pet2 = 3.0f;
