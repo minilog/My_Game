@@ -27,6 +27,7 @@ private:
 	HoatHinh *mHH_Dan;
 	HoatHinh *mHH_HieuUngPhatNo;
 	HoatHinh *HH_ChuyenDang;
+	HoatHinh *HH_ChuyenDang2;
 
 	bool ChuyenDang = false;
 

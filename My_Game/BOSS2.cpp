@@ -12,6 +12,8 @@ BOSS2::BOSS2(const Vec2& in_ToaDo)
 	mPet1[0] = new Pet1();
 	mPet1[1] = new Pet1();
 	mPet2 = new Pet2();
+	mDanSang = new DanSang();
+
 
 	LoadThongTinHoatHinh();
 
@@ -32,12 +34,18 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	mPet1[0]->CapNhat(in_tg, this);
 	mPet1[1]->CapNhat(in_tg, this);
 	mPet2->CapNhat(in_tg, this);
+	mDanSang->CapNhat(in_tg, in_DoiTuong);
 
 	if (DEM_Pet2 > TG_Pet2)
 	{
 		if (mPet2->get_TrangThai() != eTT_Pet2_DiXuong)
 		{
 			mPet2->DiXuong();
+		}
+		if (DEM_Pet2 > TG_Pet2 + 2.7f)
+		{
+			mDanSang->BanDan(Vec2(4995.0f, 1130.0f), in_DoiTuong);
+			DEM_Pet2 = TG_Pet2 + 0.01f;
 		}
 	}
 	else
@@ -118,7 +126,7 @@ void BOSS2::Ve(const Vec2 & in_DoDoi)
 	mBox[1]->Ve(in_DoDoi);
 	mPet1[0]->Ve(in_DoDoi);
 	mPet1[1]->Ve(in_DoDoi);
-
+	mDanSang->Ve(in_DoDoi);
 }
 
 void BOSS2::XuatHien()

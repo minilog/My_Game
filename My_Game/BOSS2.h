@@ -6,6 +6,7 @@
 #include "Box.h"
 #include "Pet1.h"
 #include "Pet2.h"
+#include "DanSang.h"
 
 class BOSS2 :
 	public DoiTuong
@@ -19,8 +20,10 @@ public:
 	void Ve(const Vec2& in_DoDoi); // Độ dời phụ thuộc Camera hiện tại
 	Box* get_Box0() { return mBox[0] ; }
 	Box* get_Box1() { return mBox[1] ; }
+	DanSang* get_DanSang() { return mDanSang; }
 // INFORMATION
 private:
+	DanSang *mDanSang;
 	Pet2 *mPet2;
 	static constexpr float TG_Pet2 = 3.0f;
 	float DEM_Pet2 = 0.0f;

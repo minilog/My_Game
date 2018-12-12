@@ -148,6 +148,7 @@
     <ClCompile Include="DanLv2.cpp" />
     <ClCompile Include="DanLv3.cpp" />
     <ClCompile Include="DanNo1.cpp" />
+    <ClCompile Include="DanSang.cpp" />
     <ClCompile Include="DoiTuong.cpp" />
     <ClCompile Include="DS_HinhAnh.cpp" />
     <ClCompile Include="Ech.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="DanLv2.h" />
     <ClInclude Include="DanLv3.h" />
     <ClInclude Include="DanNo1.h" />
+    <ClInclude Include="DanSang.h" />
     <ClInclude Include="DoiTuong.h" />
     <ClInclude Include="DoiTuongTinh.h" />
     <ClInclude Include="DS_HinhAnh.h" />

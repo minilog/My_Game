@@ -112,7 +112,8 @@ enum eLoaiDoiTuong
 	eLDT_MayBay,
 	eLDT_BOSS2,
 	eLDT_Box,
-	eLDT_Pet2
+	eLDT_Pet2,
+	eLDT_DanSang
 };
 
 enum eHuongDiChuyen

@@ -175,6 +175,8 @@ void TenLua::LoadThongTinHoatHinh()
 	lDSTTFrame.push_back(ThongTinFrame(32, 36, HCN(143 - 1, 143 + 32 - 1, 43 - 43, 43 + 28 - 43), 0.08f));
 	lDSTTFrame.push_back(ThongTinFrame(32, 38, HCN(187 - 1, 187 + 32 - 1, 53 - 43, 53 + 30 - 43), 0.08f));
 	mHH_HieuUngPhatNo = new HoatHinh(lDSTTFrame);
+
+
 }
 
 TenLua::~TenLua()

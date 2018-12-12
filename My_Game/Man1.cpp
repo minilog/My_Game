@@ -314,18 +314,25 @@ void Man1::CapNhat(float in_tg)
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[0]);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
 	mXMan->XuLyVaCham(mBOSS1);
-	mXMan->XuLyVaCham(mBOSS2->get_Box0());
-	mXMan->XuLyVaCham(mBOSS2->get_Box1());
+	if (mBOSS2->get_TrangThai() == eTT_BOSS2_BocVac)
+	{
+		mXMan->XuLyVaCham(mBOSS2->get_Box0());
+		mXMan->XuLyVaCham(mBOSS2->get_Box1());
+		mXMan->XuLyVaCham(mBOSS2->get_DanSang());
+	}
 
 	for (auto DanLv : mDS_DanLv)
 	{
 		mBOSS1->XuLyVaCham(DanLv);
 		DanLv->XuLyVaCham(mBOSS1);
 
-		mBOSS2->get_Box0()->XuLyVaCham(DanLv);
-		mBOSS2->get_Box1()->XuLyVaCham(DanLv);
-		DanLv->XuLyVaCham(mBOSS2->get_Box0());
-		DanLv->XuLyVaCham(mBOSS2->get_Box1());
+		if (mBOSS2->get_TrangThai() == eTT_BOSS2_BocVac)
+		{
+			mBOSS2->get_Box0()->XuLyVaCham(DanLv);
+			mBOSS2->get_Box1()->XuLyVaCham(DanLv);
+			DanLv->XuLyVaCham(mBOSS2->get_Box0());
+			DanLv->XuLyVaCham(mBOSS2->get_Box1());
+		}
 	}
 
 	for (auto DanNo : mDS_DanNo1_Quai)
