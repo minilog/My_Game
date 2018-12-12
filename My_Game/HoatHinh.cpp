@@ -37,7 +37,7 @@ void HoatHinh::CapNhat(float in_tg)
 }
 
 void HoatHinh::Ve(HinhAnh *in_HinhAnh, bool in_LatHinh, const Vec2& in_ToaDo, const Vec2& in_DoDoi,
-	const D3DCOLOR &in_SubColor)
+	const D3DCOLOR &in_SubColor, bool in_LatDoc)
 {
 	// set THÔNG TIN cho Biến con trỏ hình ảnh được đưa vào và vẽ lên
 	in_HinhAnh->set_ChieuRong(mDSThongTinFrame[mViTriFrame].ChieuRong);
@@ -45,6 +45,7 @@ void HoatHinh::Ve(HinhAnh *in_HinhAnh, bool in_LatHinh, const Vec2& in_ToaDo, co
 	in_HinhAnh->set_HCN(mDSThongTinFrame[mViTriFrame].Hcn);
 
 	in_HinhAnh->set_LatTheoChieuNgang(in_LatHinh);
+	in_HinhAnh->set_LatTheoChieuDoc(in_LatDoc);
 	in_HinhAnh->set_ToaDo(in_ToaDo);
 	in_HinhAnh->set_DoDoi(in_DoDoi);
 

@@ -183,6 +183,7 @@
     <ClCompile Include="MapReader\TmxUtil.cpp" />
     <ClCompile Include="MayBay.cpp" />
     <ClCompile Include="Pet1.cpp" />
+    <ClCompile Include="Pet2.cpp" />
     <ClCompile Include="QuadTree.cpp" />
     <ClCompile Include="QuanLyManGame.cpp" />
     <ClCompile Include="Sound.cpp" />
@@ -248,6 +249,7 @@
     <ClInclude Include="MapReader\zlib.h" />
     <ClInclude Include="MayBay.h" />
     <ClInclude Include="Pet1.h" />
+    <ClInclude Include="Pet2.h" />
     <ClInclude Include="QuadTree.h" />
     <ClInclude Include="QuanLyManGame.h" />
     <ClInclude Include="Sound.h" />

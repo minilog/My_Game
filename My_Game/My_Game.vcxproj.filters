@@ -205,6 +205,9 @@
     <ClCompile Include="Pet1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Pet2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MapReader\TmxTerrainArray.h">
@@ -386,6 +389,7 @@
       <Filter>4.DoiTuong\Quai</Filter>
     </ClInclude>
     <ClInclude Include="Pet1.h" />
+    <ClInclude Include="Pet2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

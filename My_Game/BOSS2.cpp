@@ -11,6 +11,7 @@ BOSS2::BOSS2(const Vec2& in_ToaDo)
 	mBox[1] = new Box(Vec2(4950.0f, 1002.0f));
 	mPet1[0] = new Pet1();
 	mPet1[1] = new Pet1();
+	mPet2 = new Pet2();
 
 	LoadThongTinHoatHinh();
 
@@ -30,6 +31,20 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	mBox[1]->CapNhat(in_tg, this);
 	mPet1[0]->CapNhat(in_tg, this);
 	mPet1[1]->CapNhat(in_tg, this);
+	mPet2->CapNhat(in_tg, this);
+
+	if (DEM_Pet2 > TG_Pet2)
+	{
+		if (mPet2->get_TrangThai() != eTT_Pet2_DiXuong)
+		{
+			mPet2->DiXuong();
+		}
+	}
+	else
+	{
+		mPet2->DiLen();
+	}
+
 
 	switch (mTrangThai)
 	{
@@ -59,6 +74,16 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			}
 		}
 
+		if (mBox[0]->get_TrangThai() == eTT_Box_DiChuyen &&
+			mBox[1]->get_TrangThai() == eTT_Box_DiChuyen)
+		{
+			DEM_Pet2 += in_tg;
+		}
+		else
+		{
+			DEM_Pet2 = 0.0f;
+		}
+
 		break;
 
 	case eTT_BOSS2_BoChay:
@@ -83,12 +108,17 @@ void BOSS2::Ve(const Vec2 & in_DoDoi)
 		return;
 	}
 
+	if (mTrangThai == eTT_BOSS2_BocVac)
+	{
+		mPet2->Ve(in_DoDoi);
+	}
 	HH_2->Ve(DS_HinhAnh::get_TH()->BOSS2_png, false, ToaDo_HH2, in_DoDoi);
 	HH_1->Ve(DS_HinhAnh::get_TH()->BOSS2_png, false, ToaDo_HH1, in_DoDoi);
 	mBox[0]->Ve(in_DoDoi);
 	mBox[1]->Ve(in_DoDoi);
 	mPet1[0]->Ve(in_DoDoi);
 	mPet1[1]->Ve(in_DoDoi);
+
 }
 
 void BOSS2::XuatHien()
@@ -105,7 +135,7 @@ void BOSS2::BocVac()
 	DEM = 0.0f;
 	mTrangThai = eTT_BOSS2_BocVac;
 	mVanToc.y = 0.0f;
-	DEM_HoiChieuBox1 = TG_HoiChieuBox / 2.0f;
+	DEM_HoiChieuBox1 = TG_HoiChieuBox;
 	DEM_HoiChieuBox2 = 0.0f;
 }
 

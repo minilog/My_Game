@@ -5,6 +5,7 @@
 #include "HoatHinh.h"
 #include "Box.h"
 #include "Pet1.h"
+#include "Pet2.h"
 
 class BOSS2 :
 	public DoiTuong
@@ -20,6 +21,9 @@ public:
 	Box* get_Box1() { return mBox[1] ; }
 // INFORMATION
 private:
+	Pet2 *mPet2;
+	static constexpr float TG_Pet2 = 3.0f;
+	float DEM_Pet2 = 0.0f;
 	Pet1 *mPet1[2];
 	Box *mBox[2];
 	HoatHinh	*HH_1,
