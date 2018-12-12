@@ -4,6 +4,7 @@
 #include "DS_HinhAnh.h"
 #include "HoatHinh.h"
 #include "Box.h"
+#include "Pet1.h"
 
 class BOSS2 :
 	public DoiTuong
@@ -19,7 +20,7 @@ public:
 	Box* get_Box1() { return mBox[1] ; }
 // INFORMATION
 private:
-
+	Pet1 *mPet1[2];
 	Box *mBox[2];
 	HoatHinh	*HH_1,
 				*HH_2;
@@ -28,7 +29,7 @@ private:
 	float DEM = 0.0f;
 	static constexpr float TG_XuatHien = 4.33f;
 	static constexpr float TG_BoChay = 4.33f;
-	static constexpr float TG_HoiChieuBox = 3.0f;
+	static constexpr float TG_HoiChieuBox = 1.0f;
 	float DEM_HoiChieuBox1 = 0.0f;
 	float DEM_HoiChieuBox2 = 0.0f;
 // SUB-FUNCTION

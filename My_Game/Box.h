@@ -20,7 +20,7 @@ private:
 	HoatHinh *HH_1;
 	float TG_DiChuyen = 0.0f;
 	float DEM = 0.0f;
-	static constexpr int MAXHP = 7;
+	static constexpr int MAXHP = 5;
 	int HP = MAXHP;
 	static constexpr float TG_Shining = 0.07f;
 	float DEM_Shining = TG_Shining + 0.1f;
