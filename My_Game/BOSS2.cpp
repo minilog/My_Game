@@ -27,35 +27,19 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	switch (mTrangThai)
 	{
 	case eTT_BOSS2_XuatHien:
-		if (DEM < TG_XuatHien / 2.0f)
-		{
-			ToaDo_HH1.y += mVanToc.y * in_tg;
-		}
-		ToaDo_HH2.y += mVanToc.y * in_tg;
-		if (DEM > TG_XuatHien)
-		{
-			BocVac();
-		}
+		CapNhat_XuatHien(in_tg);
 		break;
 
 	case eTT_BOSS2_BocVac:
 		if (DEM > 1.0f)
 		{
-			BoChay();
+	
 		}
 
 		break;
 
 	case eTT_BOSS2_BoChay:
-		if (DEM >= TG_BoChay / 2.0f + 0.05f)
-		{
-			ToaDo_HH1.y += mVanToc.y *in_tg;
-		}
-		ToaDo_HH2.y += mVanToc.y * in_tg;
-		if (DEM > TG_BoChay)
-		{
-			XuatHien();
-		}
+		CapNhat_BoChay(in_tg);
 		break;
 
 	default:
@@ -108,6 +92,32 @@ void BOSS2::BienMat()
 	DEM = 0.0f;
 	mTrangThai = eTT_BOSS2_BienMat;
 	mVanToc.y = 0.0f;
+}
+
+void BOSS2::CapNhat_XuatHien(float in_tg)
+{
+	if (DEM < TG_XuatHien / 2.0f)
+	{
+		ToaDo_HH1.y += mVanToc.y * in_tg;
+	}
+	ToaDo_HH2.y += mVanToc.y * in_tg;
+	if (DEM > TG_XuatHien)
+	{
+		BocVac();
+	}
+}
+
+void BOSS2::CapNhat_BoChay(float in_tg)
+{
+	if (DEM >= TG_BoChay / 2.0f + 0.05f)
+	{
+		ToaDo_HH1.y += mVanToc.y *in_tg;
+	}
+	ToaDo_HH2.y += mVanToc.y * in_tg;
+	if (DEM > TG_BoChay)
+	{
+		XuatHien();
+	}
 }
 
 void BOSS2::LoadThongTinHoatHinh()
