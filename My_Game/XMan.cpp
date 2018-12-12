@@ -720,7 +720,29 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		DinhSatThuong();
 	}
 
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Box)
+	{
+		if (mTrangThai == eTT_XMan_DinhSatThuong)
+		{
+			return;
+		}
+		if (mTGDem_KoNhanST < mTG_KoNhanST)
+		{
+			return;
+		}
+		if ((in_DoiTuong)->get_TrangThai() == eTT_Box_PhatNo ||
+			(in_DoiTuong)->get_TrangThai() == eTT_Box_BienMat)
+		{
+			return;
+		}
 
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DinhSatThuong();
+	}
 
 
 

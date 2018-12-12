@@ -137,6 +137,27 @@ void DanLv2::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		DangTanBien();
 	}
 
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Box)
+	{
+		if (in_DoiTuong->get_TrangThai() == eTT_Box_PhatNo ||
+			in_DoiTuong->get_TrangThai() == eTT_Box_BienMat)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		if (!mLatHinh)
+			mToaDo.x += 10.0f;
+		else
+			mToaDo.x -= 10.0f;
+
+		DangTanBien();
+	}
+
 
 }
 

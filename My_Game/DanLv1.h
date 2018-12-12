@@ -40,7 +40,6 @@ private:
 	const float mTG_PhaHuy = 0.07f * 3; // giá trị phụ thuộc vào HH_BiPhaHuy
 	float mTG_DemPhaHuy = 0.0f;
 
-	eTrangThai mTrangThai;
 
 	void LoadHinhAnhVao();
 

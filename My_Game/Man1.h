@@ -19,6 +19,7 @@
 #include "CuaDanhBoss.h"
 #include "BOSS1.h"
 #include "BOSS2.h"
+#include "Box.h"
 
 
 

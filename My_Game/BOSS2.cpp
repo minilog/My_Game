@@ -7,6 +7,8 @@ BOSS2::BOSS2(const Vec2& in_ToaDo)
 	DoiTuong(in_ToaDo, Vec2(), 0, 0)
 {
 	mLoaiDoiTuong = eLDT_BOSS2;
+	mBox[0] = new Box(Vec2(4950.0f, 1002.0f));
+	mBox[1] = new Box(Vec2(4950.0f, 1002.0f));
 
 	LoadThongTinHoatHinh();
 
@@ -22,7 +24,8 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	}
 
 	DEM += in_tg;
-
+	mBox[0]->CapNhat(in_tg, this);
+	mBox[1]->CapNhat(in_tg, this);
 
 	switch (mTrangThai)
 	{
@@ -31,9 +34,23 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		break;
 
 	case eTT_BOSS2_BocVac:
-		if (DEM > 1.0f)
+		if (mBox[0]->get_TrangThai() == eTT_Box_BienMat)
 		{
-	
+			DEM_HoiChieuBox1 += in_tg;
+			if (DEM_HoiChieuBox1 > TG_HoiChieuBox)
+			{
+				mBox[0]->DiChuyen(Vec2(4950.0f, 1002.0f), Vec2(22.0f, 70.0f), 2.29f);
+				DEM_HoiChieuBox1 = 0.0f;
+			}
+		}
+		if (mBox[1]->get_TrangThai() == eTT_Box_BienMat)
+		{
+			DEM_HoiChieuBox2 += in_tg;
+			if (DEM_HoiChieuBox2 > TG_HoiChieuBox)
+			{
+				mBox[1]->DiChuyen(Vec2(5035.0f, 1002.0f), Vec2(10.0f, 70.0f), 2.29f);
+				DEM_HoiChieuBox2 = 0.0f;
+			}
 		}
 
 		break;
@@ -62,6 +79,8 @@ void BOSS2::Ve(const Vec2 & in_DoDoi)
 
 	HH_2->Ve(DS_HinhAnh::get_TH()->BOSS2_png, false, ToaDo_HH2, in_DoDoi);
 	HH_1->Ve(DS_HinhAnh::get_TH()->BOSS2_png, false, ToaDo_HH1, in_DoDoi);
+	mBox[0]->Ve(in_DoDoi);
+	mBox[1]->Ve(in_DoDoi);
 }
 
 void BOSS2::XuatHien()
@@ -78,6 +97,8 @@ void BOSS2::BocVac()
 	DEM = 0.0f;
 	mTrangThai = eTT_BOSS2_BocVac;
 	mVanToc.y = 0.0f;
+	DEM_HoiChieuBox1 = TG_HoiChieuBox / 2.0f;
+	DEM_HoiChieuBox2 = 0.0f;
 }
 
 void BOSS2::BoChay()
@@ -131,6 +152,9 @@ void BOSS2::LoadThongTinHoatHinh()
 	lDSTTFrame.clear();
 	lDSTTFrame.push_back(ThongTinFrame(144, 108, HCN(112, 112 + 144, 89, 89 + 108)));
 	HH_2 = new HoatHinh(lDSTTFrame);
+
+
+	
 }
 
 BOSS2::~BOSS2()

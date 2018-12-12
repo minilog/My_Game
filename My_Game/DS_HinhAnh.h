@@ -61,8 +61,9 @@ private:
 
 		BOSS2_png = new HinhAnh("Resources/BOSS2/BOSS2.png");
 		Pet1B2_png = new HinhAnh("Resources/BOSS2/Pet1B2.png", D3DCOLOR_XRGB(255, 0, 255));
-		Box_png = new HinhAnh("Resources/BOSS2/Box.png");
 		Pet2B2_png = new HinhAnh("Resources/BOSS2/Pet2B2.png", D3DCOLOR_XRGB(255, 0, 255));
+		Box_png = new HinhAnh("Resources/BOSS2/Box.png");
+		Box_Shining_png = new HinhAnh("Resources/BOSS2/Box_Shining.png");
 	}
 	~DS_HinhAnh()
 	{
@@ -70,10 +71,12 @@ private:
 	}
 
 public:
-	HinhAnh* BOSS2_png;
-	HinhAnh* Pet1B2_png;
-	HinhAnh* Box_png;
-	HinhAnh* Pet2B2_png;
+	HinhAnh	*BOSS2_png,
+		*Pet1B2_png,
+		*Pet2B2_png,
+		*Box_png,
+		*Box_Shining_png;
+	
 
 	HinhAnh* MayBay_png;
 	HinhAnh* MayBay_Shining_png;

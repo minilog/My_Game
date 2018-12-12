@@ -52,7 +52,6 @@ private:
 	const float mTG_BanRa = 0.03f * 2;
 	float mTG_DemBanRa = 0.0f;
 
-	eTrangThai mTrangThai;
 
 	void LoadHinhAnhVao();
 	void DangTanBien();
