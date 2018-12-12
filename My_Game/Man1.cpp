@@ -57,7 +57,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(/*Vec2(2160.0f, 1040.0f)*/Vec2(4800.0f, 1000.0f)/*Vec2(100.0f, 730.0f)*/);
+	mXMan = new XMan(/*Vec2(2160.0f, 1040.0f)*/Vec2(4900.0f, 1000.0f)/*Vec2(100.0f, 730.0f)*/);
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -65,6 +65,7 @@ void Man1::TaiDuLieu()
 	// tạo thanh máu XMan
 	mThanhMauXMan = new ThanhMau();
 
+#pragma region DONE
 	// tạo DS Đạn Nổ để đưa cho các Quái sử dụng
 	for (int i = 0; i < 6; i++)
 	{
@@ -85,12 +86,13 @@ void Man1::TaiDuLieu()
 		TenLua* lTL = new TenLua();
 		mDS_TenLua_Quai.push_back(lTL);
 	}
+#pragma endregion
 
 	// tạo 3 Cửa đánh boss
 	DS_CuaDanhBoss[0] = new CuaDanhBoss(Vec2(2312.0f, 1176.0f));
 	DS_CuaDanhBoss[1] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
 	mBOSS1 = new BOSS1(Vec2(2517.0f, 1155.0f + 23.0f), DS_CuaDanhBoss[1]);
-	mBOSS2 = new BOSS2(Vec2(5028.0f, 1114.0f));
+	mBOSS2 = new BOSS2();
 
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)

@@ -120,6 +120,11 @@ enum eHuongDiChuyen
 
 enum eTrangThai
 {
+	eTT_BOSS2_XuatHien,
+	eTT_BOSS2_BocVac,
+	eTT_BOSS2_BoChay,
+	eTT_BOSS2_BienMat,
+
 	// XMAN
 	eTT_XMan_DungIm,
 	eTT_XMan_Chay,

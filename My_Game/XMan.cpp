@@ -847,10 +847,10 @@ void XMan::LoadThongTinHoatHinh()
 
 #pragma region DUNG_IM
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(323, 323 + 30, 17, 17 + 34), 3.5f));
-	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(357, 357 + 30, 17, 17 + 34), 0.25f));
-	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(391, 391 + 30, 17, 17 + 34), 0.25f));
-	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(357, 357 + 30, 17, 17 + 34), 0.25f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(323, 323 + 30, 17, 17 + 34), 3.0f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(357, 357 + 30, 17, 17 + 34), 0.075f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(391, 391 + 30, 17, 17 + 34), 0.075f));
+	lDSTTFrame.push_back(ThongTinFrame(30, 34, HCN(357, 357 + 30, 17, 17 + 34), 0.075f));
 	mHH_DungIm = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
