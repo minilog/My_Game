@@ -1,5 +1,5 @@
 #include "BOSS2.h"
-
+#include "Camera.h"
 
 
 BOSS2::BOSS2(const Vec2& in_ToaDo)
@@ -17,12 +17,21 @@ BOSS2::BOSS2(const Vec2& in_ToaDo)
 
 	LoadThongTinHoatHinh();
 
-	XuatHien();
+	mTrangThai = eTT_BOSS2_BienMat;
 }
 
 
 void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 {
+	if (mTrangThai != eTT_BOSS2_XuatHien)
+	{
+		if (in_DoiTuong->get_ToaDo().x >= 4800.0f &&
+			in_DoiTuong->get_ToaDo().x <= 4830.0f)
+		{
+			XuatHien();
+		}
+	}
+
 	if (mTrangThai == eTT_BOSS2_BienMat)
 	{
 		return;
@@ -82,8 +91,8 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 				DEM_HoiChieuBox1 += in_tg;
 				if (DEM_HoiChieuBox1 > TG_HoiChieuBox)
 				{
-					mBox[0]->DiChuyen(Vec2(4950.0f, 1002.0f), Vec2(22.0f, 70.0f), 2.29f);
-					mPet1[0]->DiChuyen(Vec2(4950.0f, 952.0f), Vec2(22.0f, 70.0f), 2.29f);
+					mBox[0]->DiChuyen(Vec2(4950.0f, 1002.0f), Vec2(38.0f, 70.0f), 2.29f);
+					mPet1[0]->DiChuyen(Vec2(4950.0f, 952.0f), Vec2(38.0f, 70.0f), 2.29f);
 					DEM_HoiChieuBox1 = 0.0f;
 					SoHop--;
 				}
@@ -97,8 +106,8 @@ void BOSS2::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 				DEM_HoiChieuBox2 += in_tg;
 				if (DEM_HoiChieuBox2 > TG_HoiChieuBox)
 				{
-					mBox[1]->DiChuyen(Vec2(5035.0f, 1002.0f), Vec2(10.0f, 70.0f), 2.29f);
-					mPet1[1]->DiChuyen(Vec2(5035.0f, 952.0f), Vec2(10.0f, 70.0f), 2.29f);
+					mBox[1]->DiChuyen(Vec2(5035.0f, 1002.0f), Vec2(26.0f, 70.0f), 2.29f);
+					mPet1[1]->DiChuyen(Vec2(5035.0f, 952.0f), Vec2(26.0f, 70.0f), 2.29f);
 					DEM_HoiChieuBox2 = 0.0f;
 					SoHop--;
 				}
@@ -185,6 +194,13 @@ void BOSS2::BienMat()
 	DEM = 0.0f;
 	mTrangThai = eTT_BOSS2_BienMat;
 	mVanToc.y = 0.0f;
+
+	// CAMERA >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+	if (Camera::CheckPoint == 9)
+	{
+		Camera::mGioiHanPhaiTiepTheo = 5647;
+		Camera::speed = 4;
+	}
 }
 
 void BOSS2::CapNhat_XuatHien(float in_tg)
@@ -209,7 +225,7 @@ void BOSS2::CapNhat_BoChay(float in_tg)
 	ToaDo_HH2.y += mVanToc.y * in_tg;
 	if (DEM > TG_BoChay)
 	{
-		mTrangThai = eTT_BOSS2_BienMat;
+		BienMat();
 	}
 }
 

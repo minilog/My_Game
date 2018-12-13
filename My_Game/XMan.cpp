@@ -156,8 +156,20 @@ void XMan::CapNhat(float in_tg)
 		TGDem_ChayTuDo += in_tg;
 	}
 
-	if ((mHP <= 0 && mTrangThai != eTT_XMan_PhatNo)/* ||
-		(mToaDo.y > Camera::mGioiHanDuoi && mTrangThai != eTT_XMan_PhatNo)*/)
+	if (mToaDo.x >= 4800.0f &&
+		mToaDo.x <= 4830.0f &&
+		DEM_ChayTuDo2 > TG_ChayTuDo2)
+	{
+		DEM_ChayTuDo2 = 0.0f;
+	}
+
+	if (DEM_ChayTuDo2 <= TG_ChayTuDo2)
+	{
+		DEM_ChayTuDo2 += in_tg;
+	}
+
+	if ((mHP <= 0 && mTrangThai != eTT_XMan_PhatNo) ||
+		(mToaDo.y > Camera::mGioiHanDuoi && mTrangThai != eTT_XMan_PhatNo))
 	{
 		PhatNo();
 	}
@@ -211,11 +223,16 @@ void XMan::CapNhat(float in_tg)
 		mIsShining = false;
 	}
 
-	//if (mToaDo.x < Camera::mGioiHanTrai + float(mChieuRong / 2))
-	//	mToaDo.x = Camera::mGioiHanTrai + float(mChieuRong / 2);
+	if (mToaDo.x < Camera::mGioiHanTrai + float(mChieuRong / 2))
+		mToaDo.x = Camera::mGioiHanTrai + float(mChieuRong / 2);
 
-	//if (mToaDo.x > Camera::mGioiHanPhai - float(mChieuRong / 2))
-	//	mToaDo.x = Camera::mGioiHanPhai - float(mChieuRong / 2);
+	if (mToaDo.x > Camera::mGioiHanPhai - float(mChieuRong / 2))
+		mToaDo.x = Camera::mGioiHanPhai - float(mChieuRong / 2);
+
+	if (mToaDo.y < Camera::mGioiHanTren - float(mChieuCao / 2))
+		mToaDo.y = Camera::mGioiHanTren - float(mChieuCao / 2);
+
+
 
 	mTimes = in_tg;
 	if (TGDem_ChayTuDo < TG_ChayTuDo)
@@ -627,12 +644,12 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		if (((TrucXoay*)in_DoiTuong)->K == 1 ||
 			((TrucXoay*)in_DoiTuong)->K == 2)
 		{
-			VanTocKhachQuan.x = -50.0f;
+			VanTocKhachQuan.x = -40.0f;
 		}
 		else if (((TrucXoay*)in_DoiTuong)->K == -1 ||
 			((TrucXoay*)in_DoiTuong)->K == -2)
 		{
-			VanTocKhachQuan.x = 50.0f;
+			VanTocKhachQuan.x = 40.0f;
 		}
 	}
 
@@ -802,6 +819,14 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 		{
 			in_Keys[VK_RIGHT] = false;
 		}
+		in_Keys[VK_LEFT] = false;
+		in_Keys[JUMP_BUTTON] = false;
+		in_Keys[FIRE_BUTTON] = false;
+		in_Keys[PUSH_BUTTON] = false;
+	}
+	if (DEM_ChayTuDo2 <= TG_ChayTuDo2)
+	{
+		in_Keys[VK_RIGHT] = true;
 		in_Keys[VK_LEFT] = false;
 		in_Keys[JUMP_BUTTON] = false;
 		in_Keys[FIRE_BUTTON] = false;

@@ -22,6 +22,7 @@ public:
 	Box* get_Box1() { return mBox[1] ; }
 	DanSang* get_DanSang() { return mDanSang; }
 	Pet2* get_Pet2() { return mPet2; }
+	void BienMat();
 // INFORMATION
 private:
 	static constexpr int MAXBOX = 8;
@@ -46,7 +47,7 @@ private:
 	void XuatHien();
 	void BocVac();
 	void BoChay();
-	void BienMat();
+
 	void CapNhat_XuatHien(float in_tg);
 	void CapNhat_BoChay(float in_tg);
 	void LoadThongTinHoatHinh();

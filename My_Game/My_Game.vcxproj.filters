@@ -386,8 +386,6 @@
     <ClInclude Include="BOSS1.h">
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
-    <ClInclude Include="BOSS2.h" />
-    <ClInclude Include="Box.h" />
     <ClInclude Include="MayBay.h">
       <Filter>4.DoiTuong\Quai</Filter>
     </ClInclude>
@@ -399,6 +397,12 @@
     </ClInclude>
     <ClInclude Include="DanSang.h">
       <Filter>4.DoiTuong\Quai</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>4.DoiTuong\Quai</Filter>
+    </ClInclude>
+    <ClInclude Include="BOSS2.h">
+      <Filter>4.DoiTuong</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

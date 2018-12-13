@@ -17,7 +17,6 @@ public:
 
 	static int CheckPoint;
 
-private:
 	static int mGioiHanTraiTiepTheo;
 	static int mGioiHanPhaiTiepTheo;
 	static int mGioiHanTrenTiepTheo;

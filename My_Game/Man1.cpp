@@ -42,6 +42,7 @@ void Man1::TaiDuLieu()
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
 	//Camera::CheckPoint = -1;
 	//Camera::CheckPoint = 6;
+	Camera::CheckPoint = 9;
 	Camera::set_ToaDo(Vec2(
 		ToanCauGame::mChieuRong / 2.0f,
 		896.0f));
@@ -91,6 +92,10 @@ void Man1::TaiDuLieu()
 	// tạo 3 Cửa đánh boss
 	DS_CuaDanhBoss[0] = new CuaDanhBoss(Vec2(2312.0f, 1176.0f));
 	DS_CuaDanhBoss[1] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
+	DS_CuaDanhBoss[2] = new CuaDanhBoss(Vec2(5641.0f, 1176.0f));
+	DS_CuaDanhBoss[3] = new CuaDanhBoss(Vec2(5879.0f, 1176.0f));
+	//DS_CuaDanhBoss[4] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
+	//DS_CuaDanhBoss[5] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
 	mBOSS1 = new BOSS1(Vec2(2517.0f, 1155.0f + 23.0f), DS_CuaDanhBoss[1]);
 	mBOSS2 = new BOSS2();
 
@@ -108,7 +113,7 @@ void Man1::TaiDuLieu()
 			const Vec2 lToaDoDoiTuong(
 				lObject->GetX() + lObject->GetWidth() / 2.0f,
 				lObject->GetY() + lObject->GetHeight() / 2.0f);
-
+			
 			if (lNhomObject->GetName() == "DoiTuongTinh")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
@@ -217,6 +222,12 @@ void Man1::TaiDuLieu()
 
 				mQuadTree_Dong->ThemDoiTuong(lMayBay);
 			}
+						else if (lNhomObject->GetName() == "MayBay")
+			{
+				MayBay* lMayBay = new MayBay(lToaDoDoiTuong, mDS_TenLua_Quai, mDS_Bui_Quai);
+
+				mQuadTree_Dong->ThemDoiTuong(lMayBay);
+			}
 		}
 	}
 #pragma endregion
@@ -245,16 +256,35 @@ void Man1::CapNhat(float in_tg)
 			Camera::set_ToaDo(Vec2(100.0f, 730.0f));
 			mXMan->XuatHien(Vec2(100.0f, 730.0f));
 			mBOSS1->BienMat();
-
+			mBOSS2->BienMat();
 		}
 	// CHECK_2
-		if (Camera::CheckPoint >= 6)
+		else if (Camera::CheckPoint >= 6 &&
+			Camera::CheckPoint < 9)
 		{
 			//set Camera trước khi set XMan
 			Camera::CheckPoint = 6;
 			Camera::set_ToaDo(Vec2(2960.0f, 1000.0f));
 			mXMan->XuatHien(Vec2(2960.0f, 1000.0f));
 			mBOSS1->BienMat();
+			mBOSS2->BienMat();
+		}
+		else if (Camera::CheckPoint >= 9 &&
+			Camera::CheckPoint < 14)
+		{
+			Camera::CheckPoint = 9;
+			Camera::set_ToaDo(Vec2(5275.0f, 1000.0f));
+			mXMan->XuatHien(Vec2(5275.0f, 1000.0f));
+			mBOSS1->BienMat();
+			mBOSS2->BienMat();
+		}
+		else if (Camera::CheckPoint >= 14)
+		{
+			Camera::CheckPoint = 14;
+			Camera::set_ToaDo(Vec2(6325.0f, 1775.0f));
+			mXMan->XuatHien(Vec2(6325.0f, 1775.0f));
+			mBOSS1->BienMat();
+			mBOSS2->BienMat();
 		}
 	}
 
@@ -267,6 +297,10 @@ void Man1::CapNhat(float in_tg)
 #pragma region CAP NHAT
 	DS_CuaDanhBoss[0]->CapNhat(in_tg, mXMan);
 	DS_CuaDanhBoss[1]->CapNhat(in_tg, mXMan);
+	DS_CuaDanhBoss[2]->CapNhat(in_tg, mXMan);
+	DS_CuaDanhBoss[3]->CapNhat(in_tg, mXMan);
+	//DS_CuaDanhBoss[1]->CapNhat(in_tg, mXMan);
+	//DS_CuaDanhBoss[1]->CapNhat(in_tg, mXMan);
 	mBOSS1->CapNhat(in_tg, mXMan);
 	mBOSS2->CapNhat(in_tg, mXMan);
 
@@ -311,8 +345,16 @@ void Man1::CapNhat(float in_tg)
 #pragma region VA CHAM
 	DS_CuaDanhBoss[0]->XuLyVaCham(mXMan);
 	DS_CuaDanhBoss[1]->XuLyVaCham(mXMan);
+	DS_CuaDanhBoss[2]->XuLyVaCham(mXMan);
+	DS_CuaDanhBoss[3]->XuLyVaCham(mXMan);
+	//DS_CuaDanhBoss[1]->XuLyVaCham(mXMan);
+	//DS_CuaDanhBoss[1]->XuLyVaCham(mXMan);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[0]);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
+	mXMan->XuLyVaCham(DS_CuaDanhBoss[2]);
+	mXMan->XuLyVaCham(DS_CuaDanhBoss[3]);
+	//mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
+	//mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
 	mXMan->XuLyVaCham(mBOSS1);
 	if (mBOSS2->get_TrangThai() == eTT_BOSS2_BocVac)
 	{
@@ -417,19 +459,24 @@ void Man1::Ve()
 	// vẽ hình ảnh bản đồ
 	mBanDoMap1->set_DoDoi(lDoDoi);
 	mBanDoMap1->Ve();
-	
+
+
 	DS_CuaDanhBoss[0]->Ve(lDoDoi);
 	DS_CuaDanhBoss[1]->Ve(lDoDoi);
+	DS_CuaDanhBoss[2]->Ve(lDoDoi);
+	DS_CuaDanhBoss[3]->Ve(lDoDoi);
+	//DS_CuaDanhBoss[4]->Ve(lDoDoi);
+	//DS_CuaDanhBoss[5]->Ve(lDoDoi);
 	mBOSS1->Ve(lDoDoi);
 	mBOSS2->Ve(lDoDoi);
 
 	mXMan->Ve(lDoDoi);
 
+
 	for (auto DT : mDS_DoiTuong_Tinh)
 	{
 		DT->Ve(lDoDoi);
 	}
-
 
 	for (auto DT : mDS_DoiTuong_Dong)
 	{

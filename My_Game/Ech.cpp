@@ -208,11 +208,11 @@ void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 		if (((TrucXoay*)in_DoiTuong)->K == 1)
 		{
-			VanTocKhachQuan.x = -50.0f;
+			VanTocKhachQuan.x = -40.0f;
 		}
 		else if (((TrucXoay*)in_DoiTuong)->K == -1)
 		{
-			VanTocKhachQuan.x = 50.0f;
+			VanTocKhachQuan.x = 40.0f;
 		}
 	}
 

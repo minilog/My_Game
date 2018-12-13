@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="248" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="828">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="248" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="829">
  <tileset firstgid="1" source="Map1.tsx"/>
  <layer name="Tile Layer 1" width="248" height="64">
   <data encoding="csv">
@@ -78,7 +78,7 @@
   <object id="144" x="6028" y="1537.5" width="26" height="31"/>
   <object id="385" x="6015" y="1729.83" width="26" height="31"/>
  </objectgroup>
- <objectgroup name="LoCot">
+ <objectgroup name="LoCot" visible="0">
   <object id="146" x="950" y="898" width="38" height="46"/>
   <object id="147" x="951" y="642" width="38" height="46"/>
   <object id="148" x="802" y="642" width="38" height="46"/>
@@ -86,7 +86,7 @@
   <object id="699" x="7208.5" y="1924" width="38" height="46"/>
   <object id="700" x="6374.5" y="1924" width="38" height="46"/>
  </objectgroup>
- <objectgroup name="DoiTuongTinh" visible="0">
+ <objectgroup name="DoiTuongTinh">
   <object id="3" x="0" y="946" width="352" height="17"/>
   <object id="39" x="353" y="897.5" width="159" height="48"/>
   <object id="40" x="256.5" y="782.75" width="127.5" height="32"/>
@@ -138,7 +138,7 @@
   <object id="207" x="1888" y="1201" width="4095.67" height="16"/>
   <object id="208" x="3969.33" y="1026.83" width="28.5" height="90.6667"/>
   <object id="210" x="5329" y="1055.5" width="65" height="15.5"/>
-  <object id="211" x="5393.5" y="1025.5" width="252.5" height="124.5"/>
+  <object id="211" x="5393.5" y="1025.5" width="240.5" height="124.5"/>
   <object id="212" x="5647" y="1024" width="226" height="15"/>
   <object id="213" x="5872.5" y="1041" width="46.5" height="109.5"/>
   <object id="214" x="5918.5" y="1040.5" width="194" height="14.5"/>
@@ -153,7 +153,7 @@
   <object id="255" x="6561" y="1986.17" width="477.667" height="62"/>
   <object id="270" x="7038.17" y="1970" width="897.5" height="77.4167"/>
   <object id="272" x="7920.33" y="1808" width="15" height="161.667"/>
-  <object id="273" x="7392" y="1792" width="303" height="127.667"/>
+  <object id="273" x="7392" y="1791" width="303" height="128.667"/>
   <object id="274" x="7258.33" y="1790.67" width="135.333" height="32"/>
   <object id="275" x="7694.67" y="1793" width="241" height="14.3333"/>
   <object id="329" x="6440.83" y="1984.17" width="70.4167" height="63.5833"/>
@@ -262,9 +262,7 @@
   <object id="645" x="3799.5" y="827" width="24" height="36"/>
   <object id="646" x="4035.5" y="832" width="24" height="36"/>
  </objectgroup>
- <objectgroup name="CuaDanhBoss" visible="0">
-  <object id="499" x="2304" y="1152" width="16" height="48"/>
-  <object id="500" x="2545" y="1152" width="16" height="48"/>
+ <objectgroup name="CuaDanhBoss">
   <object id="501" x="7679" y="1921" width="16" height="48"/>
  </objectgroup>
  <objectgroup name="TrucXoay1" visible="0">
@@ -324,7 +322,7 @@
   <object id="531" x="3448.33" y="913.167" width="26" height="31"/>
   <object id="532" x="4103.67" y="897.167" width="26" height="31"/>
  </objectgroup>
- <objectgroup name="BOSS2">
+ <objectgroup name="BOSS2" visible="0">
   <object id="827" x="4900" y="1070" width="256" height="88"/>
  </objectgroup>
  <objectgroup name="XacUop" visible="0">

@@ -50,7 +50,7 @@ private:
 
 	BOSS2* mBOSS2;
 	BOSS1* mBOSS1;
-	CuaDanhBoss *DS_CuaDanhBoss[3];
+	CuaDanhBoss *DS_CuaDanhBoss[6];
 	bool XMan_PhatNo = false;
 	float TGDem_Remake_ManGame;
 	int Color = 0;
