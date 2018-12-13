@@ -31,7 +31,7 @@ void Man1::TaiDuLieu()
 	mGameDebugDraw = new GameDebugDraw();
 	mGameDebugDraw->setLineSize(2.0f);
 
-	ManGame::mMauNen = D3DCOLOR_XRGB(0, 0, 0);
+	ManGame::mMauNen = D3DCOLOR_XRGB(255, 255, 230);
 
 #pragma region TAO BAN DO VA CAMERA
 	ManGame::mBanDo = new Tmx::Map();
@@ -42,8 +42,9 @@ void Man1::TaiDuLieu()
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
 	//Camera::CheckPoint = -1;
 	//Camera::CheckPoint = 6;
-	Camera::CheckPoint = 9;
-	//Camera::CheckPoint = 14;
+	//Camera::CheckPoint = 9;
+	Camera::CheckPoint = 14;
+	//Camera::CheckPoint = 16;
 	Camera::set_ToaDo(Vec2(
 		ToanCauGame::mChieuRong / 2.0f,
 		896.0f));
@@ -115,7 +116,16 @@ void Man1::TaiDuLieu()
 				lObject->GetX() + lObject->GetWidth() / 2.0f,
 				lObject->GetY() + lObject->GetHeight() / 2.0f);
 			
-			if (lNhomObject->GetName() == "DoiTuongTinh")
+			if (lNhomObject->GetName() == "DoiTuongTinh4")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+
+
+				DoiTuongTinh *lDoiTuongTinh = new DoiTuongTinh(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), 4);
+
+				mQuadTree_Tinh->ThemDoiTuong(lDoiTuongTinh);
+			}
+			else if (lNhomObject->GetName() == "DoiTuongTinh")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
 
@@ -279,11 +289,20 @@ void Man1::CapNhat(float in_tg)
 			mBOSS1->BienMat();
 			mBOSS2->BienMat();
 		}
-		else if (Camera::CheckPoint >= 14)
+		else if (Camera::CheckPoint >= 14 &&
+			Camera::CheckPoint < 16)
 		{
 			Camera::CheckPoint = 14;
 			Camera::set_ToaDo(Vec2(6325.0f, 1775.0f));
 			mXMan->XuatHien(Vec2(6325.0f, 1775.0f));
+			mBOSS1->BienMat();
+			mBOSS2->BienMat();
+		}
+		else if (Camera::CheckPoint >= 16)
+		{
+			Camera::CheckPoint = 16;
+			Camera::set_ToaDo(Vec2(7515.0f, 1750.0f));
+			mXMan->XuatHien(Vec2(7515.0f, 1750.0f));
 			mBOSS1->BienMat();
 			mBOSS2->BienMat();
 		}

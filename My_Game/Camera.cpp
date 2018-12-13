@@ -218,6 +218,17 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 		break;
 
 	case 16:
+		if (in_ToaDo.x >= 7500.0f && in_ToaDo.x <= 7530.0f)
+		{
+			mGioiHanTrai = mGioiHanTraiTiepTheo = 7392;
+			mGioiHanPhai = mGioiHanPhaiTiepTheo = 7696;
+			mGioiHanTren = mGioiHanTrenTiepTheo = 1794;
+			mGioiHanDuoi = mGioiHanDuoiTiepTheo = 1794 + 220;
+			CheckPoint++;
+		}
+		break;
+
+	case 17:
 		if (in_ToaDo.x >= 7683.0f && in_ToaDo.x <= 7690.0f)
 		{
 			mGioiHanTrai = mGioiHanTrai = (int)in_ToaDo.x - mChieuRong / 2 - 1;

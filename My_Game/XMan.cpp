@@ -504,7 +504,74 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		}
 	}
 
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh4)
+	{
+		if (mTrangThai == eTT_XMan_XuatHien)
+		{
+			return;
+		}
 
+		eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
+
+		if (lKQVC.eKQVC_DaVaCham)
+		{
+			ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
+			switch (lPVC)
+			{
+				//case ePVC_Duoi:
+				//	mToaDo.y -= lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+				//	if (mTrangThai == eTT_XMan_Roi)
+				//	{
+				//		TiepDat();
+				//		mVanToc.y = 0.0f;
+				//	}
+				//	if (mTrangThai == eTT_XMan_Truot)
+				//	{
+				//		TiepDat();
+				//	}
+				//	break;
+			case ePVC_Tren:
+				mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+				if (mTrangThai == eTT_XMan_Nhay || mTrangThai == eTT_XMan_BatRa)
+				{
+					Roi();
+				}
+				break;
+
+
+				//case ePVC_TraiTren:
+				//case ePVC_Trai:
+				//case ePVC_TraiDuoi:
+				//	mToaDo.x += lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
+				//	mCoChuongNgaiVatTrai = true;
+
+				//	if (mLatHinh &&
+				//		(mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay))
+				//	{
+				//		DungIm();
+				//	}
+				//	break;
+
+				//case ePVC_Phai:
+				//case ePVC_PhaiTren:
+				//case ePVC_PhaiDuoi:
+				//	mToaDo.x -= lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
+				//	mCoChuongNgaiVatPhai = true;
+
+				//	if (!mLatHinh &&
+				//		(mTrangThai == eTT_XMan_Chay || mTrangThai == eTT_XMan_ChuanBiChay))
+				//	{
+				//		DungIm();
+				//	}
+
+				//	break;
+
+				//default:
+				//	break;
+				//}
+			}
+		}
+	}
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Ech)
 	{
