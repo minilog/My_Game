@@ -146,11 +146,11 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 			in_ToaDo.x <= 5300.0f)
 		{
 			mGioiHanTrai = mGioiHanTraiTiepTheo = 4864;
-			mGioiHanPhai = mGioiHanPhaiTiepTheo = 5648;
+			mGioiHanPhai = mGioiHanPhaiTiepTheo = 5649;
 			mGioiHanTren = mGioiHanTrenTiepTheo = 1248 - mChieuCao;
 			mGioiHanDuoi = mGioiHanDuoiTiepTheo = 1248;
-			CheckPoint++;
 			speed = 4;
+			CheckPoint++;
 		}
 
 	case 10:
@@ -160,8 +160,8 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 			mGioiHanTrai = mGioiHanTrai = mGioiHanTrai = (int)in_ToaDo.x - mChieuRong / 2 - 1;
 			mGioiHanTraiTiepTheo = 5633;
 			mGioiHanPhaiTiepTheo = 5633 + mChieuRong;
-			CheckPoint++;
 			speed = 2;
+			CheckPoint++;
 		}
 		break;
 
@@ -179,8 +179,8 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 		{
 			mGioiHanTraiTiepTheo = 5889;
 			mGioiHanDuoiTiepTheo = 1794 + 220;
-			CheckPoint++;
 			speed = 5;
+			CheckPoint++;
 		}
 		break;
 
@@ -188,7 +188,7 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 		if (in_ToaDo.x >= 5985.0f && in_ToaDo.x <= 6015.0f &&
 			in_ToaDo.y >= 1790.0f && in_ToaDo.y <= 1990.0f)
 		{
-			mGioiHanPhaiTiepTheo = 7935;
+			mGioiHanPhaiTiepTheo = 7934;
 			mGioiHanTrenTiepTheo = 1794;
 			CheckPoint++;
 		}
@@ -199,11 +199,32 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 		if (in_ToaDo.x >= 6300.0f && in_ToaDo.x <= 6350.0f)
 		{
 			mGioiHanTrai = mGioiHanTraiTiepTheo = 4864;
-			mGioiHanPhai = mGioiHanPhaiTiepTheo = 7935;
+			mGioiHanPhai = mGioiHanPhaiTiepTheo = /*7934*/7408;
 			mGioiHanTren = mGioiHanTrenTiepTheo = 1794;
 			mGioiHanDuoi = mGioiHanDuoiTiepTheo = 1794 + 220;
-			CheckPoint++;
 			speed = 4;
+			CheckPoint++;
+		}
+		break;
+	case 15:
+		if (in_ToaDo.x >= 7395.0f && in_ToaDo.x <= 7405.0f)
+		{
+			mGioiHanTrai = mGioiHanTrai = (int)in_ToaDo.x - mChieuRong / 2 - 1;
+			mGioiHanTraiTiepTheo = 7392;
+			mGioiHanPhaiTiepTheo = 7696;
+			speed = 2;
+			CheckPoint++;
+		}
+		break;
+
+	case 16:
+		if (in_ToaDo.x >= 7683.0f && in_ToaDo.x <= 7690.0f)
+		{
+			mGioiHanTrai = mGioiHanTrai = (int)in_ToaDo.x - mChieuRong / 2 - 1;
+			mGioiHanTraiTiepTheo = 7934 - mChieuRong;
+			mGioiHanPhaiTiepTheo = 7934;
+			speed = 2;
+			CheckPoint++;
 		}
 		break;
 

@@ -11,7 +11,7 @@ class CuaDanhBoss :
 {
 public:
 	// CONSTRUCTURE
-	CuaDanhBoss(const Vec2& in_ToaDo);
+	CuaDanhBoss(const Vec2& in_ToaDo, bool in_ChuyenDang = false);
 
 	void CapNhat(float in_tg) {}
 
@@ -25,12 +25,14 @@ public:
 
 // INFORMATION
 private:
-
+	bool ChuyenDang = false;
 	static constexpr float TG_MoCua = 0.13f * 17 + 1.5f; 
 	static constexpr float TG_DongCua = 0.13f * 16 + 1.1f;
 	float TGDem = 0.0f;
 	HoatHinh *HH_DongCua;
-	HoatHinh *HH_MoCua;
+	HoatHinh *HH_MoCua,
+		*HH_DongCua2,
+		*HH_MoCua2;
 	HoatHinh *HH_HienTai;
 
 

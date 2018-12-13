@@ -6,7 +6,7 @@
 LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1, 
 	std::vector<TenLua*>& in_DS_TenLua, std::vector<Bui*>& in_Bui)
 	:
-	DoiTuong(in_ToaDo, Vec2(), 34, 46)
+	DoiTuong(in_ToaDo, Vec2(), 28, 46)
 {
 	mLoaiDoiTuong = eLDT_LoCot;
 

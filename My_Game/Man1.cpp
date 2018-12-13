@@ -43,6 +43,7 @@ void Man1::TaiDuLieu()
 	//Camera::CheckPoint = -1;
 	//Camera::CheckPoint = 6;
 	Camera::CheckPoint = 9;
+	//Camera::CheckPoint = 14;
 	Camera::set_ToaDo(Vec2(
 		ToanCauGame::mChieuRong / 2.0f,
 		896.0f));
@@ -94,8 +95,8 @@ void Man1::TaiDuLieu()
 	DS_CuaDanhBoss[1] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
 	DS_CuaDanhBoss[2] = new CuaDanhBoss(Vec2(5641.0f, 1176.0f));
 	DS_CuaDanhBoss[3] = new CuaDanhBoss(Vec2(5879.0f, 1176.0f));
-	//DS_CuaDanhBoss[4] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
-	//DS_CuaDanhBoss[5] = new CuaDanhBoss(Vec2(2552.0f, 1176.0f));
+	DS_CuaDanhBoss[4] = new CuaDanhBoss(Vec2(7400.0f, 1944.0f), true);
+	DS_CuaDanhBoss[5] = new CuaDanhBoss(Vec2(7688.0f, 1944.0f), true);
 	mBOSS1 = new BOSS1(Vec2(2517.0f, 1155.0f + 23.0f), DS_CuaDanhBoss[1]);
 	mBOSS2 = new BOSS2();
 
@@ -299,8 +300,8 @@ void Man1::CapNhat(float in_tg)
 	DS_CuaDanhBoss[1]->CapNhat(in_tg, mXMan);
 	DS_CuaDanhBoss[2]->CapNhat(in_tg, mXMan);
 	DS_CuaDanhBoss[3]->CapNhat(in_tg, mXMan);
-	//DS_CuaDanhBoss[1]->CapNhat(in_tg, mXMan);
-	//DS_CuaDanhBoss[1]->CapNhat(in_tg, mXMan);
+	DS_CuaDanhBoss[4]->CapNhat(in_tg, mXMan);
+	DS_CuaDanhBoss[5]->CapNhat(in_tg, mXMan);
 	mBOSS1->CapNhat(in_tg, mXMan);
 	mBOSS2->CapNhat(in_tg, mXMan);
 
@@ -347,14 +348,14 @@ void Man1::CapNhat(float in_tg)
 	DS_CuaDanhBoss[1]->XuLyVaCham(mXMan);
 	DS_CuaDanhBoss[2]->XuLyVaCham(mXMan);
 	DS_CuaDanhBoss[3]->XuLyVaCham(mXMan);
-	//DS_CuaDanhBoss[1]->XuLyVaCham(mXMan);
-	//DS_CuaDanhBoss[1]->XuLyVaCham(mXMan);
+	DS_CuaDanhBoss[4]->XuLyVaCham(mXMan);
+	DS_CuaDanhBoss[5]->XuLyVaCham(mXMan);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[0]);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[2]);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[3]);
-	//mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
-	//mXMan->XuLyVaCham(DS_CuaDanhBoss[1]);
+	mXMan->XuLyVaCham(DS_CuaDanhBoss[4]);
+	mXMan->XuLyVaCham(DS_CuaDanhBoss[5]);
 	mXMan->XuLyVaCham(mBOSS1);
 	if (mBOSS2->get_TrangThai() == eTT_BOSS2_BocVac)
 	{
@@ -465,8 +466,8 @@ void Man1::Ve()
 	DS_CuaDanhBoss[1]->Ve(lDoDoi);
 	DS_CuaDanhBoss[2]->Ve(lDoDoi);
 	DS_CuaDanhBoss[3]->Ve(lDoDoi);
-	//DS_CuaDanhBoss[4]->Ve(lDoDoi);
-	//DS_CuaDanhBoss[5]->Ve(lDoDoi);
+	DS_CuaDanhBoss[4]->Ve(lDoDoi);
+	DS_CuaDanhBoss[5]->Ve(lDoDoi);
 	mBOSS1->Ve(lDoDoi);
 	mBOSS2->Ve(lDoDoi);
 

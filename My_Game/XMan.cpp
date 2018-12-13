@@ -809,8 +809,8 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 
 	if (TGDem_ChayTuDo <= TG_ChayTuDo)
 	{
-		if (TGDem_ChayTuDo >= 2.7f &&
-			TGDem_ChayTuDo <= 4.4f)
+		if (TGDem_ChayTuDo >= 2.0f &&
+			TGDem_ChayTuDo <= 3.9f)
 		{
 			in_Keys[VK_RIGHT] = true;
 			mVanToc.x = 20.0f;
