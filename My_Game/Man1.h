@@ -60,7 +60,6 @@ private:
 	// chia nhỏ các đối tượng, đưa vào 2 DS bên dưới
 	std::vector<DoiTuong*> mDS_DoiTuong_Tinh;
 	std::vector<DoiTuong*> mDS_DoiTuong_Dong;
-	XacUop *mXacUop;
 	//  DS DanNo1, Bui dành cho QUái
 	std::vector<DanNo1*> mDS_DanNo1_Quai;
 	std::vector<Bui*> mDS_Bui_Quai;

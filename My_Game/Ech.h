@@ -28,6 +28,7 @@ public:
 
 // INFORMATION
 private:
+	bool mDangDungTuNhienRoi = false;
 	Vec2 VanTocKhachQuan;
 	bool mEchKoNhay = false;
 

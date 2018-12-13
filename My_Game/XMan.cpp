@@ -709,12 +709,16 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		}
 
 		if (((TrucXoay*)in_DoiTuong)->K == 1 ||
-			((TrucXoay*)in_DoiTuong)->K == 2)
+			((TrucXoay*)in_DoiTuong)->K == 2 ||
+			((TrucXoay*)in_DoiTuong)->K == 4 ||
+			((TrucXoay*)in_DoiTuong)->K == 6)
 		{
 			VanTocKhachQuan.x = -40.0f;
 		}
 		else if (((TrucXoay*)in_DoiTuong)->K == -1 ||
-			((TrucXoay*)in_DoiTuong)->K == -2)
+			((TrucXoay*)in_DoiTuong)->K == -2 ||
+			((TrucXoay*)in_DoiTuong)->K == 3 ||
+			((TrucXoay*)in_DoiTuong)->K == 5)
 		{
 			VanTocKhachQuan.x = 40.0f;
 		}

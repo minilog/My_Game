@@ -137,24 +137,24 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	{
 		TG_Dem += in_tg;
 
-		if (TG_Dem <= 4.5f)
+		if (TG_Dem <= 1.5f)
 		{
-			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f) * 1.5f);
+			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f) * 4.0f);
 		}
 		else
 		{
-			HH_HienTai->CapNhat(in_tg * 6.0f* 1.5f);
+			HH_HienTai->CapNhat(in_tg * 3.0f* 4.0f);
 		}
 
-		if (TG_Dem > 4.5f && TG_Dem <= 6.0f ||
-			TG_Dem > 7.5f && TG_Dem <= 9.0f ||
-			TG_Dem > 10.5f && TG_Dem <= 12.0f)
+		if (TG_Dem > 1.5f && TG_Dem <= 3.0f ||
+			TG_Dem > 4.5f && TG_Dem <= 6.0f ||
+			TG_Dem > 7.5f && TG_Dem <= 9.0f)
 		{
 			mToaDo.x -= 115.0f * in_tg;
 			
-			if ((TG_Dem > 5.2f && TG_Dem <= 5.7f ||
-				TG_Dem > 8.2f && TG_Dem <= 8.7f ||
-				TG_Dem > 11.2f && TG_Dem <= 11.7f) 
+			if ((TG_Dem > 2.2f && TG_Dem <= 2.7f ||
+				TG_Dem > 5.2f && TG_Dem <= 5.7f ||
+				TG_Dem > 8.2f && TG_Dem <= 8.7f) 
 				&& mVanToc.y == 0.0f)
 			{
 				int l = rand() % 40 + 1;
@@ -164,9 +164,9 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 				}
 			}
 		}
-		else if (TG_Dem > 6.0f && TG_Dem <= 7.5f || 
-			TG_Dem > 9.0f && TG_Dem <= 10.5f ||
-			TG_Dem > 12.0f && TG_Dem <= 13.5f)
+		else if (TG_Dem > 3.0f && TG_Dem <= 4.5f || 
+			TG_Dem > 6.0f && TG_Dem <= 7.5f ||
+			TG_Dem > 9.0f && TG_Dem <= 10.5f)
 		{
 			mToaDo.x += 115.0f * in_tg;
 		}
@@ -182,7 +182,7 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		}
 		mToaDo.y += mVanToc.y * in_tg;
 
-		if (TG_Dem > 13.6f)
+		if (TG_Dem > 10.6f)
 		{
 			TanCong2();
 		}
@@ -193,33 +193,33 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	{
 		TG_Dem += in_tg;
 
-		if (TG_Dem <= 4.5f)
+		if (TG_Dem <= 1.5f)
 		{
-			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f)* 1.5f);
+			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f)* 4.0f);
 		}
 		else
 		{
-			HH_HienTai->CapNhat(in_tg * 6.0f * 1.5f);
+			HH_HienTai->CapNhat(in_tg * 3.0f * 4.5f);
 		}
 
-		if (TG_Dem > 4.5f && TG_Dem <= 6.0f)
+		if (TG_Dem > 1.5f && TG_Dem <= 3.0f)
 		{
 			mToaDo.x -= 115.0f * in_tg;
 		}
-		else if (TG_Dem > 6.0f && TG_Dem <= 7.5f)
+		else if (TG_Dem > 3.0f && TG_Dem <= 4.5f)
 		{
 			mToaDo.y -= 74.0f * in_tg;
 		}
-		else if (TG_Dem > 7.5f && TG_Dem <= 9.0f)
+		else if (TG_Dem > 4.5f && TG_Dem <= 6.0f)
 		{
 			mToaDo.x += 115.0f * in_tg;
 		}
-		else if (TG_Dem > 9.0f && TG_Dem <= 10.5f)
+		else if (TG_Dem > 6.0f && TG_Dem <= 7.5f)
 		{
 			mToaDo.y += 74.0f * in_tg;
 		}
 
-		if (TG_Dem > 11.0f)
+		if (TG_Dem > 8.0f)
 		{
 
 
@@ -233,44 +233,44 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	{
 		TG_Dem += in_tg;
 
-		if (TG_Dem <= 4.5f)
+		if (TG_Dem <= 1.5f)
 		{
-			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f) *  1.5f	);
+			HH_HienTai->CapNhat(in_tg * (TG_Dem + 1.5f) *  4.0f	);
 		}
 		else
 		{
-			HH_HienTai->CapNhat(in_tg * 6.0f * 1.5f);
+			HH_HienTai->CapNhat(in_tg * 3 * 4.0f);
 		}
 
-		if (TG_Dem > 4.5f && TG_Dem <= 6.0f)
+		if (TG_Dem > 1.5f && TG_Dem <= 3.0f)
 		{
 			mToaDo.x -= 115.0f * in_tg;
 
+		}
+		else if (TG_Dem > 3.0f && TG_Dem <= 4.5f)
+		{
+			mToaDo.x += 115.0f * in_tg;
+		}
+		else if (TG_Dem > 4.5f && TG_Dem <= 6.0f)
+		{
+			mToaDo.x -= 115.0f * in_tg;
 		}
 		else if (TG_Dem > 6.0f && TG_Dem <= 7.5f)
 		{
 			mToaDo.x += 115.0f * in_tg;
 		}
-		else if (TG_Dem > 7.5f && TG_Dem <= 9.0f)
-		{
-			mToaDo.x -= 115.0f * in_tg;
-		}
-		else if (TG_Dem > 9.0f && TG_Dem <= 10.5f)
-		{
-			mToaDo.x += 115.0f * in_tg;
-		}
-		if (TG_Dem > 10.5f)
+		if (TG_Dem > 7.5f)
 		{
 			mToaDo.x = ToaDo_BanDau.x;
 		}
 		
-		if (TG_Dem > 4.5f)
+		if (TG_Dem > 1.5f)
 		{
 			mVanToc.y += GiaTocTrongTruong * in_tg;
 			if (mToaDo.y > ToaDo_BanDau.y)
 			{
 				mToaDo.y = ToaDo_BanDau.y;
-				if (TG_Dem > 10.5f)
+				if (TG_Dem > 7.5f)
 				{
 					mVanToc.y = 0.0f;
 				}
@@ -284,7 +284,7 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		}
 
 
-		if (TG_Dem > 11.3f)
+		if (TG_Dem > 8.3f)
 		{
 			mVanToc.y = 0;
 

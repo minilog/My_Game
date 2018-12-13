@@ -54,16 +54,29 @@ void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 	else if (!mNamTrongCamera &&
 		VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
 	{
-		TiepDat();
-		mTGDem_TiepDat = mTG_TiepDat;
-		mHP = mMaxHP;
+		if (!mEchKoNhay)
+		{
+			ChuanBiNhay();
+		}
+		else
+		{
+			TiepDat();
+			mTGDem_TiepDat = mTG_TiepDat + 0.5f;
+			mHP = mMaxHP;
+		}
 		mNamTrongCamera = true;
+		mDangDungTuNhienRoi = false;
 	}
 
 	// nếu Ếch đã bị phá hủy thì bỏ qua
 	if (mTrangThai == eTT_Ech_BienMat)
 	{
 		return;
+	}
+
+	if (mDangDungTuNhienRoi && mTrangThai != eTT_Ech_DangTanBien)
+	{
+		Roi();
 	}
 
 	if (mHP <= 0 && mTrangThai != eTT_Ech_DangTanBien)
@@ -150,6 +163,8 @@ void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 	default:
 		break;
 	}
+
+	mDangDungTuNhienRoi = true;
 }
 
 void Ech::Ve(const Vec2 & in_DoDoi)
@@ -193,6 +208,31 @@ void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		return;
 	}
 
+	if (mDangDungTuNhienRoi == true)
+	{
+		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
+			in_DoiTuong->get_LoaiDoiTuong() == eLDT_ThangMay ||
+			in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh2)
+		{
+			HCN lHCNGioiHanMoRongDay = get_HCNGioiHan();
+			lHCNGioiHanMoRongDay.Duoi += 2;
+
+			eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(lHCNGioiHanMoRongDay, in_DoiTuong->get_HCNGioiHan());
+
+
+			if (lKQVC.eKQVC_DaVaCham == true)
+			{
+				ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
+
+				if (lPVC == ePVC_Duoi)
+				{
+					mDangDungTuNhienRoi = false;
+
+				}
+			}
+		}
+	}
+
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_TrucXoay)
 	{
 		if (VanTocKhachQuan.x != 0.0f ||
@@ -206,11 +246,17 @@ void Ech::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			return;
 		}
 
-		if (((TrucXoay*)in_DoiTuong)->K == 1)
+		if (((TrucXoay*)in_DoiTuong)->K == 1 ||
+			((TrucXoay*)in_DoiTuong)->K == 2 ||
+			((TrucXoay*)in_DoiTuong)->K == 4 ||
+			((TrucXoay*)in_DoiTuong)->K == 6)
 		{
 			VanTocKhachQuan.x = -40.0f;
 		}
-		else if (((TrucXoay*)in_DoiTuong)->K == -1)
+		else if (((TrucXoay*)in_DoiTuong)->K == -1 ||
+			((TrucXoay*)in_DoiTuong)->K == -2 ||
+			((TrucXoay*)in_DoiTuong)->K == 3 ||
+			((TrucXoay*)in_DoiTuong)->K == 5)
 		{
 			VanTocKhachQuan.x = 40.0f;
 		}

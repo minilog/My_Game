@@ -11,11 +11,12 @@
 #include "Sound.h"
 #include <vector>
 
+
 Man1::Man1()
 {
 	TaiDuLieu();
 
-	//Sound::getInstance()->loadSound("Resources/man1.wav", "man1");
+	//Sound::getInstance()->loadSound("Resources/Umbrella-KashitaroIto-2576613.wav", "man1");
 	//Sound::getInstance()->play("man1", true, 0);
 }
 
@@ -31,7 +32,7 @@ void Man1::TaiDuLieu()
 	mGameDebugDraw = new GameDebugDraw();
 	mGameDebugDraw->setLineSize(2.0f);
 
-	ManGame::mMauNen = D3DCOLOR_XRGB(255, 255, 230);
+	ManGame::mMauNen = D3DCOLOR_XRGB(0, 0, 0);
 
 #pragma region TAO BAN DO VA CAMERA
 	ManGame::mBanDo = new Tmx::Map();
@@ -43,11 +44,13 @@ void Man1::TaiDuLieu()
 	//Camera::CheckPoint = -1;
 	//Camera::CheckPoint = 6;
 	//Camera::CheckPoint = 9;
-	Camera::CheckPoint = 14;
+	//Camera::CheckPoint = 14;
 	//Camera::CheckPoint = 16;
-	Camera::set_ToaDo(Vec2(
-		ToanCauGame::mChieuRong / 2.0f,
-		896.0f));
+	Camera::CheckPoint = 18;
+	//Camera::set_ToaDo(Vec2(
+	//	ToanCauGame::mChieuRong / 2.0f,
+	//	896.0f));
+	Camera::set_ToaDo(Vec2(7808.0f, 1750.0f)); // TEST
 #pragma endregion
 
 	// lấy hình ảnh bản đồ map
@@ -60,7 +63,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(/*Vec2(2160.0f, 1040.0f)*/Vec2(4900.0f, 1000.0f)/*Vec2(100.0f, 730.0f)*/);
+	mXMan = new XMan(/*Vec2(2160.0f, 1040.0f)*/Vec2(7808.0f, 1750.0f)/*Vec2(100.0f, 730.0f)*/);
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -116,7 +119,21 @@ void Man1::TaiDuLieu()
 				lObject->GetX() + lObject->GetWidth() / 2.0f,
 				lObject->GetY() + lObject->GetHeight() / 2.0f);
 			
-			if (lNhomObject->GetName() == "DoiTuongTinh4")
+			if (lNhomObject->GetName() == "Box1")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+
+				Box *lB = new Box(lToaDoDoiTuong, Vec2(), 1);
+
+				mQuadTree_Tinh->ThemDoiTuong(lB);
+			}
+			else if (lNhomObject->GetName() == "Box2")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+
+				Box *lB = new Box(lToaDoDoiTuong, Vec2(), 2);
+
+				mQuadTree_Dong->ThemDoiTuong(lB);
+			}
+			else if (lNhomObject->GetName() == "DoiTuongTinh4")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
 
@@ -180,12 +197,6 @@ void Man1::TaiDuLieu()
 				mQuadTree_Dong->ThemDoiTuong(lEch);
 			}
 			
-			else if (lNhomObject->GetName() == "XacUop")
-			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
-
-				mXacUop = new XacUop(lToaDoDoiTuong, Vec2());
-			}
-			
 			else if (lNhomObject->GetName() == "LoCot")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
@@ -210,6 +221,48 @@ void Man1::TaiDuLieu()
 			{
 				TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
 					lObject->GetWidth(), lObject->GetHeight(), 2);
+
+				mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
+			}
+			else if (lNhomObject->GetName() == "TrucXoay3")
+			{
+				TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), 3);
+
+				mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
+			}
+			else if (lNhomObject->GetName() == "TrucXoay4")
+			{
+			TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
+				lObject->GetWidth(), lObject->GetHeight(), 4);
+
+			mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
+			}
+			else if (lNhomObject->GetName() == "TrucXoay5")
+			{
+				TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), 5);
+
+				mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
+			}
+			else if (lNhomObject->GetName() == "TrucXoay6")
+			{
+			TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
+				lObject->GetWidth(), lObject->GetHeight(), 6);
+
+			mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
+			}
+			else if (lNhomObject->GetName() == "TrucXoay7")
+			{
+				TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), 7);
+
+				mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
+			}
+			else if (lNhomObject->GetName() == "TrucXoay8")
+			{
+				TrucXoay *lTrucXoay = new TrucXoay(lToaDoDoiTuong,
+					lObject->GetWidth(), lObject->GetHeight(), 8);
 
 				mQuadTree_Tinh->ThemDoiTuong(lTrucXoay);
 			}
@@ -298,11 +351,20 @@ void Man1::CapNhat(float in_tg)
 			mBOSS1->BienMat();
 			mBOSS2->BienMat();
 		}
-		else if (Camera::CheckPoint >= 16)
+		else if (Camera::CheckPoint >= 16 &&
+			Camera::CheckPoint < 18)
 		{
 			Camera::CheckPoint = 16;
 			Camera::set_ToaDo(Vec2(7515.0f, 1750.0f));
 			mXMan->XuatHien(Vec2(7515.0f, 1750.0f));
+			mBOSS1->BienMat();
+			mBOSS2->BienMat();
+		}
+		else if (Camera::CheckPoint >= 18)
+		{
+			Camera::CheckPoint = 18;
+			Camera::set_ToaDo(Vec2(7808.0f, 1750.0f));
+			mXMan->XuatHien(Vec2(7808.0f, 1750.0f));
 			mBOSS1->BienMat();
 			mBOSS2->BienMat();
 		}
@@ -331,7 +393,6 @@ void Man1::CapNhat(float in_tg)
 		DanLv->CapNhat(in_tg);
 	}
 
-	mXacUop->CapNhat(in_tg, mXMan);
 
 	for (auto DanNo : mDS_DanNo1_Quai)
 	{
@@ -515,7 +576,6 @@ void Man1::Ve()
 
 	mThanhMauXMan->Ve(mXMan->get_HP());
 
-	mXacUop->Ve(lDoDoi);
 
 	for (auto D : mDS_DanNo1_Quai)
 	{
