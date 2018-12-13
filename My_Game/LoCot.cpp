@@ -4,11 +4,12 @@
 #include "DanLv.h"
 
 LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1, 
-	std::vector<TenLua*>& in_DS_TenLua, std::vector<Bui*>& in_Bui)
+	std::vector<TenLua*>& in_DS_TenLua, std::vector<Bui*>& in_Bui, Item *in_Item)
 	:
 	DoiTuong(in_ToaDo, Vec2(), 28, 46)
 {
 	mLoaiDoiTuong = eLDT_LoCot;
+	mItem = in_Item;
 
 	LoadThongTinHoatHinh();
 
@@ -282,6 +283,7 @@ void LoCot::BienMat()
 	mTrangThai = eTT_LoCot_BienMat;
 	mTGDem_HieuUngPhatNo = 0.0f;
 	ToaDoPhatNo = mToaDo;
+	mItem->Roi(mToaDo);
 }
 
 LoCot::~LoCot()

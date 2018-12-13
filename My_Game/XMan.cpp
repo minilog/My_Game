@@ -851,6 +851,24 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		DinhSatThuong();
 	}
 
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_Item)
+	{
+		if (in_DoiTuong->get_TrangThai() == eTT_Item_BienMat)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		mHP += 15;
+		if (mHP > 100)
+		{
+			mHP = 100;
+		}
+	}
 }
 
 void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)

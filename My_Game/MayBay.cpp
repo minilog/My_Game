@@ -5,10 +5,11 @@
 
 
 MayBay::MayBay(const Vec2& in_ToaDo, std::vector<TenLua*>& in_DS_TenLua,
-	std::vector<Bui*>& in_Bui)
+	std::vector<Bui*>& in_Bui, Item *in_Item)
 	:
 	DoiTuong(in_ToaDo, Vec2(), 24, 36)
 {
+	mItem = in_Item;
 	mLoaiDoiTuong = eLDT_MayBay;
 	ToaDo_XuatHien = in_ToaDo;
 
@@ -241,6 +242,7 @@ void MayBay::PhatNo()
 	ToaDo_PhatNo = mToaDo;
 	mToaDo = ToaDo_XuatHien;
 	TGDem = 0.0f;
+	mItem->Roi(mToaDo);
 }
 
 void MayBay::LoadThongTinHoatHinh()

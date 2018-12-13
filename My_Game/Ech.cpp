@@ -6,13 +6,14 @@
 
 
 Ech::Ech(const Vec2& in_ToaDo, const Vec2& in_VanToc,
-	std::vector<DanNo1*>& in_DS_DanNo1, std::vector<Bui*>& in_Bui,
+	std::vector<DanNo1*>& in_DS_DanNo1, std::vector<Bui*>& in_Bui, Item *in_Item,
 	int in_Rong, int in_Cao, bool in_EchKhongNhay)
 	:
 	DoiTuong(in_ToaDo, in_VanToc, 22, 30)
 {
 	mLoaiDoiTuong = eLDT_Ech;
 	mTrangThai = eTT_Ech_BienMat;
+	mItem = in_Item;
 	for (int i = 0; i < (int)in_DS_DanNo1.size(); i++)
 	{
 		mDS_DanNo1.push_back(in_DS_DanNo1[i]); // Gắn địa chỉ vào
@@ -57,6 +58,7 @@ void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 		if (!mEchKoNhay)
 		{
 			ChuanBiNhay();
+			mHP = mMaxHP;
 		}
 		else
 		{
@@ -468,6 +470,7 @@ void Ech::DangTanBien()
 	mTGDem_HieuUngNoTung = 0.0f;
 	mToaDo_HieuUngNoTung = mToaDo + Vec2(0.0f, -1.0f);
 	mHH_HieuUngNoTung->Remake();
+	mItem->Roi(mToaDo);
 }
 
 

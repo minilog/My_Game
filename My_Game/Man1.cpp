@@ -42,15 +42,13 @@ void Man1::TaiDuLieu()
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
 	//Camera::CheckPoint = -1;
-	//Camera::CheckPoint = 6;
+	Camera::CheckPoint = 6;
 	//Camera::CheckPoint = 9;
 	//Camera::CheckPoint = 14;
 	//Camera::CheckPoint = 16;
-	Camera::CheckPoint = 18;
-	//Camera::set_ToaDo(Vec2(
-	//	ToanCauGame::mChieuRong / 2.0f,
-	//	896.0f));
-	Camera::set_ToaDo(Vec2(7808.0f, 1750.0f)); // TEST
+	//Camera::CheckPoint = 18;
+	Camera::set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 750.0f));
+	//Camera::set_ToaDo(Vec2(7808.0f, 1750.0f)); // TEST
 #pragma endregion
 
 	// lấy hình ảnh bản đồ map
@@ -63,13 +61,14 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(/*Vec2(2160.0f, 1040.0f)*/Vec2(7808.0f, 1750.0f)/*Vec2(100.0f, 730.0f)*/);
+	mXMan = new XMan(/*Vec2(7808.0f, 1750.0f)*/Vec2(100.0f, 730.0f));
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
 
 	// tạo thanh máu XMan
 	mThanhMauXMan = new ThanhMau();
+	mItem = new Item();
 
 #pragma region DONE
 	// tạo DS Đạn Nổ để đưa cho các Quái sử dụng
@@ -177,30 +176,28 @@ void Man1::TaiDuLieu()
 					lObject->GetWidth(), lObject->GetHeight(), -1);
 
 				mQuadTree_Tinh->ThemDoiTuong(lDoiTuongTinh);
-			}
-		
+			}	
 			else if (lNhomObject->GetName() == "Ech")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
-				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(), mDS_DanNo1_Quai, mDS_Bui_Quai,
+				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(), mDS_DanNo1_Quai, mDS_Bui_Quai, mItem,
 					lObject->GetWidth(), lObject->GetHeight());
 
 				mQuadTree_Dong->ThemDoiTuong(lEch);
-			}
-		
+			}	
 			else if (lNhomObject->GetName() == "EchKhongNhay")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
-				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(), mDS_DanNo1_Quai, mDS_Bui_Quai,
+				Ech *lEch = new Ech(lToaDoDoiTuong, Vec2(), mDS_DanNo1_Quai, mDS_Bui_Quai, mItem, 
 					lObject->GetWidth(), lObject->GetHeight(), true);
 
 				mQuadTree_Dong->ThemDoiTuong(lEch);
-			}
-			
+			}	
 			else if (lNhomObject->GetName() == "LoCot")
 			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
 
-				LoCot *lLoCot = new LoCot(lToaDoDoiTuong, mDS_DanNo1_Quai, mDS_TenLua_Quai, mDS_Bui_Quai);
+				LoCot *lLoCot = new LoCot(lToaDoDoiTuong, mDS_DanNo1_Quai, 
+					mDS_TenLua_Quai, mDS_Bui_Quai, mItem);
 
 				mQuadTree_Tinh->ThemDoiTuong(lLoCot);
 			}
@@ -282,13 +279,8 @@ void Man1::TaiDuLieu()
 			}
 			else if (lNhomObject->GetName() == "MayBay")
 			{
-				MayBay* lMayBay = new MayBay(lToaDoDoiTuong, mDS_TenLua_Quai, mDS_Bui_Quai);
-
-				mQuadTree_Dong->ThemDoiTuong(lMayBay);
-			}
-						else if (lNhomObject->GetName() == "MayBay")
-			{
-				MayBay* lMayBay = new MayBay(lToaDoDoiTuong, mDS_TenLua_Quai, mDS_Bui_Quai);
+				MayBay* lMayBay = new MayBay(lToaDoDoiTuong, mDS_TenLua_Quai, 
+					mDS_Bui_Quai, mItem);
 
 				mQuadTree_Dong->ThemDoiTuong(lMayBay);
 			}
@@ -385,6 +377,7 @@ void Man1::CapNhat(float in_tg)
 	DS_CuaDanhBoss[5]->CapNhat(in_tg, mXMan);
 	mBOSS1->CapNhat(in_tg, mXMan);
 	mBOSS2->CapNhat(in_tg, mXMan);
+	mItem->CapNhat(in_tg, mXMan);
 
 	mXMan->CapNhat(in_tg);
 
@@ -437,6 +430,8 @@ void Man1::CapNhat(float in_tg)
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[4]);
 	mXMan->XuLyVaCham(DS_CuaDanhBoss[5]);
 	mXMan->XuLyVaCham(mBOSS1);
+	mXMan->XuLyVaCham(mItem);
+	mItem->XuLyVaCham(mXMan);
 	if (mBOSS2->get_TrangThai() == eTT_BOSS2_BocVac)
 	{
 		mXMan->XuLyVaCham(mBOSS2->get_Box0());
@@ -487,6 +482,7 @@ void Man1::CapNhat(float in_tg)
 
 	for (auto DT : mDS_DoiTuong_Tinh)
 	{
+		mItem->XuLyVaCham(DT);
 		mXMan->XuLyVaCham(DT);
 
 		for (auto DT2 : mDS_DoiTuong_Dong)
@@ -550,6 +546,7 @@ void Man1::Ve()
 	DS_CuaDanhBoss[5]->Ve(lDoDoi);
 	mBOSS1->Ve(lDoDoi);
 	mBOSS2->Ve(lDoDoi);
+	mItem->Ve(lDoDoi);
 
 	mXMan->Ve(lDoDoi);
 

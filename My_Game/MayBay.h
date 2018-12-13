@@ -4,13 +4,14 @@
 #include "DS_HinhAnh.h"
 #include "Bui.h"
 #include "TenLua.h"
+#include "Item.h"
 
 class MayBay :
 	public DoiTuong
 {
 public:
 	MayBay(const Vec2& in_ToaDo, std::vector<TenLua*>& in_DS_TenLua, 
-		std::vector<Bui*>& in_Bui);
+		std::vector<Bui*>& in_Bui, Item *in_Item);
 
 	void CapNhat(float in_tg) {}
 
@@ -21,6 +22,7 @@ public:
 
 // INFORMATION
 private:
+	Item *mItem;
 	std::vector<TenLua*> mDS_TenLua; // trỏ đến Tên Lửa Màn 1
 	std::vector<Bui*> mDS_Bui;
 

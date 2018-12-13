@@ -6,12 +6,13 @@
 #include "DanNo1.h"
 #include "TenLua.h"
 #include "Bui.h"
+#include "Item.h"
 
 class LoCot : public DoiTuong
 {
 public:
 	LoCot(const Vec2& in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1, 
-		std::vector<TenLua*>& in_DS_TenLua, std::vector<Bui*>& in_Bui);
+		std::vector<TenLua*>& in_DS_TenLua, std::vector<Bui*>& in_Bui, Item *in_Item);
 
 	// ko xài cái này
 	void CapNhat(float in_tg)
@@ -25,6 +26,7 @@ public:
 	void XuLyVaCham(const DoiTuong* in_DoiTuong);
 // INFORMATION
 private:
+	Item *mItem;
 	// các đối tượng khác
 	std::vector<DanNo1*> mDS_DanNo1; // chỉ chứa con trỏ chỉ đến 
 	std::vector<TenLua*> mDS_TenLua; // trỏ đến Tên Lửa Màn 1

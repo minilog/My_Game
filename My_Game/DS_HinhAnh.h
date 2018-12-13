@@ -65,6 +65,7 @@ private:
 		Box_png = new HinhAnh("Resources/BOSS2/Box.png");
 		Box_Shining_png = new HinhAnh("Resources/BOSS2/Box_Shining.png");
 		TrucXoayLan2 = new HinhAnh("Resources/TrucXoayLan2.png");
+		Item = new HinhAnh("Resources/XMan/Item.png", D3DCOLOR_XRGB(50, 96, 166));
 	}
 	~DS_HinhAnh()
 	{
@@ -72,6 +73,8 @@ private:
 	}
 
 public:
+	HinhAnh *Item;
+
 	HinhAnh *TrucXoayLan2;
 
 	HinhAnh	*BOSS2_png,
