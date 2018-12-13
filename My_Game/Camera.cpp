@@ -238,7 +238,8 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 			CheckPoint++;
 		}
 		break;
-	case 18:
+
+	case 18:  // TEST
 		if (in_ToaDo.x >= 7800.0f && in_ToaDo.x <= 7850.0f)
 		{
 			mGioiHanTrai = mGioiHanTraiTiepTheo = 7934 - mChieuRong;

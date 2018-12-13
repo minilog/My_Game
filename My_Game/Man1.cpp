@@ -42,13 +42,13 @@ void Man1::TaiDuLieu()
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
 	//Camera::CheckPoint = -1;
-	Camera::CheckPoint = 6;
+	//Camera::CheckPoint = 6;
 	//Camera::CheckPoint = 9;
 	//Camera::CheckPoint = 14;
 	//Camera::CheckPoint = 16;
-	//Camera::CheckPoint = 18;
-	Camera::set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 750.0f));
-	//Camera::set_ToaDo(Vec2(7808.0f, 1750.0f)); // TEST
+	Camera::CheckPoint = 18;
+	//Camera::set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 750.0f));
+	Camera::set_ToaDo(Vec2(7808.0f, 1750.0f)); // TEST
 #pragma endregion
 
 	// lấy hình ảnh bản đồ map
@@ -61,7 +61,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(/*Vec2(7808.0f, 1750.0f)*/Vec2(100.0f, 730.0f));
+	mXMan = new XMan(Vec2(7808.0f, 1750.0f)/*Vec2(100.0f, 730.0f)*/);
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
