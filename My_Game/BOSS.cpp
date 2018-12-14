@@ -6,13 +6,36 @@ BOSS::BOSS(const Vec2& in_ToaDo)
 {
 	mLoaiDoiTuong = eLDT_BOSS;
 	LoadThongTinHoatHinh();
-	HH_HienTai = HH_ChuanBiDamKim;
+	XuatHien();
 }
 
 void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 {
 	HH_HienTai->CapNhat(in_tg);
 	HH_CanhOng->CapNhat(in_tg);
+	mToaDo.x += mVanToc.x * in_tg;
+	mToaDo.y += mVanToc.y * in_tg;
+	DEM += in_tg;
+	if (mTrangThai == eTT_BOSS_XuatHien)
+	{
+		if (DEM > 1.2)
+		{
+			mVanToc.y = 0.0f;
+			HH_HienTai = HH_ThaOng;
+		}
+		if (DEM > 2.05f)
+		{
+			HH_HienTai = HH_ChuanBiDamKim;
+		}
+		if (DEM > 3.0f)
+		{
+			HH_HienTai = HH_DamKim;
+		}
+		if (DEM > 3.5f)
+		{
+			DamKim(in_DoiTuong->get_ToaDo());
+		}
+	}
 }
 
 void BOSS::XuLyVaCham(const DoiTuong * in_DoiTuong)
@@ -25,6 +48,27 @@ void BOSS::Ve(const Vec2 & in_DoDoi)
 	HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi);
 }
 
+
+void BOSS::XuatHien()
+{
+	mTrangThai = eTT_BOSS_XuatHien;
+	mToaDo.y = 1750.0f;
+	HH_ChuanBiDamKim->Remake(1);
+	HH_DamKim->Remake(1);
+	HH_ThaOng->Remake(1);
+	DEM = 0.0f;
+	HH_HienTai = HH_Bay;
+	mVanToc.y = 90.0f;
+}
+
+void BOSS::DamKim(const Vec2& DiemDen)
+{
+	mTrangThai = eTT_BOSS_DamKim;
+	float DX = DiemDen.x - mToaDo.x;
+	float DY = DiemDen.y - mToaDo.y;
+	float K = sqrt((VanTocTiepCan * VanTocTiepCan) / (DX * DX + DY * DY));
+	mVanToc = Vec2(DX * K, DY * K);
+}
 
 void BOSS::LoadThongTinHoatHinh()
 {
@@ -44,32 +88,32 @@ void BOSS::LoadThongTinHoatHinh()
 
 	lDSTTFrame.clear();
 	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62), 0.15f)); // 1
-	HH_DungIm = new HoatHinh(lDSTTFrame);
+	HH_Bay = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62),     0.1f)); // 1
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 54, HCN(61,	61 + 44,  8, 8 + 60 ),  0.1f)); // 2
-	lDSTTFrame.push_back(ThongTinFrame(38 + 4, 54, HCN(116, 116 + 38, 9, 9 + 58),   0.1f)); // 3
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54),   0.1f)); // 4
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54),   0.1f)); // 5
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(41, 41 + 40, 92, 92 + 54),   0.1f)); // 6
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(87, 87 + 40, 91, 91 + 58),   0.1f)); // 7
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(132, 132 + 40, 92, 92 + 58), 0.1f)); // 8 
-	lDSTTFrame.push_back(ThongTinFrame(42 + 4, 56, HCN(177, 177 + 40, 93, 93 + 58), 0.1f)); // 9
-	lDSTTFrame.push_back(ThongTinFrame(48 + 4, 56, HCN(222, 222 + 44, 93, 93 + 58), 0.1f)); // 10
-	lDSTTFrame.push_back(ThongTinFrame(42 + 4, 56, HCN(272, 272 + 40, 94, 94 + 58), 0.1f)); // 11
-	lDSTTFrame.push_back(ThongTinFrame(48 + 4, 56, HCN(315, 315 + 44, 94, 94 + 58), 0.1f)); // 12
-	lDSTTFrame.push_back(ThongTinFrame(50 + 4, 56, HCN(364, 364 + 44, 94, 94 + 58), 0.1f)); // 13
+	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62),     0.06f)); // 1
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 54, HCN(61,	61 + 44,  8, 8 + 60 ),  0.06f)); // 2
+	lDSTTFrame.push_back(ThongTinFrame(38 + 4, 54, HCN(116, 116 + 38, 9, 9 + 58),   0.06f)); // 3
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54),   0.06f)); // 4
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54),   0.06f)); // 5
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(41, 41 + 40, 92, 92 + 54),   0.06f)); // 6
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(87, 87 + 40, 91, 91 + 58),   0.06f)); // 7
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(132, 132 + 40, 92, 92 + 58), 0.06f)); // 8 
+	lDSTTFrame.push_back(ThongTinFrame(42 + 4, 56, HCN(177, 177 + 40, 93, 93 + 58), 0.06f)); // 9
+	lDSTTFrame.push_back(ThongTinFrame(48 + 4, 56, HCN(222, 222 + 44, 93, 93 + 58), 0.06f)); // 10
+	lDSTTFrame.push_back(ThongTinFrame(42 + 4, 56, HCN(272, 272 + 40, 94, 94 + 58), 0.06f)); // 11
+	lDSTTFrame.push_back(ThongTinFrame(48 + 4, 56, HCN(315, 315 + 44, 94, 94 + 58), 0.06f)); // 12
+	lDSTTFrame.push_back(ThongTinFrame(50 + 4, 56, HCN(364, 364 + 44, 94, 94 + 58), 0.06f)); // 13
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(87, 87 + 40, 91, 91 + 58), 99.9f)); // 7
 	HH_ChuanBiDamKim = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(87, 87 + 40, 91, 91 + 58), 1.5f)); // 7
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(41, 41 + 40, 92, 92 + 54), 0.1f)); // 6
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54), 0.1f)); // 5
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54), 0.1f)); // 4
-	lDSTTFrame.push_back(ThongTinFrame(38 + 4, 54, HCN(116, 116 + 38, 9, 9 + 58), 0.1f)); // 3
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 54, HCN(61, 61 + 44, 8, 8 + 60),   0.1f)); // 2
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(41, 41 + 40, 92, 92 + 54), 0.06f)); // 6
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54), 0.06f)); // 5
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54), 0.06f)); // 4
+	lDSTTFrame.push_back(ThongTinFrame(38 + 4, 54, HCN(116, 116 + 38, 9, 9 + 58), 0.06f)); // 3
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 54, HCN(61, 61 + 44, 8, 8 + 60),   0.06f)); // 2
 	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62),   99.9f)); // 1
 	HH_DamKim = new HoatHinh(lDSTTFrame);
 
