@@ -91,7 +91,7 @@ void Man1::TaiDuLieu()
 		TenLua* lTL = new TenLua();
 		mDS_TenLua_Quai.push_back(lTL);
 	}
-#pragma endregion
+
 
 	// tạo 3 Cửa đánh boss
 	DS_CuaDanhBoss[0] = new CuaDanhBoss(Vec2(2312.0f, 1176.0f));
@@ -102,6 +102,7 @@ void Man1::TaiDuLieu()
 	DS_CuaDanhBoss[5] = new CuaDanhBoss(Vec2(7688.0f, 1944.0f), true);
 	mBOSS1 = new BOSS1(Vec2(2517.0f, 1155.0f + 23.0f), DS_CuaDanhBoss[1]);
 	mBOSS2 = new BOSS2();
+	mBOSS = new BOSS(Vec2(7872.0f, 1860.0f));
 
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
@@ -296,6 +297,8 @@ void Man1::TaiDuLieu()
 		OUT_DEFAULT_PRECIS, ANTIALIASED_QUALITY, FF_DONTCARE, L"Arial", &font);
 
 	SetRect(&fRectangle, 0, 0, Camera::get_ChieuRong(), Camera::get_ChieuCao());
+
+#pragma endregion
 }
 
 
@@ -378,6 +381,7 @@ void Man1::CapNhat(float in_tg)
 	mBOSS1->CapNhat(in_tg, mXMan);
 	mBOSS2->CapNhat(in_tg, mXMan);
 	mItem->CapNhat(in_tg, mXMan);
+	mBOSS->CapNhat(in_tg, mXMan);
 
 	mXMan->CapNhat(in_tg);
 
@@ -432,6 +436,7 @@ void Man1::CapNhat(float in_tg)
 	mXMan->XuLyVaCham(mBOSS1);
 	mXMan->XuLyVaCham(mItem);
 	mItem->XuLyVaCham(mXMan);
+	mXMan->XuLyVaCham(mBOSS);
 	if (mBOSS2->get_TrangThai() == eTT_BOSS2_BocVac)
 	{
 		mXMan->XuLyVaCham(mBOSS2->get_Box0());
@@ -547,6 +552,7 @@ void Man1::Ve()
 	mBOSS1->Ve(lDoDoi);
 	mBOSS2->Ve(lDoDoi);
 	mItem->Ve(lDoDoi);
+	mBOSS->Ve(lDoDoi);
 
 	mXMan->Ve(lDoDoi);
 
@@ -683,4 +689,5 @@ void Man1::DrawCollidable()
 	//{
 	//	mGameDebugDraw->DrawRect(DoiTuong->get_RECT());
 	//}
+	mGameDebugDraw->DrawRect(mBOSS->get_RECT());
 }

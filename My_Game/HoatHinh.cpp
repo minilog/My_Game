@@ -27,7 +27,8 @@ void HoatHinh::CapNhat(float in_tg)
 	}
 
 	// thực hiện các dòng bên dưới để Cập Nhật
-	mThoiGianDem -= mDSThongTinFrame[mViTriFrame].ThoiGian;
+	//mThoiGianDem -= mDSThongTinFrame[mViTriFrame].ThoiGian;
+	mThoiGianDem = 0.0f; //TEST
 	mViTriFrame++;
 
 	if (mViTriFrame >= (int)mDSThongTinFrame.size())

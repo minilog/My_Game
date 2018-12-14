@@ -114,7 +114,8 @@ enum eLoaiDoiTuong
 	eLDT_Box,
 	eLDT_Pet2,
 	eLDT_DanSang, 
-	eLDT_Item
+	eLDT_Item, 
+	eLDT_BOSS
 };
 
 enum eHuongDiChuyen
@@ -124,6 +125,8 @@ enum eHuongDiChuyen
 
 enum eTrangThai
 {
+	eTT_BOSS_XuatHien,
+
 	eTT_Item_Roi,
 	eTT_Item_NamIm,
 	eTT_Item_BienMat,

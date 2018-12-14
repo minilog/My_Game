@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BOSS.cpp" />
     <ClCompile Include="BOSS1.cpp" />
     <ClCompile Include="BOSS2.cpp" />
     <ClCompile Include="Box.cpp" />
@@ -200,6 +201,7 @@
     <ClCompile Include="XMan.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BOSS.h" />
     <ClInclude Include="BOSS1.h" />
     <ClInclude Include="BOSS2.h" />
     <ClInclude Include="Box.h" />

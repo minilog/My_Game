@@ -21,6 +21,7 @@
 #include "BOSS2.h"
 #include "Box.h"
 #include "Item.h"
+#include "BOSS.h"
 
 
 
@@ -47,6 +48,7 @@ public:
 	QuadTree *mQuadTree_Dong;
 // INFORMATION
 private:
+	BOSS *mBOSS;
 	Item *mItem;
 	BOSS2* mBOSS2;
 	BOSS1* mBOSS1;
