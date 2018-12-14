@@ -67,7 +67,7 @@ void Man1::TaiDuLieu()
 	mXMan->get_DS_Dan(mDS_DanLv);
 
 	// tạo thanh máu XMan
-	mThanhMauXMan = new ThanhMau();
+	mThanhMauXMan = new ThanhMau(Vec2(15.0f, 90.0f));
 	mItem = new Item();
 
 #pragma region DONE

@@ -5,9 +5,9 @@
 class ThanhMau
 {
 public:
-	ThanhMau() {
+	ThanhMau(const Vec2& in_ToaDo = Vec2(10.0f, 110.0f)) {
 		LoadHinhAnhVao();
-		mToaDo = Vec2(10.0f, 110.0f);
+		mToaDo = in_ToaDo;
 		mBieuTuong->set_ToaDo(mToaDo);
 		mKhungTren->set_ToaDo(mToaDo + Vec2(0.0f, -58.0f));
 	}
