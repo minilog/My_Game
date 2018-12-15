@@ -68,6 +68,7 @@ void Man1::TaiDuLieu()
 
 	// tạo thanh máu XMan
 	mThanhMauXMan = new ThanhMau(Vec2(15.0f, 90.0f));
+	mThanhMauBoss = new ThanhMau(Vec2(239.0f, 90.0f), true);
 	mItem = new Item();
 
 #pragma region DONE
@@ -447,7 +448,12 @@ void Man1::CapNhat(float in_tg)
 	mBOSS->get_OngCon1()->XuLyVaCham(mXMan);
 	mBOSS->get_OngCon2()->XuLyVaCham(mXMan);
 	mBOSS->get_OngCon3()->XuLyVaCham(mXMan);
-	mBOSS->get_OngCon4()->XuLyVaCham(mXMan);
+	mBOSS->get_OngCon4()->XuLyVaCham(DS_CuaDanhBoss[5]);
+	mBOSS->get_OngCon0()->XuLyVaCham(DS_CuaDanhBoss[5]);
+	mBOSS->get_OngCon1()->XuLyVaCham(DS_CuaDanhBoss[5]);
+	mBOSS->get_OngCon2()->XuLyVaCham(DS_CuaDanhBoss[5]);
+	mBOSS->get_OngCon3()->XuLyVaCham(DS_CuaDanhBoss[5]);
+	mBOSS->get_OngCon4()->XuLyVaCham(DS_CuaDanhBoss[5]);
 	mXMan->XuLyVaCham(mBOSS->get_OngCon0());
 	mXMan->XuLyVaCham(mBOSS->get_OngCon1());
 	mXMan->XuLyVaCham(mBOSS->get_OngCon2());
@@ -620,7 +626,7 @@ void Man1::Ve()
 		TenLua->Ve(lDoDoi);
 	}
 
-	mThanhMauXMan->Ve(mXMan->get_HP());
+
 
 
 	for (auto D : mDS_DanNo1_Quai)
@@ -633,6 +639,11 @@ void Man1::Ve()
 		Bui->Ve(lDoDoi);
 	}
 
+	mThanhMauXMan->Ve(mXMan->get_HP());
+	if (mBOSS->get_TrangThai() != eTT_BOSS1_BienMat)
+	{
+		mThanhMauBoss->Ve(mBOSS->get_HP());
+	}
 	// tô màu trắng trước khi Reset game
 	if (mXMan->get_TrangThai() == eTT_XMan_PhatNo)
 	{

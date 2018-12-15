@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "HinhAnh.h"
+#include "DS_HinhAnh.h"
 
 class ThanhMau
 {
@@ -16,17 +17,10 @@ public:
 
 	void LoadHinhAnhVao()
 	{
-		if (Boss)
-		{
-
-		}
-		else
-		{
-			mBieuTuong = new HinhAnh("Resources/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
-			mBieuTuong->set_ChieuRong(14);
-			mBieuTuong->set_ChieuCao(16);
-			mBieuTuong->set_HCN(HCN(2, 2 + 14, 45, 45 + 16));
-		}
+		mBieuTuong = new HinhAnh("Resources/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
+		mBieuTuong->set_ChieuRong(14);
+		mBieuTuong->set_ChieuCao(16);
+		mBieuTuong->set_HCN(HCN(2, 2 + 14, 45, 45 + 16));
 
 		mKhungGiua = new HinhAnh("Resources/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
 		mKhungGiua->set_ChieuRong(14);
@@ -46,15 +40,36 @@ public:
 
 	void Ve(int in_HP)
 	{
-		mBieuTuong->Ve();
-		mKhungGiua->set_ToaDo(mToaDo + Vec2(0.0f, -16.0f));
-		mKhungGiua->Ve();
-		mKhungGiua->set_ToaDo(mToaDo + Vec2(0.0f, -32.0f));
-		mKhungGiua->Ve();
-		mKhungGiua->set_ToaDo(mToaDo + Vec2(0.0f, -48.0f));
-		mKhungGiua->Ve();
-		mKhungTren->Ve();
-		
+		if (Boss)
+		{
+			DS_HinhAnh::get_TH()->BieuTuongThanhMauBoss->set_ToaDo(mToaDo);
+			DS_HinhAnh::get_TH()->BieuTuongThanhMauBoss->Ve();
+
+			mKhungGiua->set_ToaDo(mToaDo + Vec2(0.0f, -16.0f));
+			mKhungGiua->Ve();
+			mKhungGiua->set_ToaDo(mToaDo + Vec2(0.0f, -32.0f));
+			mKhungGiua->Ve();
+			mKhungGiua->set_ToaDo(mToaDo + Vec2(0.0f, -48.0f));
+			mKhungGiua->Ve();
+			mKhungTren->Ve();
+			mKhungGiua->set_ToaDo(mToaDo + Vec2(0.0f, -64.0f));
+			mKhungGiua->Ve();
+			mKhungTren->set_ToaDo(mToaDo + Vec2(0.0f, -74.0f));
+			mKhungTren->Ve();
+		}
+		else
+		{
+			mBieuTuong->Ve();
+
+			mKhungGiua->set_ToaDo(mToaDo + Vec2(0.0f, -16.0f));
+			mKhungGiua->Ve();
+			mKhungGiua->set_ToaDo(mToaDo + Vec2(0.0f, -32.0f));
+			mKhungGiua->Ve();
+			mKhungGiua->set_ToaDo(mToaDo + Vec2(0.0f, -48.0f));
+			mKhungGiua->Ve();
+			mKhungTren->Ve();
+		}
+
 		for (int i = 0; i < int((in_HP + 4) / (mHPToiDa / 24.0f)); i++)
 		{
 			mMau->set_ToaDo(mToaDo + Vec2(0.0f, -9.0f - i * 2.0f));

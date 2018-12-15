@@ -5,8 +5,8 @@
 BOSS::BOSS(const Vec2& in_ToaDo)
 	:
 	DoiTuong(in_ToaDo, Vec2(), 26, 46),
-	ViTri1(7710.0f, 1870.0f),
-	ViTri2(7904.0f, 1870.0f)
+	ViTri1(7710.0f, 1880.0f),
+	ViTri2(7904.0f, 1880.0f)
 {
 	mLoaiDoiTuong = eLDT_BOSS;
 	ViTri_CanDenHienTai = ViTri2;
@@ -28,6 +28,12 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	mToaDo.y += mVanToc.y * in_tg;
 	DEM += in_tg;
 	KC_BOSS_XMAN = mToaDo.x - in_DoiTuong->get_ToaDo().x;
+	DEM_KoAnDan += in_tg;
+	DEM_KoAnDan2 += in_tg;
+	if (DEM_KoAnDan2 > 0.1f)
+	{
+		DEM_KoAnDan2 = 0.0f;
+	}
 
 	if (mTrangThai == eTT_BOSS_XuatHien)
 	{
@@ -116,7 +122,7 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	if (mTrangThai == eTT_BOSS_BayVongSo8)
 	{
 		GocSin += in_tg * 230;
-		mVanToc.y = 110.0f * (float)sin(GocSin * VAL);
+		mVanToc.y = 120.0f * (float)sin(GocSin * VAL);
 
 		if (mToaDo.x < ViTri1.x - 20.0f)
 		{
@@ -146,10 +152,39 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 
 void BOSS::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
-	if (mTrangThai == eTT_BOSS_XuatHien)
+	if (mTrangThai == eTT_BOSS_XuatHien ||
+		mTrangThai == eTT_BOSS_PhatNo ||
+		mTrangThai == eTT_BOSS2_BienMat)
 	{
 		return;
 	}
+
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv1 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv2 ||
+		in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv3)
+	{
+
+		if (((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_BienMat ||
+			((DanLv*)in_DoiTuong)->get_TrangThai() == eTT_Dan_DangTanBien)
+		{
+			return;
+		}
+
+		if (DEM_KoAnDan <= TG_KoAnDan)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		HP -= ((DanLv*)in_DoiTuong)->get_Damage();
+		DEM_KoAnDan = DEM_KoAnDan2 = 0.0f;
+	}
+
 	if (mTrangThai == eTT_BOSS_DamKim)
 	{
 		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
@@ -199,6 +234,21 @@ void BOSS::Ve(const Vec2 & in_DoDoi)
 {
 	HH_CanhOng->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo + Vec2(0.0f, -29.0f), in_DoDoi);
 	HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi);
+	if (DEM_KoAnDan < TG_KoAnDan)
+	{
+		if (DEM_KoAnDan2 < 0.033f)
+		{
+			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS_Shining1, LatHinh, mToaDo, in_DoDoi);
+		}
+		else if (DEM_KoAnDan2 < 0.066f)
+		{
+			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS_Shining2, LatHinh, mToaDo, in_DoDoi);
+		}
+		else
+		{
+			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi);
+		}
+	}
 }
 
 

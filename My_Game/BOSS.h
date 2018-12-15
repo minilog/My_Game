@@ -3,6 +3,7 @@
 #include "HoatHinh.h"
 #include "DS_HinhAnh.h"
 #include "OngCon.h"
+#include "ThanhMau.h"
 #define VAL 0.0174532925
 
 class BOSS :
@@ -23,8 +24,15 @@ public:
 	OngCon* get_OngCon2() { return DS_OngCon[2]; }
 	OngCon* get_OngCon3() { return DS_OngCon[3]; }
 	OngCon* get_OngCon4() { return DS_OngCon[4]; }
+	int get_HP() { return HP; }
 // INFORMATION
 private:
+	static constexpr float TG_KoAnDan = 0.6f;
+	float DEM_KoAnDan = TG_KoAnDan + 0.1f;
+	float DEM_KoAnDan2 = TG_KoAnDan + 0.1f;
+
+	static constexpr int MAXHP = 132;
+	int HP = MAXHP;
 	float DX, DY;
 	OngCon *DS_OngCon[5];
 	Vec2 ViTri1;

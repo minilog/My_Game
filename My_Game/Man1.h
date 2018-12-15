@@ -68,6 +68,7 @@ private:
 	std::vector<TenLua*> mDS_TenLua_Quai;
 
 	ThanhMau *mThanhMauXMan;
+	ThanhMau *mThanhMauBoss;
 	//HinhAnh *mTest;
 	HinhAnh *mBanDoMap1;
 	std::map<int, bool> mKeys;

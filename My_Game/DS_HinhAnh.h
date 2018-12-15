@@ -67,6 +67,9 @@ private:
 		TrucXoayLan2 = new HinhAnh("Resources/TrucXoayLan2.png");
 		Item = new HinhAnh("Resources/XMan/Item.png", D3DCOLOR_XRGB(50, 96, 166));
 		BOSS = new HinhAnh("Resources/BOSS.png", D3DCOLOR_XRGB(0, 128, 128));
+		BieuTuongThanhMauBoss = new HinhAnh("Resources/BieuTuongThanhMauBoss.png", D3DCOLOR_XRGB(50, 96, 166));
+		BOSS_Shining1 = new HinhAnh("Resources/BOSS_Shining1.png", D3DCOLOR_XRGB(105, 255, 255));
+		BOSS_Shining2 = new HinhAnh("Resources/BOSS_Shining2.png", D3DCOLOR_XRGB(103, 255, 255));
 	}
 	~DS_HinhAnh()
 	{
@@ -74,6 +77,9 @@ private:
 	}
 
 public:
+	HinhAnh *BOSS_Shining1,
+		*BOSS_Shining2;
+	HinhAnh *BieuTuongThanhMauBoss;
 	HinhAnh *BOSS;
 	HinhAnh *Item;
 
