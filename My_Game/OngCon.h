@@ -147,6 +147,11 @@ public:
 		HP = MAXHP;
 		DEM_KoTheGaySatThuong = TG_KoTheGaySatThuong + 0.1f;
 	}
+	void ChoDoiHongTam(const Vec2& in_ToaDo)
+	{
+		mTrangThai = eTT_OngCon_ChoDoiHongTam;
+		mToaDo = in_ToaDo;
+	}
 
 	bool get_KoTheGaySatThuong() { return (DEM_KoTheGaySatThuong <= TG_KoTheGaySatThuong); }
 	float DEM_KoTheGaySatThuong = 99.9f;

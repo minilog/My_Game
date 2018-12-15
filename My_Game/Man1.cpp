@@ -390,6 +390,7 @@ void Man1::CapNhat(float in_tg)
 	mBOSS->get_OngCon2()->CapNhat(in_tg, mXMan);
 	mBOSS->get_OngCon3()->CapNhat(in_tg, mXMan);
 	mBOSS->get_OngCon4()->CapNhat(in_tg, mXMan);
+	mBOSS->get_HongTam()->CapNhat(in_tg, mXMan);
 
 	for (auto DanLv : mDS_DanLv)
 	{
@@ -459,6 +460,8 @@ void Man1::CapNhat(float in_tg)
 	mXMan->XuLyVaCham(mBOSS->get_OngCon2());
 	mXMan->XuLyVaCham(mBOSS->get_OngCon3());
 	mXMan->XuLyVaCham(mBOSS->get_OngCon4());
+	mBOSS->get_HongTam()->XuLyVaCham(mXMan);
+
 	if (mBOSS2->get_TrangThai() == eTT_BOSS2_BocVac)
 	{
 		mXMan->XuLyVaCham(mBOSS2->get_Box0());
@@ -603,6 +606,7 @@ void Man1::Ve()
 	mBOSS->get_OngCon4()->Ve(lDoDoi);
 
 	mXMan->Ve(lDoDoi);
+	mBOSS->get_HongTam()->Ve(lDoDoi);
 
 
 
@@ -724,7 +728,7 @@ void Man1::DrawCollidable()
 	//{
 	//	mGameDebugDraw->DrawRect(child->get_RECT());
 	//}
-	mGameDebugDraw->DrawRect(mXMan->get_RECT());
+	//mGameDebugDraw->DrawRect(mXMan->get_RECT());
 
 	//for (int i = 0; i < (int)mDS_Ech.size(); i++)
 	//{
@@ -743,16 +747,16 @@ void Man1::DrawCollidable()
 	//{
 	//	mGameDebugDraw->DrawRect(DoiTuong->get_RECT());
 	//}
-	mGameDebugDraw->DrawRect(mBOSS->get_RECT());
-	RECT a; 
-	a.left = (int)mBOSS->ViTri_CanDenHienTai.x;
-	a.right = (int)mBOSS->ViTri_CanDenHienTai.x + 1;
-	a.top = (int)mBOSS->ViTri_CanDenHienTai.y;
-	a.bottom = (int)mBOSS->ViTri_CanDenHienTai.y + 1;
-	mGameDebugDraw->DrawRect(a);
-	mGameDebugDraw->DrawRect(mBOSS->get_OngCon0()->get_RECT());
-	mGameDebugDraw->DrawRect(mBOSS->get_OngCon1()->get_RECT());
-	mGameDebugDraw->DrawRect(mBOSS->get_OngCon2()->get_RECT());
-	mGameDebugDraw->DrawRect(mBOSS->get_OngCon3()->get_RECT());
-	mGameDebugDraw->DrawRect(mBOSS->get_OngCon4()->get_RECT());
+	//mGameDebugDraw->DrawRect(mBOSS->get_RECT());
+	//RECT a; 
+	//a.left = (int)mBOSS->ViTri_CanDenHienTai.x;
+	//a.right = (int)mBOSS->ViTri_CanDenHienTai.x + 1;
+	//a.top = (int)mBOSS->ViTri_CanDenHienTai.y;
+	//a.bottom = (int)mBOSS->ViTri_CanDenHienTai.y + 1;
+	//mGameDebugDraw->DrawRect(a);
+	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon0()->get_RECT());
+	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon1()->get_RECT());
+	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon2()->get_RECT());
+	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon3()->get_RECT());
+	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon4()->get_RECT());
 }

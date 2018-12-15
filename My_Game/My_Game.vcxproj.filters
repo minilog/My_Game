@@ -416,10 +416,12 @@
     <ClInclude Include="BOSS2.h">
       <Filter>4.DoiTuong</Filter>
     </ClInclude>
-    <ClInclude Include="Item.h" />
     <ClInclude Include="BOSS.h" />
     <ClInclude Include="OngCon.h" />
     <ClInclude Include="HongTam.h" />
+    <ClInclude Include="Item.h">
+      <Filter>4.DoiTuong</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="MapReader\Tmx.h.in">

@@ -1,6 +1,7 @@
 ﻿#include "BOSS.h"
 #include <cmath>
 #include "VaChamGame.h"
+#include <ctime>
 
 BOSS::BOSS(const Vec2& in_ToaDo)
 	:
@@ -15,8 +16,10 @@ BOSS::BOSS(const Vec2& in_ToaDo)
 	{
 		DS_OngCon[i] = new OngCon();
 	}
+	mHongTam = new HongTam();
 	LoadThongTinHoatHinh();
 	XuatHien();
+	srand((int)time(NULL));
 }
 
 void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
@@ -48,16 +51,16 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		{
 			HH_HienTai = HH_ChuanBiDamKim;
 		}
-		if (DEM > 3.0f)
+		if (DEM > 2.8f)
 		{
 			HH_HienTai = HH_DamKim;
 		}
-		if (DEM > 4.0f)
+		if (DEM > 3.8f)
 		{
 			mVanToc.y = -40.0f;
 			mVanToc.x = -30.0f;
 		}
-		if (DEM > 4.5f)
+		if (DEM > 4.3f)
 		{
 			ChuanBiDamKim();
 			DEM = 0.0f;
@@ -179,6 +182,46 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	}
 	if (mTrangThai == eTT_BOSS_BayVongVong)
 	{
+		for (int i = 0; i < 5; i++)
+		{
+			int l = rand() % 81 - 40;
+			int r = rand() % 81 - 40;
+			DS_OngCon[i]->set_VanToc(mVanToc + Vec2((float)l, (float)r));
+		}
+		if (DEM > 6.0f)
+		{
+			DEM = 0.0f;
+			HH_HienTai = HH_Bay;
+			HH_SinhOng->Remake();
+			mHongTam->DiChuyen(mToaDo);
+		}
+
+		if (DEM >= 2.0f)
+		{
+			if (DEM_SinhOng >= 1.0f)
+			{
+				DEM_SinhOng = 0.0f;
+				// Viết hàm Sinh Ong
+				for (int i = 0; i < 5; i++)
+				{
+					if (DS_OngCon[i]->get_TrangThai() == eTT_OngCon_BienMat)
+					{
+						if (LatHinh)
+						{
+							DS_OngCon[i]->ChoDoiHongTam(mToaDo + Vec2(10.0f, 22.0f));
+						}
+						else
+						{
+							DS_OngCon[i]->ChoDoiHongTam(mToaDo + Vec2(-10.0f, 22.0f));
+						}
+						break;
+					}
+				}
+			}
+			DEM_SinhOng += in_tg;
+			HH_HienTai = HH_SinhOng;
+		}
+
 		if (GocSin >= 270.0f + 360.0f)
 		{
 			GocSin = -90.0f;
@@ -355,7 +398,8 @@ void BOSS::BayVongVong()
 	mTrangThai = eTT_BOSS_BayVongVong;
 	HH_HienTai = HH_Bay;
 	HH_HienTai->Remake();
-	DEM = 0.0f;
+	DEM = 10.0f;
+	DEM_SinhOng = 0.0f;
 }
 
 void BOSS::ChuanBiDamKim()
@@ -408,6 +452,22 @@ void BOSS::LoadThongTinHoatHinh()
 	std::vector<ThongTinFrame> lDSTTFrame;
 
 	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62),		0.6f)); // 1
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 54, HCN(61, 61 + 44, 8, 8 + 60),		0.1f)); // 2
+	lDSTTFrame.push_back(ThongTinFrame(38 + 4, 54, HCN(116, 116 + 38, 9, 9 + 58),	0.1f)); // 3
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54),   0.1f)); // 4
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54),   0.1f)); // 5
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54),	0.9f)); // 4
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54),	0.1f)); // 5
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54),	0.9f)); // 4
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54),	0.1f)); // 5
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54),	0.4f)); // 4
+	lDSTTFrame.push_back(ThongTinFrame(38 + 4, 54, HCN(116, 116 + 38, 9, 9 + 58),	0.1f)); // 3
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 54, HCN(61, 61 + 44, 8, 8 + 60),		0.1f)); // 2
+	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62),		99.9f)); // 1
+	HH_SinhOng = new HoatHinh(lDSTTFrame);
+
+	lDSTTFrame.clear();
 	lDSTTFrame.push_back(ThongTinFrame(48, 52, HCN(6, 6 + 50, 10, 10 + 62), 0.1f)); // 1
 	lDSTTFrame.push_back(ThongTinFrame(52, 58, HCN(263, 263 + 52, 4, 78),   0.1f)); // 2
 	lDSTTFrame.push_back(ThongTinFrame(54, 58, HCN(320, 320 + 48, 4, 78),   0.1f)); // 3
@@ -420,15 +480,15 @@ void BOSS::LoadThongTinHoatHinh()
 	HH_ThaOng = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62), 0.15f)); // 1
+	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62))); // 1
 	HH_Bay = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
 	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62),     0.06f)); // 1
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 54, HCN(61,	61 + 44,  8, 8 + 60 ),  0.06f)); // 2
 	lDSTTFrame.push_back(ThongTinFrame(38 + 4, 54, HCN(116, 116 + 38, 9, 9 + 58),   0.06f)); // 3
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54),   0.06f)); // 4
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54),   0.06f)); // 5
+	//lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54),   0.06f)); // 4
+	//lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54),   0.06f)); // 5
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(41, 41 + 40, 92, 92 + 54),   0.06f)); // 6
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(87, 87 + 40, 91, 91 + 58),   0.06f)); // 7
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(132, 132 + 40, 92, 92 + 58), 0.06f)); // 8 
@@ -441,10 +501,10 @@ void BOSS::LoadThongTinHoatHinh()
 	HH_ChuanBiDamKim = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(87, 87 + 40, 91, 91 + 58), 0.9f)); // 7
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(87, 87 + 40, 91, 91 + 58), 0.6f)); // 7
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(41, 41 + 40, 92, 92 + 54), 0.06f)); // 6
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54), 0.06f)); // 5
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54), 0.06f)); // 4
+	//lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54), 0.06f)); // 5
+	//lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54), 0.06f)); // 4
 	lDSTTFrame.push_back(ThongTinFrame(38 + 4, 54, HCN(116, 116 + 38, 9, 9 + 58), 0.06f)); // 3
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 54, HCN(61, 61 + 44, 8, 8 + 60),   0.06f)); // 2
 	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62),   99.9f)); // 1

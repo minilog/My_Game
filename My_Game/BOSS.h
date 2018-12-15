@@ -4,6 +4,7 @@
 #include "DS_HinhAnh.h"
 #include "OngCon.h"
 #include "ThanhMau.h"
+#include "HongTam.h"
 #define VAL 0.0174532925199444
 
 class BOSS :
@@ -25,14 +26,15 @@ public:
 	OngCon* get_OngCon3() { return DS_OngCon[3]; }
 	OngCon* get_OngCon4() { return DS_OngCon[4]; }
 	int get_HP() { return HP; }
+	HongTam* get_HongTam() { return mHongTam; }
 // INFORMATION
 private:
+	HongTam *mHongTam;
 	static constexpr float TG_KoAnDan = 0.6f;
 	float DEM_KoAnDan = TG_KoAnDan + 0.1f;
 	float DEM_KoAnDan2 = TG_KoAnDan + 0.1f;
-
 	static constexpr int MAXHP = 132;
-	int HP = MAXHP / 2 + 1;
+	int HP = MAXHP / 2 - 1;
 	float DX, DY;
 	OngCon *DS_OngCon[5];
 	Vec2 ViTri1;
@@ -41,20 +43,22 @@ private:
 	float KC_BOSS_XMAN;
 	float GocSin = 45.0f;
 	static constexpr float TG_ThaOng = 0.1f * 9;
-	static constexpr float TG_DamKim = 0.9f + 0.06f * 6;
-	static constexpr float TG_ChuanBiDamKim = 0.06f * 14;
+	static constexpr float TG_DamKim = 0.6f + 0.06f * 4;
+	static constexpr float TG_ChuanBiDamKim = 0.06f * 13;
 	static constexpr float VanTocTiepCan = 400.0f;
 	static constexpr float VanTocBay = 150.0f;
 	static constexpr float VanTocX_VongSo8 = 120.0f;
 	static constexpr float VanToc_VONGVONG = 140.0f;
 	float DEM = 0.0f;
+	float DEM_SinhOng = 0.0f;
 	bool DaThaOng = false;
 	bool LatHinh = false;
 	HoatHinh *HH_HienTai,
 		*HH_Bay,
 		*HH_ChuanBiDamKim,
 		*HH_DamKim,
-		*HH_ThaOng;
+		*HH_ThaOng,
+		*HH_SinhOng;
 	HoatHinh *HH_CanhOng;
 // SUB-FUNCTION
 private:

@@ -116,7 +116,8 @@ enum eLoaiDoiTuong
 	eLDT_DanSang, 
 	eLDT_Item, 
 	eLDT_BOSS,
-	eLDT_OngCon
+	eLDT_OngCon,
+	eLDT_HongTam
 };
 
 enum eHuongDiChuyen
@@ -126,9 +127,15 @@ enum eHuongDiChuyen
 
 enum eTrangThai
 {
+	eTT_HongTam_DiChuyen,
+	eTT_HongTam_LockMucTieu,
+	eTT_HongTam_BienMat,
+
 	eTT_OngCon_BienMat,
 	eTT_OngCon_BanRa,
 	eTT_OngCon_PhatNo,
+	eTT_OngCon_ChoDoiHongTam,
+	eTT_OngCon_TanCongMucTieu,
 
 	eTT_BOSS_BayVongVong,
 	eTT_BOSS_XuatHien,
