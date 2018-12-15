@@ -5,20 +5,28 @@
 class ThanhMau
 {
 public:
-	ThanhMau(const Vec2& in_ToaDo = Vec2(10.0f, 110.0f)) {
+	ThanhMau(const Vec2& in_ToaDo = Vec2(10.0f, 110.0f), bool in_Boss = false) {
 		LoadHinhAnhVao();
 		mToaDo = in_ToaDo;
 		mBieuTuong->set_ToaDo(mToaDo);
 		mKhungTren->set_ToaDo(mToaDo + Vec2(0.0f, -58.0f));
+		Boss = in_Boss;
 	}
 
 
 	void LoadHinhAnhVao()
 	{
-		mBieuTuong = new HinhAnh("Resources/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
-		mBieuTuong->set_ChieuRong(14);
-		mBieuTuong->set_ChieuCao(16);
-		mBieuTuong->set_HCN(HCN(2, 2 + 14, 45, 45 + 16));
+		if (Boss)
+		{
+
+		}
+		else
+		{
+			mBieuTuong = new HinhAnh("Resources/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
+			mBieuTuong->set_ChieuRong(14);
+			mBieuTuong->set_ChieuCao(16);
+			mBieuTuong->set_HCN(HCN(2, 2 + 14, 45, 45 + 16));
+		}
 
 		mKhungGiua = new HinhAnh("Resources/XMan/ThanhMau.png", D3DCOLOR_XRGB(50, 96, 166));
 		mKhungGiua->set_ChieuRong(14);
@@ -55,6 +63,7 @@ public:
 	}
 
 private:
+	bool Boss = false;
 	HinhAnh *mBieuTuong;
 	HinhAnh *mKhungGiua;
 	HinhAnh *mKhungTren;

@@ -185,6 +185,7 @@
     <ClCompile Include="MapReader\TmxTileset.cpp" />
     <ClCompile Include="MapReader\TmxUtil.cpp" />
     <ClCompile Include="MayBay.cpp" />
+    <ClCompile Include="OngCon.cpp" />
     <ClCompile Include="Pet1.cpp" />
     <ClCompile Include="Pet2.cpp" />
     <ClCompile Include="QuadTree.cpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="MapReader\zconf.h" />
     <ClInclude Include="MapReader\zlib.h" />
     <ClInclude Include="MayBay.h" />
+    <ClInclude Include="OngCon.h" />
     <ClInclude Include="Pet1.h" />
     <ClInclude Include="Pet2.h" />
     <ClInclude Include="QuadTree.h" />

@@ -171,6 +171,23 @@ void DanLv1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 		DangTanBien();
 	}
+
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_OngCon)
+	{
+		if (in_DoiTuong->get_TrangThai() == eTT_OngCon_PhatNo ||
+			in_DoiTuong->get_TrangThai() == eTT_OngCon_BienMat)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DangTanBien();
+	}
 }
 
 void DanLv1::LoadHinhAnhVao()

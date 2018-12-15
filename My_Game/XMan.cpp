@@ -9,6 +9,7 @@
 #include "LoCot.h"
 #include "ThangMay.h"
 #include "TrucXoay.h"
+#include "OngCon.h"
 
 
 
@@ -867,6 +868,67 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		if (mHP > 100)
 		{
 			mHP = 100;
+		}
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_OngCon)
+	{
+		if (mTrangThai == eTT_XMan_DinhSatThuong)
+		{
+			return;
+		}
+		if (mTGDem_KoNhanST < mTG_KoNhanST)
+		{
+			return;
+		}
+
+		if (((OngCon*)in_DoiTuong)->get_KoTheGaySatThuong())
+		{
+			return;
+		}
+
+		if ((in_DoiTuong)->get_TrangThai() == eTT_OngCon_BienMat ||
+			(in_DoiTuong)->get_TrangThai() == eTT_OngCon_PhatNo)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DinhSatThuong();
+
+		((OngCon*)in_DoiTuong)->DEM_KoTheGaySatThuong = 0.0f;
+	}
+
+	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_BOSS)
+	{
+		if (mTrangThai == eTT_XMan_DinhSatThuong)
+		{
+			return;
+		}
+		if (mTGDem_KoNhanST < mTG_KoNhanST)
+		{
+			return;
+		}
+		if ((in_DoiTuong)->get_TrangThai() == eTT_BOSS_BienMat ||
+			(in_DoiTuong)->get_TrangThai() == eTT_BOSS_PhatNo)
+		{
+			return;
+		}
+
+		if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
+		{
+			return;
+		}
+
+		DinhSatThuong();
+
+		if ((in_DoiTuong)->get_TrangThai() == eTT_BOSS_DamKim)
+		{
+			mHP -= 25;
 		}
 	}
 }

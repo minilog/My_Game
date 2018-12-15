@@ -37,7 +37,7 @@ public:
 	void XuLyBanPhim(std::map<int, bool> in_Keys);
 
 	int get_HP() { return mHP; }
-
+	bool get_CoTheNhanSatThuong() { return (mTGDem_KoNhanST >= mTG_KoNhanST); }
 	
 private:
 	static constexpr float TG_ChayTuDo = /*7.0f*/4.0f;

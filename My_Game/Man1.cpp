@@ -381,9 +381,14 @@ void Man1::CapNhat(float in_tg)
 	mBOSS1->CapNhat(in_tg, mXMan);
 	mBOSS2->CapNhat(in_tg, mXMan);
 	mItem->CapNhat(in_tg, mXMan);
-	mBOSS->CapNhat(in_tg, mXMan);
 
 	mXMan->CapNhat(in_tg);
+	mBOSS->CapNhat(in_tg, mXMan);
+	mBOSS->get_OngCon0()->CapNhat(in_tg, mXMan);
+	mBOSS->get_OngCon1()->CapNhat(in_tg, mXMan);
+	mBOSS->get_OngCon2()->CapNhat(in_tg, mXMan);
+	mBOSS->get_OngCon3()->CapNhat(in_tg, mXMan);
+	mBOSS->get_OngCon4()->CapNhat(in_tg, mXMan);
 
 	for (auto DanLv : mDS_DanLv)
 	{
@@ -437,6 +442,17 @@ void Man1::CapNhat(float in_tg)
 	mXMan->XuLyVaCham(mItem);
 	mItem->XuLyVaCham(mXMan);
 	mXMan->XuLyVaCham(mBOSS);
+	mBOSS->XuLyVaCham(DS_CuaDanhBoss[5]);
+	mBOSS->get_OngCon0()->XuLyVaCham(mXMan);
+	mBOSS->get_OngCon1()->XuLyVaCham(mXMan);
+	mBOSS->get_OngCon2()->XuLyVaCham(mXMan);
+	mBOSS->get_OngCon3()->XuLyVaCham(mXMan);
+	mBOSS->get_OngCon4()->XuLyVaCham(mXMan);
+	mXMan->XuLyVaCham(mBOSS->get_OngCon0());
+	mXMan->XuLyVaCham(mBOSS->get_OngCon1());
+	mXMan->XuLyVaCham(mBOSS->get_OngCon2());
+	mXMan->XuLyVaCham(mBOSS->get_OngCon3());
+	mXMan->XuLyVaCham(mBOSS->get_OngCon4());
 	if (mBOSS2->get_TrangThai() == eTT_BOSS2_BocVac)
 	{
 		mXMan->XuLyVaCham(mBOSS2->get_Box0());
@@ -446,6 +462,20 @@ void Man1::CapNhat(float in_tg)
 
 	for (auto DanLv : mDS_DanLv)
 	{
+		mBOSS->XuLyVaCham(DanLv);
+		DanLv->XuLyVaCham(mBOSS);
+
+		mBOSS->get_OngCon0()->XuLyVaCham(DanLv);
+		mBOSS->get_OngCon1()->XuLyVaCham(DanLv);
+		mBOSS->get_OngCon2()->XuLyVaCham(DanLv);
+		mBOSS->get_OngCon3()->XuLyVaCham(DanLv);
+		mBOSS->get_OngCon4()->XuLyVaCham(DanLv);
+		DanLv->XuLyVaCham(mBOSS->get_OngCon0());
+		DanLv->XuLyVaCham(mBOSS->get_OngCon1());
+		DanLv->XuLyVaCham(mBOSS->get_OngCon2());
+		DanLv->XuLyVaCham(mBOSS->get_OngCon3());
+		DanLv->XuLyVaCham(mBOSS->get_OngCon4());
+
 		mBOSS1->XuLyVaCham(DanLv);
 		DanLv->XuLyVaCham(mBOSS1);
 
@@ -490,6 +520,11 @@ void Man1::CapNhat(float in_tg)
 		mItem->XuLyVaCham(DT);
 		mXMan->XuLyVaCham(DT);
 		mBOSS->XuLyVaCham(DT);
+		mBOSS->get_OngCon0()->XuLyVaCham(DT);
+		mBOSS->get_OngCon1()->XuLyVaCham(DT);
+		mBOSS->get_OngCon2()->XuLyVaCham(DT);
+		mBOSS->get_OngCon3()->XuLyVaCham(DT);
+		mBOSS->get_OngCon4()->XuLyVaCham(DT);
 
 		for (auto DT2 : mDS_DoiTuong_Dong)
 		{
@@ -553,9 +588,16 @@ void Man1::Ve()
 	mBOSS1->Ve(lDoDoi);
 	mBOSS2->Ve(lDoDoi);
 	mItem->Ve(lDoDoi);
+
 	mBOSS->Ve(lDoDoi);
+	mBOSS->get_OngCon0()->Ve(lDoDoi);
+	mBOSS->get_OngCon1()->Ve(lDoDoi);
+	mBOSS->get_OngCon2()->Ve(lDoDoi);
+	mBOSS->get_OngCon3()->Ve(lDoDoi);
+	mBOSS->get_OngCon4()->Ve(lDoDoi);
 
 	mXMan->Ve(lDoDoi);
+
 
 
 	for (auto DT : mDS_DoiTuong_Tinh)
@@ -671,7 +713,7 @@ void Man1::DrawCollidable()
 	//{
 	//	mGameDebugDraw->DrawRect(child->get_RECT());
 	//}
-	//mGameDebugDraw->DrawRect(mXMan->get_RECT());
+	mGameDebugDraw->DrawRect(mXMan->get_RECT());
 
 	//for (int i = 0; i < (int)mDS_Ech.size(); i++)
 	//{
@@ -692,9 +734,14 @@ void Man1::DrawCollidable()
 	//}
 	mGameDebugDraw->DrawRect(mBOSS->get_RECT());
 	RECT a; 
-	a.left = (int)mBOSS->ViTri_CanDenHienTai.x - 6;
-	a.right = (int)mBOSS->ViTri_CanDenHienTai.x + 6;
-	a.top = (int)mBOSS->ViTri_CanDenHienTai.y - 6;
-	a.bottom = (int)mBOSS->ViTri_CanDenHienTai.y + 6;
+	a.left = (int)mBOSS->ViTri_CanDenHienTai.x;
+	a.right = (int)mBOSS->ViTri_CanDenHienTai.x + 1;
+	a.top = (int)mBOSS->ViTri_CanDenHienTai.y;
+	a.bottom = (int)mBOSS->ViTri_CanDenHienTai.y + 1;
 	mGameDebugDraw->DrawRect(a);
+	mGameDebugDraw->DrawRect(mBOSS->get_OngCon0()->get_RECT());
+	mGameDebugDraw->DrawRect(mBOSS->get_OngCon1()->get_RECT());
+	mGameDebugDraw->DrawRect(mBOSS->get_OngCon2()->get_RECT());
+	mGameDebugDraw->DrawRect(mBOSS->get_OngCon3()->get_RECT());
+	mGameDebugDraw->DrawRect(mBOSS->get_OngCon4()->get_RECT());
 }
