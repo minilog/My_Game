@@ -130,6 +130,7 @@ enum eTrangThai
 	eTT_OngCon_BanRa,
 	eTT_OngCon_PhatNo,
 
+	eTT_BOSS_BayVongVong,
 	eTT_BOSS_XuatHien,
 	eTT_BOSS_ChuanBiDamKim,
 	eTT_BOSS_DamKim,

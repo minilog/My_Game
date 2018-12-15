@@ -4,7 +4,7 @@
 #include "DS_HinhAnh.h"
 #include "OngCon.h"
 #include "ThanhMau.h"
-#define VAL 0.0174532925
+#define VAL 0.0174532925199444
 
 class BOSS :
 	public DoiTuong
@@ -32,11 +32,12 @@ private:
 	float DEM_KoAnDan2 = TG_KoAnDan + 0.1f;
 
 	static constexpr int MAXHP = 132;
-	int HP = MAXHP;
+	int HP = MAXHP / 2 + 1;
 	float DX, DY;
 	OngCon *DS_OngCon[5];
 	Vec2 ViTri1;
 	Vec2 ViTri2;
+	Vec2 ViTri3;
 	float KC_BOSS_XMAN;
 	float GocSin = 45.0f;
 	static constexpr float TG_ThaOng = 0.1f * 9;
@@ -45,6 +46,7 @@ private:
 	static constexpr float VanTocTiepCan = 400.0f;
 	static constexpr float VanTocBay = 150.0f;
 	static constexpr float VanTocX_VongSo8 = 120.0f;
+	static constexpr float VanToc_VONGVONG = 140.0f;
 	float DEM = 0.0f;
 	bool DaThaOng = false;
 	bool LatHinh = false;
@@ -62,6 +64,7 @@ private:
 	void VaoViTri(const Vec2& in_ViTriCanDen);
 	void ThaOng();
 	void BayVongSo8();
+	void BayVongVong();
 	void LoadThongTinHoatHinh();
 // DESTRUCTURE
 public:

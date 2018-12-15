@@ -6,7 +6,8 @@ BOSS::BOSS(const Vec2& in_ToaDo)
 	:
 	DoiTuong(in_ToaDo, Vec2(), 26, 46),
 	ViTri1(7710.0f, 1880.0f),
-	ViTri2(7904.0f, 1880.0f)
+	ViTri2(7904.0f, 1880.0f),
+	ViTri3(7810.0f, 1876.f)
 {
 	mLoaiDoiTuong = eLDT_BOSS;
 	ViTri_CanDenHienTai = ViTri2;
@@ -34,6 +35,7 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	{
 		DEM_KoAnDan2 = 0.0f;
 	}
+
 
 	if (mTrangThai == eTT_BOSS_XuatHien)
 	{
@@ -79,14 +81,41 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	}
 	if (mTrangThai == eTT_BOSS_DamKim)
 	{
+
 		if (DEM > TG_DamKim)
 		{
-			VaoViTri(ViTri_CanDenHienTai);
+			if (HP < MAXHP / 2)
+			{
+				ViTri_CanDenHienTai = ViTri3;
+				VaoViTri(ViTri_CanDenHienTai);
+			}
+			else
+			{
+				VaoViTri(ViTri_CanDenHienTai);
+			}
 		}
 	}
 	if (mTrangThai == eTT_BOSS_VaoViTri)
 	{
-		if (VaChamGame::get_DiemVaHCN((int)ViTri_CanDenHienTai.x, (int)ViTri_CanDenHienTai.y, get_HCNGioiHan()))
+
+		if (HP < MAXHP / 2)
+		{
+			if (ViTri_CanDenHienTai.x != ViTri3.x ||
+				ViTri_CanDenHienTai.y != ViTri3.y)
+			{
+				ViTri_CanDenHienTai = ViTri3;
+				VaoViTri(ViTri_CanDenHienTai);
+			}
+			if (VaChamGame::get_DiemVaHCN((int)mToaDo.x, (int)mToaDo.y, HCN(
+				(int)ViTri3.x - 2, (int)ViTri3.x + 2,
+				(int)ViTri3.y - 2, (int)ViTri3.y + 2)))
+			{
+				BayVongVong();
+				mVanToc = Vec2();
+				mToaDo = ViTri3;
+			}
+		}
+		else if (VaChamGame::get_DiemVaHCN((int)ViTri_CanDenHienTai.x, (int)ViTri_CanDenHienTai.y, get_HCNGioiHan()))
 		{
 			ThaOng();
 			DEM = 0.0f;
@@ -147,6 +176,37 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			ChuanBiDamKim();
 			DEM = 0.0f;
 		}
+	}
+	if (mTrangThai == eTT_BOSS_BayVongVong)
+	{
+		if (GocSin >= 270.0f + 360.0f)
+		{
+			GocSin = -90.0f;
+			mToaDo = ViTri3;
+		}
+
+		mVanToc.y = VanToc_VONGVONG * (float)sin(GocSin * VAL);
+		float lVanTocXThichUng = sqrt(VanToc_VONGVONG * VanToc_VONGVONG - mVanToc.y * mVanToc.y) / 1.1f;
+
+		if (GocSin >= -90.0f && GocSin < 90.0f ||
+			GocSin >= 90.0f + 360.0f && GocSin < 270.0f + 360.0f)
+		{
+			mVanToc.x = -lVanTocXThichUng;
+		}
+		else if (GocSin >= 90.0f && GocSin < 90.0f + 360.0f)
+		{
+			mVanToc.x = lVanTocXThichUng;
+		}
+
+		if (KC_BOSS_XMAN < 0)
+		{
+			LatHinh = true;
+		}
+		else
+		{
+			LatHinh = false;
+		}
+		GocSin += in_tg * 190;
 	}
 }
 
@@ -287,6 +347,15 @@ void BOSS::BayVongSo8()
 	{
 		mVanToc.x = VanTocX_VongSo8;
 	}
+}
+
+void BOSS::BayVongVong()
+{
+	GocSin = -90.0f;
+	mTrangThai = eTT_BOSS_BayVongVong;
+	HH_HienTai = HH_Bay;
+	HH_HienTai->Remake();
+	DEM = 0.0f;
 }
 
 void BOSS::ChuanBiDamKim()

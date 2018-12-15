@@ -160,6 +160,7 @@
     <ClCompile Include="HieuUngLuot.cpp" />
     <ClCompile Include="HinhAnh.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
+    <ClCompile Include="HongTam.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="LoCot.cpp" />
     <ClCompile Include="main.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="GameLog.h" />
     <ClInclude Include="HieuUngBatRa.h" />
     <ClInclude Include="HieuUngLuot.h" />
+    <ClInclude Include="HongTam.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="KieuDuLieu.h" />
     <ClInclude Include="Camera.h" />
