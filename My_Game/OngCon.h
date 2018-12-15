@@ -57,6 +57,71 @@ public:
 				BienMat();
 			}
 		}
+		if (mTrangThai == eTT_OngCon_ChoDoiHongTam)
+		{
+			if (DEM > 6.0f)
+			{
+				PhatNo();
+			}
+		}
+		if (mTrangThai == eTT_OngCon_TanCongMucTieu)
+		{
+			if (DEM > 6.0f)
+			{
+				PhatNo();
+			}
+			DEM_KoTheGaySatThuong += in_tg * 3;
+			float DX = in_DoiTuong->get_ToaDo().x - mToaDo.x;
+			float DY = in_DoiTuong->get_ToaDo().y - mToaDo.y;
+			if (DX > 0.0f)
+			{
+				if (mVanToc.x < 0.0f)
+				{
+					mVanToc.x += 1200.0f * in_tg;
+				}
+				mVanToc.x += 290.0f * in_tg;
+				if (mVanToc.x > 90.0f)
+				{
+					mVanToc.x = 90.0f;
+				}
+			}
+			else
+			{
+				if (mVanToc.x > 0.0f)
+				{
+					mVanToc.x -= 1200.0f * in_tg;
+				}
+				mVanToc.x -= 290.0f * in_tg;
+				if (mVanToc.x < -90.0f)
+				{
+					mVanToc.x = -90.0f;
+				}
+			}
+			if (DY > 0.0f)
+			{
+				if (mVanToc.y < 0.0f)
+				{
+					mVanToc.y += 1200.0f * in_tg;
+				}
+				mVanToc.y += 290.0f * in_tg;
+				if (mVanToc.y > 90.0f)
+				{
+					mVanToc.y = 90.0f;
+				}
+			}
+			else
+			{
+				if (mVanToc.y < 0.0f)
+				{
+					mVanToc.y -= 1200.0f * in_tg;
+				}
+				mVanToc.y -= 290.0f * in_tg;
+				if (mVanToc.y < -90.0f)
+				{
+					mVanToc.y = -90.0f;
+				}
+			}
+		}
 	}
 	void XuLyVaCham(const DoiTuong* in_DoiTuong)
 	{
@@ -74,6 +139,10 @@ public:
 			in_DoiTuong->get_LoaiDoiTuong() == eLDT_CuaDanhBoss ||
 			in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh2)
 		{
+			if (mTrangThai == eTT_OngCon_TanCongMucTieu)
+			{
+				return;
+			}
 
 			if (!VaChamGame::get_DaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan()))
 			{
@@ -150,7 +219,17 @@ public:
 	void ChoDoiHongTam(const Vec2& in_ToaDo)
 	{
 		mTrangThai = eTT_OngCon_ChoDoiHongTam;
+		HH_HienTai = HH_ConOng;
 		mToaDo = in_ToaDo;
+		DEM = 0.0f;
+		HP = MAXHP;
+	}
+	void TanCongMucTieu()
+	{
+		if (mTrangThai == eTT_OngCon_ChoDoiHongTam)
+		{
+			mTrangThai = eTT_OngCon_TanCongMucTieu;
+		}
 	}
 
 	bool get_KoTheGaySatThuong() { return (DEM_KoTheGaySatThuong <= TG_KoTheGaySatThuong); }

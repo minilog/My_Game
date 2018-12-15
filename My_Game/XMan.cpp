@@ -928,7 +928,7 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 		if ((in_DoiTuong)->get_TrangThai() == eTT_BOSS_DamKim)
 		{
-			mHP -= 25;
+			mHP -= 10;
 		}
 	}
 }

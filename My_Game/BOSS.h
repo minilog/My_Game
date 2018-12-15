@@ -34,7 +34,7 @@ private:
 	float DEM_KoAnDan = TG_KoAnDan + 0.1f;
 	float DEM_KoAnDan2 = TG_KoAnDan + 0.1f;
 	static constexpr int MAXHP = 132;
-	int HP = MAXHP / 2 - 1;
+	int HP = MAXHP;
 	float DX, DY;
 	OngCon *DS_OngCon[5];
 	Vec2 ViTri1;

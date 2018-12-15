@@ -137,12 +137,15 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			{
 				lToaDo = mToaDo + Vec2(-31.0f, 0.0f);
 			}
-			float K = sqrt((100.0f * 100.0f) / (DX * DX + DY * DY));
+			float K = sqrt((130.0f * 130.0f) / (DX * DX + DY * DY));
 			Vec2 lVanToc = Vec2(DX * K, DY * K);
 
 			for (int i = 0; i < 5; i++)
 			{
-				DS_OngCon[i]->BanRa(lToaDo, lVanToc + Vec2(-35.0f + 17.0f * i, -35.0f + 17.0f * i));
+				int l = rand() % 20 - 20;
+				//int r = rand() % 31 - 10;
+				DS_OngCon[i]->BanRa(lToaDo, lVanToc + Vec2(-30.0f + 15.0f * i + (float)l, 
+					-30.0f + 15.0f * i));
 			}
 			DaThaOng = true;
 		}
@@ -186,11 +189,19 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		{
 			int l = rand() % 81 - 40;
 			int r = rand() % 81 - 40;
-			DS_OngCon[i]->set_VanToc(mVanToc + Vec2((float)l, (float)r));
+			if (mHongTam->get_TrangThai() == eTT_HongTam_LockMucTieu)
+			{
+				DS_OngCon[i]->TanCongMucTieu();
+			}
+			else if (DS_OngCon[i]->get_TrangThai() == eTT_OngCon_ChoDoiHongTam)
+			{
+				DS_OngCon[i]->set_VanToc(mVanToc + Vec2((float)l, (float)r));
+			}
 		}
 		if (DEM > 6.0f)
 		{
 			DEM = 0.0f;
+			DEM_SinhOng = 0.0f;
 			HH_HienTai = HH_Bay;
 			HH_SinhOng->Remake();
 			mHongTam->DiChuyen(mToaDo);
