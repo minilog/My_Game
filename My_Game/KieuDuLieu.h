@@ -126,7 +126,11 @@ enum eHuongDiChuyen
 enum eTrangThai
 {
 	eTT_BOSS_XuatHien,
+	eTT_BOSS_ChuanBiDamKim,
 	eTT_BOSS_DamKim,
+	eTT_BOSS_VaoViTri,
+	eTT_BOSS_ThaOng,
+	eTT_BOSS_BayVongSo8,
 
 	eTT_Item_Roi,
 	eTT_Item_NamIm,

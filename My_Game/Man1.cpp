@@ -489,6 +489,7 @@ void Man1::CapNhat(float in_tg)
 	{
 		mItem->XuLyVaCham(DT);
 		mXMan->XuLyVaCham(DT);
+		mBOSS->XuLyVaCham(DT);
 
 		for (auto DT2 : mDS_DoiTuong_Dong)
 		{
@@ -690,4 +691,10 @@ void Man1::DrawCollidable()
 	//	mGameDebugDraw->DrawRect(DoiTuong->get_RECT());
 	//}
 	mGameDebugDraw->DrawRect(mBOSS->get_RECT());
+	RECT a; 
+	a.left = (int)mBOSS->ViTri_CanDenHienTai.x - 6;
+	a.right = (int)mBOSS->ViTri_CanDenHienTai.x + 6;
+	a.top = (int)mBOSS->ViTri_CanDenHienTai.y - 6;
+	a.bottom = (int)mBOSS->ViTri_CanDenHienTai.y + 6;
+	mGameDebugDraw->DrawRect(a);
 }

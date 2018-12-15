@@ -1,10 +1,15 @@
-#include "BOSS.h"
+﻿#include "BOSS.h"
+#include <cmath>
+#include "VaChamGame.h"
 
 BOSS::BOSS(const Vec2& in_ToaDo)
 	:
-	DoiTuong(in_ToaDo, Vec2(), 26, 46)
+	DoiTuong(in_ToaDo, Vec2(), 26, 46),
+	ViTri1(7710.0f, 1875.0f),
+	ViTri2(7904.0f, 1875.0f)
 {
 	mLoaiDoiTuong = eLDT_BOSS;
+	ViTri_CanDenHienTai = ViTri2;
 	LoadThongTinHoatHinh();
 	XuatHien();
 }
@@ -16,6 +21,7 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	mToaDo.x += mVanToc.x * in_tg;
 	mToaDo.y += mVanToc.y * in_tg;
 	DEM += in_tg;
+	KC_BOSS_XMAN = mToaDo.x - in_DoiTuong->get_ToaDo().x;
 	if (mTrangThai == eTT_BOSS_XuatHien)
 	{
 		if (DEM > 1.2)
@@ -31,15 +37,128 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		{
 			HH_HienTai = HH_DamKim;
 		}
-		if (DEM > 3.5f)
+		if (DEM > 4.0f)
+		{
+			mVanToc.y = -40.0f;
+			mVanToc.x = -30.0f;
+		}
+		if (DEM > 4.5f)
+		{
+			ChuanBiDamKim();
+			DEM = 0.0f;
+		}
+	}
+	if (mTrangThai == eTT_BOSS_ChuanBiDamKim)
+	{
+		if (KC_BOSS_XMAN < 0)
+		{
+			LatHinh = true;
+		}
+		else
+		{
+			LatHinh = false;
+		}
+		if (DEM > TG_ChuanBiDamKim)
 		{
 			DamKim(in_DoiTuong->get_ToaDo());
+			DEM = 0.0f;
+		}
+	}
+	if (mTrangThai == eTT_BOSS_DamKim)
+	{
+		if (DEM > TG_DamKim)
+		{
+
+			VaoViTri(ViTri_CanDenHienTai);
+		}
+	}
+	if (mTrangThai == eTT_BOSS_VaoViTri)
+	{
+		if (VaChamGame::get_DaVaCham(HCN((int)ViTri_CanDenHienTai.x - 6 , (int)ViTri_CanDenHienTai.x + 6,
+			(int)ViTri_CanDenHienTai.y - 6, (int)ViTri_CanDenHienTai.y + 6)
+			, get_HCNGioiHan()))
+		{
+			ThaOng();
+			DEM = 0.0f;
+		}
+	}
+	if (mTrangThai == eTT_BOSS_ThaOng)
+	{
+		if (DEM > TG_ThaOng)
+		{
+			BayVongSo8();
+		}
+	}
+	if (mTrangThai == eTT_BOSS_BayVongSo8)
+	{
+		GocSin += in_tg * 180;
+		mVanToc.y = 100.0f * (float)sin(GocSin * VAL);
+		if (ViTri_CanDenHienTai.x == ViTri1.x)
+		{
+			mVanToc.x = -VanTocBay * 0.55f;
+		}
+		else
+		{
+			mVanToc.x = VanTocBay * 0.55f;
+		}
+
+		if (VaChamGame::get_DaVaCham(HCN((int)ViTri_CanDenHienTai.x - 6, (int)ViTri_CanDenHienTai.x + 6,
+			(int)ViTri_CanDenHienTai.y - 6, (int)ViTri_CanDenHienTai.y + 6)
+			, get_HCNGioiHan()))
+		{
+			ChuanBiDamKim();
+			DEM = 0.0f;
 		}
 	}
 }
 
 void BOSS::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
+	if (mTrangThai == eTT_BOSS_XuatHien)
+	{
+		return;
+	}
+	if (mTrangThai == eTT_BOSS_DamKim)
+	{
+		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh)
+		{
+			eKetQuaVaCham lKQVC = VaChamGame::get_KetQuaVaCham(get_HCNGioiHan(), in_DoiTuong->get_HCNGioiHan());
+
+			if (lKQVC.eKQVC_DaVaCham)
+			{
+
+				ePhiaVaCham lPVC = VaChamGame::get_PhiaVaCham(this, lKQVC);
+				switch (lPVC)
+				{
+				case ePVC_Duoi:
+					mToaDo.y -= lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+					mVanToc = Vec2();
+					break;
+				case ePVC_Tren:
+					mToaDo.y += lKQVC.eKQVC_VungVaCham.Duoi - lKQVC.eKQVC_VungVaCham.Tren + 1;
+					break;
+
+
+				case ePVC_TraiTren:
+				case ePVC_Trai:
+				case ePVC_TraiDuoi:
+					mToaDo.x += lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
+					mVanToc = Vec2();
+					break;
+
+				case ePVC_Phai:
+				case ePVC_PhaiTren:
+				case ePVC_PhaiDuoi:
+					mToaDo.x -= lKQVC.eKQVC_VungVaCham.Phai - lKQVC.eKQVC_VungVaCham.Trai;
+					mVanToc = Vec2();
+					break;
+
+				default:
+					break;
+				}
+			}
+		}
+	}
 }
 
 void BOSS::Ve(const Vec2 & in_DoDoi)
@@ -56,9 +175,34 @@ void BOSS::XuatHien()
 	HH_ChuanBiDamKim->Remake(1);
 	HH_DamKim->Remake(1);
 	HH_ThaOng->Remake(1);
-	DEM = 0.0f;
 	HH_HienTai = HH_Bay;
 	mVanToc.y = 90.0f;
+}
+
+void BOSS::BayVongSo8()
+{
+	GocSin = 90.0f;
+	mTrangThai = eTT_BOSS_BayVongSo8;
+	HH_HienTai = HH_Bay;
+	// thay đổi vị trí để chuẩn bị bay vòng 8
+	if (ViTri_CanDenHienTai.x == ViTri1.x)
+	{
+		ViTri_CanDenHienTai = ViTri2;
+		LatHinh = true;
+	}
+	else
+	{
+		ViTri_CanDenHienTai = ViTri1;
+		LatHinh = false;
+	}
+}
+
+void BOSS::ChuanBiDamKim()
+{
+	mTrangThai = eTT_BOSS_ChuanBiDamKim;
+	HH_HienTai = HH_ChuanBiDamKim;
+	HH_HienTai->Remake();
+	mVanToc = Vec2();
 }
 
 void BOSS::DamKim(const Vec2& DiemDen)
@@ -68,6 +212,26 @@ void BOSS::DamKim(const Vec2& DiemDen)
 	float DY = DiemDen.y - mToaDo.y;
 	float K = sqrt((VanTocTiepCan * VanTocTiepCan) / (DX * DX + DY * DY));
 	mVanToc = Vec2(DX * K, DY * K);
+	HH_HienTai = HH_DamKim;
+	HH_HienTai->Remake();
+}
+
+void BOSS::VaoViTri(const Vec2 & in_ViTriCanDen)
+{
+	mTrangThai = eTT_BOSS_VaoViTri;
+	float DX = in_ViTriCanDen.x - mToaDo.x;
+	float DY = in_ViTriCanDen.y - mToaDo.y;
+	float K = sqrt((VanTocBay * VanTocBay) / (DX * DX + DY * DY));
+	mVanToc = Vec2(DX * K, DY * K);
+	HH_HienTai = HH_Bay;
+}
+
+void BOSS::ThaOng()
+{
+	mTrangThai = eTT_BOSS_ThaOng;
+	HH_HienTai = HH_ThaOng;
+	HH_HienTai->Remake();
+	mVanToc = Vec2();
 }
 
 void BOSS::LoadThongTinHoatHinh()
@@ -108,7 +272,7 @@ void BOSS::LoadThongTinHoatHinh()
 	HH_ChuanBiDamKim = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
-	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(87, 87 + 40, 91, 91 + 58), 1.5f)); // 7
+	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(87, 87 + 40, 91, 91 + 58), 0.9f)); // 7
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(41, 41 + 40, 92, 92 + 54), 0.06f)); // 6
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(215, 215 + 40, 8, 8 + 54), 0.06f)); // 5
 	lDSTTFrame.push_back(ThongTinFrame(40 + 4, 56, HCN(166, 166 + 40, 7, 7 + 54), 0.06f)); // 4
