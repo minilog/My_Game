@@ -27,6 +27,7 @@ public:
 	OngCon* get_OngCon4() { return DS_OngCon[4]; }
 	int get_HP() { return HP; }
 	HongTam* get_HongTam() { return mHongTam; }
+	bool get_KoNhanSatThuong() { return (DEM_KoAnDan <= TG_KoAnDan); }
 // INFORMATION
 private:
 	HongTam *mHongTam;
