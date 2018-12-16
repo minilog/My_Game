@@ -242,6 +242,12 @@ public:
 		DEM = 0.0f;
 	}
 
+	void BienMat()
+	{
+		mTrangThai = eTT_OngCon_BienMat;
+		DEM = 0.0f;
+	}
+
 // INFORMATION
 private:
 	static constexpr float TG_KoTheGaySatThuong = 1.3f;
@@ -260,11 +266,6 @@ private:
 private:
 
 
-	void BienMat()
-	{
-		mTrangThai = eTT_OngCon_BienMat;
-		DEM = 0.0f;
-	}
 
 	void LoadThongTinHoatHinh()
 	{

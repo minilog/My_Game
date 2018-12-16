@@ -28,15 +28,21 @@ public:
 	int get_HP() { return HP; }
 	HongTam* get_HongTam() { return mHongTam; }
 	bool get_KoNhanSatThuong() { return (DEM_KoAnDan <= TG_KoAnDan); }
+	void BienMat();
 // INFORMATION
 private:
+	Vec2 ToaDo_XuatHien;
+	int index_ToaDoNgauNhien;
+	Vec2 ToaDo_NgauNhien[10];
+	Vec2 ToaDo_PhatNoHienTai;
 	HongTam *mHongTam;
 	float DEM_NhapNhayLucBiDanhBai = 0.0f;
 	static constexpr float TG_KoAnDan = 0.6f;
 	float DEM_KoAnDan = TG_KoAnDan + 0.1f;
 	float DEM_KoAnDan2 = TG_KoAnDan + 0.1f;
 	static constexpr int MAXHP = 132;
-	int HP = /*MAXHP*/2;
+	int HP;
+	int HP_DuTru;
 	float DX, DY;
 	OngCon *DS_OngCon[5];
 	Vec2 ViTri1;
@@ -74,7 +80,7 @@ private:
 	void BayVongSo8();
 	void BayVongVong();
 	void PhatNo();
-	void BienMat();
+
 	void LoadThongTinHoatHinh();
 // DESTRUCTURE
 public:

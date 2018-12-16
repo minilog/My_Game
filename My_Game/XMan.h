@@ -40,7 +40,7 @@ public:
 	bool get_CoTheNhanSatThuong() { return (mTGDem_KoNhanST >= mTG_KoNhanST); }
 	
 private:
-	static constexpr float TG_ChayTuDo = /*7.0f*/4.0f;
+	static constexpr float TG_ChayTuDo = 7.0f;
 	float TGDem_ChayTuDo = TG_ChayTuDo + 0.1f;
 	static constexpr float TG_ChayTuDo2 = 0.8f;
 	float DEM_ChayTuDo2 = TG_ChayTuDo2 + 0.1f;

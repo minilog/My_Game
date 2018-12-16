@@ -16,16 +16,23 @@ BOSS::BOSS(const Vec2& in_ToaDo)
 	{
 		DS_OngCon[i] = new OngCon();
 	}
+	ToaDo_XuatHien = in_ToaDo;
 	mHongTam = new HongTam();
 	LoadThongTinHoatHinh();
-	XuatHien();
+	//XuatHien();
 	srand((int)time(NULL));
+	BienMat();
 }
 
 void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 {
+
 	if (mTrangThai == eTT_BOSS_BienMat)
 	{
+		if (in_DoiTuong->get_ToaDo().x >= 7683.0f && in_DoiTuong->get_ToaDo().x <= 7690.0f)
+		{
+			XuatHien();
+		}
 		return;
 	}
 
@@ -44,28 +51,54 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		DEM_KoAnDan2 = 0.0f;
 	}
 
-
 	if (mTrangThai == eTT_BOSS_XuatHien)
 	{
-		if (DEM > 1.2)
+		const float WaitingTime = 2.0f;
+		if (DEM < WaitingTime)
 		{
-			mVanToc.y = 0.0f;
+			mVanToc = Vec2();
+		}
+		if (DEM >= WaitingTime &&
+			DEM < 1.2f + WaitingTime)
+		{
+			mVanToc = Vec2(0.0f, 90.0f);
+		}
+		if (DEM >= 1.2 + WaitingTime &&
+			DEM < 2.05f + WaitingTime)
+		{
+			mVanToc = Vec2();
 			HH_HienTai = HH_ThaOng;
 		}
-		if (DEM > 2.05f)
+		if (DEM >= 2.05f + WaitingTime &&
+			DEM < 2.8f + WaitingTime)
 		{
 			HH_HienTai = HH_ChuanBiDamKim;
 		}
-		if (DEM > 2.8f)
+		if (DEM >= 2.8f + WaitingTime &&
+			DEM < 3.8f + WaitingTime)
 		{
 			HH_HienTai = HH_DamKim;
 		}
-		if (DEM > 3.8f)
+		if (DEM >= 3.8f + WaitingTime &&
+			DEM < 5.0f + WaitingTime)
+		{
+			if (HP_DuTru > 0)
+			{
+				HP_DuTru -= 2;
+				HP += 2;
+				if (HP > MAXHP)
+				{
+					HP = MAXHP;
+				}
+			}
+		}
+		if (DEM >= 5.0f + WaitingTime &&
+			DEM < 5.2f + WaitingTime)
 		{
 			mVanToc.y = -40.0f;
 			mVanToc.x = -30.0f;
 		}
-		if (DEM > 4.3f)
+		if (DEM >= 5.2f + WaitingTime)
 		{
 			ChuanBiDamKim();
 			DEM = 0.0f;
@@ -267,19 +300,32 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		}
 		GocSin += in_tg * 190;
 	}
-	if (mTrangThai != eTT_BOSS_PhatNo && HP <=0)
+	if (mTrangThai != eTT_BOSS_PhatNo &&
+		mTrangThai != eTT_BOSS_XuatHien &&
+		HP <=0)
 	{
 		PhatNo();
 		DEM = 0.0f;
 	}
 	if (mTrangThai == eTT_BOSS_PhatNo)
 	{
+		if (HH_PhatNo->get_ViTriFrame() == 8)
+		{
+			index_ToaDoNgauNhien++;
+			if (index_ToaDoNgauNhien > 10)
+			{
+				index_ToaDoNgauNhien = 0;
+			}
+			ToaDo_PhatNoHienTai = ToaDo_NgauNhien[index_ToaDoNgauNhien];
+			HH_PhatNo->Remake();
+		}
+		HH_PhatNo->CapNhat(in_tg);
 		if (DEM_NhapNhayLucBiDanhBai > 0.06f)
 		{
 			DEM_NhapNhayLucBiDanhBai = 0.0f;
 		}
 		DEM_NhapNhayLucBiDanhBai += in_tg;
-		if (DEM > 2.0f)
+		if (DEM > 5.0f)
 		{
 			BienMat();
 		}
@@ -290,7 +336,7 @@ void BOSS::XuLyVaCham(const DoiTuong * in_DoiTuong)
 {
 	if (mTrangThai == eTT_BOSS_XuatHien ||
 		mTrangThai == eTT_BOSS_PhatNo ||
-		mTrangThai == eTT_BOSS2_BienMat)
+		mTrangThai == eTT_BOSS_BienMat)
 	{
 		return;
 	}
@@ -381,8 +427,9 @@ void BOSS::Ve(const Vec2 & in_DoDoi)
 		}
 		else
 		{
-			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(160, 255, 255, 255));
+			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(150, 255, 255, 255));
 		}
+		HH_PhatNo->Ve(DS_HinhAnh::get_TH()->HieuUngPhatNo2, false, ToaDo_PhatNoHienTai, in_DoDoi);
 	}
 	else
 	{
@@ -409,12 +456,17 @@ void BOSS::Ve(const Vec2 & in_DoDoi)
 void BOSS::XuatHien()
 {
 	mTrangThai = eTT_BOSS_XuatHien;
-	mToaDo.y = 1750.0f;
 	HH_ChuanBiDamKim->Remake(1);
 	HH_DamKim->Remake(1);
 	HH_ThaOng->Remake(1);
 	HH_HienTai = HH_Bay;
-	mVanToc.y = 90.0f;
+
+	HP = 0;
+	HP_DuTru = MAXHP;
+	mToaDo = ToaDo_XuatHien;
+	LatHinh = false;
+	ViTri_CanDenHienTai = ViTri2;
+	DEM = 0.0f;
 }
 
 void BOSS::BayVongSo8()
@@ -455,6 +507,15 @@ void BOSS::BayVongVong()
 
 void BOSS::PhatNo()
 {
+	for (int i = 0; i < 10; i++)
+	{
+		int w = rand() % 51 - 25;
+		int h = rand() % 51 - 25;
+		ToaDo_NgauNhien[i] = Vec2(mToaDo + Vec2((float)w, (float)h));
+	}
+	index_ToaDoNgauNhien = 0;
+	ToaDo_PhatNoHienTai = ToaDo_NgauNhien[index_ToaDoNgauNhien]; //nhận tọa độ ngãu nhiên đầu tiên
+	HH_PhatNo->Remake();
 	mTrangThai = eTT_BOSS_PhatNo;
 	DEM_NhapNhayLucBiDanhBai = 0.0f;
 	HH_HienTai = HH_BiDanhBai;
@@ -476,6 +537,13 @@ void BOSS::PhatNo()
 void BOSS::BienMat()
 {
 	mTrangThai = eTT_BOSS_BienMat;
+	for (int i = 0; i < 5; i++)
+	{
+		DS_OngCon[i]->BienMat();
+	}
+	mHongTam->BienMat();
+	mToaDo = ToaDo_XuatHien;
+	mVanToc = Vec2();
 }
 
 void BOSS::ChuanBiDamKim()
@@ -526,6 +594,18 @@ void BOSS::ThaOng()
 void BOSS::LoadThongTinHoatHinh()
 {
 	std::vector<ThongTinFrame> lDSTTFrame;
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(16, 36, HCN(10, 10 + 16, 10, 10 + 36)  , 0.05f)); // 1
+	lDSTTFrame.push_back(ThongTinFrame(32, 36, HCN(31, 31 + 32, 10, 10 + 36)  , 0.05f)); // 2
+	lDSTTFrame.push_back(ThongTinFrame(28, 36, HCN(67, 67 + 28, 10, 10 + 36)  , 0.05f)); // 3
+	lDSTTFrame.push_back(ThongTinFrame(30, 38, HCN(100, 100 + 30,10, 10 + 36) , 0.05f)); // 4
+	lDSTTFrame.push_back(ThongTinFrame(32, 40, HCN(138, 138 + 32, 10, 10 + 36), 0.05f)); // 5
+	lDSTTFrame.push_back(ThongTinFrame(32, 52, HCN(177, 177 + 32, 10, 10 + 36), 0.05f)); // 6
+	lDSTTFrame.push_back(ThongTinFrame(32, 52, HCN(220, 220 + 32, 10, 10 + 36), 0.05f)); // 7
+	lDSTTFrame.push_back(ThongTinFrame(32, 54, HCN(261, 261 + 32, 10, 10 + 36), 0.05f)); // 8
+	lDSTTFrame.push_back(ThongTinFrame(2, 2, HCN(0, 2, 0, 2), 0.02f)); // hình rỗng
+	HH_PhatNo = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
 	lDSTTFrame.push_back(ThongTinFrame(96, 48, HCN(414, 414 + 96, 102, 102 + 48))); // 1

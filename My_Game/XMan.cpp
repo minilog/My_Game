@@ -230,9 +230,11 @@ void XMan::CapNhat(float in_tg)
 	if (mToaDo.x > Camera::mGioiHanPhai - float(mChieuRong / 2))
 		mToaDo.x = Camera::mGioiHanPhai - float(mChieuRong / 2);
 
-	if (mToaDo.y < Camera::mGioiHanTren - float(mChieuCao / 2))
-		mToaDo.y = Camera::mGioiHanTren - float(mChieuCao / 2);
-
+	if (mTrangThai != eTT_XMan_XuatHien)
+	{
+		if (mToaDo.y < Camera::mGioiHanTren - float(mChieuCao / 2))
+			mToaDo.y = Camera::mGioiHanTren - float(mChieuCao / 2);
+	}
 
 
 	mTimes = in_tg;
@@ -953,9 +955,14 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 	{
 		PhatNo();
 	}
-	if (in_Keys['P'])
+	if (in_Keys['S'])
 	{
 		mHP = 100;
+	}
+
+	if (mTrangThai == eTT_XMan_XuatHien)
+	{
+		in_Keys[FIRE_BUTTON] = false;
 	}
 
 	if (TGDem_ChayTuDo <= TG_ChayTuDo)
@@ -1025,7 +1032,6 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 	}
 
 	if (mTrangThai == eTT_XMan_DinhSatThuong ||
-		mTrangThai == eTT_XMan_XuatHien || 
 		mTrangThai == eTT_XMan_PhatNo)
 	{
 		return;
@@ -2010,6 +2016,7 @@ void XMan::XuLyBanPhim_Truot(std::map<int, bool> in_Keys)
 
 void XMan::XuLyBanPhim_BanDan(std::map<int, bool> in_Keys)
 {
+
 	bool lBanDan_Tam = mBanDan;
 
 	if (mBanDan)

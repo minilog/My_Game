@@ -41,14 +41,13 @@ void Man1::TaiDuLieu()
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
-	//Camera::CheckPoint = -1;
+	Camera::CheckPoint = -1;
 	//Camera::CheckPoint = 6;
 	//Camera::CheckPoint = 9;
 	//Camera::CheckPoint = 14;
 	//Camera::CheckPoint = 16;
-	Camera::CheckPoint = 18;
-	//Camera::set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 750.0f));
-	Camera::set_ToaDo(Vec2(7808.0f, 1750.0f)); // TEST
+	Camera::set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 750.0f));
+	//Camera::set_ToaDo(Vec2(7510.0f, 1750.0f)); // TEST
 #pragma endregion
 
 	// lấy hình ảnh bản đồ map
@@ -61,7 +60,7 @@ void Man1::TaiDuLieu()
 	mQuadTree_Dong = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 
 	// tạo 1 XMan
-	mXMan = new XMan(Vec2(7808.0f, 1750.0f)/*Vec2(100.0f, 730.0f)*/);
+	mXMan = new XMan(/*Vec2(7808.0f, 1750.0f)*//*Vec2(7510.0f, 1750.0f)*/Vec2(100.0f, 730.0f));
 
 	// đưa đạn của XMan vào danh sách con trỏ
 	mXMan->get_DS_Dan(mDS_DanLv);
@@ -103,7 +102,7 @@ void Man1::TaiDuLieu()
 	DS_CuaDanhBoss[5] = new CuaDanhBoss(Vec2(7688.0f, 1944.0f), true);
 	mBOSS1 = new BOSS1(Vec2(2517.0f, 1155.0f + 23.0f), DS_CuaDanhBoss[1]);
 	mBOSS2 = new BOSS2();
-	mBOSS = new BOSS(Vec2(7872.0f, 1860.0f));
+	mBOSS = new BOSS(Vec2(7872.0f, 1750.0f));
 
 #pragma region TAO DS QUAI
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
@@ -348,22 +347,23 @@ void Man1::CapNhat(float in_tg)
 			mBOSS2->BienMat();
 		}
 		else if (Camera::CheckPoint >= 16 &&
-			Camera::CheckPoint < 18)
+			Camera::CheckPoint <= 18)
 		{
 			Camera::CheckPoint = 16;
 			Camera::set_ToaDo(Vec2(7515.0f, 1750.0f));
 			mXMan->XuatHien(Vec2(7515.0f, 1750.0f));
 			mBOSS1->BienMat();
 			mBOSS2->BienMat();
+			mBOSS->BienMat();
 		}
-		else if (Camera::CheckPoint >= 18)
-		{
-			Camera::CheckPoint = 18;
-			Camera::set_ToaDo(Vec2(7808.0f, 1750.0f));
-			mXMan->XuatHien(Vec2(7808.0f, 1750.0f));
-			mBOSS1->BienMat();
-			mBOSS2->BienMat();
-		}
+		//else if (Camera::CheckPoint >= 18)
+		//{
+		//	Camera::CheckPoint = 18;
+		//	Camera::set_ToaDo(Vec2(7808.0f, 1750.0f));
+		//	mXMan->XuatHien(Vec2(7808.0f, 1750.0f));
+		//	mBOSS1->BienMat();
+		//	mBOSS2->BienMat();
+		//}
 	}
 
 	mDS_DoiTuong_Tinh.clear();
@@ -644,7 +644,7 @@ void Man1::Ve()
 	}
 
 	mThanhMauXMan->Ve(mXMan->get_HP());
-	if (mBOSS->get_TrangThai() != eTT_BOSS1_BienMat)
+	if (mBOSS->get_TrangThai() != eTT_BOSS_BienMat)
 	{
 		mThanhMauBoss->Ve(mBOSS->get_HP());
 	}
@@ -748,12 +748,12 @@ void Man1::DrawCollidable()
 	//	mGameDebugDraw->DrawRect(DoiTuong->get_RECT());
 	//}
 	//mGameDebugDraw->DrawRect(mBOSS->get_RECT());
-	//RECT a; 
-	//a.left = (int)mBOSS->ViTri_CanDenHienTai.x;
-	//a.right = (int)mBOSS->ViTri_CanDenHienTai.x + 1;
-	//a.top = (int)mBOSS->ViTri_CanDenHienTai.y;
-	//a.bottom = (int)mBOSS->ViTri_CanDenHienTai.y + 1;
-	//mGameDebugDraw->DrawRect(a);
+	RECT a; 
+	a.left = (int)mBOSS->get_ToaDo().x;
+	a.right = (int)mBOSS->get_ToaDo().x + 1;
+	a.top = (int)mBOSS->get_ToaDo().y;
+	a.bottom = (int)mBOSS->get_ToaDo().y + 1;
+	mGameDebugDraw->DrawRect(a);
 	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon0()->get_RECT());
 	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon1()->get_RECT());
 	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon2()->get_RECT());

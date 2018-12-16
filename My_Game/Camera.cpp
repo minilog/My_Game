@@ -239,15 +239,15 @@ void Camera::set_ToaDo(const Vec2& in_ToaDo)
 		}
 		break;
 
-	case 18:  // TEST
-		if (in_ToaDo.x >= 7800.0f && in_ToaDo.x <= 7850.0f)
-		{
-			mGioiHanTrai = mGioiHanTraiTiepTheo = 7934 - mChieuRong;
-			mGioiHanPhai = mGioiHanPhaiTiepTheo = 7934;
-			mGioiHanTren = mGioiHanTrenTiepTheo = 1794;
-			mGioiHanDuoi = mGioiHanDuoiTiepTheo = 1794 + 220;
-			CheckPoint++;
-		}
+	//case 18:  // TEST
+	//	if (in_ToaDo.x >= 7800.0f && in_ToaDo.x <= 7850.0f)
+	//	{
+	//		mGioiHanTrai = mGioiHanTraiTiepTheo = 7934 - mChieuRong;
+	//		mGioiHanPhai = mGioiHanPhaiTiepTheo = 7934;
+	//		mGioiHanTren = mGioiHanTrenTiepTheo = 1794;
+	//		mGioiHanDuoi = mGioiHanDuoiTiepTheo = 1794 + 220;
+	//		CheckPoint++;
+	//	}
 
 		break;
 
