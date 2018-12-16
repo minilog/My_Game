@@ -748,12 +748,12 @@ void Man1::DrawCollidable()
 	//	mGameDebugDraw->DrawRect(DoiTuong->get_RECT());
 	//}
 	//mGameDebugDraw->DrawRect(mBOSS->get_RECT());
-	RECT a; 
-	a.left = (int)mBOSS->get_ToaDo().x;
-	a.right = (int)mBOSS->get_ToaDo().x + 1;
-	a.top = (int)mBOSS->get_ToaDo().y;
-	a.bottom = (int)mBOSS->get_ToaDo().y + 1;
-	mGameDebugDraw->DrawRect(a);
+	//RECT a; 
+	//a.left = (int)mBOSS->get_ToaDo().x;
+	//a.right = (int)mBOSS->get_ToaDo().x + 1;
+	//a.top = (int)mBOSS->get_ToaDo().y;
+	//a.bottom = (int)mBOSS->get_ToaDo().y + 1;
+	//mGameDebugDraw->DrawRect(a);
 	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon0()->get_RECT());
 	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon1()->get_RECT());
 	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon2()->get_RECT());
