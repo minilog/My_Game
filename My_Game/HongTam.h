@@ -135,6 +135,10 @@ public:
 		DEM = 0.0f;
 		mVanToc = Vec2();
 	}
+	void BienMat()
+	{
+		mTrangThai = eTT_HongTam_BienMat;
+	}
 // INFORMATION
 private:
 	float DEM = 0.0f;
@@ -150,10 +154,7 @@ private:
 		HH_HienTai = HH_LockMucTieu;
 		HH_HienTai->Remake();
 	}
-	void BienMat()
-	{
-		mTrangThai = eTT_HongTam_BienMat;
-	}
+
 	void LoadThongTinHoatHinh()
 	{
 		std::vector<ThongTinFrame> lDSTTFrame;

@@ -30,11 +30,12 @@ public:
 // INFORMATION
 private:
 	HongTam *mHongTam;
+	float DEM_NhapNhayLucBiDanhBai = 0.0f;
 	static constexpr float TG_KoAnDan = 0.6f;
 	float DEM_KoAnDan = TG_KoAnDan + 0.1f;
 	float DEM_KoAnDan2 = TG_KoAnDan + 0.1f;
 	static constexpr int MAXHP = 132;
-	int HP = MAXHP;
+	int HP = /*MAXHP*/2;
 	float DX, DY;
 	OngCon *DS_OngCon[5];
 	Vec2 ViTri1;
@@ -58,8 +59,10 @@ private:
 		*HH_ChuanBiDamKim,
 		*HH_DamKim,
 		*HH_ThaOng,
-		*HH_SinhOng;
+		*HH_SinhOng,
+		*HH_BiDanhBai;
 	HoatHinh *HH_CanhOng;
+	HoatHinh *HH_PhatNo;
 // SUB-FUNCTION
 private:
 	void XuatHien();
@@ -69,6 +72,8 @@ private:
 	void ThaOng();
 	void BayVongSo8();
 	void BayVongVong();
+	void PhatNo();
+	void BienMat();
 	void LoadThongTinHoatHinh();
 // DESTRUCTURE
 public:

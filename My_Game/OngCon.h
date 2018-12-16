@@ -234,6 +234,13 @@ public:
 
 	bool get_KoTheGaySatThuong() { return (DEM_KoTheGaySatThuong <= TG_KoTheGaySatThuong); }
 	float DEM_KoTheGaySatThuong = 99.9f;
+	void PhatNo()
+	{
+		mTrangThai = eTT_OngCon_PhatNo;
+		HH_HienTai = HH_PhatNo;
+		HH_HienTai->Remake();
+		DEM = 0.0f;
+	}
 
 // INFORMATION
 private:
@@ -251,13 +258,7 @@ private:
 	float DX, DY;
 // SUB-FUNCTION
 private:
-	void PhatNo()
-	{
-		mTrangThai = eTT_OngCon_PhatNo;
-		HH_HienTai = HH_PhatNo;
-		HH_HienTai->Remake();
-		DEM = 0.0f;
-	}
+
 
 	void BienMat()
 	{

@@ -24,6 +24,11 @@ BOSS::BOSS(const Vec2& in_ToaDo)
 
 void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 {
+	if (mTrangThai == eTT_BOSS_BienMat)
+	{
+		return;
+	}
+
 	DX = in_DoiTuong->get_ToaDo().x - mToaDo.x;
 	DY = in_DoiTuong->get_ToaDo().y - mToaDo.y;
 	HH_HienTai->CapNhat(in_tg);
@@ -34,7 +39,7 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	KC_BOSS_XMAN = mToaDo.x - in_DoiTuong->get_ToaDo().x;
 	DEM_KoAnDan += in_tg;
 	DEM_KoAnDan2 += in_tg;
-	if (DEM_KoAnDan2 > 0.1f)
+	if (DEM_KoAnDan2 >= 0.1f)
 	{
 		DEM_KoAnDan2 = 0.0f;
 	}
@@ -262,6 +267,23 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		}
 		GocSin += in_tg * 190;
 	}
+	if (mTrangThai != eTT_BOSS_PhatNo && HP <=0)
+	{
+		PhatNo();
+		DEM = 0.0f;
+	}
+	if (mTrangThai == eTT_BOSS_PhatNo)
+	{
+		if (DEM_NhapNhayLucBiDanhBai > 0.06f)
+		{
+			DEM_NhapNhayLucBiDanhBai = 0.0f;
+		}
+		DEM_NhapNhayLucBiDanhBai += in_tg;
+		if (DEM > 2.0f)
+		{
+			BienMat();
+		}
+	}
 }
 
 void BOSS::XuLyVaCham(const DoiTuong * in_DoiTuong)
@@ -346,25 +368,43 @@ void BOSS::XuLyVaCham(const DoiTuong * in_DoiTuong)
 
 void BOSS::Ve(const Vec2 & in_DoDoi)
 {
-	HH_CanhOng->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo + Vec2(0.0f, -29.0f), in_DoDoi);
-	HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi);
-	if (DEM_KoAnDan < TG_KoAnDan)
+	if (mTrangThai == eTT_BOSS_BienMat)
 	{
-		if (DEM_KoAnDan2 < 0.033f)
+		return;
+	}
+
+	if (mTrangThai == eTT_BOSS_PhatNo)
+	{
+		if (DEM_NhapNhayLucBiDanhBai < 0.03f)
 		{
-			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS_Shining1, LatHinh, mToaDo, in_DoDoi);
-		}
-		else if (DEM_KoAnDan2 < 0.066f)
-		{
-			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS_Shining2, LatHinh, mToaDo, in_DoDoi);
+			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(175, 255, 255, 255));
 		}
 		else
 		{
-			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi);
+			HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi, D3DCOLOR_ARGB(160, 255, 255, 255));
+		}
+	}
+	else
+	{
+		HH_CanhOng->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo + Vec2(0.0f, -29.0f), in_DoDoi);
+		HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi);
+		if (DEM_KoAnDan < TG_KoAnDan)
+		{
+			if (DEM_KoAnDan2 < 0.033f)
+			{
+				HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS_Shining1, LatHinh, mToaDo, in_DoDoi);
+			}
+			else if (DEM_KoAnDan2 < 0.066f)
+			{
+				HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS_Shining2, LatHinh, mToaDo, in_DoDoi);
+			}
+			else
+			{
+				HH_HienTai->Ve(DS_HinhAnh::get_TH()->BOSS, LatHinh, mToaDo, in_DoDoi);
+			}
 		}
 	}
 }
-
 
 void BOSS::XuatHien()
 {
@@ -411,6 +451,31 @@ void BOSS::BayVongVong()
 	HH_HienTai->Remake();
 	DEM = 10.0f;
 	DEM_SinhOng = 0.0f;
+}
+
+void BOSS::PhatNo()
+{
+	mTrangThai = eTT_BOSS_PhatNo;
+	DEM_NhapNhayLucBiDanhBai = 0.0f;
+	HH_HienTai = HH_BiDanhBai;
+	mVanToc = Vec2();
+	for (int i = 0; i < 5; i++)
+	{
+		if (DS_OngCon[i]->get_TrangThai() != eTT_OngCon_BienMat &&
+			DS_OngCon[i]->get_TrangThai() != eTT_OngCon_PhatNo)
+		{
+			DS_OngCon[i]->PhatNo();
+		}
+	}
+	if (mHongTam->get_TrangThai() != eTT_HongTam_BienMat)
+	{
+		mHongTam->BienMat();
+	}
+}
+
+void BOSS::BienMat()
+{
+	mTrangThai = eTT_BOSS_BienMat;
 }
 
 void BOSS::ChuanBiDamKim()
@@ -461,6 +526,10 @@ void BOSS::ThaOng()
 void BOSS::LoadThongTinHoatHinh()
 {
 	std::vector<ThongTinFrame> lDSTTFrame;
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(96, 48, HCN(414, 414 + 96, 102, 102 + 48))); // 1
+	HH_BiDanhBai = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();
 	lDSTTFrame.push_back(ThongTinFrame(44 + 4, 52, HCN(6, 6 + 50, 10, 10 + 62),		0.6f)); // 1
