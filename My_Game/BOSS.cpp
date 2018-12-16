@@ -142,10 +142,10 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 
 			for (int i = 0; i < 5; i++)
 			{
-				int l = rand() % 20 - 20;
-				//int r = rand() % 31 - 10;
-				DS_OngCon[i]->BanRa(lToaDo, lVanToc + Vec2(-30.0f + 15.0f * i + (float)l, 
-					-30.0f + 15.0f * i));
+				int l = rand() % 50 - 25;
+				int r = rand() % 50 - 25;
+				DS_OngCon[i]->BanRa(lToaDo, lVanToc + Vec2(30.0f - 15.0f * i + (float)l, 
+					-30.0f + 15.0f * i + r));
 			}
 			DaThaOng = true;
 		}

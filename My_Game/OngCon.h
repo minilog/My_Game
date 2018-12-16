@@ -137,7 +137,7 @@ public:
 		
 		if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh ||
 			in_DoiTuong->get_LoaiDoiTuong() == eLDT_CuaDanhBoss ||
-			in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh2)
+			in_DoiTuong->get_LoaiDoiTuong() == eLDT_DoiTuongTinh4)
 		{
 			if (mTrangThai == eTT_OngCon_TanCongMucTieu)
 			{
