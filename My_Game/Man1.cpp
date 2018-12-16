@@ -319,7 +319,7 @@ void Man1::CapNhat(float in_tg)
 		}
 	// CHECK_2
 		else if (Camera::CheckPoint >= 6 &&
-			Camera::CheckPoint < 9)
+			Camera::CheckPoint < 10)
 		{
 			//set Camera trước khi set XMan
 			Camera::CheckPoint = 6;
@@ -328,7 +328,7 @@ void Man1::CapNhat(float in_tg)
 			mBOSS1->BienMat();
 			mBOSS2->BienMat();
 		}
-		else if (Camera::CheckPoint >= 9 &&
+		else if (Camera::CheckPoint >= 10 &&
 			Camera::CheckPoint < 14)
 		{
 			Camera::CheckPoint = 9;
