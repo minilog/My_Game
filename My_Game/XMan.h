@@ -40,6 +40,7 @@ public:
 	bool get_CoTheNhanSatThuong() { return (mTGDem_KoNhanST >= mTG_KoNhanST); }
 	
 private:
+	int HP_DuTru = 0;
 	static constexpr float TG_ChayTuDo = 7.0f;
 	float TGDem_ChayTuDo = TG_ChayTuDo + 0.1f;
 	static constexpr float TG_ChayTuDo2 = 0.8f;
@@ -50,26 +51,8 @@ private:
 	HoatHinh *mHH_PhatNo;
 	HoatHinh *mHH_HatPhatNo;
 
-	void PhatNo()
-	{
-		mTrangThai = eTT_XMan_PhatNo;
-		mHH_HienTai = mHH_PhatNo;
-		mHH_HienTai->Remake();
-		mVanToc.x = mVanToc.y = 0.0f;
-		for (int i = 0; i < 8; i++)
-		{
-			ToaDo_HatPhatNo[i] = mToaDo;
-		}
-	}
-	void CapNhat_PhatNo()
-	{
-		for (int i = 0; i < 8; i++)
-		{
-			ToaDo_HatPhatNo[i].x += VanToc_HatPhatNo[i].x * mTimes;
-			ToaDo_HatPhatNo[i].y += VanToc_HatPhatNo[i].y * mTimes;
-		}
-		mHH_HatPhatNo->CapNhat(mTimes);
-	}
+	void PhatNo();
+	void CapNhat_PhatNo();
 
 	Vec2 ToaDo_HatPhatNo[8];
 	Vec2 VanToc_HatPhatNo[8] = {

@@ -16,8 +16,8 @@ Man1::Man1()
 {
 	TaiDuLieu();
 
-	Sound::getInstance()->loadSound("Resources/Umbrella-KashitaroIto-2576613.wav", "man1");
-	Sound::getInstance()->play("man1", true, 0);
+	//Sound::getInstance()->loadSound("Resources/Umbrella-KashitaroIto-2576613.wav", "man1");
+	//Sound::getInstance()->play("man1", true, 0);
 }
 
 

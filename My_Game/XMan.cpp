@@ -144,7 +144,15 @@ XMan::~XMan()
 
 void XMan::CapNhat(float in_tg)
 {
-
+	if (HP_DuTru > 0)
+	{
+		HP_DuTru--;
+		mHP++;
+		if (mHP > 100)
+		{
+			mHP = 100;
+		}
+	}
 
 	mToaDo.x += (mVanToc.x + VanTocKhachQuan.x)* in_tg;
 	mToaDo.y += (mVanToc.y + VanTocKhachQuan.y)* in_tg;
@@ -866,11 +874,7 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 			return;
 		}
 
-		mHP += 15;
-		if (mHP > 100)
-		{
-			mHP = 100;
-		}
+		HP_DuTru += 15;
 	}
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_OngCon)
@@ -955,7 +959,7 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 	{
 		PhatNo();
 	}
-	if (in_Keys['S'])
+	if (in_Keys['D'])
 	{
 		mHP = 100;
 	}
@@ -1037,6 +1041,28 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 		return;
 	}
 	XuLyBanPhim_BanDan(in_Keys);
+}
+
+void XMan::PhatNo()
+{
+	mTrangThai = eTT_XMan_PhatNo;
+	mHH_HienTai = mHH_PhatNo;
+	mHH_HienTai->Remake();
+	mVanToc.x = mVanToc.y = 0.0f;
+	for (int i = 0; i < 8; i++)
+	{
+		ToaDo_HatPhatNo[i] = mToaDo;
+	}
+}
+
+void XMan::CapNhat_PhatNo()
+{
+	for (int i = 0; i < 8; i++)
+	{
+		ToaDo_HatPhatNo[i].x += VanToc_HatPhatNo[i].x * mTimes;
+		ToaDo_HatPhatNo[i].y += VanToc_HatPhatNo[i].y * mTimes;
+	}
+	mHH_HatPhatNo->CapNhat(mTimes);
 }
 
 void XMan::LoadThongTinHoatHinh()

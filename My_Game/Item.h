@@ -136,7 +136,7 @@ public:
 		if (mTrangThai == eTT_Item_BienMat)
 		{
 			int l = rand() % 100;
-			if (l < 15)
+			if (l < 20)
 			{
 				mToaDo = in_ToaDo;
 				mTrangThai = eTT_Item_Roi;
