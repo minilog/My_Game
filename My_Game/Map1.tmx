@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="248" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="876">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="248" height="64" tilewidth="32" tileheight="32" infinite="0" nextobjectid="887">
  <tileset firstgid="1" source="Map1.tsx"/>
  <layer name="Tile Layer 1" width="248" height="64">
   <data encoding="csv">
@@ -109,7 +109,7 @@
   <object id="855" x="5904" y="1664" width="32" height="32"/>
   <object id="856" x="5936" y="1664" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="DoiTuongTinh">
+ <objectgroup name="DoiTuongTinh" visible="0">
   <object id="3" x="0" y="946" width="352" height="17"/>
   <object id="39" x="353" y="897.5" width="159" height="48"/>
   <object id="40" x="256.5" y="782.75" width="127.5" height="32"/>
@@ -203,9 +203,16 @@
   <object id="848" x="6033.91" y="1760" width="32" height="32"/>
   <object id="849" x="6001.91" y="1760" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="DoiTuongTinh4">
+ <objectgroup name="DoiTuongTinh4" visible="0">
   <object id="831" x="7484.33" y="1790" width="50.6667" height="129"/>
   <object id="875" x="7757.67" y="1792.33" width="98.6667" height="15"/>
+ </objectgroup>
+ <objectgroup name="HieuUngMap1">
+  <object id="876" x="770" y="236" width="512" height="256"/>
+  <object id="883" x="770" y="477" width="512" height="256"/>
+  <object id="884" x="770" y="719" width="512" height="256"/>
+  <object id="885" x="770" y="961" width="512" height="256"/>
+  <object id="886" x="1026" y="961" width="512" height="256"/>
  </objectgroup>
  <objectgroup name="DoiTuongTinh2" visible="0">
   <object id="505" x="3087" y="965.667" width="256.333" height="7.5"/>

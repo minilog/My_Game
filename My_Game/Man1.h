@@ -104,5 +104,14 @@ public:
 		//}
 	}
 #pragma endregion
+
+private:
+	QuadTree *QuadTree_HieuUngMap;
+	std::vector<DoiTuong*> DS_HieuUngMap;
+	std::vector<DoiTuong*> DS_HieuUngMap1;
+	std::vector<DoiTuong*> DS_HieuUngMap2;
+
+	HoatHinh *HieuUngMap1;
+	void LoadHieuUngMap();
 };
 

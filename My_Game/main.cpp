@@ -65,8 +65,6 @@ int	KhoiTaoCuaSo(int cmdShow)
 		ToanCauGame::mTruongHopXuLy,
 		NULL);
 
-
-
 	ShowWindow(ToanCauGame::mCuaSoXuLy, cmdShow);
 	UpdateWindow(ToanCauGame::mCuaSoXuLy);
 

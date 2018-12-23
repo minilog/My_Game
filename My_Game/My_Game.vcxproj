@@ -157,6 +157,7 @@
     <ClCompile Include="GameDebugDraw.cpp" />
     <ClCompile Include="GameLog.cpp" />
     <ClCompile Include="HieuUngBatRa.cpp" />
+    <ClCompile Include="HieuUngMap.cpp" />
     <ClCompile Include="HieuUngLuot.cpp" />
     <ClCompile Include="HinhAnh.cpp" />
     <ClCompile Include="HoatHinh.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="GameDebugDraw.h" />
     <ClInclude Include="GameLog.h" />
     <ClInclude Include="HieuUngBatRa.h" />
+    <ClInclude Include="HieuUngMap.h" />
     <ClInclude Include="HieuUngLuot.h" />
     <ClInclude Include="HongTam.h" />
     <ClInclude Include="Item.h" />

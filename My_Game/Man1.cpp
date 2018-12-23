@@ -9,12 +9,39 @@
 #include "MayBay.h"
 
 #include "Sound.h"
+#include "HieuUngMap.h"
 #include <vector>
 
 
 Man1::Man1()
 {
 	TaiDuLieu();
+
+	QuadTree_HieuUngMap = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
+	LoadHieuUngMap();
+
+	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
+	{
+		const Tmx::ObjectGroup *lNhomObject = mBanDo->GetObjectGroup(i);
+
+		// đưa các Object trong Bản Đồ vào trong các danh sách
+		for (int j = 0; j < lNhomObject->GetNumObjects(); j++)
+		{
+			// lấy Object trong Bản Đồ
+			const Tmx::Object *lObject = lNhomObject->GetObjects().at(j);
+
+			const Vec2 lToaDoDoiTuong(
+				lObject->GetX() + lObject->GetWidth() / 2.0f,
+				lObject->GetY() + lObject->GetHeight() / 2.0f);
+
+			if (lNhomObject->GetName() == "HieuUngMap1")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+				HieuUngMap *lHieuUngMap = new HieuUngMap(lToaDoDoiTuong, mChieuRong, mChieuCao, HieuUngMap1, 1);
+				DS_HieuUngMap1.push_back(lHieuUngMap);
+		/*		QuadTree_HieuUngMap->ThemDoiTuong(lHieuUngMap);*/
+			}
+		}
+	}
 
 	Sound::getInstance()->loadSound("Resources/Umbrella-KashitaroIto-2576613.wav", "man1");
 	Sound::getInstance()->play("man1", true, 0);
@@ -121,14 +148,14 @@ void Man1::TaiDuLieu()
 				lObject->GetY() + lObject->GetHeight() / 2.0f);
 			
 			if (lNhomObject->GetName() == "Box1")
-			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+			{
 
 				Box *lB = new Box(lToaDoDoiTuong, Vec2(), 1);
 
 				mQuadTree_Tinh->ThemDoiTuong(lB);
 			}
 			else if (lNhomObject->GetName() == "Box2")
-			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+			{
 
 				Box *lB = new Box(lToaDoDoiTuong, Vec2(), 2);
 
@@ -578,6 +605,8 @@ void Man1::CapNhat(float in_tg)
 	// nơi xử lý bàn phím
 	mXMan->XuLyBanPhim(mKeys);
 #pragma endregion
+
+	HieuUngMap1->CapNhat(in_tg);
 }
 
 void Man1::Ve()
@@ -586,9 +615,24 @@ void Man1::Ve()
 	Vec2 lDoDoi(ToanCauGame::mChieuRong / 2 - Camera::get_ToaDo().x,
 		ToanCauGame::mChieuCao / 2 - Camera::get_ToaDo().y);
 
+
+	//DS_HieuUngMap.clear();
+	//QuadTree_HieuUngMap->get_CacDoiTuongCoTheVaCham(DS_HieuUngMap, Camera::get_HCNGioiHan());
+
+	//for (auto HU : DS_HieuUngMap)
+	//{
+	//	HU->Ve(lDoDoi);
+	//}
+
+	for (auto A : DS_HieuUngMap1)
+	{
+		A->Ve(lDoDoi);
+	}
 	// vẽ hình ảnh bản đồ
 	mBanDoMap1->set_DoDoi(lDoDoi);
 	mBanDoMap1->Ve();
+
+
 
 #pragma region HOAN THANH
 	DS_CuaDanhBoss[0]->Ve(lDoDoi);
@@ -750,4 +794,20 @@ void Man1::DrawCollidable()
 	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon2()->get_RECT());
 	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon3()->get_RECT());
 	//mGameDebugDraw->DrawRect(mBOSS->get_OngCon4()->get_RECT());
+}
+
+void Man1::LoadHieuUngMap()
+{
+	std::vector <ThongTinFrame> lDSTTFrame;
+
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 0, 256), 0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 258, 514), 0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 516, 772), 0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 774, 1030), 0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1032, 1288), 0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1290, 1546), 0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1548, 1804), 0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1806, 2062), 0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(512, 512 + 512, 1806, 2062), 0.3f));
+	HieuUngMap1 = new HoatHinh(lDSTTFrame);
 }

@@ -71,6 +71,8 @@ private:
 		BOSS_Shining1 = new HinhAnh("Resources/BOSS_Shining1.png", D3DCOLOR_XRGB(105, 255, 255));
 		BOSS_Shining2 = new HinhAnh("Resources/BOSS_Shining2.png", D3DCOLOR_XRGB(103, 255, 255));
 		HieuUngPhatNo2 = new HinhAnh("Resources/HieuUngPhatNo2.png", D3DCOLOR_XRGB(0, 128, 128));
+
+		HieuUngMap1 = new HinhAnh("Resources/Map1/HieuUngMap1.png", D3DCOLOR_XRGB(255, 255, 255));
 	}
 	~DS_HinhAnh()
 	{
@@ -78,6 +80,8 @@ private:
 	}
 
 public:
+	HinhAnh *HieuUngMap1;
+
 	HinhAnh *HieuUngPhatNo2;
 	HinhAnh *BOSS_Shining1,
 		*BOSS_Shining2;
