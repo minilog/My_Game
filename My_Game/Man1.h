@@ -27,6 +27,7 @@
 
 class Man1 : public ManGame
 {
+#pragma region HOAN THANH
 public:
 	Man1();
 	~Man1();
@@ -102,11 +103,6 @@ public:
 		//	font->DrawTextA(NULL, message.c_str(), -1, &fRectangle, DT_LEFT, D3DCOLOR_XRGB(255, 25, 25));
 		//}
 	}
-
-// SUB-FUNCTION
-private:
-	void TaoBanDoVaCamera();
-	void TaoDanhSachDoiTuongVaQuai();
-
+#pragma endregion
 };
 

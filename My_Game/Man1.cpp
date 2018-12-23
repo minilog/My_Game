@@ -29,6 +29,7 @@ Man1::~Man1()
 
 void Man1::TaiDuLieu()
 {
+#pragma region HOAN THANH
 	mGameDebugDraw = new GameDebugDraw();
 	mGameDebugDraw->setLineSize(2.0f);
 
@@ -41,11 +42,11 @@ void Man1::TaiDuLieu()
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
-	//Camera::CheckPoint = -1;
+	Camera::CheckPoint = -1;
 	//Camera::CheckPoint = 6;
 	//Camera::CheckPoint = 9;
 	//Camera::CheckPoint = 14;
-	Camera::CheckPoint = 16;
+	//Camera::CheckPoint = 16;
 	Camera::set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 750.0f));
 	//Camera::set_ToaDo(Vec2(7510.0f, 1750.0f)); // TEST
 #pragma endregion
@@ -299,11 +300,14 @@ void Man1::TaiDuLieu()
 	SetRect(&fRectangle, 0, 0, Camera::get_ChieuRong(), Camera::get_ChieuCao());
 
 #pragma endregion
+
+#pragma endregion
 }
 
 
 void Man1::CapNhat(float in_tg)
 {
+#pragma region HOAN THANH
 	// khi trắng màn hình thì reset lại XMan
 	if (Color == 255)
 	{
@@ -573,12 +577,11 @@ void Man1::CapNhat(float in_tg)
 
 	// nơi xử lý bàn phím
 	mXMan->XuLyBanPhim(mKeys);
-
+#pragma endregion
 }
 
 void Man1::Ve()
 {
-
 	// lấy độ dời từ Camera
 	Vec2 lDoDoi(ToanCauGame::mChieuRong / 2 - Camera::get_ToaDo().x,
 		ToanCauGame::mChieuCao / 2 - Camera::get_ToaDo().y);
@@ -587,7 +590,7 @@ void Man1::Ve()
 	mBanDoMap1->set_DoDoi(lDoDoi);
 	mBanDoMap1->Ve();
 
-
+#pragma region HOAN THANH
 	DS_CuaDanhBoss[0]->Ve(lDoDoi);
 	DS_CuaDanhBoss[1]->Ve(lDoDoi);
 	DS_CuaDanhBoss[2]->Ve(lDoDoi);
@@ -669,6 +672,7 @@ void Man1::Ve()
 	DS_HinhAnh::get_TH()->Rong_png->set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f,
 		ToanCauGame::mChieuCao / 2.0f));
 	DS_HinhAnh::get_TH()->Rong_png->Ve(D3DCOLOR_ARGB(Color, 255, 255, 255));
+#pragma endregion
 }
 
 void Man1::OnKeyDown(int in_KeyCode)
@@ -680,19 +684,6 @@ void Man1::OnKeyUp(int in_KeyCode)
 {
 	mKeys[in_KeyCode] = false;
 }
-
-
-void Man1::TaoBanDoVaCamera()
-{
-
-}
-
-void Man1::TaoDanhSachDoiTuongVaQuai()
-{
-
-}
-
-
 
 void Man1::DrawQuadTree(QuadTree * in_QuadTree)
 {
