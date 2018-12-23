@@ -16,8 +16,8 @@ Man1::Man1()
 {
 	TaiDuLieu();
 
-	//Sound::getInstance()->loadSound("Resources/Umbrella-KashitaroIto-2576613.wav", "man1");
-	//Sound::getInstance()->play("man1", true, 0);
+	Sound::getInstance()->loadSound("Resources/Umbrella-KashitaroIto-2576613.wav", "man1");
+	Sound::getInstance()->play("man1", true, 0);
 }
 
 
@@ -41,11 +41,11 @@ void Man1::TaiDuLieu()
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
-	Camera::CheckPoint = -1;
+	//Camera::CheckPoint = -1;
 	//Camera::CheckPoint = 6;
 	//Camera::CheckPoint = 9;
 	//Camera::CheckPoint = 14;
-	//Camera::CheckPoint = 16;
+	Camera::CheckPoint = 16;
 	Camera::set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 750.0f));
 	//Camera::set_ToaDo(Vec2(7510.0f, 1750.0f)); // TEST
 #pragma endregion
