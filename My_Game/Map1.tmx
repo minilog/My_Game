@@ -208,11 +208,11 @@
   <object id="875" x="7757.67" y="1792.33" width="98.6667" height="15"/>
  </objectgroup>
  <objectgroup name="HieuUngMap1">
-  <object id="876" x="770" y="236" width="512" height="256"/>
-  <object id="883" x="770" y="477" width="512" height="256"/>
-  <object id="884" x="770" y="719" width="512" height="256"/>
-  <object id="885" x="770" y="961" width="512" height="256"/>
-  <object id="886" x="1026" y="961" width="512" height="256"/>
+  <object id="876" x="770" y="242" width="512" height="256"/>
+  <object id="883" x="770" y="483" width="512" height="256"/>
+  <object id="884" x="770" y="725" width="512" height="256"/>
+  <object id="885" x="770" y="967" width="512" height="256"/>
+  <object id="886" x="1026" y="967" width="512" height="256"/>
   <object id="890" x="2825" y="1018" width="512" height="256"/>
   <object id="891" x="2825" y="1259" width="512" height="256"/>
   <object id="892" x="2825" y="1501" width="512" height="256"/>

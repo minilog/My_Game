@@ -1,6 +1,7 @@
 ﻿#include "MayBay.h"
 #include "Camera.h"
 #include "DanLv.h"
+#include "Sound.h"
 
 
 
@@ -77,6 +78,7 @@ void MayBay::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	if (HP <= 0)
 	{
 		PhatNo();
+		Sound::getInstance()->play("Hieu_Ung_No", false, 1);
 	}
 
 	if (TGDem_Shining <= TG_Shining)

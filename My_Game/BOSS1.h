@@ -20,6 +20,8 @@ public:
 
 // INFORMATION
 private:
+	float DEM_PlaySound = 0.0f;
+	bool PlaySound_HieuUngNo = false;
 	CuaDanhBoss *mCuaDanhBoss; // trỏ đến CuaDanhBoss
 	static constexpr int MAX_HP = 100;
 	int HP = MAX_HP;

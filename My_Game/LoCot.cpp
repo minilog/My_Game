@@ -2,6 +2,7 @@
 #include "Camera.h"
 #include "VaChamGame.h"
 #include "DanLv.h"
+#include "Sound.h"
 
 LoCot::LoCot(const Vec2 & in_ToaDo, std::vector<DanNo1*>& in_DS_DanNo1, 
 	std::vector<TenLua*>& in_DS_TenLua, std::vector<Bui*>& in_Bui, Item *in_Item)
@@ -189,6 +190,7 @@ void LoCot::CapNhat(float in_tg, const DoiTuong * in_XMan)
 	if (HP <= 0)
 	{
 		BienMat();
+		Sound::getInstance()->play("Hieu_Ung_No", false, 1);
 	}
 }
 

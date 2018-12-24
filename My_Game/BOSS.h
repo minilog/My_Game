@@ -31,6 +31,9 @@ public:
 	void BienMat();
 // INFORMATION
 private:
+	bool DEM_SoundHieuUngNo = 0.0f;
+	bool PlaySound_HieuUngNo = false;
+	bool PlaySound_NhacDanhBoss = false;
 	Vec2 ToaDo_XuatHien;
 	int index_ToaDoNgauNhien;
 	Vec2 ToaDo_NgauNhien[10];

@@ -2,6 +2,7 @@
 #include <time.h>    
 #include "DanLv.h"
 #include "VaChamGame.h"
+#include "Sound.h"
 
 BOSS1::BOSS1(const Vec2& in_ToaDo, CuaDanhBoss* in_CuaDanhBoss)
 	:
@@ -36,6 +37,18 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	{
 		TG_Dem += in_tg;
 
+		if (!PlaySound_HieuUngNo)
+		{
+			Sound::getInstance()->play("Hieu_Ung_No", false, 1);
+			PlaySound_HieuUngNo = true;
+		}
+		DEM_PlaySound += in_tg;
+		if (DEM_PlaySound > 0.48f)
+		{
+			DEM_PlaySound = 0.0f;
+			PlaySound_HieuUngNo = false;
+		}
+
 
 		if (TG_Dem > TG_PhatNo)
 		{
@@ -46,21 +59,25 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			TGDem2 >= 0.48f * 4 && TGDem2 < 0.48f * 5)
 		{
 			mHH_HieuUngPhatNo[0]->CapNhat(in_tg);
+
 		}
 		else if (TGDem2 >= 0.48f * 1 && TGDem2 < 0.48f * 2||
 			TGDem2 >= 0.48f * 5 && TGDem2 < 0.48f * 6)
 		{
 			mHH_HieuUngPhatNo[1]->CapNhat(in_tg);
+
 		}
 		else if (TGDem2 >= 0.48f * 2 && TGDem2 < 0.48f * 3||
 			TGDem2 >= 0.48f * 6 && TGDem2 < 0.48f * 7)
 		{
 			mHH_HieuUngPhatNo[2]->CapNhat(in_tg);
+
 		}
 		else if (TGDem2 >= 0.48f * 3 && TGDem2 < 0.48f * 4 ||
 			TGDem2 >= 0.48f * 7 && TGDem2 < 0.48f * 8)
 		{
 			mHH_HieuUngPhatNo[3]->CapNhat(in_tg);
+
 		}
 
 		TGDem2 += in_tg;
@@ -88,7 +105,7 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		TG_Dem += in_tg;
 		if (TG_Dem > 3.0f)
 		{
-			HH_HienTai->CapNhat(in_tg * 1.4f);
+			HH_HienTai->CapNhat(in_tg * 1.55f);
 		}
 		if (TG_Dem > 3.0f + (0.12f * 50) / 1.4f)
 		{
@@ -97,11 +114,11 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 
 		if (TG_Dem > 3.0f && TG_Dem <= 3.0f + 0.25f * 7 * 2)
 		{
-			HH_ConPet->CapNhat(in_tg / 2);
+			HH_ConPet->CapNhat(in_tg / 1.8f);
 		}
 		else if (TG_Dem > 3.0f * 0.25f * 7 * 2 && TG_Dem <= 3.0f * 0.25f * 14 * 2)
 		{
-			HH_ConPet->CapNhat(in_tg / 2);
+			HH_ConPet->CapNhat(in_tg / 1.8f);
 		}
 		if (TG_Dem > 0.5f && TG_Dem <= 3.0f)
 		{
@@ -112,11 +129,11 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			ToaDo_Pet.y -= 55.0f * in_tg;
 		}
 
-		if (TG_Dem > 3.0f && TG_Dem <= 5.0f)
+		if (TG_Dem > 3.0f && TG_Dem <= 4.0f)
 		{
 			if (Color_AnhSang != 240)
 			{
-				Color_AnhSang++;
+				Color_AnhSang+= 2;
 			}
 		}
 		else
@@ -127,7 +144,7 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			}
 		}
 
-		if (TG_Dem > 9.0f)
+		if (TG_Dem > 8.7f)
 		{
 			TanCong1();
 		}
@@ -435,6 +452,7 @@ void BOSS1::PhatNo()
 	{
 		mHH_HieuUngPhatNo[i]->Remake();
 	}
+
 }
 
 void BOSS1::BienMat()
@@ -514,7 +532,7 @@ void BOSS1::LoadThongTinHoatHinh()
 	lDSTTFrame.push_back(ThongTinFrame(48, 48, HCN(259, 259 + 48, 210, 210 + 48),	0.12f)); // 47
 	lDSTTFrame.push_back(ThongTinFrame(46, 46, HCN(316, 316 + 46, 211, 211 + 46),	0.12f)); // 48
 	lDSTTFrame.push_back(ThongTinFrame(48, 48, HCN(369, 369 + 48, 211, 211 + 48),	0.12f)); // 49
-	lDSTTFrame.push_back(ThongTinFrame(48, 48, HCN(429, 429 + 48, 209, 209 + 48),	0.12f)); // 50
+	lDSTTFrame.push_back(ThongTinFrame(48, 48, HCN(429, 429 + 48, 209, 209 + 48),	99.9f)); // 50
 	HH_XuatHien = new HoatHinh(lDSTTFrame);
 
 	lDSTTFrame.clear();

@@ -1,5 +1,7 @@
 ﻿#include "DanNo1.h"
 #include "DanLv.h"
+#include "Sound.h"
+#include "Camera.h"
 
 
 
@@ -82,7 +84,10 @@ void DanNo1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		// set tọa độ hiệu ứng nổ tung 
 		mToaDo_HieuUngNoTung = mToaDo;
 		mHH_HieuUngPhatNo->Remake();
-
+		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
+		{
+			Sound::getInstance()->play("Hieu_Ung_No", false, 1);
+		}
 	}
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_DanLv1 ||
@@ -105,6 +110,10 @@ void DanNo1::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		// set tọa độ hiệu ứng nổ tung 
 		mToaDo_HieuUngNoTung = mToaDo;
 		mHH_HieuUngPhatNo->Remake();
+		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
+		{
+			Sound::getInstance()->play("Hieu_Ung_No", false, 1);
+		}
 	}
 }
 

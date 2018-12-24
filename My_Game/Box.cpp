@@ -3,6 +3,8 @@
 #include "VaChamGame.h"
 #include "GameLog.h"
 #include <time.h>    
+#include "Sound.h"
+#include "Camera.h"
 
 Box::Box(const Vec2 & in_ToaDo, const Vec2& in_VanToc, int in_K)
 	:
@@ -64,6 +66,10 @@ void Box::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	if (HP <= 0)
 	{
 		PhatNo();
+		if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
+		{
+			Sound::getInstance()->play("Hieu_Ung_No", false, 1);
+		}
 	}
 
 	if (mTrangThai == eTT_Box_DiChuyen)
@@ -222,6 +228,7 @@ void Box::PhatNo()
 		int r = rand() % 40 - 21;
 		ToaDo_PhatNo[i] = Vec2(mToaDo + Vec2(float(l), float(r)));
 	}
+
 }
 
 void Box::BienMat()

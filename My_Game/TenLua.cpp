@@ -1,7 +1,8 @@
 ﻿#include "TenLua.h"
 #include "DanLv.h"
+#include "Camera.h"
 
-
+#include "Sound.h"
 
 // FUNCTION
 
@@ -153,6 +154,10 @@ void TenLua::PhatNo()
 	TGDem_NoTung = 0.0f;
 	mHH_HieuUngPhatNo->Remake();
 	HP = MAXHP;
+	if (VaChamGame::get_DaVaCham(get_HCNGioiHan(), Camera::get_HCNGioiHan()))
+	{
+		Sound::getInstance()->play("Hieu_Ung_No", false, 1);
+	}
 }
 
 void TenLua::LoadThongTinHoatHinh()

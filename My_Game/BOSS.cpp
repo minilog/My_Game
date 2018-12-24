@@ -2,6 +2,7 @@
 #include <cmath>
 #include "VaChamGame.h"
 #include <ctime>
+#include "Sound.h"
 
 BOSS::BOSS(const Vec2& in_ToaDo)
 	:
@@ -90,6 +91,7 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 				{
 					HP = MAXHP;
 				}
+				Sound::getInstance()->play("XMan_Hoi_Mau", false, 1);
 			}
 		}
 		if (DEM >= 5.0f + WaitingTime &&
@@ -97,6 +99,12 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		{
 			mVanToc.y = -40.0f;
 			mVanToc.x = -30.0f;
+			if (!PlaySound_NhacDanhBoss)
+			{
+				Sound::getInstance()->stop("Nhac_Nen");
+				Sound::getInstance()->play("Nhac_Danh_Boss", true, 0);
+				PlaySound_NhacDanhBoss = true;
+			}
 		}
 		if (DEM >= 5.2f + WaitingTime)
 		{
@@ -318,6 +326,7 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			}
 			ToaDo_PhatNoHienTai = ToaDo_NgauNhien[index_ToaDoNgauNhien];
 			HH_PhatNo->Remake();
+			Sound::getInstance()->play("Hieu_Ung_No", false, 1);
 		}
 		HH_PhatNo->CapNhat(in_tg);
 		if (DEM_NhapNhayLucBiDanhBai > 0.06f)
@@ -328,6 +337,8 @@ void BOSS::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 		if (DEM > 5.0f)
 		{
 			BienMat();
+			Sound::getInstance()->stop("Nhac_Danh_Boss");
+			Sound::getInstance()->play("Diet_Xong_Boss", false, 1);
 		}
 	}
 }
@@ -467,6 +478,8 @@ void BOSS::XuatHien()
 	LatHinh = false;
 	ViTri_CanDenHienTai = ViTri2;
 	DEM = 0.0f;
+
+	PlaySound_NhacDanhBoss = false;
 }
 
 void BOSS::BayVongSo8()
@@ -507,6 +520,7 @@ void BOSS::BayVongVong()
 
 void BOSS::PhatNo()
 {
+	DEM_SoundHieuUngNo = 0.0f;
 	for (int i = 0; i < 10; i++)
 	{
 		int w = rand() % 51 - 25;

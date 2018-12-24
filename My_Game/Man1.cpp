@@ -97,9 +97,9 @@ void Man1::TaiDuLieu()
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
 	//Camera::CheckPoint = -1;
 	//Camera::CheckPoint = 6;
-	Camera::CheckPoint = 10;
+	//Camera::CheckPoint = 10;
 	//Camera::CheckPoint = 14;
-	//Camera::CheckPoint = 16;
+	Camera::CheckPoint = 16;
 	Camera::set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 750.0f));
 	//Camera::set_ToaDo(Vec2(7510.0f, 1750.0f)); // TEST
 #pragma endregion
@@ -412,6 +412,8 @@ void Man1::CapNhat(float in_tg)
 			mBOSS1->BienMat();
 			mBOSS2->BienMat();
 			mBOSS->BienMat();
+			Sound::getInstance()->stop("Nhac_Danh_Boss");
+			Sound::getInstance()->play("Nhac_Nen", true, 0);
 		}
 		//else if (Camera::CheckPoint >= 18)
 		//{
