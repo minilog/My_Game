@@ -24,6 +24,10 @@ void HieuUngMap::Ve(const Vec2 & in_DoDoi)
 		HH_HieuUng->Ve(DS_HinhAnh::get_TH()->HieuUngMap1, false, mToaDo, Vec2(in_DoDoi.x / 2.0f, in_DoDoi.y));
 		break;
 
+	case 2:
+		HH_HieuUng->Ve(DS_HinhAnh::get_TH()->HieuUngMap2, false, mToaDo, Vec2(in_DoDoi.x / 2.0f, in_DoDoi.y));
+		break;
+
 	default:
 		break;
 	}

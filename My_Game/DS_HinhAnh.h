@@ -73,6 +73,7 @@ private:
 		HieuUngPhatNo2 = new HinhAnh("Resources/HieuUngPhatNo2.png", D3DCOLOR_XRGB(0, 128, 128));
 
 		HieuUngMap1 = new HinhAnh("Resources/Map1/HieuUngMap1.png", D3DCOLOR_XRGB(255, 255, 255));
+		HieuUngMap2 = new HinhAnh("Resources/Map1/HieuUngMap2.png", D3DCOLOR_XRGB(255, 255, 255));
 	}
 	~DS_HinhAnh()
 	{
@@ -80,6 +81,7 @@ private:
 	}
 
 public:
+	HinhAnh *HieuUngMap2;
 	HinhAnh *HieuUngMap1;
 
 	HinhAnh *HieuUngPhatNo2;

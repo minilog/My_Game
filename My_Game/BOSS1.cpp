@@ -86,33 +86,33 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 	if (mTrangThai == eTT_BOSS1_XuatHien)
 	{
 		TG_Dem += in_tg;
-		if (TG_Dem > 5.0f)
+		if (TG_Dem > 3.0f)
 		{
 			HH_HienTai->CapNhat(in_tg * 1.4f);
 		}
-		if (TG_Dem > 5.0f + (0.12f * 50) / 1.4f)
+		if (TG_Dem > 3.0f + (0.12f * 50) / 1.4f)
 		{
 			HH_HienTai = HH_TanCong;
 		}
 
-		if (TG_Dem > 5.0f && TG_Dem <= 5.0f + 0.25f * 7 * 2)
+		if (TG_Dem > 3.0f && TG_Dem <= 3.0f + 0.25f * 7 * 2)
 		{
 			HH_ConPet->CapNhat(in_tg / 2);
 		}
-		else if (TG_Dem > 5.0f * 0.25f * 7 * 2 && TG_Dem <= 5.0f * 0.25f * 14 * 2)
+		else if (TG_Dem > 3.0f * 0.25f * 7 * 2 && TG_Dem <= 3.0f * 0.25f * 14 * 2)
 		{
 			HH_ConPet->CapNhat(in_tg / 2);
 		}
-		if (TG_Dem > 2.5f && TG_Dem <= 5.0f)
+		if (TG_Dem > 0.5f && TG_Dem <= 3.0f)
 		{
 			ToaDo_Pet.y += 55.0f * in_tg;
 		}
-		else if (TG_Dem > 8.0f && TG_Dem <= 10.5f)
+		else if (TG_Dem > 5.0f && TG_Dem <= 8.5f)
 		{
 			ToaDo_Pet.y -= 55.0f * in_tg;
 		}
 
-		if (TG_Dem > 5.0f && TG_Dem <= 7.0f)
+		if (TG_Dem > 3.0f && TG_Dem <= 5.0f)
 		{
 			if (Color_AnhSang != 240)
 			{
@@ -127,7 +127,7 @@ void BOSS1::CapNhat(float in_tg, const DoiTuong * in_DoiTuong)
 			}
 		}
 
-		if (TG_Dem > 11.0f)
+		if (TG_Dem > 9.0f)
 		{
 			TanCong1();
 		}

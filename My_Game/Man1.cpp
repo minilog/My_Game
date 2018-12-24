@@ -17,7 +17,7 @@ Man1::Man1()
 {
 	TaiDuLieu();
 
-	QuadTree_HieuUngMap = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
+	//QuadTree_HieuUngMap = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
 	LoadHieuUngMap();
 
 	for (int i = 0; i < ManGame::mBanDo->GetNumObjectGroups(); i++)
@@ -40,11 +40,16 @@ Man1::Man1()
 				DS_HieuUngMap1.push_back(lHieuUngMap);
 		/*		QuadTree_HieuUngMap->ThemDoiTuong(lHieuUngMap);*/
 			}
+			else if (lNhomObject->GetName() == "HieuUngMap2")
+			{	// đối tượng tĩnh sẽ có Tọa Độ khác với các Đối Tượng khác, vì phần mềm Tiled nó như vậy
+				HieuUngMap *lHieuUngMap = new HieuUngMap(lToaDoDoiTuong, mChieuRong, mChieuCao, HieuUngMap2, 2);
+				DS_HieuUngMap2.push_back(lHieuUngMap);
+			}
 		}
 	}
 
-	Sound::getInstance()->loadSound("Resources/Umbrella-KashitaroIto-2576613.wav", "man1");
-	Sound::getInstance()->play("man1", true, 0);
+	//Sound::getInstance()->loadSound("Resources/Umbrella-KashitaroIto-2576613.wav", "man1");
+	//Sound::getInstance()->play("man1", true, 0);
 }
 
 
@@ -60,7 +65,7 @@ void Man1::TaiDuLieu()
 	mGameDebugDraw = new GameDebugDraw();
 	mGameDebugDraw->setLineSize(2.0f);
 
-	ManGame::mMauNen = D3DCOLOR_XRGB(0, 0, 0);
+	ManGame::mMauNen = D3DCOLOR_XRGB(24, 40, 40);
 
 #pragma region TAO BAN DO VA CAMERA
 	ManGame::mBanDo = new Tmx::Map();
@@ -69,9 +74,9 @@ void Man1::TaiDuLieu()
 	ManGame::mChieuCao = ManGame::mBanDo->GetHeight() * ManGame::mBanDo->GetTileHeight();
 	// TAO_CAMERA
 	Camera::set_KichThuoc(ToanCauGame::mChieuRong, ToanCauGame::mChieuCao);
-	Camera::CheckPoint = -1;
+	//Camera::CheckPoint = -1;
 	//Camera::CheckPoint = 6;
-	//Camera::CheckPoint = 9;
+	Camera::CheckPoint = 10;
 	//Camera::CheckPoint = 14;
 	//Camera::CheckPoint = 16;
 	Camera::set_ToaDo(Vec2(ToanCauGame::mChieuRong / 2.0f, 750.0f));
@@ -628,6 +633,10 @@ void Man1::Ve()
 	{
 		A->Ve(lDoDoi);
 	}
+	for (auto A : DS_HieuUngMap2)
+	{
+		A->Ve(lDoDoi);
+	}
 	// vẽ hình ảnh bản đồ
 	mBanDoMap1->set_DoDoi(lDoDoi);
 	mBanDoMap1->Ve();
@@ -800,14 +809,18 @@ void Man1::LoadHieuUngMap()
 {
 	std::vector <ThongTinFrame> lDSTTFrame;
 
-	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 0, 256), 0.3f));
-	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 258, 514), 0.3f));
-	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 516, 772), 0.3f));
-	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 774, 1030), 0.3f));
-	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1032, 1288), 0.3f));
-	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1290, 1546), 0.3f));
-	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1548, 1804), 0.3f));
-	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1806, 2062), 0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 0, 256),             0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 258, 514),           0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 516, 772),           0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 774, 1030),          0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1032, 1288),         0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1290, 1546),         0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1548, 1804),         0.3f));
+	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(0, 512, 1806, 2062),         0.3f));
 	lDSTTFrame.push_back(ThongTinFrame(512, 256, HCN(512, 512 + 512, 1806, 2062), 0.3f));
 	HieuUngMap1 = new HoatHinh(lDSTTFrame);
+
+	lDSTTFrame.clear();
+	lDSTTFrame.push_back(ThongTinFrame(512, 352, HCN(0, 512, 0, 352)));
+	HieuUngMap2 = new HoatHinh(lDSTTFrame);
 }
