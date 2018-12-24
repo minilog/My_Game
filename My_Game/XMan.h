@@ -40,6 +40,9 @@ public:
 	bool get_CoTheNhanSatThuong() { return (mTGDem_KoNhanST >= mTG_KoNhanST); }
 	
 private:
+	bool PlaySound_GongSucKeoDai = false;
+	bool PlaySound_GongSuc = false;
+	float DEM_Sound_XMan_Hoi_Mau = 0.0f;
 	int HP_DuTru = 0;
 	static constexpr float TG_ChayTuDo = 7.0f;
 	float TGDem_ChayTuDo = TG_ChayTuDo + 0.1f;
@@ -163,17 +166,7 @@ private:
 	static constexpr float TG_XuatHien = 0.4f + 0.03f * 6;
 	float TGDem = 0.0f;
 public:
-	void XuatHien(const Vec2& in_ToaDo)
-	{
-		mToaDo = in_ToaDo;
-		mTrangThai = eTT_XMan_XuatHien;
-		mHH_HienTai = mHH_XuatHien;
-		mHH_HienTai->Remake();
-		TGDem = 0.0f;
-		mVanToc.y = 580.0f;
-		mHP = 100;
-		mLatHinh = false;
-	}
+	void XuatHien(const Vec2& in_ToaDo);
 private:
 	void CapNhat_XuatHien()
 	{

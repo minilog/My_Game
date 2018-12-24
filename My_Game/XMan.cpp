@@ -10,6 +10,7 @@
 #include "ThangMay.h"
 #include "TrucXoay.h"
 #include "OngCon.h"
+#include "Sound.h"
 
 
 
@@ -146,11 +147,20 @@ void XMan::CapNhat(float in_tg)
 {
 	if (HP_DuTru > 0)
 	{
-		HP_DuTru--;
-		mHP++;
+		HP_DuTru -= 3;
+		mHP += 3;
+		DEM_Sound_XMan_Hoi_Mau += in_tg;
+	/*	if (DEM_Sound_XMan_Hoi_Mau >= 0.02f)
+		{
+			DEM_Sound_XMan_Hoi_Mau = 0.0f;*/
+			Sound::getInstance()->play("XMan_Hoi_Mau", false, 1);
+	/*	}*/
+
 		if (mHP > 100)
 		{
 			mHP = 100;
+			HP_DuTru = 0;
+			//Sound::getInstance()->stop("XMan_Hoi_Mau");
 		}
 	}
 
@@ -196,10 +206,21 @@ void XMan::CapNhat(float in_tg)
 	if (mTG_DemTichDan > mTG_TichDanLv2 * 2.5f)
 	{
 		mHH_HieuUngNapDanLv3->CapNhat(in_tg);
+		if (!PlaySound_GongSucKeoDai &&
+			(mTG_DemTichDan > mTG_TichDanLv2 * 4.0f))
+		{
+			Sound::getInstance()->play("Gong_Suc_Keo_Dai", true, 0);
+			PlaySound_GongSucKeoDai = true;
+		}
 	}
 	else if (mTG_DemTichDan > mTG_TichDanLv2)
 	{
 		mHH_HieuUngNapDanLv2->CapNhat(in_tg);
+		if (!PlaySound_GongSuc)
+		{
+			Sound::getInstance()->play("Gong_Suc", false, 1);
+			PlaySound_GongSuc = true;
+		}
 	}
 
 
@@ -224,6 +245,8 @@ void XMan::CapNhat(float in_tg)
 				mTimeCount_ChangeShining = 0.0f;
 
 				mIsShining = true;
+
+
 			}
 		}
 	}
@@ -875,6 +898,7 @@ void XMan::XuLyVaCham(const DoiTuong * in_DoiTuong)
 		}
 
 		HP_DuTru += 15;
+
 	}
 
 	if (in_DoiTuong->get_LoaiDoiTuong() == eLDT_OngCon)
@@ -957,11 +981,12 @@ void XMan::XuLyBanPhim(std::map<int, bool> in_Keys)
 
 	if (in_Keys['O'])
 	{
-		PhatNo();
+		mHP -= 5;
 	}
 	if (in_Keys['D'])
 	{
-		mHP = 100;
+		HP_DuTru = 100;
+
 	}
 
 	if (mTrangThai == eTT_XMan_XuatHien)
@@ -1053,6 +1078,7 @@ void XMan::PhatNo()
 	{
 		ToaDo_HatPhatNo[i] = mToaDo;
 	}
+	Sound::getInstance()->play("XMan_Chet", false, 1);
 }
 
 void XMan::CapNhat_PhatNo()
@@ -1063,6 +1089,19 @@ void XMan::CapNhat_PhatNo()
 		ToaDo_HatPhatNo[i].y += VanToc_HatPhatNo[i].y * mTimes;
 	}
 	mHH_HatPhatNo->CapNhat(mTimes);
+}
+
+void XMan::XuatHien(const Vec2 & in_ToaDo)
+{
+	mToaDo = in_ToaDo;
+	mTrangThai = eTT_XMan_XuatHien;
+	mHH_HienTai = mHH_XuatHien;
+	mHH_HienTai->Remake();
+	TGDem = 0.0f;
+	mVanToc.y = 580.0f;
+	mHP = 100;
+	mLatHinh = false;
+	Sound::getInstance()->play("XMan_Hoi_Sinh", false, 1);
 }
 
 void XMan::LoadThongTinHoatHinh()
@@ -1337,6 +1376,7 @@ void XMan::Nhay()
 	}
 	mHH_HienTai->Remake();
 	mChoPhepNhay = false;
+	Sound::getInstance()->play("XMan_Nhay", false, 1);
 }
 
 void XMan::Roi()
@@ -1370,6 +1410,7 @@ void XMan::TiepDat()
 	mTG_DemTiepDat = 0.0f;
 	mDuocTangTocLucDangBay = false;
 	mVanToc.y = 0.0f;
+	Sound::getInstance()->play("XMan_Tiep_Dat", false, 1);
 }
 
 void XMan::Luot()
@@ -1458,6 +1499,7 @@ void XMan::DinhSatThuong()
 	mHP -= 5;
 	mTGDem_DinhST = 0.0f;
 	mTGDem_KoNhanST = 0.0f;
+	Sound::getInstance()->play("XMan_Bi_Thuong", false, 1);
 }
 
 void XMan::ChuyenHH_BanDan()
@@ -2061,6 +2103,7 @@ void XMan::XuLyBanPhim_BanDan(std::map<int, bool> in_Keys)
 
 		// các đối tượng đạn bay ra
 		BanDanLv1();
+		Sound::getInstance()->play("Ban_Dan_Lv1", false, 1);
 	}
 
 	if (in_Keys[FIRE_BUTTON])
@@ -2069,6 +2112,10 @@ void XMan::XuLyBanPhim_BanDan(std::map<int, bool> in_Keys)
 	}
 	if (!in_Keys[FIRE_BUTTON])
 	{
+		PlaySound_GongSuc = false;
+		Sound::getInstance()->stop("Gong_Suc");
+		PlaySound_GongSucKeoDai = false;
+		Sound::getInstance()->stop("Gong_Suc_Keo_Dai");
 		mChoPhepBan = true;
 
 		if (mTG_DemTichDan > mTG_TichDanLv2 * 2.5f)
@@ -2077,6 +2124,7 @@ void XMan::XuLyBanPhim_BanDan(std::map<int, bool> in_Keys)
 			mBanDan = true;
 			mChoPhepBan = false;
 
+			Sound::getInstance()->play("Ban_Dan_Lv3", false, 1);
 			BanDanLv3();
 		}
 		else if (mTG_DemTichDan > mTG_TichDanLv2)
@@ -2085,6 +2133,7 @@ void XMan::XuLyBanPhim_BanDan(std::map<int, bool> in_Keys)
 			mBanDan = true;
 			mChoPhepBan = false;
 
+			Sound::getInstance()->play("Ban_Dan_Lv2", false, 1);
 			BanDanLv2();
 		}
 

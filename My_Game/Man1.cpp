@@ -15,6 +15,28 @@
 
 Man1::Man1()
 {
+	Sound::getInstance()->loadSound("Resources/Sound/Nhac_Nen.wav", "Nhac_Nen");
+	Sound::getInstance()->play("Nhac_Nen", true, 0);
+
+	Sound::getInstance()->loadSound("Resources/Sound/Ban_Dan_Lv1.wav", "Ban_Dan_Lv1");
+	Sound::getInstance()->loadSound("Resources/Sound/Ban_Dan_Lv2.wav", "Ban_Dan_Lv2");
+	Sound::getInstance()->loadSound("Resources/Sound/Ban_Dan_Lv3.wav", "Ban_Dan_Lv3");
+	Sound::getInstance()->loadSound("Resources/Sound/Diet_Xong_Boss.wav", "Diet_Xong_Boss");
+	Sound::getInstance()->loadSound("Resources/Sound/Ech_Ban_Dan.wav", "Ech_Ban_Dan");
+	Sound::getInstance()->loadSound("Resources/Sound/Gong_Suc.wav", "Gong_Suc");
+	Sound::getInstance()->loadSound("Resources/Sound/Gong_Suc_Keo_Dai.wav", "Gong_Suc_Keo_Dai");
+	Sound::getInstance()->loadSound("Resources/Sound/Hieu_Ung_No.wav", "Hieu_Ung_No");
+	Sound::getInstance()->loadSound("Resources/Sound/Nhac_Danh_Boss.wav", "Nhac_Danh_Boss");
+	Sound::getInstance()->loadSound("Resources/Sound/XMan_Bi_Thuong.wav", "XMan_Bi_Thuong");
+	Sound::getInstance()->loadSound("Resources/Sound/XMan_Chet.wav", "XMan_Chet");
+	Sound::getInstance()->loadSound("Resources/Sound/XMan_Hoi_Mau.wav", "XMan_Hoi_Mau");
+	/*Sound::getInstance()->setVolume(800.0f, "XMan_Hoi_Mau");*/
+	Sound::getInstance()->loadSound("Resources/Sound/XMan_Hoi_Sinh.wav", "XMan_Hoi_Sinh");
+	//Sound::getInstance()->play("XMan_Hoi_Sinh", false, 1);
+	Sound::getInstance()->loadSound("Resources/Sound/XMan_Luot.wav", "XMan_Luot");
+	Sound::getInstance()->loadSound("Resources/Sound/XMan_Nhay.wav", "XMan_Nhay");
+	Sound::getInstance()->loadSound("Resources/Sound/XMan_Tiep_Dat.wav", "XMan_Tiep_Dat");
+
 	TaiDuLieu();
 
 	//QuadTree_HieuUngMap = new QuadTree(0, HCN(0, 3968 * 2, 0, 1024 * 2));
@@ -48,8 +70,7 @@ Man1::Man1()
 		}
 	}
 
-	//Sound::getInstance()->loadSound("Resources/Umbrella-KashitaroIto-2576613.wav", "man1");
-	//Sound::getInstance()->play("man1", true, 0);
+
 }
 
 

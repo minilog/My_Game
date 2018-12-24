@@ -1,6 +1,7 @@
 ﻿#include "Ech.h"
 #include "DanNo1.h"
 #include "DanLv.h"
+#include "Sound.h"
 #include "TrucXoay.h"
 
 
@@ -84,6 +85,7 @@ void Ech::CapNhat(float in_tg, const DoiTuong * in_XMan)
 	if (mHP <= 0 && mTrangThai != eTT_Ech_DangTanBien)
 	{
 		DangTanBien();
+		Sound::getInstance()->play("Hieu_Ung_No", false, 1);
 	}
 
 	if (mIsShining)
